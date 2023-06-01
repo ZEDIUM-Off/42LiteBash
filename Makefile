@@ -1,6 +1,6 @@
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I. -fsanitize=address -g3
 NAME = minishell
-SRC = core/main.c core/builtins.c core/environment.c core/execution.c core/history.c core/prompt.c core/signals.c parsing/lexer.c parsing/parser.c parsing/tokenizer.c
+SRC = $(shell find src -name "*.c") minishell.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

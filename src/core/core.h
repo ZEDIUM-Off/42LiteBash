@@ -11,26 +11,26 @@
 /* ************************************************************************** */
 
 #ifndef CORE_H
-#define CORE_H
+# define CORE_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/wait.h>
-#include <sys/types.h>
+#include <minish.h>
 
-// Structure for a command
-typedef struct s_command
-{
-    char **args; // Arguments for the command
-    int pipe;    // Indicates if the command should be piped
-} t_command;
+struct s_sh_context {
+	t_uint	status;
+	t_uint	mode;
+	t_str		line;
+	t_pipeline		*pipeline;
+	t_garbage_collector	*gc;
+	t_tracker	*tk;
+	t_error_handler	*error_handler;
+	t_str		*env;
+	t_str		*path;
+	t_str		prompt;
+	t_str		*history;
+	t_str		pwd;
+};
 
-// Function prototypes
-void shell_loop(void);
-char *read_line(void);
-t_command **parse_line(char *line);
-int execute_commands(t_command **commands);
+void	set_ctx(t_sh_context *ctx);
+int	init_sh_context(t_sh_context *ctx);
 
 #endif
