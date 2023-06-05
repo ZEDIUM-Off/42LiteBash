@@ -31,13 +31,13 @@
 
 #include "src/types/types.h"
 
-t_sh_context	*g_shx;
+extern t_sh_context	*g_shx;
 
 #include "src/core/core.h"
 #include "src/parsing/parsing.h"
 #include "src/utils/utils.h"
 
-
+void	prompt(void);
 
 
 

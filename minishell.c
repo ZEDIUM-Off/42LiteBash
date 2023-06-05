@@ -1,5 +1,7 @@
 #include <minish.h>
 
+t_sh_context	*g_shx;
+
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
@@ -13,5 +15,6 @@ int	main(int argc, char **argv, char **envp)
 	gc_init(&gc);
 	set_garbage_collector(&gc);
 	trace("main", "start", 0);
+	//prompt();
 	return (0);
 }

@@ -1,22 +1,86 @@
-CFLAGS = -Wall -Wextra -Werror -I. -fsanitize=address -g3
+
+# ---- Final Executable --- #
+
 NAME = minishell
-SRC = $(shell find src -name "*.c") minishell.c
-OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+LIBFT = libft.a
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+# ---- Directories ---- #
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+DIR_OBJS		=	.objs/
 
-clean:
-	rm -f $(OBJ)
+DIR_SRC 		=	./src
 
-fclean: clean
-	rm -f $(NAME)
+DIR_LIBFT		=	src/utils/Libft/
 
-re: fclean all
+LIBFT_A = $(DIR_LIBFT)$(LIBFT)
 
-.PHONY: all clean fclean re
+FILES = src/parsing/list/src/ft_lstnew.c \
+		src/parsing/list/src/ft_lstsize.c \
+		src/parsing/list/src/ft_lstlast.c \
+		src/parsing/list/src/ft_print_list.c \
+		src/parsing/list/src/ft_lstclear.c \
+		src/parsing/list/src/ft_lstadd_back.c \
+		src/parsing/list/create_list.c \
+		src/utils/tracker/init_track.c \
+		src/utils/tracker/track.c \
+		src/utils/new_str.c \
+		src/utils/garbage_collector/set_gc.c \
+		src/utils/garbage_collector/gc_func.c \
+		src/utils/garbage_collector/gc_init.c \
+		src/core/set_ctx.c \
+		src/core/init_ctx.c \
+		minishell.c \
+		prompt.c \
+
+HEAD = $(shell find . -name "*.h")
+
+
+OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
+
+# ---- Compilation ---- #
+
+CFLAGS = -Wall -Werror -Wextra -I . -fsanitize=address -g3
+
+# ********* RULES ******** #
+
+# ---- Commands ---- #
+
+RM		=	rm -rf
+MKDIR	=	mkdir -p
+
+# ********* RULES ******** #
+
+all		:	$(NAME)
+
+$(LIBFT_A):	force
+	@ ${MAKE} ${LIBFT} -C ${DIR_LIBFT} -j4
+
+.PHONY:	all clean fclean re fclean_lib fclean_all force
+
+# ---- Variables Rules ---- #
+
+${NAME}	:	${OBJS} $(LIBFT_A)
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} -L ${DIR_LIBFT} -lft -lreadline
+
+# ---- Compiled Rules ---- #
+
+${DIR_OBJS}%.o:%.c ${HEAD} 
+	@				$(MKDIR) $(shell dirname $@)
+					${CC} ${CFLAGS} -I $(DIR_LIBFT) -I. -c $< -o $@	
+
+# ---- Usual Commands ---- #
+
+fclean_lib		:
+					make fclean -C ${DIR_LIBFT}
+
+clean			:
+					${RM} ${DIR_OBJS}
+
+fclean			:	clean
+					${RM} ${NAME}
+
+fclean_all		:	fclean fclean_lib
+
+re				:	fclean_all
+	$(MAKE) all
