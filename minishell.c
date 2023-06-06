@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 16:21:08 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 19:06:58 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	main(int argc, char **argv, char **envp)
 	t_str test = new_str("test");
 	log_action();
 	(void)test;
-	prompt();
+	//prompt();
 	return (0);
 }

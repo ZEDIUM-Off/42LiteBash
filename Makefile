@@ -38,6 +38,8 @@ FILES = src/parsing/list/src/ft_lstnew.c \
 		src/core/init_ctx.c \
 		minishell.c \
 		prompt.c \
+		src/parsing/ft_read.c \
+		src/parsing/reading_mode.c \
 
 HEAD = $(shell find . -name "*.h")
 

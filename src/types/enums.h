@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 16:21:39 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 18:08:19 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,20 @@ enum e_error_codes
 {
 	GARB_ALLOC_ERROR,
 	TRACKER_ALLOC_ERROR,
+};
+
+enum e_parsing_error
+{
+	DOUBLE_QUOTE_ERROR = -1,
+	SIMPLE_QUOTE_ERROR = -2,
+	BRACKET_ERROR = -3,
+};
+
+enum e_parsing_succes
+{
+	DOUBLE_QUOTE_SUCCES = 1,
+	SIMPLE_QUOTE_SUCCES = 2,
+	BRACKET_SUCCES = 3,
 };
 
 #endif

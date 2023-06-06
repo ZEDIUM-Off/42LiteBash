@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 11:01:57 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/06 18:37:08 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_garbage_collector	t_garbage_collector;
 typedef struct s_ptr				t_ptr;
 typedef struct s_error_handler		t_error_handler;
 typedef struct s_tracker			t_tracker;
+typedef struct s_parsing_data		t_p_data;
 
 typedef void (*						t_free_func)(void *ptr);
 typedef void *(*					t_malloc_func)(size_t size);

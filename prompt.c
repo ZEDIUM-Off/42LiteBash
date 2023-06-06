@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/06 13:51:25 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 17:38:26 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void	prompt(void)
 {
 	t_str	line_read;
+	t_uint	i;
 
-	while (1)
+	i = 0;
+	trace("prompt", "display prompt", PARSE);
+	while (i++ < 10)
 	{
 		line_read = readline("Minish : ");
 		printf("%s\n", line_read);
-		
+		ft_read(line_read);
 		free(line_read);
 	}
+	log_action();
 	return ;
 }
