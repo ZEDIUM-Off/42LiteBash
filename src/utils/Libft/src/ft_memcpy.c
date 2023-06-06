@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:18:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/06 11:46:59 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/06 13:37:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];
 		i++;
 	}
-	printf("ft_memcpy: %s\n", (char *)dst);
 	return (dst);
 }

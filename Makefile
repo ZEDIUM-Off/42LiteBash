@@ -28,6 +28,8 @@ FILES = src/parsing/list/src/ft_lstnew.c \
 		src/utils/init_shell.c \
 		src/utils/garbage_collector/gc_func.c \
 		src/utils/garbage_collector/gc_init.c \
+		src/utils/error_handler/exit_shell.c \
+		src/utils/logger/log.c \
 		src/core/init_ctx.c \
 		minishell.c \
 		prompt.c \
@@ -39,7 +41,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra -I . -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -I . -fsanitize=address -g3 -D DEBUG
 
 # ********* RULES ******** #
 
@@ -51,6 +53,9 @@ MKDIR	=	mkdir -p
 # ********* RULES ******** #
 
 all		:	$(NAME)
+
+debug	:	 
+
 
 $(LIBFT_A):	force
 	@ ${MAKE} ${LIBFT} -C ${DIR_LIBFT} -j4
@@ -74,6 +79,7 @@ fclean_lib		:
 					make fclean -C ${DIR_LIBFT}
 
 clean			:
+					${RM} traces.log
 					${RM} ${DIR_OBJS}
 
 fclean			:	clean

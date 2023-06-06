@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 11:09:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/06 13:26:00 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ enum e_step_type
 	PARSE,
 	EXEC,
 	END,
+};
+
+enum e_error_codes
+{
+	GARB_ALLOC_ERROR,
+	TRACKER_ALLOC_ERROR,
 };
 
 #endif

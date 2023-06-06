@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.c                                       :+:      :+:    :+:   */
+/*   error_handler.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 15:01:21 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/06/06 13:26:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minish.h>
+#ifndef ERROR_HANDLER_H
+# define ERROR_HANDLER_H
 
-void	init_shell(
-	t_sh_context *shx,
-	t_str *envp,
-	t_str *argv,
-	int argc
-)
-{
-	init_sh_context(shx, envp, argv, argc);
-	set_ctx(shx);
-	init_gc();
-	init_track();
-}
+# include <minish.h>
+
+void	exit_shell(t_uint error_code, char *msg);
+
+#endif

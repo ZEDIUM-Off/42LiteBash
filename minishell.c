@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 11:56:19 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/06 16:16:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int	main(int argc, char **argv, char **envp)
 
 	init_shell(&ctx, envp, argv, argc);
 	trace("main", "start", START);
+	t_str test = new_str("test");
+	log_action();
+	(void)test;
 	//prompt();
 	return (0);
 }

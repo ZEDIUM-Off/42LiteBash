@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:32:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 11:38:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/06 15:00:51 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ struct s_ptr
 
 void	*gc_malloc(size_t size);
 void	gc_free(void *ptr);
-void	set_gc(t_garbage_collector *gc);
-int		init_gc(t_garbage_collector	*gc);
+void	init_gc(void);
 
 #endif
