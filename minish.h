@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 13:06:14 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 16:22:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@
 # include "src/core/core.h"
 # include "src/parsing/parsing.h"
 # include "src/utils/utils.h"
-
 
 void	prompt(void);
 

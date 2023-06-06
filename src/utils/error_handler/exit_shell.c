@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.c                                       :+:      :+:    :+:   */
+/*   exit_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 15:01:21 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/06/06 13:21:29 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/06/06 13:26:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	init_shell(
-	t_sh_context *shx,
-	t_str *envp,
-	t_str *argv,
-	int argc
-)
+void	exit_shell(t_uint error_code, char *msg)
 {
-	init_sh_context(shx, envp, argv, argc);
-	set_ctx(shx);
-	init_gc();
-	init_track();
+	printf("MINISHELL %d: %s\n", error_code, msg);
+	exit(error_code);
 }

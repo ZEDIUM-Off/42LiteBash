@@ -1,6 +1,9 @@
 {
 	"files.associations": {
 		"garbage.h": "c",
-		"core.h": "c"
+		"core.h": "c",
+		"minish.h": "c",
+		"libft.h": "c",
+		"utils.h": "c"
 	}
 }

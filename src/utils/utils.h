@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 11:38:59 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/06 15:51:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "tracker/tracker.h"
 # include "garbage_collector/garbage.h"
+# include "error_handler/error_handler.h"
+# include "logger/logger.h"
 # include <minish.h>
 
 t_str	new_str(t_str str);

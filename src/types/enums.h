@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 14:54:37 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 16:21:39 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ enum e_step_type
 	END,
 };
 
-// enum e_parsing
-// {
-	
-// }
+enum e_error_codes
+{
+	GARB_ALLOC_ERROR,
+	TRACKER_ALLOC_ERROR,
+};
 
 #endif
