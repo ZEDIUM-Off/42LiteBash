@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minish.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 12:52:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/06 13:06:14 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@
 # include <sys/ioctl.h>  // ioctl
 # include <readline/readline.h> // readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
 
+# include "src/utils/Libft/headers/libft.h"
 # include "src/types/types.h"
 # include "src/types/enums.h"
 # include "src/core/core.h"
 # include "src/parsing/parsing.h"
 # include "src/utils/utils.h"
-# include "src/utils/Libft/headers/libft.h"
 
 
 void	prompt(void);

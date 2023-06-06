@@ -13,13 +13,12 @@
 #ifndef LIST_H
 # define LIST_H
 
-typedef struct s_list
+typedef struct		s_list
 {
 	struct s_list	*prev;
 	unsigned int	index;
 	char			*argv;
 	struct s_list	*next;
-
-}	t_list;
+}					t_list;
 
 #endif

@@ -21,6 +21,11 @@ FILES = src/parsing/list/src/ft_lstnew.c \
 		src/parsing/list/src/ft_print_list.c \
 		src/parsing/list/src/ft_lstclear.c \
 		src/parsing/list/src/ft_lstadd_back.c \
+		src/parsing/list/src/ft_delone_double.c \
+		src/parsing/list/src/ft_lstadd_back_double.c \
+		src/parsing/list/src/ft_lstadd_front_double.c \
+		src/parsing/list/src/ft_lstclear_double.c \
+		src/parsing/list/src/ft_lstnew_double.c \
 		src/parsing/list/create_list.c \
 		src/utils/tracker/init_track.c \
 		src/utils/tracker/track.c \

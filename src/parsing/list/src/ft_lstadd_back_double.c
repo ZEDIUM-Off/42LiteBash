@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_lstadd_back_double.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/06 13:51:25 by bfaure           ###   ########lyon.fr   */
+/*   Created: 2023/06/06 14:39:15 by bfaure            #+#    #+#             */
+/*   Updated: 2023/06/06 14:46:42 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minish.h>
+#include "../headers/fonction_list.h"
 
-void	prompt(void)
+void	lst_add_back_double(t_list **lst, t_list *new)
 {
-	t_str	line_read;
+	t_list	*tmp;
 
-	while (1)
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		line_read = readline("Minish : ");
-		printf("%s\n", line_read);
-		
-		free(line_read);
+		tmp = *lst;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+		new->prev = tmp;
 	}
-	return ;
 }

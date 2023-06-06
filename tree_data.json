@@ -1,0 +1,418 @@
+{
+  "name": ".", 
+  "children": [
+    {
+      "name": "gen_arbo.py", 
+      "children": []
+    }, 
+    {
+      "name": "src", 
+      "children": [
+        {
+          "name": "parsing", 
+          "children": [
+            {
+              "name": "list", 
+              "children": [
+                {
+                  "name": "headers", 
+                  "children": [
+                    {
+                      "name": "fonction_list.h", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "list.h", 
+                      "children": []
+                    }
+                  ]
+                }, 
+                {
+                  "name": "src", 
+                  "children": [
+                    {
+                      "name": "ft_lstadd_back_double.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_lstnew.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_lstsize.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_delone_double.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_lstlast.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_lstadd_front_double.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_print_list.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_lstclear.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_lstnew_double.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_lstadd_back.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_lstclear_double.c", 
+                      "children": []
+                    }
+                  ]
+                }, 
+                {
+                  "name": "create_list.c", 
+                  "children": []
+                }
+              ]
+            }, 
+            {
+              "name": "parsing.h", 
+              "children": []
+            }
+          ]
+        }, 
+        {
+          "name": "utils", 
+          "children": [
+            {
+              "name": "tracker", 
+              "children": [
+                {
+                  "name": "init_track.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "track.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "tracker.h", 
+                  "children": []
+                }
+              ]
+            }, 
+            {
+              "name": "new_str.c", 
+              "children": []
+            }, 
+            {
+              "name": "utils.h", 
+              "children": []
+            }, 
+            {
+              "name": "init_shell.c", 
+              "children": []
+            }, 
+            {
+              "name": "Libft", 
+              "children": [
+                {
+                  "name": "libft.a", 
+                  "children": []
+                }, 
+                {
+                  "name": "headers", 
+                  "children": [
+                    {
+                      "name": "get_next_line.h", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "libft.h", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_printf.h", 
+                      "children": []
+                    }
+                  ]
+                }, 
+                {
+                  "name": "src", 
+                  "children": [
+                    {
+                      "name": "ft_strlen_int.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_isalpha.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_isalnum.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strjoin.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_putnbr_fd.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "get_next_line.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strdup.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strmapi.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_putnbr_printf.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_atoll.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_memmove.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_memcpy.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strncmp.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_toupper.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_putstr_printf.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strrchr.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_memset.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "get_next_line_utils.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_putnbr_base_printf.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_tolower.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_putstr_fd.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_bzero.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_printf.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strnstr.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_isdigit.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_atoi.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_putchar_printf.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_calloc.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strtrim.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strchr.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_putptr_printf.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_putchar_fd.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_putendl_fd.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strlcpy.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strfjoin.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_split.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_substr.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strlen_line.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_striteri.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_itoa.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_isprint.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strlcat.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_memchr.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_isascii.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_strlen.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_memcmp.c", 
+                      "children": []
+                    }
+                  ]
+                }, 
+                {
+                  "name": "Makefile", 
+                  "children": []
+                }
+              ]
+            }, 
+            {
+              "name": "garbage_collector", 
+              "children": [
+                {
+                  "name": "garbage.h", 
+                  "children": []
+                }, 
+                {
+                  "name": "gc_func.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "gc_init.c", 
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "core", 
+          "children": [
+            {
+              "name": "init_ctx.c", 
+              "children": []
+            }, 
+            {
+              "name": "core.h", 
+              "children": []
+            }
+          ]
+        }, 
+        {
+          "name": "types", 
+          "children": [
+            {
+              "name": "types.h", 
+              "children": []
+            }, 
+            {
+              "name": "enums.h", 
+              "children": []
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "name": "minish.h", 
+      "children": []
+    }, 
+    {
+      "name": "minishell.c", 
+      "children": []
+    }, 
+    {
+      "name": "arbo.html", 
+      "children": []
+    }, 
+    {
+      "name": "tree_data.json", 
+      "children": []
+    }, 
+    {
+      "name": "prompt.c", 
+      "children": []
+    }, 
+    {
+      "name": "minishell", 
+      "children": []
+    }, 
+    {
+      "name": "Makefile", 
+      "children": []
+    }
+  ]
+}

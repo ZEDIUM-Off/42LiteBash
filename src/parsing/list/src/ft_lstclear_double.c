@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear_double.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/06 13:51:25 by bfaure           ###   ########lyon.fr   */
+/*   Created: 2023/06/06 14:42:27 by bfaure            #+#    #+#             */
+/*   Updated: 2023/06/06 14:46:39 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minish.h>
+#include "../headers/fonction_list.h"
 
-void	prompt(void)
+void	lst_clear(t_list **lst)
 {
-	t_str	line_read;
+	t_list	*tmp;
 
-	while (1)
+	if (!lst)
+		return ;
+	while (*lst)
 	{
-		line_read = readline("Minish : ");
-		printf("%s\n", line_read);
-		
-		free(line_read);
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = tmp;
 	}
-	return ;
 }

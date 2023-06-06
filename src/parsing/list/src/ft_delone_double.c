@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_delone_double.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/06 13:51:25 by bfaure           ###   ########lyon.fr   */
+/*   Created: 2023/06/06 14:41:24 by bfaure            #+#    #+#             */
+/*   Updated: 2023/06/06 14:41:54 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minish.h>
+#include "../headers/fonction_list.h"
 
-void	prompt(void)
+void	lst_delone_double(t_list **lst, t_list *del)
 {
-	t_str	line_read;
-
-	while (1)
-	{
-		line_read = readline("Minish : ");
-		printf("%s\n", line_read);
-		
-		free(line_read);
-	}
-	return ;
+	if (!lst || !del)
+		return ;
+	if (del->prev)
+		del->prev->next = del->next;
+	else
+		*lst = del->next;
+	if (del->next)
+		del->next->prev = del->prev;
+	free(del);
 }
