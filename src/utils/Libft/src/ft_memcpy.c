@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 17:18:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/01/12 14:00:45 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/06 11:46:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
+#include <stdio.h>
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
@@ -24,5 +25,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		((unsigned char *)dst)[i] = ((const unsigned char *)src)[i];
 		i++;
 	}
+	printf("ft_memcpy: %s\n", (char *)dst);
 	return (dst);
 }

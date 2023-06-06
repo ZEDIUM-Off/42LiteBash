@@ -1,20 +1,23 @@
-#include <minish.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/06 11:15:51 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/06/06 11:56:19 by  mchenava        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_sh_context	*g_shx;
+#include <minish.h>
 
 int	main(int argc, char **argv, char **envp)
 {
-	(void)argc;
-	(void)argv;
-	(void)envp;
 	t_sh_context	ctx;
-	t_garbage_collector	gc;
-	init_sh_context(&ctx);
-	set_ctx(&ctx);
-	printf("g_shx->status: %d\n", g_shx->status);
-	gc_init(&gc);
-	set_garbage_collector(&gc);
-	trace("main", "start", 0);
+
+	init_shell(&ctx, envp, argv, argc);
+	trace("main", "start", START);
 	//prompt();
 	return (0);
 }

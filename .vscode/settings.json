@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"garbage.h": "c",
+		"core.h": "c"
+	}
+}

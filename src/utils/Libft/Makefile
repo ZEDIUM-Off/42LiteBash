@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 15:23:52 by bfaure            #+#    #+#              #
-#    Updated: 2023/05/08 16:20:50 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/06/06 11:43:06 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ HEADERS	= 	libft.h\
 			get_next_line.h\
 			ft_printf.h\
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -g3
 
 all :		${NAME}
 

@@ -25,10 +25,9 @@ FILES = src/parsing/list/src/ft_lstnew.c \
 		src/utils/tracker/init_track.c \
 		src/utils/tracker/track.c \
 		src/utils/new_str.c \
-		src/utils/garbage_collector/set_gc.c \
+		src/utils/init_shell.c \
 		src/utils/garbage_collector/gc_func.c \
 		src/utils/garbage_collector/gc_init.c \
-		src/core/set_ctx.c \
 		src/core/init_ctx.c \
 		minishell.c \
 		prompt.c \

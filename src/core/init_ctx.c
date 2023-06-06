@@ -1,6 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_ctx.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/06 11:16:25 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/06/06 11:25:58 by  mchenava        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <minish.h>
 
-int	init_sh_context(t_sh_context *ctx)
+void	init_sh_context(
+	t_sh_context *ctx,
+	t_str *envp,
+	t_str	*argv,
+	int argc
+)
 {
 	ctx->status = 0;
 	ctx->mode = 0;
@@ -8,10 +25,16 @@ int	init_sh_context(t_sh_context *ctx)
 	ctx->pipeline = NULL;
 	ctx->tk = NULL;
 	ctx->error_handler = NULL;
-	ctx->env = NULL;
+	ctx->envp = envp;
+	ctx->argv = argv;
+	ctx->argc = argc;
 	ctx->path = NULL;
 	ctx->prompt = NULL;
 	ctx->history = NULL;
 	ctx->pwd = NULL;
-	return (0);
+}
+
+void	set_ctx(t_sh_context *ctx)
+{
+	g_shx = ctx;
 }
