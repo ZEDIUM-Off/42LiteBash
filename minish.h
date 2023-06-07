@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 18:25:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/07 20:41:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@
 # include "src/types/types.h"
 # include "src/types/enums.h"
 # include "src/core/core.h"
+# include "src/parsing/list/list.h"
 # include "src/parsing/parsing.h"
 # include "src/utils/utils.h"
+
+extern t_sh_context	*g_shx;
 
 void	prompt(void);
 

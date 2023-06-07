@@ -15,40 +15,39 @@ DIR_LIBFT		=	src/utils/Libft/
 
 LIBFT_A = $(DIR_LIBFT)$(LIBFT)
 
-FILES = src/parsing/list/src/ft_lstnew.c \
-		src/parsing/list/src/ft_lstsize.c \
-		src/parsing/list/src/ft_lstlast.c \
-		src/parsing/list/src/ft_print_list.c \
-		src/parsing/list/src/ft_lstclear.c \
-		src/parsing/list/src/ft_lstadd_back.c \
-		src/parsing/list/src/ft_delone_double.c \
-		src/parsing/list/src/ft_lstadd_back_double.c \
-		src/parsing/list/src/ft_lstadd_front_double.c \
-		src/parsing/list/src/ft_lstclear_double.c \
-		src/parsing/list/src/ft_lstnew_double.c \
-		src/parsing/list/create_list.c \
-		src/utils/tracker/init_track.c \
-		src/utils/tracker/track.c \
-		src/utils/new_str.c \
-		src/utils/init_shell.c \
-		src/utils/garbage_collector/gc_func.c \
-		src/utils/garbage_collector/gc_init.c \
-		src/utils/error_handler/exit_shell.c \
-		src/utils/logger/log.c \
-		src/core/init_ctx.c \
-		minishell.c \
-		prompt.c \
-		src/parsing/ft_read.c \
-		src/parsing/reading_mode.c \
+FILES =	src/parsing/list/dlst_add.c  \
+				src/parsing/list/dlst_del.c  \
+				src/parsing/list/lst_base_func.c \
+				src/parsing/list/lst_set_get.c \
+				src/parsing/list/dlst_base_func.c \
+				src/parsing/list/dlst_set_get.c  \
+				src/parsing/list/lst_add.c  \
+				src/parsing/list/lst_del.c  \
+				src/utils/tracker/init_track.c \
+				src/utils/tracker/track.c \
+				src/utils/new_str.c \
+				src/utils/init_shell.c \
+				src/utils/garbage_collector/gc_func.c \
+				src/utils/garbage_collector/gc_init.c \
+				src/utils/error_handler/exit_shell.c \
+				src/utils/logger/log.c \
+				src/core/init_ctx.c \
+				minishell.c \
+				prompt.c \
+				src/parsing/ft_read.c \
+				src/parsing/reading_mode.c \
 
 HEAD = $(shell find . -name "*.h")
 
+INC = -I. -I$(DIR_LIBFT)
 
 OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra -I . -fsanitize=address -g3 -D DEBUG
+CFLAGS = -Wall -Werror -Wextra
+
+DEB_FLAGS = -g3 -fsanitize=address
 
 # ********* RULES ******** #
 
@@ -72,13 +71,13 @@ $(LIBFT_A):	force
 # ---- Variables Rules ---- #
 
 ${NAME}	:	${OBJS} $(LIBFT_A)
-			${CC} -o ${NAME} ${OBJS} ${CFLAGS} -L ${DIR_LIBFT} -lft -lreadline
+			${CC} ${CFLAGS} $(INC) $^ -lreadline  -o $@
 
 # ---- Compiled Rules ---- #
 
 ${DIR_OBJS}%.o:%.c ${HEAD} 
 	@				$(MKDIR) $(shell dirname $@)
-					${CC} -I $(DIR_LIBFT) -I. -c $< ${CFLAGS} -o $@	
+					${CC} ${CFLAGS} $(INC) -c $<  -o $@
 
 # ---- Usual Commands ---- #
 

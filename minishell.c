@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 18:25:16 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/07 20:44:39 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_sh_context	*g_shx;
+t_sh_context *g_shx;
 
 int	main(int argc, char **argv, char **envp)
 {
