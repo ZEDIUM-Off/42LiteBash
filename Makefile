@@ -72,18 +72,18 @@ $(LIBFT_A):	force
 # ---- Variables Rules ---- #
 
 ${NAME}	:	${OBJS} $(LIBFT_A)
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} -L ${DIR_LIBFT} -lft -lreadline
+			${CC} -o ${NAME} ${OBJS} ${CFLAGS} -L ${DIR_LIBFT} -lft -lreadline
 
 # ---- Compiled Rules ---- #
 
 ${DIR_OBJS}%.o:%.c ${HEAD} 
 	@				$(MKDIR) $(shell dirname $@)
-					${CC} ${CFLAGS} -I $(DIR_LIBFT) -I. -c $< -o $@	
+					${CC} -I $(DIR_LIBFT) -I. -c $< ${CFLAGS} -o $@	
 
 # ---- Usual Commands ---- #
 
 fclean_lib		:
-					make fclean -C ${DIR_LIBFT}
+					make fclean -C ${DIR_LIBFT} -j4
 
 clean			:
 					${RM} traces.log
