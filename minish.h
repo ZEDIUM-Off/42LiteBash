@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 16:22:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/07 17:11:57 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # include <term.h>       // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <sys/ioctl.h>  // ioctl
 # include <readline/readline.h> // readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
+# include <readline/history.h>
 
 # include "src/utils/Libft/headers/libft.h"
 # include "src/types/types.h"
