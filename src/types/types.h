@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 20:31:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/08 14:09:57 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_tracker			t_tracker;
 typedef struct s_parsing_data		t_p_data;
 typedef struct	s_list			t_list;
 typedef struct	s_dlist			t_dlist;
+typedef struct	s_meta_char		t_meta_char;
+typedef struct	s_chunk			t_chunk;
 
 typedef void (*						t_free_func)(void *ptr);
 typedef void *(*					t_malloc_func)(size_t size);

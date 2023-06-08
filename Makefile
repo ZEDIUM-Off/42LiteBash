@@ -37,6 +37,7 @@ FILES =	src/parsing/list/dlst_add.c  \
 				src/parsing/ft_read.c \
 				src/parsing/reading_mode.c \
 
+
 HEAD = $(shell find . -name "*.h")
 
 INC = -I. -I$(DIR_LIBFT)
@@ -78,6 +79,9 @@ ${NAME}	:	${OBJS} $(LIBFT_A)
 ${DIR_OBJS}%.o:%.c ${HEAD} 
 	@				$(MKDIR) $(shell dirname $@)
 					${CC} ${CFLAGS} $(INC) -c $<  -o $@
+
+watch : $(DIR_SRC)
+	fswatch -o $^ | make && ./$(NAME)
 
 # ---- Usual Commands ---- #
 

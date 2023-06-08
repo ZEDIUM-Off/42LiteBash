@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/07 20:34:36 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/08 14:09:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,34 @@
 struct s_parsing_data
 {
 	t_uint	pos_cursor;
+	t_uint	mode;
+	void	*data;
+};
+
+struct s_syntax_checker
+{
+	t_uint	cursor;
+	t_uint	status;
+	t_uint	quote_ctr;
+	t_uint	db_quote_ctr;
+	t_uint	parenthesis_ctr;
+};
+
+struct s_meta_char
+{
+	t_uint	type;
+	t_uint	start;
+	t_uint	end;
+	t_str	txt;
+};
+
+struct	s_chunk
+{
+	t_uint	type;
+	t_uint	start;
+	t_uint	end;
+	t_str	txt;
+	t_chunk	*under_chunk;
 };
 
 int	bracket_mode(void);

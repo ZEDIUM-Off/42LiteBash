@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:30:28 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/07 18:12:28 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/08 10:48:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_double_quote_mode(t_str line_read, t_p_data *p_data)
 		}
 		p_data->pos_cursor++;
 	}
-	//log_action();
+	// log_action();
 	return (0);
 }
 
