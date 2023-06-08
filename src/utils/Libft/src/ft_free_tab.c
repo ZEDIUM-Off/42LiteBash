@@ -3,25 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: aviscogl <aviscogl@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:39:27 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/08 17:23:01 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/08 20:20:58 by aviscogl         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
-void	ft_free_tab(void *tab, int len)
+void	ft_free_tab_len(char **strs, int len)
 {
 	int	i;
 
 	i = 0;
 	while (i <= len)
 	{
-		free(((char **)tab)[i]);
+		free(strs[i]);
 		i++;
 	}
-	free(tab);
+	free(strs);
+	return ;
+}
+
+void	ft_free_tab(char **strs)
+{
+	size_t	i;
+
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
 	return ;
 }

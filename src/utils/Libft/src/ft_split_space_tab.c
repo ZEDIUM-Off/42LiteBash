@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_space_tab.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: aviscogl <aviscogl@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:59:38 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/08 17:21:26 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/08 20:57:23 by aviscogl         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
-
-static int	ft_count_words(char const *str, char sep)
+static int	ft_count_words(char const *str)
 {
 	int	i;
 	int	count;
@@ -22,10 +21,10 @@ static int	ft_count_words(char const *str, char sep)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] != sep)
+		if (str[i] != ' ' && str[i] != '\t')
 		{
 			count++;
-			while (str[i] != sep && str[i])
+			while ((str[i] != ' ' && str[i] != '\t') && str[i])
 				i++;
 		}
 		else
@@ -34,7 +33,7 @@ static int	ft_count_words(char const *str, char sep)
 	return (count);
 }
 
-static char	**ft_str_cut(char **dest, char const *src, char sep)
+static char	**ft_str_cut(char **dest, char const *src)
 {
 	int	i;
 	int	j;
@@ -42,18 +41,18 @@ static char	**ft_str_cut(char **dest, char const *src, char sep)
 
 	i = 0;
 	k = 0;
-	while (src[i] && ft_count_words(src, sep) - k > 0)
+	while (src[i] && ft_count_words(src) - k > 0)
 	{
-		while (src[i] && src[i] == sep)
+		while (src[i] && (src[i] == ' ' || src[i] == '\t'))
 			i++;
 		j = i;
-		while (src[j] && src[j] != sep)
+		while (src[j] && (src[j] != ' ' && src[j] != '\t'))
 			j++;
 		dest[k] = (char *)malloc(sizeof(char) * (j - i + 1));
 		if (!dest[k])
-			return (ft_free_tab(dest, k));
+			return (ft_free_tab_len(dest, k), NULL);
 		j = 0;
-		while (src[i] && src[i] != sep)
+		while (src[i] && (src[i] != ' ' && src[i] != '\t'))
 			dest[k][j++] = src[i++];
 		dest[k++][j] = '\0';
 	}
@@ -61,12 +60,12 @@ static char	**ft_str_cut(char **dest, char const *src, char sep)
 	return (dest);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_space_tab(char const *s)
 {
 	char	**tab;
 
-	tab = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	tab = (char **)malloc(sizeof(char *) * (ft_count_words(s) + 1));
 	if (!tab)
 		return (NULL);
-	return (ft_str_cut(tab, s, c));
+	return (ft_str_cut(tab, s));
 }
