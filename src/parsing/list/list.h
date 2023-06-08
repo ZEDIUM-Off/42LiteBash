@@ -20,14 +20,14 @@
 struct	s_list
 {
 	t_uint	index;
-	void		*data;
+	void	*data;
 	t_list	*next;
 };
 
 struct	s_dlist
 {
 	t_uint	index;
-	void		*data;
+	void	*data;
 	t_dlist	*next;
 	t_dlist	*prev;
 };

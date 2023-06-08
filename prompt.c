@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/08 12:54:15 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/08 16:50:33 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void	prompt(void)
 			exit_shell(420, "You say it, you assume it\n");
 		if (line_read[0])
 			add_history(line_read);
-		ft_read(line_read);
-		g_shx->gc->free(line_read);
+		//ft_read(line_read);
+		split_line(line_read);
+		free(line_read);
 	}
 	log_action();
 	return ;

@@ -36,6 +36,7 @@ FILES =	src/parsing/list/dlst_add.c  \
 				prompt.c \
 				src/parsing/ft_read.c \
 				src/parsing/reading_mode.c \
+				src/parsing/pars_line.c \
 
 
 HEAD = $(shell find . -name "*.h")
