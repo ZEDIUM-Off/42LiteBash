@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/08 17:00:16 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/09 11:56:09 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	prompt(void)
 			exit_shell(420, "You say it, you assume it\n");
 		if (g_shx->line[0])
 			add_history(g_shx->line);
-		// ft_read(g_shx->line);
+		//ft_read(line_read);
+		split_line(g_shx->line);
 		free(g_shx->line);
 	}
 	log_action();
