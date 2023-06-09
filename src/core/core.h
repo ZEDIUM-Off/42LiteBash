@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 20:40:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/09 13:27:09 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ struct s_sh_context {
 	t_str				*envp;
 	t_str				*argv;
 	int					argc;
-	t_str				*path;
+	t_list				*lst_paths;
 	t_str				prompt;
 	t_str				*history;
 	t_str				pwd;

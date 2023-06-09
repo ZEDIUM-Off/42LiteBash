@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/08 16:49:44 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/09 13:41:35 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,16 @@ struct	s_file
 	bool	is_open;
 };
 
-int	bracket_mode(void);
-int	ft_read(t_str line_read);
-int	split_line(t_str line_read);
-int	double_quote_mode(t_str line_read, t_p_data *p_data);
-int	simple_quote_mode(t_str line_read, t_p_data *p_data);
-int	check_double_quote_mode(t_str line_read, t_p_data *p_data);
-int	check_simple_quote_mode(t_str line_read, t_p_data *p_data);
+int		bracket_mode(void);
+int		ft_read(t_str line_read);
+int		split_line(t_str line_read);
+int		double_quote_mode(t_str line_read, t_p_data *p_data);
+int		simple_quote_mode(t_str line_read, t_p_data *p_data);
+int		check_double_quote_mode(t_str line_read, t_p_data *p_data);
+int		check_simple_quote_mode(t_str line_read, t_p_data *p_data);
+
+t_list	*get_path(char **env);
+
+t_list	*add_paths_to_lst(char **paths);
 
 #endif

@@ -6,84 +6,78 @@
       "children": []
     }, 
     {
+      "name": "cat", 
+      "children": []
+    }, 
+    {
       "name": "src", 
       "children": [
         {
           "name": "parsing", 
           "children": [
             {
+              "name": "syntax_check.c", 
+              "children": []
+            }, 
+            {
+              "name": "reading_mode.c", 
+              "children": []
+            }, 
+            {
+              "name": "pars_line.c", 
+              "children": []
+            }, 
+            {
+              "name": "get_meta.c", 
+              "children": []
+            }, 
+            {
               "name": "list", 
               "children": [
                 {
-                  "name": "headers", 
-                  "children": [
-                    {
-                      "name": "fonction_list.h", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "list.h", 
-                      "children": []
-                    }
-                  ]
+                  "name": "lst_del.c", 
+                  "children": []
                 }, 
                 {
-                  "name": "src", 
-                  "children": [
-                    {
-                      "name": "ft_lstadd_back_double.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_lstnew.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_lstsize.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_delone_double.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_lstlast.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_lstadd_front_double.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_print_list.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_lstclear.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_lstnew_double.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_lstadd_back.c", 
-                      "children": []
-                    }, 
-                    {
-                      "name": "ft_lstclear_double.c", 
-                      "children": []
-                    }
-                  ]
+                  "name": "dlst_set_get.c", 
+                  "children": []
                 }, 
                 {
-                  "name": "create_list.c", 
+                  "name": "list.h", 
+                  "children": []
+                }, 
+                {
+                  "name": "lst_set_get.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "dlst_del.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "lst_base_func.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "lst_add.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "dlst_add.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "dlst_base_func.c", 
                   "children": []
                 }
               ]
             }, 
             {
               "name": "parsing.h", 
+              "children": []
+            }, 
+            {
+              "name": "ft_read.c", 
               "children": []
             }
           ]
@@ -109,6 +103,19 @@
               ]
             }, 
             {
+              "name": "logger", 
+              "children": [
+                {
+                  "name": "log.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "logger.h", 
+                  "children": []
+                }
+              ]
+            }, 
+            {
               "name": "new_str.c", 
               "children": []
             }, 
@@ -119,6 +126,19 @@
             {
               "name": "init_shell.c", 
               "children": []
+            }, 
+            {
+              "name": "error_handler", 
+              "children": [
+                {
+                  "name": "error_handler.h", 
+                  "children": []
+                }, 
+                {
+                  "name": "exit_shell.c", 
+                  "children": []
+                }
+              ]
             }, 
             {
               "name": "Libft", 
@@ -244,6 +264,10 @@
                       "children": []
                     }, 
                     {
+                      "name": "ft_free_tab.c", 
+                      "children": []
+                    }, 
+                    {
                       "name": "ft_isdigit.c", 
                       "children": []
                     }, 
@@ -305,6 +329,10 @@
                     }, 
                     {
                       "name": "ft_itoa.c", 
+                      "children": []
+                    }, 
+                    {
+                      "name": "ft_split_space_tab.c", 
                       "children": []
                     }, 
                     {
@@ -403,11 +431,19 @@
       "children": []
     }, 
     {
+      "name": "test", 
+      "children": []
+    }, 
+    {
       "name": "prompt.c", 
       "children": []
     }, 
     {
       "name": "minishell", 
+      "children": []
+    }, 
+    {
+      "name": "out1", 
       "children": []
     }, 
     {

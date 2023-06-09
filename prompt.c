@@ -6,18 +6,19 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/08 16:50:33 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/09 10:16:52 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	prompt(void)
+void	prompt(char **env)
 {
 	t_str	line_read;
 	t_uint	i;
 
 	i = 0;
+	(void)env;
 	trace("prompt", "display prompt", PARSE);
 	using_history();
 	read_history(".history");

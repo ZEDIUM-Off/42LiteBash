@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/08 15:21:19 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/09 10:06:34 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@
 
 extern t_sh_context	*g_shx;
 
-void	prompt(void);
+void	prompt(char **env);
 
 #endif

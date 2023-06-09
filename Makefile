@@ -1,3 +1,14 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
+#    Updated: 2023/06/09 10:48:11 by bfaure           ###   ########lyon.fr    #
+#                                                                              #
+# **************************************************************************** #
 
 # ---- Final Executable --- #
 
@@ -37,6 +48,7 @@ FILES =	src/parsing/list/dlst_add.c  \
 				src/parsing/ft_read.c \
 				src/parsing/reading_mode.c \
 				src/parsing/pars_line.c \
+				src/parsing/pars_env.c \
 
 
 HEAD = $(shell find . -name "*.h")
@@ -47,7 +59,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS)
 
 DEB_FLAGS = -g3 -fsanitize=address
 

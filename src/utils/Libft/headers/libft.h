@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aviscogl <aviscogl@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:50:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/08 20:20:26 by aviscogl         ###   ########lyon.fr   */
+/*   Updated: 2023/06/09 09:03:11 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 ssize_t		ft_cont_word(char const *s, char c);
 
-void	    ft_free_tab(char **strs);
+void		ft_free_tab(char **strs);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_bzero(void *s, size_t n);
 void		ft_putchar_fd(char c, int fd);

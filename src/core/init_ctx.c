@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ctx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:16:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 11:25:58 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/09 13:41:09 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_sh_context(
 	ctx->envp = envp;
 	ctx->argv = argv;
 	ctx->argc = argc;
-	ctx->path = NULL;
+	ctx->lst_paths = NULL;
 	ctx->prompt = NULL;
 	ctx->history = NULL;
 	ctx->pwd = NULL;
