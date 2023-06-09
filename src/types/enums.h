@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/08 12:58:15 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/08 15:29:21 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ enum e_internal_error_codes
 enum e_user_error_codes
 {
 	SYNTAX_ERROR,
+	SYNTAX_OK,
 };
 
 enum e_parsing_error

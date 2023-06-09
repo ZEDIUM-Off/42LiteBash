@@ -23,6 +23,9 @@ FILES =	src/parsing/list/dlst_add.c  \
 				src/parsing/list/dlst_set_get.c  \
 				src/parsing/list/lst_add.c  \
 				src/parsing/list/lst_del.c  \
+				src/parsing/syntax/syntax_check.c \
+				src/parsing/syntax/control_meta.c \
+				src/parsing/get_meta.c \
 				src/utils/tracker/init_track.c \
 				src/utils/tracker/track.c \
 				src/utils/new_str.c \

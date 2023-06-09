@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 20:41:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/08 16:16:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # include <sys/ioctl.h>  // ioctl
 # include <readline/readline.h> // readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
 # include <readline/history.h>
+# include <stdbool.h>    // bool
+# include <fcntl.h>      // O_RDONLY...
 
 # include "src/utils/Libft/headers/libft.h"
 # include "src/types/types.h"

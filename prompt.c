@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/08 12:54:15 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/08 17:00:16 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	prompt(void)
 {
-	t_str	line_read;
 	t_uint	i;
 
 	i = 0;
@@ -40,14 +39,17 @@ void	prompt(void)
 
 		// Exécutez la commande avec fork et exec
     
-		line_read = readline("Minish : ");
-		printf("%s\n", line_read);
-		if (!ft_strncmp(line_read, "exit", 5))
+		g_shx->line = readline("Minish : ");
+		printf("%s\n", g_shx->line);
+		g_shx->status = check_syntax(g_shx->line);
+		if (g_shx->status == SYNTAX_ERROR)
+			printf("Syntax error\n");
+		if (!ft_strncmp(g_shx->line, "exit", 5))
 			exit_shell(420, "You say it, you assume it\n");
-		if (line_read[0])
-			add_history(line_read);
-		ft_read(line_read);
-		g_shx->gc->free(line_read);
+		if (g_shx->line[0])
+			add_history(g_shx->line);
+		// ft_read(g_shx->line);
+		free(g_shx->line);
 	}
 	log_action();
 	return ;
