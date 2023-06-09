@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:50:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/09 09:03:11 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/09 15:44:24 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int			ft_tolower(int c);
 int			ft_atoi(const char *str);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_isspace(int c);
 
 char		*ft_itoa(int n);
 char		*ft_strdup(const char *str);

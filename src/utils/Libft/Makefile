@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 15:23:52 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/08 16:41:38 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/06/09 11:59:37 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS = ft_isalpha.c\
 	ft_putstr_printf.c\
 	get_next_line.c\
 	get_next_line_utils.c\
+	ft_isspace.c\
 	ft_split_space_tab.c \
 	ft_free_tab.c \
 

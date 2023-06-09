@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/08 15:24:23 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/09 11:59:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list				t_list;
 typedef struct s_dlist				t_dlist;
 typedef struct s_meta_char			t_meta_char;
 typedef struct s_chunk				t_chunk;
+typedef struct s_syntax_checker		t_syntax_checker;
 typedef struct s_block				t_block;
 typedef struct s_file				t_file;
 

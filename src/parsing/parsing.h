@@ -6,13 +6,14 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/09 13:41:35 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/09 15:40:56 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
+# include "syntax/syntax.h"
 # include <minish.h>
 
 struct s_parsing_data
@@ -20,15 +21,6 @@ struct s_parsing_data
 	t_uint	pos_cursor;
 	t_uint	mode;
 	void	*data;
-};
-
-struct s_syntax_checker
-{
-	t_uint	cursor;
-	t_uint	status;
-	t_uint	quote_ctr;
-	t_uint	db_quote_ctr;
-	t_uint	parenthesis_ctr;
 };
 
 struct s_meta_char
@@ -64,6 +56,7 @@ struct	s_file
 };
 
 int		bracket_mode(void);
+int		get_meta_char(char *c);
 int		ft_read(t_str line_read);
 int		split_line(t_str line_read);
 int		double_quote_mode(t_str line_read, t_p_data *p_data);
@@ -74,5 +67,6 @@ int		check_simple_quote_mode(t_str line_read, t_p_data *p_data);
 t_list	*get_path(char **env);
 
 t_list	*add_paths_to_lst(char **paths);
+
 
 #endif

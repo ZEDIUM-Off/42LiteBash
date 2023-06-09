@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/09 10:06:34 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/09 15:43:33 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@
 # include <sys/ioctl.h>  // ioctl
 # include <readline/readline.h> // readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
 # include <readline/history.h>
-# include <stdbool.h>
+# include <stdbool.h>    // bool
+# include <fcntl.h>      // O_RDONLY...
 
 # include "src/utils/Libft/headers/libft.h"
 # include "src/types/types.h"

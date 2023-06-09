@@ -6,34 +6,38 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:35:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/08 13:00:32 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/08 16:58:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
+static void	init_syntax_checker(t_syntax_checker *syx)
+{
+	syx->cursor = 0;
+	syx->quote_ctr = 0;
+	syx->db_quote_ctr = 0;
+	syx->parenthesis_ctr = 0;
+	syx->status = SYNTAX_OK;
+}
+
 t_uint	check_syntax(t_str line)
 {
-	t_uint	quote_ctr;
-	t_uint	db_quote_ctr;
-	t_uint	bracket_ctr;
-	t_uint	i;
-	int		type;
+	t_syntax_checker	syx;
 
-	quote_ctr = 0;
-	db_quote_ctr = 0;
-	bracket_ctr = 0;
-	i = 0;
-	while (line[i])
+	init_syntax_checker(&syx);
+	while (line[syx.cursor] && syx.status != SYNTAX_ERROR)
 	{
-		if (line[i] == '\'')
-			quote_ctr++;
-		else if (line[i] == '"')
-			db_quote_ctr++;
-		else if (line[i] == '(')
-			bracket_ctr++;
-		else if (line[i] == ')')
-			bracket_ctr--;
-		i++;
+		control_quoting(&line[syx.cursor], &syx);
+		control_parenthesis(&line[syx.cursor], &syx);
+		control_redirection(&line[syx.cursor], &syx);
+		control_boolean(&line[syx.cursor], &syx);
+		control_pipe(&line[syx.cursor], &syx);
+		syx.cursor++;
 	}
+	if (syx.quote_ctr % 2 != 0
+		|| syx.db_quote_ctr % 2 != 0
+		|| syx.parenthesis_ctr != 0)
+		syx.status = SYNTAX_ERROR;
+	return (syx.status);
 }
