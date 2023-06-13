@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/06/13 14:33:06 by bfaure           ###   ########lyon.fr   */
-=======
-/*   Updated: 2023/06/13 11:46:10 by  mchenava        ###   ########.fr       */
->>>>>>> 4956b9e1e5b508b64b11398eb9b8c3b09a889959
+/*   Updated: 2023/06/13 17:59:30 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,56 +18,78 @@
 
 struct s_parsing_data
 {
-	t_uint	pos_cursor;
 	t_uint	mode;
 	void	*data;
+	t_uint	pos_cursor;
 };
 
 struct s_meta_char
 {
-	t_uint	type;
-	t_uint	start;
 	t_uint	end;
 	t_str	txt;
+	t_uint	type;
+	t_uint	start;
 };
 
+
+//A chunk is a portion of cmd between multi meta char
 struct	s_chunk
 {
-	t_uint	type;
-	t_uint	start;
 	t_uint	end;
 	t_str	txt;
+	t_uint	type;
+	t_uint	start;
 	t_chunk	*under_chunk;
 };
 
+
 struct s_block
 {
+	t_pipeline	*ppl;
+	t_block		*next;
 	t_file		*infile;
 	t_file		*outfile;
-	t_pipeline	*ppl;
 	t_uint		bool_to_next;
-	t_block		*next;
+};
+
+
+struct s_pipeline
+{
+	int			in;
+	int			out;
+	t_cmd		*cmd;
+	t_pipeline	*next;
+};
+
+struct s_cmd
+{
+	t_str	cmd;
+	t_str	opt;
+	t_str	*arg;
+	t_chunk	*chunk;
 };
 
 struct	s_file
 {
-	t_str	file_name;
 	int		fd;
 	bool	is_open;
+	t_str	file_name;
 };
 
-int			bracket_mode(void);
-t_uint		get_meta_char(char *c);
-int			ft_read(t_str line_read);
 int			split_line(void);
+int			bracket_mode(void);
+int			ft_read(t_str line_read);
 int			double_quote_mode(t_str line_read, t_p_data *p_data);
 int			simple_quote_mode(t_str line_read, t_p_data *p_data);
 int			check_double_quote_mode(t_str line_read, t_p_data *p_data);
 int			check_simple_quote_mode(t_str line_read, t_p_data *p_data);
 
+t_uint		get_meta_char(char *c);
+
+t_str		*split_parser(void);
+
 t_list		*get_path(char **env);
 t_list		*add_env_to_lst(char **envp);
 t_list		*add_paths_to_lst(char **paths);
-t_str		*split_parser(void);
 
 #endif
