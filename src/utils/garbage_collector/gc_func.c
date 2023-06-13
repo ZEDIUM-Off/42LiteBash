@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   gc_func.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 15:06:45 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/13 15:19:21 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	*gc_malloc(size_t size)
+void	*gc_malloc(size_t size, bool count)
 {
 	t_ptr				*new_ptr;
 	t_garbage_collector	*gc;
@@ -36,7 +36,8 @@ void	*gc_malloc(size_t size)
 		new_ptr->next = gc->ptrs;
 		gc->ptrs = new_ptr;
 	}
-	gc->nb_ptrs++;
+	if (count)
+		gc->nb_ptrs++;
 	return (new_ptr->ptr);
 }
 

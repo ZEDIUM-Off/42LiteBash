@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/09 15:40:56 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/13 14:33:06 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		check_double_quote_mode(t_str line_read, t_p_data *p_data);
 int		check_simple_quote_mode(t_str line_read, t_p_data *p_data);
 
 t_list	*get_path(char **env);
-
+t_list	*add_env_to_lst(char **envp);
 t_list	*add_paths_to_lst(char **paths);
 
 

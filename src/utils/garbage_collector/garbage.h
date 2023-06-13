@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:32:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 15:00:51 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/13 15:18:44 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct s_ptr
 	t_tracker		allocated_in;
 };
 
-void	*gc_malloc(size_t size);
+void	*gc_malloc(size_t size, bool count);
 void	gc_free(void *ptr);
 void	init_gc(void);
 

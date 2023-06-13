@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 15:01:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/13 14:40:50 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	init_shell(
 	int argc
 )
 {
-	init_sh_context(shx, envp, argv, argc);
+	init_sh_context(shx, argv, argc);
 	set_ctx(shx);
 	init_gc();
 	init_track();
+	g_shx->lst_paths = get_path(envp);
+	g_shx->envp = add_env_to_lst(envp);
 }

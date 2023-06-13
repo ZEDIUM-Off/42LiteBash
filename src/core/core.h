@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/09 13:27:09 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/13 14:40:09 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ struct s_sh_context {
 	t_pipeline			*pipeline;
 	t_tracker			*tk;
 	t_error_handler		*error_handler;
-	t_str				*envp;
+	t_list				*envp;
 	t_str				*argv;
 	int					argc;
 	t_list				*lst_paths;
@@ -35,7 +35,6 @@ struct s_sh_context {
 void	set_ctx(t_sh_context *ctx);
 void	init_sh_context(
 			t_sh_context *ctx,
-			t_str *envp,
 			t_str	*argv,
 			int argc
 			);

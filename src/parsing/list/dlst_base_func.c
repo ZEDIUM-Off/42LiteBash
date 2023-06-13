@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dlst_base_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:47:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 20:35:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/13 15:20:26 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_dlist	*dlst_create(void *data)
 {
 	t_dlist	*new;
 
-	new = g_shx->gc->malloc(sizeof(t_dlist));
+	new = g_shx->gc->malloc(sizeof(t_dlist), true);
 	if (!new)
 		return (NULL);
 	new->data = data;

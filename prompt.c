@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/09 15:43:04 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/13 15:55:12 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	prompt(char **env)
 		if (g_shx->line[0])
 			add_history(g_shx->line);
 		//ft_read(line_read);
-		split_line(g_shx->line);
+		if (g_shx->line[0] && g_shx->status == SYNTAX_OK)
+			split_line(g_shx->line);
+		log_action();
 		free(g_shx->line);
 	}
 	log_action();

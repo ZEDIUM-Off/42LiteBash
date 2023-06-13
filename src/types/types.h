@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/09 11:59:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/13 15:18:36 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ typedef struct s_block				t_block;
 typedef struct s_file				t_file;
 
 typedef void (*						t_free_func)(void *ptr);
-typedef void *(*					t_malloc_func)(size_t size);
+typedef void *(*					t_malloc_func)(size_t size, bool count);
 
 #endif

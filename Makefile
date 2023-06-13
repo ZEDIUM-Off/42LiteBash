@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/09 10:48:11 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/06/13 15:03:14 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ FILES =	src/parsing/list/dlst_add.c  \
 				src/parsing/ft_read.c \
 				src/parsing/reading_mode.c \
 				src/parsing/pars_line.c \
+				src/parsing/pars_paths.c \
 				src/parsing/pars_env.c \
 
 
