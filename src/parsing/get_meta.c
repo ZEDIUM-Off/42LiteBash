@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:22:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/08 13:03:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/13 11:40:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-static int	one_char_meta(char *c)
+static t_uint	one_char_meta(char *c)
 {
 	trace("one_char_meta", "checking", PARSE);
 	if (*c == '\'')
@@ -30,13 +30,13 @@ static int	one_char_meta(char *c)
 	return (NONE);
 }
 
-static int	mult_char_meta(char *c)
+static t_uint	mult_char_meta(char *c)
 {
 	trace("mult_char_meta", "checking", PARSE);
 	if (*c == '<')
 	{
 		if (*(c + 1) == '<')
-			return (IN_TO_DELIM);
+			return (HERE_DOC);
 		return (IN_REDIRECT);
 	}
 	else if (*c == '>')
@@ -54,9 +54,9 @@ static int	mult_char_meta(char *c)
 	return (NONE);
 }
 
-int	get_meta_char(char *c)
+t_uint	get_meta_char(char *c)
 {
-	int	type;
+	t_uint	type;
 
 	trace("get_meta_char", "checking", PARSE);
 	type = one_char_meta(c);

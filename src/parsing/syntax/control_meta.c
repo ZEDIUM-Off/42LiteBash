@@ -1,12 +1,12 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control_ez.c                                       :+:      :+:    :+:   */
+/*   control_meta.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:44:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/08 15:46:32 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/13 11:28:37 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	control_redirection(char *c, t_syntax_checker *syx)
 	int	type;
 
 	type = get_meta_char(c);
-	if (type == APPEND_REDIRECT || type == IN_TO_DELIM)
+	if (type == APPEND_REDIRECT || type == HERE_DOC)
 	{
 		syx->cursor++;
 		type = get_meta_char(c + 1);
-		if (type == APPEND_REDIRECT || type == IN_TO_DELIM)
+		if (type == APPEND_REDIRECT || type == HERE_DOC)
 			syx->status = SYNTAX_ERROR;
 	}
 }
