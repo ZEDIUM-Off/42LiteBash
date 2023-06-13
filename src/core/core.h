@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/09 13:27:09 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/13 10:54:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ struct s_sh_context {
 	t_uint				status;
 	t_uint				mode;
 	t_str				line;
-	t_pipeline			*pipeline;
+	t_block				*blocks;
 	t_tracker			*tk;
 	t_error_handler		*error_handler;
 	t_str				*envp;
@@ -28,7 +28,7 @@ struct s_sh_context {
 	int					argc;
 	t_list				*lst_paths;
 	t_str				prompt;
-	t_str				*history;
+	t_str				*line_split;
 	t_str				pwd;
 };
 

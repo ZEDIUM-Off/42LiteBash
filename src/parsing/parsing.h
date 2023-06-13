@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/09 15:40:56 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/13 11:46:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ struct s_block
 	t_file		*infile;
 	t_file		*outfile;
 	t_pipeline	*ppl;
+	t_uint		bool_to_next;
 	t_block		*next;
 };
 
@@ -55,18 +56,19 @@ struct	s_file
 	bool	is_open;
 };
 
-int		bracket_mode(void);
-int		get_meta_char(char *c);
-int		ft_read(t_str line_read);
-int		split_line(t_str line_read);
-int		double_quote_mode(t_str line_read, t_p_data *p_data);
-int		simple_quote_mode(t_str line_read, t_p_data *p_data);
-int		check_double_quote_mode(t_str line_read, t_p_data *p_data);
-int		check_simple_quote_mode(t_str line_read, t_p_data *p_data);
+int			bracket_mode(void);
+t_uint		get_meta_char(char *c);
+int			ft_read(t_str line_read);
+int			split_line(void);
+int			double_quote_mode(t_str line_read, t_p_data *p_data);
+int			simple_quote_mode(t_str line_read, t_p_data *p_data);
+int			check_double_quote_mode(t_str line_read, t_p_data *p_data);
+int			check_simple_quote_mode(t_str line_read, t_p_data *p_data);
 
-t_list	*get_path(char **env);
+t_str		*split_parser(void);
 
-t_list	*add_paths_to_lst(char **paths);
+t_list		*get_path(char **env);
 
+t_list		*add_paths_to_lst(char **paths);
 
 #endif

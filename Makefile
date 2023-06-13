@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/09 10:48:11 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/06/13 11:44:32 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ FILES =	src/parsing/list/dlst_add.c  \
 				src/parsing/reading_mode.c \
 				src/parsing/pars_line.c \
 				src/parsing/pars_env.c \
+				src/parsing/split_parse.c \
 
 
 HEAD = $(shell find . -name "*.h")
