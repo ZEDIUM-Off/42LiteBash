@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/13 17:10:10 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/14 09:19:56 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	prompt(char **env)
 			printf("Syntax error\n");
 		if (!ft_strncmp(g_shx->line, "exit", 5))
 			exit_shell(420, "You say it, you assume it\n");
+		if (!ft_strncmp(g_shx->line, "env", 3))
+			lst_print(&g_shx->envp, "lst envp %s\n");
 		if (g_shx->line[0])
 			add_history(g_shx->line);
 		//ft_read(line_read);
