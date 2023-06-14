@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 16:05:46 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/14 10:30:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_uint	new_part(char **dest, t_str src)
 
 	j = 0;
 	i = skip_parts(src);
-	*dest = (char *)malloc(sizeof(char) * (i + 1));
+	*dest = g_shx->gc->malloc(sizeof(char) * (i + 1), true);
 	if (!*dest)
 		return (-1);
 	while (j < i)
@@ -98,7 +98,8 @@ t_str	*split_parser(void)
 {
 	t_str	*parts;
 
-	parts = (t_str *)malloc(sizeof(t_str) * (count_parts(g_shx->line) + 1));
+	parts = g_shx->gc->malloc(sizeof(t_str)
+			* (count_parts(g_shx->line) + 1), true);
 	if (!parts)
 		return (NULL);
 	return (meta_cut(parts, g_shx->line));
