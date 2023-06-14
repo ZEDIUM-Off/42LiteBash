@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 10:10:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/14 11:47:20 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	gc_free(void *ptr)
 		if (ptrs->ptr == ptr)
 		{
 			tmp = ptrs;
-			ptrs = ptrs->next;
 			free(tmp->ptr);
 			if (ptrs->counted)
 				gc->nb_ptrs--;
+			ptrs = ptrs->next;
 		}
 		ptrs = ptrs->next;
 	}

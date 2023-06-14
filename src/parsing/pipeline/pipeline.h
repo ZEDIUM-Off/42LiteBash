@@ -6,14 +6,14 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 10:27:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/14 11:40:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPELINE_H
 # define PIPELINE_H
 
-#	include <minish.h>
+# include <minish.h>
 
 struct s_pipeline
 {
