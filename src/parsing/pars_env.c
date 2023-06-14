@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/13 14:33:08 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/14 09:23:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ t_list	*add_env_to_lst(char **envp)
 
 	i = -1;
 	trace("add_env_to_lst", "every things is in the name", PARSE);
-	lst_env = lst_create(envp[0]);
+	lst_env = NULL;
 	while (envp[++i])
-	{
 		lst_add_back(&lst_env, envp[i]);
-	}
 	log_action();
 	return (lst_env);
 }

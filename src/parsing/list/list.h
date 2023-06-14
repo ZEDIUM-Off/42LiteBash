@@ -26,10 +26,10 @@ struct	s_list
 
 struct	s_dlist
 {
+	t_dlist	*prev;
 	t_uint	index;
 	void	*data;
 	t_dlist	*next;
-	t_dlist	*prev;
 };
 
 t_list	*lst_create(void *data);

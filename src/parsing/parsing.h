@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/13 17:59:30 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/14 10:42:52 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ struct s_meta_char
 	t_uint	start;
 };
 
-
 //A chunk is a portion of cmd between multi meta char
 struct	s_chunk
 {
@@ -42,7 +41,7 @@ struct	s_chunk
 	t_chunk	*under_chunk;
 };
 
-
+// lignes de commande complete
 struct s_block
 {
 	t_pipeline	*ppl;
