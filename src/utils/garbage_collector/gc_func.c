@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc_func.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 15:19:21 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/14 10:10:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*gc_malloc(size_t size, bool count)
 		return (NULL);
 	gc = g_shx->gc;
 	new_ptr->size = size;
-	new_ptr->id = gc->nb_ptrs;
+	new_ptr->counted = count;
 	if (g_shx->tk)
 		new_ptr->allocated_in = *(g_shx->tk);
 	new_ptr->next = NULL;
@@ -58,7 +58,8 @@ void	gc_free(void *ptr)
 			tmp = ptrs;
 			ptrs = ptrs->next;
 			free(tmp->ptr);
-			gc->nb_ptrs--;
+			if (ptrs->counted)
+				gc->nb_ptrs--;
 		}
 		ptrs = ptrs->next;
 	}

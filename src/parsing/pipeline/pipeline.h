@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   garbage.h                                          :+:      :+:    :+:   */
+/*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 11:32:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 10:09:46 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/06/14 10:27:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GARBAGE_H
-# define GARBAGE_H
+#ifndef PIPELINE_H
+# define PIPELINE_H
 
-# include <minish.h>
+#	include <minish.h>
 
-struct s_garbage_collector
+struct s_pipeline
 {
-	t_free_func			free;
-	t_malloc_func		malloc;
-	t_ptr				*ptrs;
-	int					nb_ptrs;
+	int			in;
+	int			out;
+	t_cmd		*cmd;
+	t_pipeline	*next;
 };
 
-struct s_ptr
+struct s_cmd
 {
-	t_uint			size;
-	void			*ptr;
-	t_ptr			*next;
-	t_tracker		allocated_in;
-	bool			counted;
+	t_str	cmd;
+	t_str	*opt;
+	t_str	*arg;
+	t_chunk	*chunk;
 };
 
-void	*gc_malloc(size_t size, bool count);
-void	gc_free(void *ptr);
-void	init_gc(void);
+struct	s_chunk
+{
+	t_uint	end;
+	t_str	txt;
+	t_uint	type;
+	t_uint	start;
+	t_chunk	*under_chunk;
+};
 
-#endif
+#endif /* PIPELINE_H */
