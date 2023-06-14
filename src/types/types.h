@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 17:20:01 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/14 14:01:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_syntax_checker		t_syntax_checker;
 typedef struct s_block				t_block;
 typedef struct s_file				t_file;
 typedef struct s_cmd				t_cmd;
+typedef struct s_redirect			t_redirect;
 
 typedef void (*						t_free_func)(void *ptr);
 typedef void *(*					t_malloc_func)(size_t size, bool count);

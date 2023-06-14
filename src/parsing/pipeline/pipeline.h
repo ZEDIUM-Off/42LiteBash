@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 11:40:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/14 13:56:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 struct s_pipeline
 {
-	int			in;
-	int			out;
+	t_redirect	redir;
 	t_cmd		*cmd;
 	t_pipeline	*next;
 };
@@ -38,6 +37,14 @@ struct	s_chunk
 	t_uint	type;
 	t_uint	start;
 	t_chunk	*under_chunk;
+};
+
+struct	s_redirect
+{
+	t_uint	in_type;
+	t_uint	out_type;
+	t_file	infile;
+	t_file	outfile;
 };
 
 #endif /* PIPELINE_H */

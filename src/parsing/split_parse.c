@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 10:30:47 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/14 13:09:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ t_uint	skip_parts(t_str str)
 	meta = get_meta_char(&str[i]);
 	if (meta != NONE)
 	{
-		if (meta == APPEND_REDIRECT || meta == HERE_DOC || meta == AND
-			|| meta == OR || meta == DOLLAR_D || meta == DOLLAR_Q)
+		if (meta >= APPEND_REDIRECT && meta <= AND)
 			i++;
 		i++;
 	}

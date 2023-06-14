@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 13:15:34 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/14 13:08:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@
 enum e_meta_type
 {
 	NONE,
-	IN_REDIRECT, // <
-	OUT_REDIRECT, // >
 	APPEND_REDIRECT, // >>
 	HERE_DOC, // <<
-	PIPE, // |
-	SINGLE_QUOTE, // '
-	DOUBLE_QUOTE, // "
-	DOLLAR, //$
 	DOLLAR_Q, // $?
 	DOLLAR_D, // $$
 	OR, // ||
 	AND, // &&
+	IN_REDIRECT, // <
+	OUT_REDIRECT, // >
+	PIPE, // |
+	SINGLE_QUOTE, // '
+	DOUBLE_QUOTE, // "
+	DOLLAR, //$
 	O_PARENTHESIS, // (
 	C_PARENTHESIS, // )
 	WILD_CARD, // *
