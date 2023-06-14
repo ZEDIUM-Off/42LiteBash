@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/14 10:34:47 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/14 15:56:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	pars_line(void)
 {
 	trace("pars_line", "parse the line", PARSE);
 	find_blocks();
-	// parse_pipe();
+	parse_pipeline();
 	log_action();
 	return (0);
 }

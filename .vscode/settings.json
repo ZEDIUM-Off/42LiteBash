@@ -6,6 +6,7 @@
 		"libft.h": "c",
 		"utils.h": "c",
 		"types.h": "c",
-		"list.h": "c"
+		"list.h": "c",
+		"pipeline.h": "c"
 	}
 }
