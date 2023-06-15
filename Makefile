@@ -26,7 +26,7 @@ DIR_LIBFT		=	src/utils/Libft/
 
 LIBFT_A = $(DIR_LIBFT)$(LIBFT)
 
-FILES =	src/parsing/list/dlst_add.c  \
+FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/list/dlst_del.c  \
 				src/parsing/list/lst_base_func.c \
 				src/parsing/list/lst_set_get.c \
@@ -56,6 +56,10 @@ FILES =	src/parsing/list/dlst_add.c  \
 				src/parsing/split_parse.c \
 				src/parsing/block.c \
 				src/parsing/free_split_line.c \
+				src/parsing/cmd.c \
+				src/parsing/pipeline/parse_pipe.c\
+				src/parsing/pipeline/pipeline.c \
+				src/parsing/new_file.c \
 
 
 HEAD = $(shell find . -name "*.h")

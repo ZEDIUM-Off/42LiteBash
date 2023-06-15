@@ -54,21 +54,21 @@ void	parse_pipeline(void)
 	t_block	*block;
 
 	i = 0;
-	block = (t_block *)g_shx->block;
-	while (g_shx->block)
+	block = (t_block *)g_shx->blocks;
+	while (g_shx->blocks)
 	{
-		while (g_shx->line_split[i] && i < g_shx->block->split_index)
+		while (g_shx->line_split[i] && i < g_shx->blocks->split_index)
 		{
 			if (get_meta_char(&g_shx->line_split[i][0]) == PIPE)
 			{
-				if (!g_shx->block->ppl)
-					g_shx->block->ppl = create_ppl(i);
+				if (!g_shx->blocks->ppl)
+					g_shx->blocks->ppl = create_ppl(i);
 				else
-					add_ppl(&g_shx->block->ppl, i);
+					add_ppl(&g_shx->blocks->ppl, i);
 			}
 			i++;
 		}
-		g_shx->block = g_shx->block->next;
+		g_shx->blocks = g_shx->blocks->next;
 	}
-	g_shx->block = block;
+	g_shx->blocks = block;
 }

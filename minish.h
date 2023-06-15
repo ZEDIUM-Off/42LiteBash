@@ -50,6 +50,8 @@
 # include "src/core/core.h"
 # include "src/parsing/list/list.h"
 # include "src/parsing/parsing.h"
+# include "src/parsing/pipeline/pipeline.h"
+# include "src/parsing/syntax/syntax.h"
 # include "src/utils/utils.h"
 
 extern t_sh_context	*g_shx;

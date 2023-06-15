@@ -13,8 +13,6 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "syntax/syntax.h"
-# include "pipeline/pipeline.h"
 # include <minish.h>
 
 struct s_parsing_data
@@ -40,12 +38,7 @@ struct s_block
 	t_uint		bool_to_next;
 };
 
-struct	s_file
-{
-	int		fd;
-	bool	is_open;
-	t_str	file_name;
-};
+
 
 int			split_line(void);
 void		free_split_line(void);
@@ -64,6 +57,8 @@ t_str		*split_parser(void);
 t_list		*get_path(char **env);
 t_list		*add_env_to_lst(char **envp);
 t_list		*add_paths_to_lst(char **paths);
+
+t_cmd		*new_cmd(t_uint p_start, t_uint p_end);
 
 t_block		*create_block(t_uint bool_to_next, t_uint split_index);
 t_block		*add_block(

@@ -15,6 +15,21 @@
 
 # include <minish.h>
 
+struct	s_file
+{
+	int		fd;
+	bool	is_open;
+	t_str	file_name;
+};
+
+struct	s_redirect
+{
+	t_uint	in_type;
+	t_uint	out_type;
+	t_file	infile;
+	t_file	outfile;
+};
+
 struct s_pipeline
 {
 	t_redirect	redir;
@@ -39,12 +54,9 @@ struct	s_chunk
 	t_chunk	*under_chunk;
 };
 
-struct	s_redirect
-{
-	t_uint	in_type;
-	t_uint	out_type;
-	t_file	infile;
-	t_file	outfile;
-};
+void		parse_pipeline(void);
+
+t_pipeline	*create_ppl(t_uint pipe_pos);
+t_pipeline	*add_ppl(t_pipeline **pipeline, t_uint pipe_pos);
 
 #endif /* PIPELINE_H */
