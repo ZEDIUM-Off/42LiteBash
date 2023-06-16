@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aviscogl <aviscogl@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/16 16:47:22 by aviscogl         ###   ########lyon.fr   */
+/*   Updated: 2023/06/16 17:54:51 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_cmd	*create_cmd(void)
 {
 	t_cmd	*new;
 
+	printf("g_shx->blocks->ppl in create_cmd %p\n", g_shx->blocks->ppl);
 	new = (t_cmd *)g_shx->gc->malloc(sizeof(t_cmd), true);
 	if (!new)
 		return (NULL);
@@ -39,6 +40,7 @@ t_cmd	*new_cmd(t_uint p_start, t_uint p_end)
 	n = 0;
 	o = 0;
 	trace("*new_cmd", "fill cmd struct", PARSE);
+	printf("g_shx->blocks->ppl %p\n", g_shx->blocks->ppl);
 	g_shx->blocks->ppl->cmd = create_cmd();
 	if (!g_shx->blocks->ppl->cmd)
 		return (printf("g_shx->blocks->ppl->cmd  malloc error\n"), NULL);
