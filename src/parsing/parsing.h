@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/14 22:38:37 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/16 12:40:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ t_cmd		*new_cmd(t_uint p_start, t_uint p_end);
 t_block		*create_block(t_uint bool_to_next, t_uint split_index);
 t_block		*add_block(
 				t_block **block, t_uint bool_to_next, t_uint split_index);
+
+t_file	new_file(t_str name);
 
 #endif

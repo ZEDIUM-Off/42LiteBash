@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 13:56:46 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/16 12:45:00 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void		parse_pipeline(void);
 
 t_pipeline	*create_ppl(t_uint pipe_pos);
 t_pipeline	*add_ppl(t_pipeline **pipeline, t_uint pipe_pos);
+void	parse_pipe(t_pipeline **ppl, t_uint pipe_pos);
 
 #endif /* PIPELINE_H */

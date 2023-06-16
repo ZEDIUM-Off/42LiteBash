@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 13:54:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/16 12:43:37 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ void	parse_pipe(t_pipeline **ppl, t_uint pipe_pos)
 	{
 		meta = get_meta_char(&g_shx->line_split[i][0]);
 		if (meta == APPEND_REDIRECT)
-			(*ppl)->redir = {.out_type = APPEND_REDIRECT,
+			(*ppl)->redir = (t_redirect){.out_type = APPEND_REDIRECT,
 				.outfile = new_file(g_shx->line_split[i + 1])};
 		if (meta == OUT_REDIRECT)
-			(*ppl)->redir = {.out_type = OUT_REDIRECT,
+			(*ppl)->redir = (t_redirect){.out_type = OUT_REDIRECT,
 				.outfile = new_file(g_shx->line_split[i + 1])};
 		if (meta == HERE_DOC)
-			(*ppl)->redir = {.in_type = HERE_DOC,
-				.in_file = NULL};
+			(*ppl)->redir = (t_redirect){.in_type = HERE_DOC};
 		if (meta == IN_REDIRECT)
-			(*ppl)->redir = {.in_type = IN_REDIRECT,
-				.in_file = new_file(g_shx->line_split[i + 1])};
+			(*ppl)->redir = (t_redirect){.in_type = IN_REDIRECT,
+				.infile = new_file(g_shx->line_split[i + 1])};
 		i++;
 	}
 }
