@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/14 15:57:34 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/19 15:03:15 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	prompt(char **env)
 
 	i = 0;
 	(void)env;
-	
 	trace("prompt", "display prompt", PARSE);
 	using_history();
 	read_history(".history");

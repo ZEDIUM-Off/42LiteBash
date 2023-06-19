@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc_func.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 11:47:20 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/19 14:57:50 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,27 @@ void	gc_free(void *ptr)
 				gc->nb_ptrs--;
 			ptrs = ptrs->next;
 		}
+		ptrs = ptrs->next;
+	}
+	gc->ptrs = top;
+}
+
+void	gc_free_all(void)
+{
+	t_ptr				*ptrs;
+	t_ptr				*tmp;
+	t_ptr				*top;
+	t_garbage_collector	*gc;
+
+	gc = g_shx->gc;
+	ptrs = gc->ptrs;
+	top = ptrs;
+	while (ptrs)
+	{
+		tmp = ptrs;
+		free(tmp->ptr);
+		if (ptrs->counted)
+			gc->nb_ptrs--;
 		ptrs = ptrs->next;
 	}
 	gc->ptrs = top;
