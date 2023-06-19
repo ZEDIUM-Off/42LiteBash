@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/14 10:35:09 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/06/19 16:04:39 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,8 +85,29 @@ MKDIR	=	mkdir -p
 
 all		:	$(NAME)
 
-debug	:	 
+debug	:
 
+run		:	all
+			./${NAME}
+
+leaks:    all
+		@${RM} valgrind.txt 
+		echo "{" > valgrind_ignore_leaks.txt
+		echo "leak readline" >> valgrind_ignore_leaks.txt
+		echo "    Memcheck:Leak" >> valgrind_ignore_leaks.txt
+		echo "    ..." >> valgrind_ignore_leaks.txt
+		echo "    fun:readline" >> valgrind_ignore_leaks.txt
+		echo "}" >> valgrind_ignore_leaks.txt
+		echo "{" >> valgrind_ignore_leaks.txt
+		echo "    leak add_history" >> valgrind_ignore_leaks.txt
+		echo "    Memcheck:Leak" >> valgrind_ignore_leaks.txt
+		echo "    ..." >> valgrind_ignore_leaks.txt
+		echo "    fun:add_history" >> valgrind_ignore_leaks.txt
+		echo "}" >> valgrind_ignore_leaks.txt
+		valgrind --suppressions=valgrind_ignore_leaks.txt --leak-check=full \
+			--show-leak-kinds=all --track-fds=yes \
+			--show-mismatched-frees=yes --read-var-info=yes \
+			--log-file=valgrind.txt -s --trace-children=yes ./${NAME}
 
 $(LIBFT_A):	force
 	@ ${MAKE} ${LIBFT} -C ${DIR_LIBFT} -j4
