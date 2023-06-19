@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/14 14:37:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/19 18:16:03 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,53 @@
 
 //new_cmd(i, pipe_pos);
 
+t_cmd	*create_cmd(void)
+{
+	t_cmd	*new;
+
+	printf("g_shx->blocks->ppl in create_cmd %p\n", g_shx->blocks->ppl);
+	new = (t_cmd *)g_shx->gc->malloc(sizeof(t_cmd), true);
+	if (!new)
+		return (NULL);
+	new->cmd = NULL;
+	new->opt = NULL;
+	new->opt = (char **)g_shx->gc->malloc(sizeof(char *), true);
+	if (!new->opt)
+		return (NULL);
+	new->arg = NULL;
+	new->chunk = NULL;
+	return (new);
+}
+
 t_cmd	*new_cmd(t_uint p_start, t_uint p_end)
 {
 	t_uint	n;
 	t_uint	o;
-	t_uint	a;
-	t_cmd	*cmd;
 
 	n = 0;
 	o = 0;
-	a = 0;
-	cmd = (t_cmd *)malloc(sizeof(t_cmd));
+	trace("*new_cmd", "fill cmd struct", PARSE);
+	printf("g_shx->blocks->ppl %p\n", g_shx->blocks->ppl);
+	g_shx->blocks->ppl->cmd = create_cmd();
+	if (!g_shx->blocks->ppl->cmd)
+		return (printf("g_shx->blocks->ppl->cmd  malloc error\n"), NULL);
 	while (g_shx->line_split[p_start] && p_start != p_end)
 	{
 		printf("g_shx->line_split[p_start] = %s\n", g_shx->line_split[p_start]);
 		if (n == 0)
 		{
-			if (g_shx->line_split[p_start] != PIPE)
+			if (g_shx->line_split[p_start][0] == PIPE)
 				p_start++;
-			cmd->cmd = g_shx->line_split[p_start];
-			printf("cmd->cmd = %s\n", cmd->cmd);
+			printf("g_shx->line_split[p_start] in if 1 = %s\n", g_shx->line_split[p_start]);
+			if (g_shx && g_shx->blocks && g_shx->blocks->ppl && g_shx->blocks->ppl->cmd)
+				g_shx->blocks->ppl->cmd->cmd = g_shx->line_split[p_start];
+			//printf("cmd->cmd = %s\n", g_shx->blocks->ppl->cmd->cmd);
 			n++;
 		}
-		else if (g_shx->line_split[p_start][0] == "-")
+		if (g_shx->line_split[p_start][0] == '-')
 		{
-			cmd->opt[o] = g_shx->line_split[p_start];
-			printf("cmd->opt[%li] = %s\n", o, cmd->opt[o]);
+			g_shx->blocks->ppl->cmd->opt[o] = g_shx->line_split[p_start];
+			printf("cmd->opt[%i] = %s\n", o, g_shx->blocks->ppl->cmd->opt[o]);
 			o++;
 		}
 		else
@@ -50,5 +71,6 @@ t_cmd	*new_cmd(t_uint p_start, t_uint p_end)
 		}
 		p_start++;
 	}
-	return (cmd);
+	log_action();
+	return (NULL);
 }

@@ -55,7 +55,7 @@ void	prompt(char **env)
 		//ft_read(line_read);
 		if (g_shx->line[0] && g_shx->status == SYNTAX_OK)
 			split_line();
-		parse_line();
+		pars_line();
 		log_action();
 		free(g_shx->line);
 	}

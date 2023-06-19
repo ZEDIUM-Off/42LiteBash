@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 13:56:47 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/19 18:16:21 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 # define PIPELINE_H
 
 # include <minish.h>
+
+struct	s_file
+{
+	int		fd;
+	bool	is_open;
+	t_str	file_name;
+};
+
+struct	s_redirect
+{
+	t_uint	in_type;
+	t_uint	out_type;
+	t_file	infile;
+	t_file	outfile;
+};
 
 struct s_pipeline
 {
@@ -39,12 +54,10 @@ struct	s_chunk
 	t_chunk	*under_chunk;
 };
 
-struct	s_redirect
-{
-	t_uint	in_type;
-	t_uint	out_type;
-	t_file	infile;
-	t_file	outfile;
-};
+void		parse_pipeline(void);
+
+t_pipeline	*create_ppl(t_uint pipe_pos);
+t_pipeline	*add_ppl(t_pipeline **pipeline, t_uint pipe_pos);
+void	parse_pipe(t_pipeline **ppl, t_uint pipe_pos);
 
 #endif /* PIPELINE_H */

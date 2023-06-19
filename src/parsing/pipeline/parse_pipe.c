@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 13:54:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/16 17:58:35 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ void	parse_pipe(t_pipeline **ppl, t_uint pipe_pos)
 	{
 		meta = get_meta_char(&g_shx->line_split[i][0]);
 		if (meta == APPEND_REDIRECT)
-			(*ppl)->redir = {.out_type = APPEND_REDIRECT,
+			(*ppl)->redir = (t_redirect){.out_type = APPEND_REDIRECT,
 				.outfile = new_file(g_shx->line_split[i + 1])};
 		if (meta == OUT_REDIRECT)
-			(*ppl)->redir = {.out_type = OUT_REDIRECT,
+			(*ppl)->redir = (t_redirect){.out_type = OUT_REDIRECT,
 				.outfile = new_file(g_shx->line_split[i + 1])};
 		if (meta == HERE_DOC)
-			(*ppl)->redir = {.in_type = HERE_DOC,
-				.in_file = NULL};
+			(*ppl)->redir = (t_redirect){.in_type = HERE_DOC};
 		if (meta == IN_REDIRECT)
-			(*ppl)->redir = {.in_type = IN_REDIRECT,
-				.in_file = new_file(g_shx->line_split[i + 1])};
+			(*ppl)->redir = (t_redirect){.in_type = IN_REDIRECT,
+				.infile = new_file(g_shx->line_split[i + 1])};
 		i++;
 	}
 }
@@ -54,21 +53,21 @@ void	parse_pipeline(void)
 	t_block	*block;
 
 	i = 0;
-	block = (t_block *)g_shx->block;
-	while (g_shx->block)
+	block = (t_block *)g_shx->blocks;
+	while (g_shx->blocks)
 	{
-		while (g_shx->line_split[i] && i < g_shx->block->split_index)
+		while (g_shx->line_split[i] && i < g_shx->blocks->split_index)
 		{
 			if (get_meta_char(&g_shx->line_split[i][0]) == PIPE)
 			{
-				if (!g_shx->block->ppl)
-					g_shx->block->ppl = create_ppl(i);
+				if (!g_shx->blocks->ppl)
+					g_shx->blocks->ppl = create_ppl(i);
 				else
-					add_ppl(&g_shx->block->ppl, i);
+					add_ppl(&g_shx->blocks->ppl, i);
 			}
 			i++;
 		}
-		g_shx->block = g_shx->block->next;
+		g_shx->blocks = g_shx->blocks->next;
 	}
-	g_shx->block = block;
+	g_shx->blocks = block;
 }
