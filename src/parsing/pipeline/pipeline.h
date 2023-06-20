@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aviscogl <aviscogl@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/16 16:15:58 by aviscogl         ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 14:02:13 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ struct s_cmd
 struct	s_chunk
 {
 	t_uint	end;
-	t_str	txt;
+	t_str	*txt;
 	t_uint	type;
 	t_uint	start;
+	t_block	*blocks;
 	t_chunk	*under_chunk;
 };
 
@@ -58,6 +59,6 @@ void		parse_pipeline(void);
 
 t_pipeline	*create_ppl(t_uint pipe_pos);
 t_pipeline	*add_ppl(t_pipeline **pipeline, t_uint pipe_pos);
-void	parse_pipe(t_pipeline **ppl, t_uint pipe_pos);
+void		parse_pipe(t_pipeline **ppl, t_uint pipe_pos);
 
 #endif /* PIPELINE_H */

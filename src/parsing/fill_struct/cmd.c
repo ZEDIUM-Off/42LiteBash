@@ -6,19 +6,16 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 10:46:55 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 16:05:59 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-//new_cmd(i, pipe_pos);
-
 t_cmd	*create_cmd(void)
 {
 	t_cmd	*new;
 
-	printf("g_shx->blocks->ppl in create_cmd %p\n", g_shx->blocks->ppl);
 	new = (t_cmd *)g_shx->gc->malloc(sizeof(t_cmd), true);
 	if (!new)
 		return (NULL);
@@ -41,6 +38,7 @@ t_cmd	*new_cmd(t_uint p_start, t_uint p_end)
 	t_uint	o;
 	t_uint	a;
 	t_cmd	*cmd;
+	t_chunk	*chunk;
 
 	n = 0;
 	o = 0;
@@ -49,48 +47,35 @@ t_cmd	*new_cmd(t_uint p_start, t_uint p_end)
 	cmd = create_cmd();
 	if (!cmd)
 		return (printf("cmd  malloc error\n"), NULL);
-	printf("p_end = %i\n", p_end);
 	while (p_start != p_end)
 	{
-		printf("out B %i\n", p_start);
-		printf("g_shx->line_split[p_start] = %s\n", g_shx->line_split[p_start]);
 		if (n == 0)
 		{
-			printf("in B %i\n", p_start);
-			while (g_shx->line_split[p_start][0] == '|')
+			while (get_meta_char(&g_shx->line_split[p_start][0]) == PIPE)
 				p_start++;
-			printf("g_shx->line_split[p_start] in if 1 = %c\n", g_shx->line_split[p_start][0]);
-			printf("in A %i\n", p_start);
 			if (cmd)
 			{
-				cmd->cmd = g_shx->line_split[p_start];
-				cmd->opt[o] = cmd->cmd;
+				cmd->cmd = ft_strdup(g_shx->line_split[p_start]);
+				cmd->opt[o] = ft_strdup(cmd->cmd);
+				printf("cmd->cmd = %s\n", cmd->cmd);
 				o++;
 			}
-			printf("cmd->cmd = %s\n", cmd->cmd);
 			n++;
-		}
-		else if (g_shx->line_split[p_start][0] == '|' && g_shx->line_split[p_start][1] == '|')
-		{
-			printf("|| foud\n");
-			break ;
 		}
 		if (g_shx->line_split[p_start][0] == '-')
 		{
-			cmd->opt[o] = g_shx->line_split[p_start];
-			printf("cmd->opt[%i] = %s\n", o, cmd->opt[o]);
+			cmd->opt[o] = ft_strdup(g_shx->line_split[p_start]);
 			o++;
 		}
 		else if (g_shx->line_split[p_start] != cmd->cmd)
 		{
-			printf("g_shx->line_split[%i] = %s\n", p_start, g_shx->line_split[p_start]);
-			cmd->arg[a] = g_shx->line_split[p_start];
+			cmd->arg[a] = ft_strdup(g_shx->line_split[p_start]);
 			printf("cmd->arg[%i] = %s\n", a, cmd->arg[a]);
 			a++;
 		}
+		chunk = chunk_size(g_shx->line_split);
 		p_start++;
 	}
-	printf("OUT\n");
 	log_action();
 	return (cmd);
 }

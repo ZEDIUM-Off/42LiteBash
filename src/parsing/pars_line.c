@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 11:35:37 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 16:03:19 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	find_blocks(void)
 		g_shx->blocks = create_block(NONE, i);
 	else
 		add_block(&g_shx->blocks, meta, i);
-	printf("nb block = %d", block_ctr);
+	printf("nb block = %d\n", block_ctr);
 }
 
 int	pars_line(void)

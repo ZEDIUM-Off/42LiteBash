@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 13:08:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/20 15:26:17 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ enum e_meta_type
 	IN_REDIRECT, // <
 	OUT_REDIRECT, // >
 	PIPE, // |
+	DOLLAR, //$
 	SINGLE_QUOTE, // '
 	DOUBLE_QUOTE, // "
-	DOLLAR, //$
 	O_PARENTHESIS, // (
 	C_PARENTHESIS, // )
+	PARENTHESIS, // ()
 	WILD_CARD, // *
 };
 

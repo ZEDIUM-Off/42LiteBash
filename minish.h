@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/09 15:43:33 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 14:55:32 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # include "src/parsing/list/list.h"
 # include "src/parsing/parsing.h"
 # include "src/parsing/pipeline/pipeline.h"
+# include "src/parsing/fill_struct/fill_struct.h"
 # include "src/parsing/syntax/syntax.h"
 # include "src/utils/utils.h"
 
