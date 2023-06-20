@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/20 17:09:37 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 17:31:28 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,28 @@ int	parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size)
 {
 	t_str	*cmd_no_redir;
 	t_uint	i;
+	t_uint	status;
 
 	cmd_no_redir = (t_str *)g_shx->gc->malloc(sizeof(t_str)
 			* (size + 1), false);
 	if (!cmd_no_redir)
 		return (MALLOC_FAIL);
-	extract_redirect(ppl, &cmd_no_redir, splited, size);
+	status = extract_redirect(ppl, &cmd_no_redir, splited, size);
+	if (status != 0)
+		return (status);
 	i = 0;
 	while (cmd_no_redir[i])
 	{
 		printf("cmd no redir %d: %s\n", i, cmd_no_redir[i]);
 		i++;
 	}
-	(*ppl)->cmd = new_cmd(cmd_no_redir);
+	status = new_cmd(&((*ppl)->cmd), cmd_no_redir);
+	if (status != 0)
+		return (status);
 	return (0);
 }
 
+// add status gestion
 int	parse_pipeline(t_block **blocks, t_str *splited)
 {
 	t_uint	i;
