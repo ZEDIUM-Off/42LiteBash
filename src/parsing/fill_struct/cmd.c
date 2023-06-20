@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 16:50:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/20 16:55:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_cmd	*new_cmd(t_uint p_start, t_uint p_end)
 		chunk = chunk_size(g_shx->line_split);
 		p_start++;
 	}
+	(void)chunk;
 	log_action();
 	return (cmd);
 }
