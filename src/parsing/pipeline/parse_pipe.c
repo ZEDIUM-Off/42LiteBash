@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/19 17:21:49 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 11:37:24 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,15 @@ void	parse_pipeline(void)
 {
 	t_uint	i;
 	t_block	*block;
+	t_uint  ct_b = 0;
+
 
 	i = 0;
 	block = (t_block *)g_shx->blocks;
 	while (g_shx->blocks)
 	{
-		while (g_shx->line_split[i] && i < g_shx->blocks->split_index)
+		ct_b ++;
+		while (g_shx->line_split[i] && i < g_shx->blocks->block_end)
 		{
 			if (get_meta_char(&g_shx->line_split[i][0]) == PIPE)
 			{
@@ -67,7 +70,12 @@ void	parse_pipeline(void)
 			}
 			i++;
 		}
+		if (!g_shx->blocks->ppl)
+			g_shx->blocks->ppl = create_ppl(i);
+		else
+			add_ppl(&g_shx->blocks->ppl, i);
 		g_shx->blocks = g_shx->blocks->next;
 	}
 	g_shx->blocks = block;
+	printf("=======blocks : %d\n",ct_b);
 }

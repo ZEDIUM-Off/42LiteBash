@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/16 17:57:11 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 11:35:37 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	find_blocks(void)
 {
 	t_uint	i;
 	t_uint	meta;
+	t_uint  block_ctr = 0;
 
 	i = 0;
 	trace("find_blocks", "find blocks", PARSE);
@@ -44,6 +45,7 @@ void	find_blocks(void)
 		meta = get_meta_char(&g_shx->line_split[i][0]);
 		if (meta == AND || meta == OR)
 		{
+			block_ctr++;
 			if (g_shx->blocks == NULL)
 				g_shx->blocks = create_block(meta, i);
 			else
@@ -53,6 +55,9 @@ void	find_blocks(void)
 	}
 	if (g_shx->blocks == NULL)
 		g_shx->blocks = create_block(NONE, i);
+	else
+		add_block(&g_shx->blocks, meta, i);
+	printf("nb block = %d", block_ctr);
 }
 
 int	pars_line(void)

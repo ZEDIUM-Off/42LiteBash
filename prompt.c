@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/19 15:03:15 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 10:44:10 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	prompt(char **env)
 		if (g_shx->line[0] && g_shx->status == SYNTAX_OK)
 			split_line();
 		pars_line();
+		// printf("prompt cmd %s\n", g_shx->blocks->ppl->next->cmd->cmd);
 		log_action();
 		free(g_shx->line);
 	}

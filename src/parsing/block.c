@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   block.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 09:46:27 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 10:05:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/20 11:36:25 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_block	*create_block(t_uint bool_to_next, t_uint split_index)
 	new->ppl = NULL;
 	new->next = NULL;
 	new->bool_to_next = bool_to_next;
-	new->split_index = split_index;
+	new->block_end = split_index;
 	return (new);
 }
 
