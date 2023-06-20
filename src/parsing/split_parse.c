@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 13:09:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/20 15:26:33 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_uint	new_part(char **dest, t_str src)
 	return (i);
 }
 
-static char	**meta_cut(char **dest, t_str src)
+static t_str	*meta_cut(t_str *dest, t_str src)
 {
 	t_uint	i;
 	t_uint	k;
@@ -93,13 +93,13 @@ static char	**meta_cut(char **dest, t_str src)
 	return (dest);
 }
 
-t_str	*split_parser(void)
+t_str	*split_parser(t_str line)
 {
 	t_str	*parts;
 
 	parts = g_shx->gc->malloc(sizeof(t_str)
-			* (count_parts(g_shx->line) + 1), true);
+			* (count_parts(line) + 1), true);
 	if (!parts)
-		return (NULL);
-	return (meta_cut(parts, g_shx->line));
+		return (printf("malloc failed\n"), NULL);
+	return (meta_cut(parts, line));
 }

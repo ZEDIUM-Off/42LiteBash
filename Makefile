@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/19 16:04:39 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/06/20 15:00:40 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

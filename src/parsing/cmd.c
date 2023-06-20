@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/19 23:38:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/20 12:38:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ t_cmd	*new_cmd(t_uint p_start, t_uint p_end)
 			printf("g_shx->line_split[p_start] in if 1 = %c\n", g_shx->line_split[p_start][0]);
 			printf("in A %i\n", p_start);
 			if (cmd)
+			{
 				cmd->cmd = g_shx->line_split[p_start];
+				cmd->opt[o] = cmd->cmd;
+				o++;
+			}
 			printf("cmd->cmd = %s\n", cmd->cmd);
 			n++;
 		}

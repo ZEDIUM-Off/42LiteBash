@@ -3,71 +3,104 @@
 /*                                                        :::      ::::::::   */
 /*   parse_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/19 17:21:49 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 16:16:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	find_pipe_start(t_uint	pipe_pos)
+int	set_redir(t_pipeline **ppl, t_uint meta, t_str filename)
 {
-	t_uint	i;
-
-	i = pipe_pos - 1;
-	while (i > 0 && get_meta_char(&g_shx->line_split[i][0]) != PIPE)
-		i--;
-	return (i);
+	if (meta == APPEND_REDIRECT || meta == OUT_REDIRECT)
+	{
+		if ((*ppl)->redir.out_type != NONE)
+			return (IMPLICIT_REDIRECT);
+		(*ppl)->redir.out_type = meta;
+		(*ppl)->redir.outfile = new_file(filename);
+	}
+	if (meta == IN_REDIRECT || meta == HERE_DOC)
+	{
+		if ((*ppl)->redir.in_type != NONE)
+			return (IMPLICIT_REDIRECT);
+		(*ppl)->redir.in_type = meta;
+		if (meta == IN_REDIRECT)
+			(*ppl)->redir.infile = new_file(filename);
+	}
+	return (0);
 }
 
-void	parse_pipe(t_pipeline **ppl, t_uint pipe_pos)
+int	extract_redirect(
+	t_pipeline **ppl, t_str **cmd_no_redir, t_str *splited, t_uint size)
 {
-	t_uint	i;
-	t_uint	meta;
+	t_uint		meta;
+	t_uint		nb_parts;
+	t_uint		i;
 
-	i = find_pipe_start(pipe_pos);
-	(*ppl)->cmd = new_cmd(i, pipe_pos);
-	while (i < pipe_pos)
+	nb_parts = 0;
+	i = 0;
+	while (i < size)
 	{
-		meta = get_meta_char(&g_shx->line_split[i][0]);
-		if (meta == APPEND_REDIRECT)
-			(*ppl)->redir = (t_redirect){.out_type = APPEND_REDIRECT,
-				.outfile = new_file(g_shx->line_split[i + 1])};
-		if (meta == OUT_REDIRECT)
-			(*ppl)->redir = (t_redirect){.out_type = OUT_REDIRECT,
-				.outfile = new_file(g_shx->line_split[i + 1])};
-		if (meta == HERE_DOC)
-			(*ppl)->redir = (t_redirect){.in_type = HERE_DOC};
-		if (meta == IN_REDIRECT)
-			(*ppl)->redir = (t_redirect){.in_type = IN_REDIRECT,
-				.infile = new_file(g_shx->line_split[i + 1])};
+		meta = get_meta_char(&splited[i][0]);
+		if (meta >= IN_REDIRECT && meta <= HERE_DOC)
+		{
+			if (set_redir(ppl, meta, splited[i]) != 0)
+				return (IMPLICIT_REDIRECT);
+			i++;
+		}
+		else
+			(*cmd_no_redir)[nb_parts++] = ft_strdup(splited[i]);
 		i++;
 	}
+	(*cmd_no_redir)[nb_parts] = NULL;
+	return (0);
 }
 
-void	parse_pipeline(void)
+int	parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size)
+{
+	t_str	*cmd_no_redir;
+	t_uint	i;
+
+	cmd_no_redir = (t_str *)g_shx->gc->malloc(sizeof(t_str)
+			* (size + 1), false);
+	if (!cmd_no_redir)
+		return (MALLOC_FAIL);
+	extract_redirect(ppl, &cmd_no_redir, splited, size);
+	i = 0;
+	while (cmd_no_redir[i])
+	{
+		printf("cmd no redir %d: %s\n", i, cmd_no_redir[i]);
+		i++;
+	}
+	// (*ppl)->cmd = new_cmd(cmd_no_redir);
+	return (0);
+}
+
+int	parse_pipeline(t_block **blocks, t_str *splited)
 {
 	t_uint	i;
-	t_block	*block;
+	t_uint	start;
+	t_block	*top;
 
 	i = 0;
-	block = (t_block *)g_shx->blocks;
-	while (g_shx->blocks)
+	top = (t_block *)(*blocks);
+	while (*blocks)
 	{
-		while (g_shx->line_split[i] && i < g_shx->blocks->split_index)
+		start = i;
+		while (splited[i] && i < (*blocks)->block_end)
 		{
-			if (get_meta_char(&g_shx->line_split[i][0]) == PIPE)
+			if (get_meta_char(&splited[i][0]) == PIPE)
 			{
-				if (!g_shx->blocks->ppl)
-					g_shx->blocks->ppl = create_ppl(i);
-				else
-					add_ppl(&g_shx->blocks->ppl, i);
+				add_ppl(&(*blocks)->ppl, i - start, &splited[start]);
+				start = i + 1;
 			}
 			i++;
 		}
-		g_shx->blocks = g_shx->blocks->next;
+		add_ppl(&(*blocks)->ppl, i - start, &splited[start]);
+		*blocks = (*blocks)->next;
 	}
-	g_shx->blocks = block;
+	*blocks = top;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/20 12:38:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/20 14:58:35 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ struct	s_chunk
 	t_chunk	*under_chunk;
 };
 
-void		parse_pipeline(void);
+int			parse_pipeline(t_block **blocks, t_str *splited);
 
-t_pipeline	*create_ppl(t_uint pipe_pos);
-t_pipeline	*add_ppl(t_pipeline **pipeline, t_uint pipe_pos);
-void	parse_pipe(t_pipeline **ppl, t_uint pipe_pos);
+t_pipeline	*create_ppl(t_uint size, t_str *splited);
+t_pipeline	*add_ppl(t_pipeline **pipeline, t_uint size, t_str *splited);
+int			parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size);
 
 #endif /* PIPELINE_H */
