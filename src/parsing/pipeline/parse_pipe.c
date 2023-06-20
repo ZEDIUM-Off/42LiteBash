@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/20 16:16:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/20 17:09:37 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size)
 		printf("cmd no redir %d: %s\n", i, cmd_no_redir[i]);
 		i++;
 	}
-	// (*ppl)->cmd = new_cmd(cmd_no_redir);
+	(*ppl)->cmd = new_cmd(cmd_no_redir);
 	return (0);
 }
 
@@ -99,6 +99,8 @@ int	parse_pipeline(t_block **blocks, t_str *splited)
 			i++;
 		}
 		add_ppl(&(*blocks)->ppl, i - start, &splited[start]);
+		if (i == (*blocks)->block_end)
+			start = ++i;
 		*blocks = (*blocks)->next;
 	}
 	*blocks = top;

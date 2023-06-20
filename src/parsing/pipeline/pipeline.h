@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/20 14:58:35 by  mchenava        ###   ########.fr       */
-=======
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/20 14:02:13 by bfaure           ###   ########lyon.fr   */
->>>>>>> d58951cf7b967cb44db4c656e4957332d18209f7
+/*   Updated: 2023/06/20 17:19:34 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +39,7 @@ struct s_pipeline
 
 struct s_cmd
 {
-	t_str	cmd;
-	t_str	*opt;
-	t_str	*arg;
+	t_str	*cmd;
 	t_chunk	*chunk;
 };
 

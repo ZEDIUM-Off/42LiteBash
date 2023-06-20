@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 16:50:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/20 17:29:19 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,62 +20,37 @@ t_cmd	*create_cmd(void)
 	if (!new)
 		return (NULL);
 	new->cmd = NULL;
-	new->opt = NULL;
-	new->opt = (char **)g_shx->gc->malloc(sizeof(char *) * 5, true);
-	if (!new->opt)
+	new->cmd = (char **)g_shx->gc->malloc(sizeof(char *) * 10, true);
+	if (!new->cmd)
 		return (NULL);
-	new->arg = NULL;
-	new->arg = (char **)g_shx->gc->malloc(sizeof(char *) * 5, true);
-	if (!new->arg)
-		return (printf("AHHHHHHHHHHHHHHHHHH\n"), NULL);
 	new->chunk = NULL;
 	return (new);
 }
 
-t_cmd	*new_cmd(t_uint p_start, t_uint p_end)
+int	new_cmd(t_cmd **_cmd, t_str *splited)
 {
-	t_uint	n;
 	t_uint	o;
 	t_uint	a;
-	t_cmd	*cmd;
-	t_chunk	*chunk;
+	t_uint	i;
 
-	n = 0;
 	o = 0;
 	a = 0;
+	i = 0;
 	trace("*new_cmd", "fill cmd struct", PARSE);
-	cmd = create_cmd();
-	if (!cmd)
+	(*_cmd) = create_cmd();
+	if (!(*_cmd))
 		return (printf("cmd  malloc error\n"), NULL);
-	while (p_start != p_end)
+	while (splited[i])
 	{
-		if (n == 0)
+		if (i == 0)
 		{
-			while (get_meta_char(&g_shx->line_split[p_start][0]) == PIPE)
-				p_start++;
-			if (cmd)
-			{
-				cmd->cmd = ft_strdup(g_shx->line_split[p_start]);
-				cmd->opt[o] = ft_strdup(cmd->cmd);
-				printf("cmd->cmd = %s\n", cmd->cmd);
-				o++;
-			}
-			n++;
-		}
-		if (g_shx->line_split[p_start][0] == '-')
-		{
-			cmd->opt[o] = ft_strdup(g_shx->line_split[p_start]);
+			(*_cmd)->cmd = ft_strdup(splited[i]);
+			printf("(*_cmd)->cmd = %s\n", (*_cmd)->cmd);
 			o++;
 		}
-		else if (g_shx->line_split[p_start] != cmd->cmd)
-		{
-			cmd->arg[a] = ft_strdup(g_shx->line_split[p_start]);
-			printf("cmd->arg[%i] = %s\n", a, cmd->arg[a]);
-			a++;
-		}
-		chunk = chunk_size(g_shx->line_split);
-		p_start++;
+		(*_cmd)->chunk = chunk_size(splited);
+		i++;
 	}
 	log_action();
-	return (cmd);
+	return (0);
 }

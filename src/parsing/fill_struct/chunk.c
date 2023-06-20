@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 15:55:49 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 17:10:41 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ t_chunk	*new_chunk(t_uint c_start, t_uint c_end, t_str *splited, t_uint type)
 	chunk->type = type;
 	if (type == O_PARENTHESIS || type == C_PARENTHESIS)
 		chunk->type = PARENTHESIS;
-	printf("new_chunk chunk->txt = %s\n", splited[c_start]);
+	t_uint i = 0;
+	while (c_start != c_end + 1)
+	{
+		chunk->txt[i] = ft_strdup(splited[c_start]);
+		printf("new_chunk chunk->txt = %s\n", chunk->txt[i]);
+		i++;
+		c_start++;
+	}
 	return (chunk);
 }

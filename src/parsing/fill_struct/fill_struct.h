@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:17:43 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 15:37:57 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 17:25:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <minish.h>
 
-t_cmd		*new_cmd(t_uint p_start, t_uint p_end);
+int			new_cmd(t_cmd **_cmd, t_str *splited);
 
 t_block		*create_block(t_uint bool_to_next, t_uint split_index);
 t_block		*add_block(
