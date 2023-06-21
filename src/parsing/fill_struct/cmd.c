@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/21 15:05:28 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/21 16:55:17 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*get_valid_paths(char *cmd)
 int	new_cmd(t_cmd **_cmd, t_str *splited)
 {
 	t_uint	i;
+	t_uint	meta;
 
 	i = 0;
 	trace("*new_cmd", "fill cmd struct", PARSE);
@@ -63,12 +64,13 @@ int	new_cmd(t_cmd **_cmd, t_str *splited)
 	{
 		if (i == 0)
 		{
-			if (check_builtins(splited[0]) == 0)
+			meta = get_meta_char(&splited[i][0]);
+			if (check_builtins(splited[0]) == 0 && !(meta >= SINGLE_QUOTE && meta <= C_PARENTHESIS))
 			{
 				(*_cmd)->cmd[i] = get_valid_paths(splited[0]);
 				printf("(*_cmd)->cmd in = %s\n", (*_cmd)->cmd[0]);
 			}
-			else
+			else if (!(meta >= SINGLE_QUOTE && meta <= C_PARENTHESIS))
 			{
 				(*_cmd)->cmd[i] = ft_strdup(splited[0]);
 				printf("(*_cmd)->cmd in = %s\n", (*_cmd)->cmd[0]);
@@ -80,9 +82,9 @@ int	new_cmd(t_cmd **_cmd, t_str *splited)
 			(*_cmd)->cmd[i] = ft_strdup(splited[i]);
 			printf("(*_cmd)->cmd out = %s\n", (*_cmd)->cmd[i]);
 		}
-		//(*_cmd)->chunk = chunk_size(splited);
 		i++;
 	}
+	(*_cmd)->chunk = chunk_size(splited);
 	log_action();
 	return (0);
 }
