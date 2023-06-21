@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:44:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/19 20:27:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/21 11:04:50 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,14 @@ void	control_pipe(char *c, t_syntax_checker *syx)
 			i++;
 		type = get_meta_char(&c[i]);
 		if (type == PIPE && i != 1)
-		{
 			syx->status = SYNTAX_ERROR;
-		}
 	}
 }
 
 void	control_boolean(char *c, t_syntax_checker *syx)
 {
-	int	type;
+	int		type;
+	t_uint	i;
 
 	type = get_meta_char(c);
 	if (type == AND || type == OR)
@@ -77,8 +76,12 @@ void	control_boolean(char *c, t_syntax_checker *syx)
 		syx->cursor++;
 		type = get_meta_char(c + 1);
 		if (type == AND || type == OR)
-		{
 			syx->status = SYNTAX_ERROR;
-		}
+		i = 1;
+		while (c[i] && ft_isspace(c[i]))
+			i++;
+		type = get_meta_char(&c[i]);
+		if ((type == AND || type == OR) && i != 1)
+			syx->status = SYNTAX_ERROR;
 	}
 }

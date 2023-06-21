@@ -3,63 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   pars_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/16 17:57:11 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 16:51:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	split_line(void)
+int	split_line(t_str **line_split, t_str line)
 {
 	t_uint	i;
 
 	i = 0;
 	trace("split_line", "split the line", PARSE);
-	if (g_shx->line_split)
-		free_split_line();
-	g_shx->line_split = split_parser();
-	if (!g_shx->line_split)
+	if (*line_split)
+		free_split_line(line_split);
+	*line_split = split_parser(line);
+	if (!(*line_split))
 		return (printf("MALLOC FAIL IN SPLIT LINE\n"), -1);
-	while (g_shx->line_split[i])
+	while ((*line_split)[i])
 	{
-		printf("g_shx->line_split[%i] = [%s]\n", i, g_shx->line_split[i]);
+		printf("g_shx->line_split[%i] = [%s]\n", i, (*line_split)[i]);
 		i++;
 	}
 	log_action();
 	return (0);
 }
 
-void	find_blocks(void)
+int	find_blocks(t_block	**blocks, t_str *splited)
 {
 	t_uint	i;
 	t_uint	meta;
 
 	i = 0;
 	trace("find_blocks", "find blocks", PARSE);
-	while (g_shx->line_split[i])
+	while (splited[i])
 	{
-		meta = get_meta_char(&g_shx->line_split[i][0]);
+		meta = get_meta_char(&splited[i][0]);
 		if (meta == AND || meta == OR)
-		{
-			if (g_shx->blocks == NULL)
-				g_shx->blocks = create_block(meta, i);
-			else
-				add_block(&g_shx->blocks, meta, i);
-		}
+			add_block(blocks, meta, i);
 		i++;
 	}
-	if (g_shx->blocks == NULL)
-		g_shx->blocks = create_block(NONE, i);
+	add_block(blocks, NONE, i);
+	return (0);
 }
 
-int	pars_line(void)
+int	pars_line(t_block **out, t_str *splited)
 {
 	trace("pars_line", "parse the line", PARSE);
-	find_blocks();
-	parse_pipeline();
+	find_blocks(out, splited);
+	parse_pipeline(out, splited);
 	log_action();
 	return (0);
 }

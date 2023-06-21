@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aviscogl <aviscogl@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/16 16:15:58 by aviscogl         ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 17:31:16 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,24 @@ struct s_pipeline
 
 struct s_cmd
 {
-	t_str	cmd;
-	t_str	*opt;
-	t_str	*arg;
+	t_str	*cmd;
 	t_chunk	*chunk;
 };
 
 struct	s_chunk
 {
 	t_uint	end;
-	t_str	txt;
+	t_str	*txt;
 	t_uint	type;
 	t_uint	start;
+	t_block	*blocks;
 	t_chunk	*under_chunk;
 };
 
-void		parse_pipeline(void);
+int			parse_pipeline(t_block **blocks, t_str *splited);
 
-t_pipeline	*create_ppl(t_uint pipe_pos);
-t_pipeline	*add_ppl(t_pipeline **pipeline, t_uint pipe_pos);
-void	parse_pipe(t_pipeline **ppl, t_uint pipe_pos);
+t_pipeline	*create_ppl(t_uint size, t_str *splited);
+t_pipeline	*add_ppl(t_pipeline **pipeline, t_uint size, t_str *splited);
+int			parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size);
 
 #endif /* PIPELINE_H */

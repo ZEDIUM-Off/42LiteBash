@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/19 16:04:39 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/06/20 16:50:35 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,9 +54,11 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/pars_paths.c \
 				src/parsing/pars_env.c \
 				src/parsing/split_parse.c \
-				src/parsing/block.c \
 				src/parsing/free_split_line.c \
-				src/parsing/cmd.c \
+				src/parsing/fill_struct/block.c \
+				src/parsing/fill_struct/cmd.c \
+				src/parsing/fill_struct/chunk_size.c \
+				src/parsing/fill_struct/chunk.c \
 				src/parsing/pipeline/parse_pipe.c\
 				src/parsing/pipeline/pipeline.c \
 				src/parsing/new_file.c \

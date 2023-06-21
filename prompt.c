@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/19 15:03:15 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/20 13:20:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void	prompt(char **env)
 			add_history(g_shx->line);
 		//ft_read(line_read);
 		if (g_shx->line[0] && g_shx->status == SYNTAX_OK)
-			split_line();
-		pars_line();
+			split_line(&g_shx->line_split, g_shx->line);
+		pars_line(&g_shx->blocks, g_shx->line_split);
+		// printf("prompt cmd %s\n", g_shx->blocks->ppl->next->cmd->cmd);
 		log_action();
 		free(g_shx->line);
 	}

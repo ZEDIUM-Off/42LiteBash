@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 13:08:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/20 16:52:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,21 @@
 enum e_meta_type
 {
 	NONE,
+	IN_REDIRECT, // <
+	OUT_REDIRECT, // >
 	APPEND_REDIRECT, // >>
 	HERE_DOC, // <<
 	DOLLAR_Q, // $?
 	DOLLAR_D, // $$
 	OR, // ||
 	AND, // &&
-	IN_REDIRECT, // <
-	OUT_REDIRECT, // >
 	PIPE, // |
+	DOLLAR, //$
 	SINGLE_QUOTE, // '
 	DOUBLE_QUOTE, // "
-	DOLLAR, //$
 	O_PARENTHESIS, // (
 	C_PARENTHESIS, // )
+	PARENTHESIS, // ()
 	WILD_CARD, // *
 };
 
@@ -48,11 +49,13 @@ enum e_internal_error_codes
 {
 	GARB_ALLOC_ERROR,
 	TRACKER_ALLOC_ERROR,
+	MALLOC_FAIL,
 };
 
 enum e_user_error_codes
 {
 	SYNTAX_ERROR,
+	IMPLICIT_REDIRECT,
 	SYNTAX_OK,
 };
 
