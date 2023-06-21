@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:17:43 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 17:25:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/21 11:48:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 int			new_cmd(t_cmd **_cmd, t_str *splited);
 
-t_block		*create_block(t_uint bool_to_next, t_uint split_index);
-t_block		*add_block(
+t_uint	create_block(t_block **new, t_uint bool_to_next, t_uint split_index);
+t_uint	add_block(
 				t_block **block, t_uint bool_to_next, t_uint split_index);
 
 t_chunk		*create_chunk(void);

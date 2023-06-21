@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:31:27 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 15:32:51 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/21 11:23:00 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 # include <minish.h>
 
 void	log_action(void);
+void 	log_struct(void);
 
 #endif

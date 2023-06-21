@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/20 17:31:28 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/21 12:00:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ int	parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size)
 	return (0);
 }
 
-// add status gestion
 int	parse_pipeline(t_block **blocks, t_str *splited)
 {
 	t_uint	i;
 	t_uint	start;
+	t_uint	status;
 	t_block	*top;
 
 	i = 0;
@@ -99,12 +99,16 @@ int	parse_pipeline(t_block **blocks, t_str *splited)
 		{
 			if (get_meta_char(&splited[i][0]) == PIPE)
 			{
-				add_ppl(&(*blocks)->ppl, i - start, &splited[start]);
+				status = add_ppl(&(*blocks)->ppl, i - start, &splited[start]);
+				if (status != 0)
+					return (status);
 				start = i + 1;
 			}
 			i++;
 		}
-		add_ppl(&(*blocks)->ppl, i - start, &splited[start]);
+		status = add_ppl(&(*blocks)->ppl, i - start, &splited[start]);
+		if (status != 0)
+			return (status);
 		if (i == (*blocks)->block_end)
 			start = ++i;
 		*blocks = (*blocks)->next;

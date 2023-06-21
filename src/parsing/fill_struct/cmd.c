@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 17:31:55 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/21 11:29:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,22 @@ t_cmd	*create_cmd(void)
 int	new_cmd(t_cmd **_cmd, t_str *splited)
 {
 	t_uint	o;
-	t_uint	a;
+	// t_uint	a;
 	t_uint	i;
 
 	o = 0;
-	a = 0;
+	// a = 0;
 	i = 0;
 	trace("*new_cmd", "fill cmd struct", PARSE);
 	(*_cmd) = create_cmd();
 	if (!(*_cmd))
-		return (printf("cmd  malloc error\n"), NULL);
+		return (printf("cmd  malloc error\n"), MALLOC_FAIL);
 	while (splited[i])
 	{
 		if (i == 0)
 		{
-			(*_cmd)->cmd = ft_strdup(splited[i]);
-			printf("(*_cmd)->cmd = %s\n", (*_cmd)->cmd);
+			(*_cmd)->cmd[i] = ft_strdup(splited[i]);
+			printf("(*_cmd)->cmd = %s\n", (*_cmd)->cmd[i]);
 			o++;
 		}
 		(*_cmd)->chunk = chunk_size(splited);

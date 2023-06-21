@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 17:10:41 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/21 11:34:11 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_chunk	*new_chunk(t_uint c_start, t_uint c_end, t_str *splited, t_uint type)
 {
 	t_chunk	*chunk;
 
-	if ((c_start < 0 || c_end < 0) || (c_start == c_end) || !splited)
-		return (printf("New_chuck check var error\n"), NULL);
+	// if ((c_start < 0 || c_end < 0) || (c_start == c_end) || !splited)
+	// 	return (printf("New_chuck check var error\n"), NULL);
 	chunk = create_chunk();
 	if (!chunk)
 		return (printf("chunk  malloc error\n"), NULL);

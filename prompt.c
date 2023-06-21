@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 13:20:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/21 11:23:34 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	prompt(char **env)
 			split_line(&g_shx->line_split, g_shx->line);
 		pars_line(&g_shx->blocks, g_shx->line_split);
 		// printf("prompt cmd %s\n", g_shx->blocks->ppl->next->cmd->cmd);
+		log_struct();
 		log_action();
 		free(g_shx->line);
 	}

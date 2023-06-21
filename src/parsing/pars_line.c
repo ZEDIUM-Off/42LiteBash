@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 16:51:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/21 11:52:19 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	split_line(t_str **line_split, t_str line)
 		free_split_line(line_split);
 	*line_split = split_parser(line);
 	if (!(*line_split))
-		return (printf("MALLOC FAIL IN SPLIT LINE\n"), -1);
+		return (printf("MALLOC FAIL IN SPLIT LINE\n"), MALLOC_FAIL);
 	while ((*line_split)[i])
 	{
 		printf("g_shx->line_split[%i] = [%s]\n", i, (*line_split)[i]);
@@ -36,6 +36,7 @@ int	find_blocks(t_block	**blocks, t_str *splited)
 {
 	t_uint	i;
 	t_uint	meta;
+	t_uint	status;
 
 	i = 0;
 	trace("find_blocks", "find blocks", PARSE);
@@ -43,18 +44,30 @@ int	find_blocks(t_block	**blocks, t_str *splited)
 	{
 		meta = get_meta_char(&splited[i][0]);
 		if (meta == AND || meta == OR)
-			add_block(blocks, meta, i);
+		{
+			status = add_block(blocks, meta, i);
+			if (status != 0)
+				return (status);
+		}
 		i++;
 	}
-	add_block(blocks, NONE, i);
+	status = add_block(blocks, NONE, i);
+	if (status !=0)
+		return (status);
 	return (0);
 }
 
 int	pars_line(t_block **out, t_str *splited)
 {
+	t_uint	status;
+
 	trace("pars_line", "parse the line", PARSE);
-	find_blocks(out, splited);
-	parse_pipeline(out, splited);
+	status = find_blocks(out, splited);
+	if (status != 0)
+		return (status);
+	status = parse_pipeline(out, splited);
+	if (status != 0)
+		return (status);
 	log_action();
 	return (0);
 }
