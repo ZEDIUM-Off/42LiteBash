@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/20 15:26:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/21 14:27:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	skip_parts(t_str str)
+t_uint	skip_parts(t_str str, bool *s_quote, bool *d_quote)
 {
 	t_uint	i;
 	t_uint	meta;
@@ -21,12 +21,19 @@ t_uint	skip_parts(t_str str)
 	meta = get_meta_char(&str[i]);
 	if (meta != NONE)
 	{
+		if (meta == SINGLE_QUOTE)
+			*s_quote = !(*s_quote);
+		if (meta == DOUBLE_QUOTE)
+			*d_quote = !(*d_quote);
 		if (meta >= APPEND_REDIRECT && meta <= AND)
 			i++;
 		i++;
 	}
 	else
 	{
+		if (*d_quote || *s_quote)
+			while (str[i] && get_meta_char(&str[i]) == NONE)
+				i++;
 		while (str[i] && str[i] != ' ' && str[i] != '\t'
 			&& get_meta_char(&str[i]) == NONE)
 			i++;
@@ -38,15 +45,19 @@ t_uint	count_parts(t_str str)
 {
 	t_uint	n_parts;
 	t_uint	i;
+	bool	s_quote;
+	bool	d_quote;
 
 	n_parts = 0;
 	i = 0;
+	s_quote = false;
+	d_quote = false;
 	while (str[i])
 	{
 		if (str[i] && str[i] != ' ' && str[i] != '\t')
 		{
 			n_parts++;
-			i += skip_parts(&str[i]);
+			i += skip_parts(&str[i], &s_quote, &d_quote);
 		}
 		else
 			i++;
@@ -54,13 +65,13 @@ t_uint	count_parts(t_str str)
 	return (n_parts);
 }
 
-t_uint	new_part(char **dest, t_str src)
+t_uint	new_part(char **dest, t_str src, bool *s_quote, bool *d_quote)
 {
 	t_uint	i;
 	t_uint	j;
 
 	j = 0;
-	i = skip_parts(src);
+	i = skip_parts(src, s_quote, d_quote);
 	*dest = g_shx->gc->malloc(sizeof(char) * (i + 1), true);
 	if (!*dest)
 		return (-1);
@@ -77,14 +88,21 @@ static t_str	*meta_cut(t_str *dest, t_str src)
 {
 	t_uint	i;
 	t_uint	k;
+	t_uint	parts;
+	bool	s_quote;
+	bool	d_quote;
 
 	i = 0;
 	k = 0;
-	while (src[i] && count_parts(src) - k > 0)
+	parts = count_parts(src);
+	s_quote = false;
+	d_quote = false;
+	while (src[i] && k < parts)
 	{
-		while (src[i] && (src[i] == ' ' || src[i] == '\t'))
-			i++;
-		i += new_part(&dest[k], &src[i]);
+		if (!d_quote && !s_quote)
+			while (src[i] && (src[i] == ' ' || src[i] == '\t'))
+				i++;
+		i += new_part(&dest[k], &src[i], &s_quote, &d_quote);
 		if (!dest[k])
 			return (NULL);
 		k++;
