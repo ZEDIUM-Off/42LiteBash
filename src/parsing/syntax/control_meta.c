@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:44:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 11:28:37 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/19 20:27:56 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	control_pipe(char *c, t_syntax_checker *syx)
 	type = get_meta_char(c);
 	if (type == PIPE)
 	{
-		printf("control_pipe\n");
 		i = 1;
 		while (c[i] && ft_isspace(c[i]))
 			i++;
