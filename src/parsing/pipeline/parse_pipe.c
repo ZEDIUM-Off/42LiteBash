@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/21 12:00:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/21 12:49:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,29 @@ int	parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size)
 	return (0);
 }
 
+int	process_block(t_block **blocks, t_str *splited, t_uint *i, t_uint *start)
+{
+	t_uint	status;
+
+	while (splited[*i] && *i < (*blocks)->block_end)
+	{
+		if (get_meta_char(&splited[*i][0]) == PIPE)
+		{
+			status = add_ppl(&(*blocks)->ppl, *i - *start, &splited[*start]);
+			if (status != 0)
+				return (status);
+			*start = *i + 1;
+		}
+		(*i)++;
+	}
+	status = add_ppl(&(*blocks)->ppl, *i - *start, &splited[*start]);
+	if (status != 0)
+		return (status);
+	if (*i == (*blocks)->block_end)
+		*start = ++(*i);
+	return (0);
+}
+
 int	parse_pipeline(t_block **blocks, t_str *splited)
 {
 	t_uint	i;
@@ -95,22 +118,9 @@ int	parse_pipeline(t_block **blocks, t_str *splited)
 	while (*blocks)
 	{
 		start = i;
-		while (splited[i] && i < (*blocks)->block_end)
-		{
-			if (get_meta_char(&splited[i][0]) == PIPE)
-			{
-				status = add_ppl(&(*blocks)->ppl, i - start, &splited[start]);
-				if (status != 0)
-					return (status);
-				start = i + 1;
-			}
-			i++;
-		}
-		status = add_ppl(&(*blocks)->ppl, i - start, &splited[start]);
+		status = process_block(blocks, splited, &i, &start);
 		if (status != 0)
 			return (status);
-		if (i == (*blocks)->block_end)
-			start = ++i;
 		*blocks = (*blocks)->next;
 	}
 	*blocks = top;
