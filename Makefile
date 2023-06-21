@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/20 16:50:35 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/06/21 14:15:14 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/fill_struct/cmd.c \
 				src/parsing/fill_struct/chunk_size.c \
 				src/parsing/fill_struct/chunk.c \
+				src/parsing/fill_struct/check_builtins.c \
 				src/parsing/pipeline/parse_pipe.c\
 				src/parsing/pipeline/pipeline.c \
 				src/parsing/new_file.c \
