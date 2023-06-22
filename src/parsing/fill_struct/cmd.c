@@ -3,37 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/21 16:55:17 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/22 15:49:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_cmd	*create_cmd(void)
+t_uint	create_cmd(t_cmd **new, t_uint size)
 {
-	t_cmd	*new;
-
-	new = (t_cmd *)g_shx->gc->malloc(sizeof(t_cmd), true);
-	if (!new)
-		return (NULL);
-	new->cmd = NULL;
-	new->cmd = (char **)g_shx->gc->malloc(sizeof(char *) * 10, true);
-	if (!new->cmd)
-		return (NULL);
-	new->chunk = NULL;
-	return (new);
+	printf ("cmd size: %d\n", size);
+	*new = (t_cmd *)g_shx->gc->malloc(sizeof(t_cmd), true);
+	if (!(*new))
+		return (MALLOC_FAIL);
+	(*new)->cmd = (char **)g_shx->gc->malloc(sizeof(char *) * (size + 1), true);
+	if (!(*new)->cmd)
+		return (MALLOC_FAIL);
+	(*new)->chunk = NULL;
+	return (0);
 }
 
 char	*get_valid_paths(char *cmd)
 {
 	char		*pathname;
-	size_t		i;
 	t_list		*tmp;
 
-	i = 0;
 	if (cmd && access(cmd, X_OK) == 0)
 		return (cmd);
 	tmp = g_shx->lst_paths;
@@ -50,41 +46,58 @@ char	*get_valid_paths(char *cmd)
 	return (NULL);
 }
 
-int	new_cmd(t_cmd **_cmd, t_str *splited)
+t_uint	new_cmd(t_cmd **_cmd, t_str *splited)
 {
 	t_uint	i;
 	t_uint	meta;
+	t_uint	status;
+	t_uint	cmd_curs;
 
 	i = 0;
 	trace("*new_cmd", "fill cmd struct", PARSE);
-	(*_cmd) = create_cmd();
-	if (!(*_cmd))
-		return (printf("cmd  malloc error\n"), MALLOC_FAIL);
+	while (splited[i])
+		i++;
+	status = create_cmd(_cmd, i);
+	if (status !=	0)
+		return (status);
+	i = 0;
+	cmd_curs = 0;
 	while (splited[i])
 	{
 		if (i == 0)
 		{
 			meta = get_meta_char(&splited[i][0]);
-			if (check_builtins(splited[0]) == 0 && !(meta >= SINGLE_QUOTE && meta <= C_PARENTHESIS))
+			if (check_builtins(splited[0]) == 0
+				&& !(meta >= SINGLE_QUOTE && meta <= C_PARENTHESIS))
 			{
-				(*_cmd)->cmd[i] = get_valid_paths(splited[0]);
+				(*_cmd)->cmd[cmd_curs++] = get_valid_paths(splited[0]);
 				printf("(*_cmd)->cmd in = %s\n", (*_cmd)->cmd[0]);
 			}
 			else if (!(meta >= SINGLE_QUOTE && meta <= C_PARENTHESIS))
 			{
-				(*_cmd)->cmd[i] = ft_strdup(splited[0]);
+				(*_cmd)->cmd[cmd_curs++] = ft_strdup(splited[0]);
 				printf("(*_cmd)->cmd in = %s\n", (*_cmd)->cmd[0]);
 			}
 			i = 1;
 		}
 		if (splited[i] && get_meta_char(splited[i]) != DOUBLE_QUOTE)
 		{
-			(*_cmd)->cmd[i] = ft_strdup(splited[i]);
-			printf("(*_cmd)->cmd out = %s\n", (*_cmd)->cmd[i]);
+			(*_cmd)->cmd[cmd_curs++] = ft_strdup(splited[i]);
+			// printf("(*_cmd)->cmd[%d] out = %s\n",i, (*_cmd)->cmd[i]);
 		}
 		i++;
 	}
-	(*_cmd)->chunk = chunk_size(splited);
+	printf("i = %d\n", i);
+	(*_cmd)->cmd[cmd_curs] = NULL;
+	i = 0;
+	while ((*_cmd)->cmd[i])
+	{
+		printf("(*_cmd)->cmd = %s\n", (*_cmd)->cmd[i]);
+		i++;
+	}
+	status = chunk_size(&(*_cmd)->chunk, splited);
+	if (status != 0)
+		return (status);
 	log_action();
 	return (0);
 }

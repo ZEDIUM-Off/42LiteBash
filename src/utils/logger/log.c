@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/21 11:37:50 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/22 14:27:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,27 @@ void log_struct(void)
 		p_ctr = 1;
 		while (ppl)
 		{
-			printf("│\n├── pipeline %-5d:\n", p_ctr++);
+			printf("\t│\n\t├──pipeline %-5d:\n", p_ctr++);
 			cmd = ppl->cmd;
-			chunk = cmd->chunk;
-			redir = &ppl->redir;
-			printf("│   ├── cmd: ");
+			if (!cmd)
+				printf("\t\t│\n\t\t├── cmd: NULL\n");
+			printf("\t\t│\n\t\t├── cmd: ");
 			i = 0;
 			while (cmd->cmd[i])
 				printf("%s ", cmd->cmd[i++]);
 			printf("\n");
-			printf("│   ├── chunk: ");
-			i = 0;
-			while (chunk->txt[i])
-				printf("%s ", chunk->txt[i++]);
-			printf("\n");
-			printf("│   ├── redir in_type: %d, out_type: %d\n", redir->in_type, redir->out_type);
-			printf("│   └── files : infile: %s, outfile: %s\n", redir->infile.file_name , redir->outfile.file_name);
+			chunk = cmd->chunk;
+			if (chunk)
+			{
+				printf("\t\t\t│\n\t\t\t├── chunk: ");
+				i = 0;
+				while (chunk->txt[i])
+					printf("%s ", chunk->txt[i++]);
+				printf("\n");
+			}
+			redir = &ppl->redir;
+			printf("\t│\n\t├── redir in_type: %d, out_type: %d\n", redir->in_type, redir->out_type);
+			printf("\t│\n\t└── files : infile: %s, outfile: %s\n", redir->infile.file_name , redir->outfile.file_name);
 			ppl = ppl->next;
 		}
 		blocks = blocks->next;

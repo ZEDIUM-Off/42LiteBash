@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   check_builtins.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 14:05:06 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/21 14:13:32 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/22 13:53:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-int	check_builtins(char *str)
+t_uint	check_builtins(char *str)
 {
 	if (!ft_strncmp(str, "echo", 4))
-		return (1);
+		return (ECHO_BI);
 	else if (!ft_strncmp(str, "cd", 2))
-		return (1);
+		return (CD_BI);
 	else if (!ft_strncmp(str, "pdw", 3))
-		return (1);
+		return (PWD_BI);
 	else if (!ft_strncmp(str, "export", 6))
-		return (1);
+		return (EXPORT_BI);
 	else if (!ft_strncmp(str, "unset", 5))
-		return (1);
+		return (UNSET_BI);
 	else if (!ft_strncmp(str, "env", 3))
-		return (1);
+		return (ENV_BI);
 	else if (!ft_strncmp(str, "exit", 4))
-		return (1);
-	else
-		return (0);
+		return (EXIT_BI);
+	return (0);
 }

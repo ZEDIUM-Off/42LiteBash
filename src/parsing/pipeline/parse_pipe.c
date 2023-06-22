@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/21 12:49:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/22 15:46:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	extract_redirect(
 		meta = get_meta_char(&splited[i][0]);
 		if (meta >= IN_REDIRECT && meta <= HERE_DOC)
 		{
-			if (set_redir(ppl, meta, splited[i]) != 0)
+			if (set_redir(ppl, meta, splited[i + 1]) != 0)
 				return (IMPLICIT_REDIRECT);
 			i++;
 		}
@@ -60,8 +60,7 @@ int	extract_redirect(
 
 int	parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size)
 {
-	t_str	*cmd_no_redir;
-	t_uint	i;
+	t_str		*cmd_no_redir;
 	t_uint	status;
 
 	cmd_no_redir = (t_str *)g_shx->gc->malloc(sizeof(t_str)
@@ -71,12 +70,6 @@ int	parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size)
 	status = extract_redirect(ppl, &cmd_no_redir, splited, size);
 	if (status != 0)
 		return (status);
-	i = 0;
-	while (cmd_no_redir[i])
-	{
-		printf("cmd no redir %d: %s\n", i, cmd_no_redir[i]);
-		i++;
-	}
 	status = new_cmd(&((*ppl)->cmd), cmd_no_redir);
 	if (status != 0)
 		return (status);
@@ -102,7 +95,7 @@ int	process_block(t_block **blocks, t_str *splited, t_uint *i, t_uint *start)
 	if (status != 0)
 		return (status);
 	if (*i == (*blocks)->block_end)
-		*start = ++(*i);
+		*start = ++(*i); 
 	return (0);
 }
 
