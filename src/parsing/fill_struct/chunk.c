@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/22 13:56:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/23 16:25:25 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,15 @@ t_uint	create_chunk(t_chunk	**new, t_uint	chunk_lim[2], t_uint type)
 	(*new)->type = type;
 	(*new)->blocks = NULL;
 	(*new)->under_chunk = NULL;
+	(*new)->next = NULL;
 	return (0);
 }
 
-t_uint	new_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited, t_uint type)
+t_uint	fill_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited)
 {
-	t_uint	status;
 	t_uint	i;
-
-	if (type == C_PARENTHESIS)
-		type = PARENTHESIS;
-	status = create_chunk(chunk, chunk_lim, type);
-	if (status != 0)
-		return (status);
+	t_uint	status;
+	
 	i = 0;
 	while (chunk_lim[0] != chunk_lim[1])
 	{
@@ -52,6 +48,42 @@ t_uint	new_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited, t_uint ty
 		status = pars_line(&(*chunk)->blocks, (*chunk)->txt);
 		if (status != 0)
 			return (status);
+	}
+	return (0);
+}
+
+t_uint	last_chunk_end(t_chunk **chunk)
+{
+	t_chunk *tmp;
+
+	tmp = (*chunk);
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp->end);
+}
+
+t_uint	new_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited, t_uint type)
+{
+	t_uint	status;
+	t_chunk *new;
+	t_chunk *tmp;
+
+	if (type == C_PARENTHESIS)
+		type = PARENTHESIS;
+	status = create_chunk(&new, chunk_lim, type);
+	if (status != 0)
+		return (status);
+	status = fill_chunk(&new, chunk_lim, splited);
+	if (status != 0)
+		return (status);
+	if (!(*chunk))
+		(*chunk) = new;
+	else
+	{
+		tmp = (*chunk);
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
 	return (0);
 }

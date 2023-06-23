@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/22 15:49:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/23 14:20:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_uint	new_cmd(t_cmd **_cmd, t_str *splited)
 		printf("(*_cmd)->cmd = %s\n", (*_cmd)->cmd[i]);
 		i++;
 	}
-	status = chunk_size(&(*_cmd)->chunk, splited);
+	status = get_chunks(&(*_cmd)->chunk, splited);
 	if (status != 0)
 		return (status);
 	log_action();
