@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/23 14:20:02 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/24 12:26:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,24 @@ t_uint	create_cmd(t_cmd **new, t_uint size)
 	return (0);
 }
 
-char	*get_valid_paths(char *cmd)
+t_uint	get_valid_paths(t_str	*cmd, t_str src)
 {
-	char		*pathname;
 	t_list		*tmp;
 
-	if (cmd && access(cmd, X_OK) == 0)
-		return (cmd);
+	if (src && access(src, X_OK) == 0)
+		*cmd = ft_strdup(src);
 	tmp = g_shx->lst_paths;
 	while (tmp)
 	{
-		pathname = ft_strjoin(tmp->data, cmd);
-		if (!pathname)
-			return (NULL);
-		if (access(pathname, X_OK) == 0)
-			return (pathname);
-		free(pathname);
+		*cmd = ft_strjoin(tmp->data, src);
+		if (!*cmd)
+			return (MALLOC_FAIL);
+		if (access(*cmd, X_OK) == 0)
+			return (0);
+		free(*cmd);
 		tmp = tmp->next;
 	}
-	return (NULL);
+	return (CMD_NOT_FOUND);
 }
 
 t_uint	new_cmd(t_cmd **_cmd, t_str *splited)
@@ -64,37 +63,25 @@ t_uint	new_cmd(t_cmd **_cmd, t_str *splited)
 	cmd_curs = 0;
 	while (splited[i])
 	{
+		meta = get_meta_char(&splited[i][0]);
 		if (i == 0)
 		{
-			meta = get_meta_char(&splited[i][0]);
-			if (check_builtins(splited[0]) == 0
-				&& !(meta >= SINGLE_QUOTE && meta <= C_PARENTHESIS))
-			{
-				(*_cmd)->cmd[cmd_curs++] = get_valid_paths(splited[0]);
-				printf("(*_cmd)->cmd in = %s\n", (*_cmd)->cmd[0]);
-			}
-			else if (!(meta >= SINGLE_QUOTE && meta <= C_PARENTHESIS))
-			{
+			if (meta != NONE)
+				return (printf("ERROR: meta char at the beginning of the line\n"), SYNTAX_ERROR);
+			if (check_builtins(splited[0]))
 				(*_cmd)->cmd[cmd_curs++] = ft_strdup(splited[0]);
-				printf("(*_cmd)->cmd in = %s\n", (*_cmd)->cmd[0]);
+			else
+			{
+				status = get_valid_paths(&(*_cmd)->cmd[cmd_curs++], splited[0]);
+				if (status != 0)
+					return (printf("error cmd = %d on [%s]\n", status, splited[0]), status);
 			}
-			i = 1;
 		}
-		if (splited[i] && get_meta_char(splited[i]) != DOUBLE_QUOTE)
-		{
+		else if (splited[i])
 			(*_cmd)->cmd[cmd_curs++] = ft_strdup(splited[i]);
-			// printf("(*_cmd)->cmd[%d] out = %s\n",i, (*_cmd)->cmd[i]);
-		}
 		i++;
 	}
-	printf("i = %d\n", i);
 	(*_cmd)->cmd[cmd_curs] = NULL;
-	i = 0;
-	while ((*_cmd)->cmd[i])
-	{
-		printf("(*_cmd)->cmd = %s\n", (*_cmd)->cmd[i]);
-		i++;
-	}
 	status = get_chunks(&(*_cmd)->chunk, splited);
 	if (status != 0)
 		return (status);

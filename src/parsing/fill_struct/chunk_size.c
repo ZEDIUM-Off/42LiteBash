@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:17:48 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/23 16:33:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/24 12:17:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,33 @@ t_uint	get_chunks(t_chunk **chunk, t_str *splited)
 	chunk_found = true;
 	while (splited[i] && chunk_found)
 	{
-		printf("splited[%d] = %s\n", i, splited[i]);
 		status = chunk_size(chunk, splited, &i, &chunk_found);
 		if (status != 0)
 			return (status);
-		i = last_chunk_end(chunk) + 1;
+		if (*chunk)
+			i = last_chunk_end(chunk) + 1;
 	}
-	// while ((*chunk))
-	// {
-	// 	printf("chunk : start = %d, end = %d, type = %d\n", (*chunk)->start, (*chunk)->end, (*chunk)->type);
-	// 	(*chunk) = (*chunk)->next;
-	// }
+	return (0);
+}
+
+t_uint	under_chunk(t_chunk **chunk, t_str *splited)
+{
+	t_uint	status;
+	t_uint	i;
+	bool	chunk_found;
+
+	chunk_found = true;
+	i = 0;
+	printf("under_chunk search start at : %d\n", i);
+	while (splited[i] && i < ((*chunk)->end - (*chunk)->start) + 1 && chunk_found)
+	{
+		status = chunk_size(&(*chunk)->under_chunk, splited, &i, &chunk_found);
+		if (status != 0)
+			return (status);
+		if ((*chunk)->under_chunk)
+			i = last_chunk_end(&((*chunk)->under_chunk)) + 1;
+		printf ("==under_chunk search at : %d\n", i);
+	}
+	printf("under_chunk search end at : %d\n", i);
 	return (0);
 }

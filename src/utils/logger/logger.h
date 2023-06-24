@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:31:27 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/23 15:08:16 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/24 11:27:08 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 void	log_action(void);
 void 	log_struct(void);
 void	log_blocs(t_block **blocks, t_uint lvl);
+void	log_chunk(t_chunk **chunk, t_uint lvl);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/23 16:45:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/24 12:35:07 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_str g_meta_char[] =
 t_str	rep_char(int count, char c)
 {
 	char* str = malloc(count + 1);
-	memset(str, c, count);
+	ft_memset(str, c, count);
 	str[count] = '\0';
 	return str;
 }
@@ -79,7 +79,7 @@ void	log_chunk(t_chunk **chunk, t_uint lvl)
 			printf("%s│\t\t\t└── chunk txt: ", tabs);
 		i = 0;
 		while (_chunk->txt[i])
-			printf("%s ", _chunk->txt[i++]);
+			printf("[%s],", _chunk->txt[i++]);
 		printf("\n");
 		if (_chunk->under_chunk)
 		{
@@ -104,7 +104,7 @@ void	log_cmd(t_cmd **cmd, t_uint lvl)
 	tabs = rep_char(lvl, '\t');
 	printf("%s│\t│\n%s│\t└── cmd: ", tabs, tabs);
 	while (_cmd->cmd[i])
-		printf("%s ", _cmd->cmd[i++]);
+		printf("[%s],", _cmd->cmd[i++]);
 	printf("\n");
 	if (_cmd->chunk)
 	{
@@ -133,7 +133,7 @@ void	log_ppl(t_pipeline **ppl, t_uint lvl)
 	tabs = rep_char(lvl, '\t');
 	while (_ppl)
 	{
-		printf("%s│\n\t├── pipeline %-5d:\n", tabs, p_ctr++);
+		printf("%s│\n%s├── pipeline %-5d:\n", tabs, tabs, p_ctr++);
 		log_cmd(&_ppl->cmd, lvl);
 		log_redir(&_ppl->redir, lvl);
 		_ppl = _ppl->next;

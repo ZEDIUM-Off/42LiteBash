@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/23 16:25:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/24 11:48:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ t_uint	last_chunk_end(t_chunk **chunk)
 	t_chunk *tmp;
 
 	tmp = (*chunk);
+	if (!tmp)
+		printf ("last_chunk_end chunk is NULL\n");
 	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp->end);
@@ -76,6 +78,8 @@ t_uint	new_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited, t_uint ty
 	status = fill_chunk(&new, chunk_lim, splited);
 	if (status != 0)
 		return (status);
+	printf ("new_chunk\n");
+	log_chunk(&new, 0);
 	if (!(*chunk))
 		(*chunk) = new;
 	else
@@ -85,5 +89,8 @@ t_uint	new_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited, t_uint ty
 			tmp = tmp->next;
 		tmp->next = new;
 	}
+	status = under_chunk(&new, new->txt);
+	if (status != 0)
+		return (status);
 	return (0);
 }
