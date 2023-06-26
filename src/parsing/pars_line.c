@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/24 12:12:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/26 15:45:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	find_meta_and_add_block(t_block	**blocks, t_str *splited, t_uint  i, bool *p
 		*par = false;
 	if ((meta == AND || meta == OR) && *par == false)
 	{
-		printf("block found = %s\n", splited[i]);
 		status = add_block(blocks, meta, i);
 		if (status != 0)
 			return (status);

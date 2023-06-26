@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 15:51:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/26 15:28:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@ void	init_shell(
 			t_str *argv,
 			int argc
 			);
+void	clean_blocks(t_block **blocks);
+void	clean_ppl(t_pipeline **ppl);
+void	clean_cmd(t_cmd **cmd);
+void clean_chunk(t_chunk **chunk);
 
 #endif

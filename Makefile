@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/21 14:15:14 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/06/26 15:33:35 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,11 +45,10 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/utils/garbage_collector/gc_init.c \
 				src/utils/error_handler/exit_shell.c \
 				src/utils/logger/log.c \
+				src/utils/clean_blocks.c \
 				src/core/init_ctx.c \
 				minishell.c \
 				prompt.c \
-				src/parsing/ft_read.c \
-				src/parsing/reading_mode.c \
 				src/parsing/pars_line.c \
 				src/parsing/pars_paths.c \
 				src/parsing/pars_env.c \

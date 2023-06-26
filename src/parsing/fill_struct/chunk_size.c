@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:17:48 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/24 12:17:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/26 15:47:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ t_uint	under_chunk(t_chunk **chunk, t_str *splited)
 
 	chunk_found = true;
 	i = 0;
-	printf("under_chunk search start at : %d\n", i);
 	while (splited[i] && i < ((*chunk)->end - (*chunk)->start) + 1 && chunk_found)
 	{
 		status = chunk_size(&(*chunk)->under_chunk, splited, &i, &chunk_found);
@@ -88,8 +87,6 @@ t_uint	under_chunk(t_chunk **chunk, t_str *splited)
 			return (status);
 		if ((*chunk)->under_chunk)
 			i = last_chunk_end(&((*chunk)->under_chunk)) + 1;
-		printf ("==under_chunk search at : %d\n", i);
 	}
-	printf("under_chunk search end at : %d\n", i);
 	return (0);
 }
