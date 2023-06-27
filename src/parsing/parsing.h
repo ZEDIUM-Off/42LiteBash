@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/26 15:19:48 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 15:27:22 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int			check_simple_quote_mode(t_str line_read, t_p_data *p_data);
 int			pars_line(t_block **out, t_str *splited);
 
 t_uint		get_meta_char(char *c);
+t_uint		check_expand(t_str *splited);
 
 t_str		*split_parser(t_str line);
 

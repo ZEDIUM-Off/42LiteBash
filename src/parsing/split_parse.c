@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/21 14:27:01 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 12:33:07 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_uint	count_parts(t_str str)
 		else
 			i++;
 	}
+	printf("count_parts -> n_parts = %i\n", n_parts);
 	return (n_parts);
 }
 

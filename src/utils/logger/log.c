@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   log.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/24 12:35:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 14:27:53 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ t_str g_meta_char[] =
 
 t_str	rep_char(int count, char c)
 {
-	char* str = malloc(count + 1);
+	char	*str;
+
+	str = malloc(count + 1);
 	ft_memset(str, c, count);
 	str[count] = '\0';
-	return str;
+	return (str);
 }
 
 void	log_action(void)
@@ -58,11 +60,10 @@ void	log_action(void)
 
 void	log_chunk(t_chunk **chunk, t_uint lvl)
 {
-	t_chunk *_chunk;
-	t_uint i;
-	t_uint c_ctr;
-	t_str		tabs;
-	
+	t_chunk	*_chunk;
+	t_uint	i;
+	t_uint	c_ctr;
+	t_str	tabs;
 
 	_chunk = *chunk;
 	c_ctr = 1;
@@ -82,22 +83,18 @@ void	log_chunk(t_chunk **chunk, t_uint lvl)
 			printf("[%s],", _chunk->txt[i++]);
 		printf("\n");
 		if (_chunk->under_chunk)
-		{
 			log_chunk(&_chunk->under_chunk, lvl + 1);
-		}
 		if (_chunk->blocks)
-		{
 			log_blocs(&_chunk->blocks, lvl + 1);
-		}
 		_chunk = _chunk->next;
 	}
 }
 
 void	log_cmd(t_cmd **cmd, t_uint lvl)
 {
-	t_cmd *_cmd;
-	t_uint i;
-	t_str		tabs;
+	t_cmd	*_cmd;
+	t_uint	i;
+	t_str	tabs;
 
 	_cmd = *cmd;
 	i = 0;
@@ -107,15 +104,13 @@ void	log_cmd(t_cmd **cmd, t_uint lvl)
 		printf("[%s],", _cmd->cmd[i++]);
 	printf("\n");
 	if (_cmd->chunk)
-	{
 		log_chunk(&_cmd->chunk, lvl);
-	}
 }
 
 void	log_redir(t_redirect *redir, t_uint lvl)
 {
-	t_str type[5] = {"NONE", "<", ">", ">>", "<<"};
-	t_str		tabs;
+	t_str	type[5] = {"NONE", "<", ">", ">>", "<<"};
+	t_str	tabs;
 
 	tabs = rep_char(lvl, '\t');
 	printf("%s│\n\t├── redir in_type: %s, out_type: %s\n", tabs, type[redir->in_type], type[redir->out_type]);
@@ -124,8 +119,8 @@ void	log_redir(t_redirect *redir, t_uint lvl)
 
 void	log_ppl(t_pipeline **ppl, t_uint lvl)
 {
-	t_pipeline *_ppl;
-	t_uint 	p_ctr;
+	t_pipeline	*_ppl;
+	t_uint		p_ctr;
 	t_str		tabs;
 
 	_ppl = *ppl;
@@ -142,9 +137,9 @@ void	log_ppl(t_pipeline **ppl, t_uint lvl)
 
 void	log_blocs(t_block **blocks, t_uint lvl)
 {
-	t_block *_blocks;
-	t_uint 	b_ctr;
-	t_str		tabs;
+	t_block	*_blocks;
+	t_uint	b_ctr;
+	t_str	tabs;
 
 	_blocks = *blocks;
 	b_ctr = 1;

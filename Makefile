@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/26 15:33:35 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/06/27 15:26:29 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/utils/garbage_collector/gc_init.c \
 				src/utils/error_handler/exit_shell.c \
 				src/utils/logger/log.c \
-				src/utils/clean_blocks.c \
 				src/core/init_ctx.c \
 				minishell.c \
 				prompt.c \
@@ -62,6 +61,8 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/pipeline/parse_pipe.c\
 				src/parsing/pipeline/pipeline.c \
 				src/parsing/new_file.c \
+				src/parsing/expand.c \
+				#src/utils/clean_blocks.c \#
 
 
 HEAD = $(shell find . -name "*.h")

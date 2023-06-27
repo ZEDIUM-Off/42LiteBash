@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/22 15:46:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 14:32:16 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	extract_redirect(
 
 int	parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size)
 {
-	t_str		*cmd_no_redir;
+	t_str	*cmd_no_redir;
 	t_uint	status;
 
 	cmd_no_redir = (t_str *)g_shx->gc->malloc(sizeof(t_str)
