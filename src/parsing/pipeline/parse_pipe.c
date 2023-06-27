@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/22 15:46:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/23 01:40:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	extract_redirect(
 
 int	parse_pipe(t_pipeline **ppl, t_str *splited, t_uint size)
 {
-	t_str		*cmd_no_redir;
+	t_str	*cmd_no_redir;
 	t_uint	status;
 
 	cmd_no_redir = (t_str *)g_shx->gc->malloc(sizeof(t_str)
@@ -95,7 +95,7 @@ int	process_block(t_block **blocks, t_str *splited, t_uint *i, t_uint *start)
 	if (status != 0)
 		return (status);
 	if (*i == (*blocks)->block_end)
-		*start = ++(*i); 
+		*start = ++(*i);
 	return (0);
 }
 
