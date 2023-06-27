@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/27 16:13:43 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/27 16:34:50 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	prompt(char **env)
 {
 	t_uint	i;
-	t_str	tab_str[5] = {"echo", "Bonjour", "$", "USER", NULL};
 
 	i = 0;
 	(void)env;
@@ -54,7 +53,7 @@ void	prompt(char **env)
 			add_history(g_shx->line);
 		if (g_shx->line[0] && g_shx->status == SYNTAX_OK)
 			split_line(&g_shx->line_split, g_shx->line);
-		check_expand(tab_str);
+		check_expand(g_shx->line_split);
 		pars_line(&g_shx->blocks, g_shx->line_split);
 		log_struct();
 		log_action();
