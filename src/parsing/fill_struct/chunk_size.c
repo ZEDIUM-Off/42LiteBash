@@ -6,13 +6,14 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:17:48 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/26 15:47:55 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 13:55:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	find_chunk(t_str *splited, t_uint *i, bool *chunk_found, t_uint *chunk_lim)
+t_uint	find_chunk(
+	t_str *splited, t_uint *i, bool *chunk_found, t_uint *chunk_lim)
 {
 	t_uint	meta;
 

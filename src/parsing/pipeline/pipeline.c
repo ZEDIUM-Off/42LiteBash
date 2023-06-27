@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/23 01:40:55 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 10:48:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint create_ppl(t_pipeline **new, t_uint size, t_str *splited)
+t_uint	create_ppl(t_pipeline **new, t_uint size, t_str *splited)
 {
 	t_uint	status;
 

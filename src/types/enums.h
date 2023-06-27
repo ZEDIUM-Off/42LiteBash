@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/24 12:19:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 11:06:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ enum e_internal_error_codes
 enum e_user_error_codes
 {
 	SYNTAX_ERROR,
+	NO_FILE_DIR,
 	IMPLICIT_REDIRECT,
 	SYNTAX_OK,
 	CMD_NOT_FOUND,

@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.h                                    :+:      :+:    :+:   */
+/*   skip_to_space.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/27 11:28:28 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/06/27 15:36:51 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/06/27 15:40:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_HANDLER_H
-# define ERROR_HANDLER_H
+#include <minish.h>
 
-# include <minish.h>
-
-struct s_error
+void	skip_to_space(t_str str, t_uint *i)
 {
-	t_uint	error_code;
-	t_str	msg;
-	void	*var;
-};
-
-void	exit_shell(t_uint error_code, char *msg);
-
-#endif
+	while (str[*i] && str[*i] != ' ' && str[*i] != '\t'
+		&& get_meta_char(&str[*i]) == NONE)
+		*i += 1;
+}

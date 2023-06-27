@@ -1,59 +1,95 @@
-/* ************************************************************************** */$$
-/*                                                                            */$$
-/*                                                        :::      ::::::::   */$$
-/*   minish.h                                           :+:      :+:    :+:   */$$
-/*                                                    +:+ +:+         +:+     */$$
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */$$
-/*                                                +#+#+#+#+#+   +#+           */$$
-/*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */$$
-/*   Updated: 2023/06/09 15:43:33 by bfaure           ###   ########lyon.fr   */$$
-/*                                                                            */$$
-/* ************************************************************************** */$$
-$$
-#ifndef MINISH_H$$
-# define MINISH_H$$
-$$
-$$
-/**$$
-	===AUTHORIZED FUNCTIONS===$$
-	readline, rl_clear_history, rl_on_new_line,$$
-	rl_replace_line, rl_redisplay, add_history,$$
-	printf, malloc, free, write, access, open, read,$$
-	close, fork, wait, waitpid, wait3, wait4, signal,$$
-	sigaction, sigemptyset, sigaddset, kill, exit,$$
-	getcwd, chdir, stat, lstat, fstat, unlink, execve,$$
-	dup, dup2, pipe, opendir, readdir, closedir,$$
-	strerror, perror, isatty, ttyname, ttyslot, ioctl,$$
-	getenv, tcsetattr, tcgetattr, tgetent, tgetflag,$$
-	tgetnum, tgetstr, tgoto, tputs$$
-	**/$$
-# include <stdio.h>      // printf$$
-# include <stdlib.h>     // malloc, free, exit, getenv$$
-# include <unistd.h>     // access, open, read, close, fork, chdir, getcwd, execve, dup, dup2, pipe, isatty, ttyname, ttyslot, unlink$$
-# include <sys/wait.h>   // wait, waitpid, wait3, wait4$$
-# include <signal.h>     // signal, sigaction, sigemptyset, sigaddset, kill$$
-# include <sys/stat.h>   // stat, lstat, fstat$$
-# include <dirent.h>     // opendir, readdir, closedir$$
-# include <string.h>     // strerror$$
-# include <errno.h>      // perror$$
-# include <termios.h>    // tcsetattr, tcgetattr$$
-# include <term.h>       // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs$$
-# include <sys/ioctl.h>  // ioctl$$
-# include <readline/readline.h> // readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history$$
-# include <readline/history.h>$$
-# include <stdbool.h>    // bool$$
-# include <fcntl.h>      // O_RDONLY...$$
-$$
-# include "src/utils/Libft/headers/libft.h"$$
-# include "src/types/types.h"$$
-# include "src/types/enums.h"$$
-# include "src/core/core.h"$$
-# include "src/parsing/list/list.h"$$
-# include "src/parsing/parsing.h"$$
-# include "src/utils/utils.h"$$
-$$
-extern t_sh_context	*g_shx;$$
-$$
-void	prompt(char **env);$$
-$$
-#endif
+actual part n°1: cat -e Makefile | grep CC | cat -e > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°2: -e Makefile | grep CC | cat -e > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°3: Makefile | grep CC | cat -e > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°4: | grep CC | cat -e > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°5: grep CC | cat -e > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°6: CC | cat -e > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°7: | cat -e > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°8: cat -e > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°9: -e > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°10: > test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°11: test.out && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°12: && echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°13: echo "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°14: "Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°15: Bonjour $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°16: $USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°17: USER ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°18: ' test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°19:  test under chunk' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°20: ' " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°21:  " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°22: " >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°23: >> test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°24: test.out && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°25: && cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°26: cat test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°27: test blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°28: blocks (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°29: (cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°30: cat test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°31: test chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°32: chunck with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°33: with blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°34: blocks && echo "test $user ' under' ") || cd test encore
+
+actual part n°35: && echo "test $user ' under' ") || cd test encore
+
+actual part n°36: echo "test $user ' under' ") || cd test encore
+
+actual part n°37: "test $user ' under' ") || cd test encore
+
+actual part n°38: test $user ' under' ") || cd test encore
+
+actual part n°39: $user ' under' ") || cd test encore
+
+actual part n°40: user ' under' ") || cd test encore
+
+actual part n°41: ' under' ") || cd test encore
+
+actual part n°42:  under' ") || cd test encore
+
+actual part n°43: ' ") || cd test encore
+
+actual part n°44:  ") || cd test encore
+
+actual part n°45: ") || cd test encore
+
+actual part n°46: ) || cd test encore
+
+actual part n°47: || cd test encore
+
+actual part n°48: cd test encore
