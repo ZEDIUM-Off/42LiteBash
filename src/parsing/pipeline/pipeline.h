@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/21 11:44:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/23 14:10:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ struct	s_chunk
 	t_uint	type;
 	t_uint	start;
 	t_block	*blocks;
+	t_chunk	*next;
 	t_chunk	*under_chunk;
 };
 

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/22 13:53:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/24 12:19:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ enum e_meta_type
 	PARENTHESIS, // ()
 	WILD_CARD, // *
 };
+
+extern t_str g_meta_char[];
 
 enum e_builtin_type
 {
@@ -68,6 +70,7 @@ enum e_user_error_codes
 	SYNTAX_ERROR,
 	IMPLICIT_REDIRECT,
 	SYNTAX_OK,
+	CMD_NOT_FOUND,
 };
 
 enum e_parsing_error

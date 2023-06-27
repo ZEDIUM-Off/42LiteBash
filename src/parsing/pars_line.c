@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/23 01:37:34 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 10:18:45 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,44 @@ int	split_line(t_str **line_split, t_str line)
 	return (0);
 }
 
-int	find_blocks(t_block	**blocks, t_str *splited)
+int	find_meta_and_add_block(
+	t_block **blocks, t_str *splited, t_uint i, bool *par)
 {
-	t_uint	i;
 	t_uint	meta;
 	t_uint	status;
 
+	meta = get_meta_char(&splited[i][0]);
+	if (meta == O_PARENTHESIS)
+		*par = true;
+	else if (meta == C_PARENTHESIS)
+		*par = false;
+	if ((meta == AND || meta == OR) && *par == false)
+	{
+		status = add_block(blocks, meta, i);
+		if (status != 0)
+			return (status);
+	}
+	return (0);
+}
+
+int	find_blocks(t_block	**blocks, t_str *splited)
+{
+	t_uint	i;
+	t_uint	status;
+	bool	par;
+
 	i = 0;
+	par = false;
 	trace("find_blocks", "find blocks", PARSE);
 	while (splited[i])
 	{
-		meta = get_meta_char(&splited[i][0]);
-		if (meta == AND || meta == OR)
-		{
-			status = add_block(blocks, meta, i);
-			if (status != 0)
-				return (status);
-		}
+		status = find_meta_and_add_block(blocks, splited, i, &par);
+		if (status != 0)
+			return (status);
 		i++;
 	}
 	status = add_block(blocks, NONE, i);
-	if (status !=0)
+	if (status != 0)
 		return (status);
 	return (0);
 }

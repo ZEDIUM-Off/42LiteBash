@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/22 13:58:18 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/26 15:40:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void	prompt(char **env)
 			lst_print(&g_shx->envp, "lst envp %s\n");
 		if (g_shx->line[0])
 			add_history(g_shx->line);
-		//ft_read(line_read);
 		if (g_shx->line[0] && g_shx->status == SYNTAX_OK)
 			split_line(&g_shx->line_split, g_shx->line);
 		pars_line(&g_shx->blocks, g_shx->line_split);
 		// printf("prompt cmd %s\n", g_shx->blocks->ppl->next->cmd->cmd);
 		log_struct();
 		log_action();
-		free(g_shx->line);
+		clean_blocks(&g_shx->blocks);
+		g_shx->gc->free(g_shx->line);
 	}
 	log_action();
 	return ;

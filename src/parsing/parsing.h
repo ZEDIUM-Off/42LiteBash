@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/20 17:31:03 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/26 15:19:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,6 @@
 # define PARSING_H
 
 # include <minish.h>
-
-struct s_parsing_data
-{
-	t_uint	mode;
-	void	*data;
-	t_uint	pos_cursor;
-};
-
-struct s_meta_char
-{
-	t_uint	end;
-	t_str	txt;
-	t_uint	type;
-	t_uint	start;
-};
 
 struct s_block
 {
