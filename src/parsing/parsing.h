@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/27 15:27:22 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/27 16:13:35 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int			simple_quote_mode(t_str line_read, t_p_data *p_data);
 int			check_double_quote_mode(t_str line_read, t_p_data *p_data);
 int			check_simple_quote_mode(t_str line_read, t_p_data *p_data);
 int			pars_line(t_block **out, t_str *splited);
+void		skip_to_space(t_str str, t_uint *i);
 
 t_uint		get_meta_char(char *c);
 t_uint		check_expand(t_str *splited);

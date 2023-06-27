@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/27 12:33:07 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/27 16:12:01 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ t_uint	skip_parts(t_str str, bool *s_quote, bool *d_quote)
 	meta = get_meta_char(&str[i]);
 	if (meta != NONE)
 	{
+		i++;
 		if (meta == SINGLE_QUOTE)
 			*s_quote = !(*s_quote);
 		if (meta == DOUBLE_QUOTE)
 			*d_quote = !(*d_quote);
+		if (meta == DOLLAR)
+			skip_to_space(str, &i);
 		if (meta >= APPEND_REDIRECT && meta <= AND)
 			i++;
-		i++;
 	}
 	else
 	{
 		if (*d_quote || *s_quote)
 			while (str[i] && get_meta_char(&str[i]) == NONE)
 				i++;
-		while (str[i] && str[i] != ' ' && str[i] != '\t'
-			&& get_meta_char(&str[i]) == NONE)
-			i++;
+		skip_to_space(str, &i);
 	}
 	return (i);
 }
@@ -54,13 +54,11 @@ t_uint	count_parts(t_str str)
 	d_quote = false;
 	while (str[i])
 	{
-		if (str[i] && str[i] != ' ' && str[i] != '\t')
-		{
-			n_parts++;
-			i += skip_parts(&str[i], &s_quote, &d_quote);
-		}
-		else
-			i++;
+		if (!d_quote && !s_quote)
+			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+				i++;
+		n_parts++;
+		i += skip_parts(&str[i], &s_quote, &d_quote);
 	}
 	printf("count_parts -> n_parts = %i\n", n_parts);
 	return (n_parts);

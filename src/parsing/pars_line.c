@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/26 15:45:36 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 10:48:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	split_line(t_str **line_split, t_str line)
 	return (0);
 }
 
-int	find_meta_and_add_block(t_block	**blocks, t_str *splited, t_uint  i, bool *par)
+int	find_meta_and_add_block(
+	t_block **blocks, t_str *splited, t_uint i, bool *par)
 {
 	t_uint	meta;
 	t_uint	status;
 
-	
 	meta = get_meta_char(&splited[i][0]);
 	if (meta == O_PARENTHESIS)
 		*par = true;

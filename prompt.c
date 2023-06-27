@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/27 15:29:59 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/27 16:13:43 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	prompt(char **env)
 			split_line(&g_shx->line_split, g_shx->line);
 		check_expand(tab_str);
 		pars_line(&g_shx->blocks, g_shx->line_split);
-		// printf("prompt cmd %s\n", g_shx->blocks->ppl->next->cmd->cmd);
 		log_struct();
 		log_action();
 		// clean_blocks(&g_shx->blocks);

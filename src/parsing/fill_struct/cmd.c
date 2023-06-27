@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/24 12:26:59 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 11:51:54 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,32 +57,36 @@ t_uint	new_cmd(t_cmd **_cmd, t_str *splited)
 	while (splited[i])
 		i++;
 	status = create_cmd(_cmd, i);
-	if (status !=	0)
+	if (status != 0)
 		return (status);
 	i = 0;
 	cmd_curs = 0;
 	while (splited[i])
 	{
 		meta = get_meta_char(&splited[i][0]);
-		if (i == 0)
+		if (cmd_curs == 0)
 		{
-			if (meta != NONE)
+			if (meta == SINGLE_QUOTE || meta == DOUBLE_QUOTE)
+				i++;
+			else if (meta != NONE)
 				return (printf("ERROR: meta char at the beginning of the line\n"), SYNTAX_ERROR);
-			if (check_builtins(splited[0]))
-				(*_cmd)->cmd[cmd_curs++] = ft_strdup(splited[0]);
+			if (check_builtins(splited[i]))
+				(*_cmd)->cmd[cmd_curs++] = ft_strdup(splited[i]);
 			else
 			{
-				status = get_valid_paths(&(*_cmd)->cmd[cmd_curs++], splited[0]);
+				status = get_valid_paths(&(*_cmd)->cmd[cmd_curs++], splited[i]);
 				if (status != 0)
-					return (printf("error cmd = %d on [%s]\n", status, splited[0]), status);
+					return (printf("error cmd = %d on [%s]\n", status, splited[i]), status);
 			}
+			if (i > 0)
+				i++;
 		}
 		else if (splited[i])
 			(*_cmd)->cmd[cmd_curs++] = ft_strdup(splited[i]);
 		i++;
 	}
 	(*_cmd)->cmd[cmd_curs] = NULL;
-	status = get_chunks(&(*_cmd)->chunk, splited);
+	status = get_chunks(&(*_cmd)->chunk, (*_cmd)->cmd);
 	if (status != 0)
 		return (status);
 	log_action();
