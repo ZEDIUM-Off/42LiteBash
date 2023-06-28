@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/28 12:32:44 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/06/28 14:36:09 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/skip_to_space.c \
 				src/parsing/expand.c \
 				src/utils/clean_blocks.c \
+				src/builtins/echo.c \
 
 
 HEAD = $(shell find . -name "*.h")
