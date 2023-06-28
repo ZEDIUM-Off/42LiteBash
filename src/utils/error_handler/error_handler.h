@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/27 11:28:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/28 12:32:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 # include <minish.h>
 
-struct s_error
+struct	s_error
 {
 	t_uint	error_code;
-	t_str	msg;
-	void	*var;
+	char	*msg;
+	t_str	func;
+	void *var;
 };
 
 void	exit_shell(t_uint error_code, char *msg);

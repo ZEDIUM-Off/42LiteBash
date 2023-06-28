@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/27 16:45:08 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/28 11:15:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ t_uint	check_expand(t_str *splited)
 					j = 0;
 					while (((t_str)(tmp->data))[j] != '=')
 						j++;
-					j++;
-					splited[i] = ft_strdup(&tmp->data[j]);
+					splited[i] = ft_strdup(&((t_str)(tmp->data))[++j]);
 				}
 				tmp = tmp->next;
 			}
