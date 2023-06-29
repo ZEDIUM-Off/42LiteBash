@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/28 12:31:35 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/29 14:36:45 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ t_uint	fill_cmd(t_cmd **_cmd, t_str *splited)
 		i++;
 	}
 	(*_cmd)->cmd[cmd_curs] = NULL;
-	
 	return (0);
 }
 

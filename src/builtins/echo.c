@@ -12,18 +12,11 @@
 
 #include <minish.h>
 
-t_uint echo_builtins(t_str *splited)
+t_uint	echo_builtins(t_str cmd, t_uint i)
 {
-	t_uint	i;
-
-	if (!splited)
+	(void) i;
+	if (!cmd)
 		return (1);
-	i = 1;
-	while (splited[i])
-	{
-		printf("%s", splited[i]);
-		i++;
-	}
-	printf("\n");
+	printf("%s", cmd);
 	return (0);
 }
