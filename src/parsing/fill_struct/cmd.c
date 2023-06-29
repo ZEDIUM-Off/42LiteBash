@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/29 14:36:45 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/29 15:07:43 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,10 @@ t_uint	new_cmd(t_cmd **_cmd, t_str *splited)
 	status = fill_cmd(_cmd, splited);
 	if (status != 0)
 		return (status);
-	i = 0;
-	while ((*_cmd)->cmd[i++])
-		printf("cmd[%d] = [%s]\n", i, (*_cmd)->cmd[i]);
 	status = get_chunks(&(*_cmd)->chunk, (*_cmd)->cmd);
 	if (status != 0)
 		return (status);
+	cmd_expand(_cmd);
 	log_action();
 	return (0);
 }
-
-

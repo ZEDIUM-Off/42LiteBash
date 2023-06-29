@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/29 14:07:15 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/29 15:07:13 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	init_sh_context(
 			int argc
 			);
 
-t_uint  exec_echo(t_cmd **_cmd);
+t_uint	exec_echo(t_cmd **_cmd);
 
 #endif

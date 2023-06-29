@@ -6,40 +6,72 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/29 11:04:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/29 14:30:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	check_expand(t_str *splited)
+void	expand(t_str *to_exp)
 {
-	t_uint	i;
 	t_uint	j;
+	bool	found;
 	t_list	*tmp;
 
-	i = 0;
-	while (splited[i])
+	tmp = g_shx->envp;
+	while (tmp)
 	{
-		if (splited[i][0] == '$')
+		if (!ft_strncmp(&(*to_exp)[1], tmp->data, ft_strlen(&(*to_exp)[1])))
 		{
-			tmp = g_shx->envp;
-			while (tmp)
-			{
-				if (!ft_strncmp(
-						&splited[i][1], tmp->data, ft_strlen(&splited[i][1])))
-				{
-					printf("check_expand var found = %s\n", (t_str)tmp->data);
-					j = 0;
-					while (((t_str)(tmp->data))[j] != '=')
-						j++;
-					j++;
-					splited[i] = ft_strdup(&tmp->data[j]);
-				}
-				tmp = tmp->next;
-			}
+			found = true;
+			j = 0;
+			while (((t_str)(tmp->data))[j] != '=')
+				j++;
+			j++;
+			*to_exp = ft_strdup(&tmp->data[j]);
 		}
+		tmp = tmp->next;
+	}
+	if (!found)
+		*to_exp = ft_strdup("");
+}
+
+void	chunck_expand(t_chunk **chunk)
+{
+	t_uint	i;
+
+	if ((*chunk)->type == DOUBLE_QUOTE)
+	{
+		i = 0;
+		while ((*chunk)->txt[i])
+		{
+			if (get_meta_char(&(*chunk)->txt[i][0]) == DOLLAR
+				&& (*chunk)->txt[i][1] != '\0')
+				expand(&(*chunk)->txt[i]);
+			i++;
+		}
+	}
+}
+
+void	cmd_expand(t_cmd **cmd)
+{
+	t_uint	i;
+	t_chunk	*tmp;
+
+	i = 0;
+	tmp = (*cmd)->chunk;
+	while ((*cmd)->cmd[i])
+	{
+		if (tmp && i == tmp->start)
+		{
+			chunck_expand(&tmp);
+			while (i < tmp->end)
+				i++;
+			tmp = tmp->next;
+		}
+		if (get_meta_char(&(*cmd)->cmd[i][0]) == DOLLAR
+			&& (*cmd)->cmd[i][1] != '\0')
+			expand(&(*cmd)->cmd[i]);
 		i++;
 	}
-	return (0);
 }
