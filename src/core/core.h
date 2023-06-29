@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/29 11:22:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/29 11:27:08 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ void	init_sh_context(
 			t_str	*argv,
 			int argc
 			);
+
+t_uint  exec_echo(void);
 
 #endif

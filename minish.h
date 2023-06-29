@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minish.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/20 14:55:32 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/06/28 15:53:54 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # include "src/parsing/fill_struct/fill_struct.h"
 # include "src/parsing/syntax/syntax.h"
 # include "src/utils/utils.h"
+# include "src/builtins/builtins.h"
 
 extern t_sh_context	*g_shx;
 
