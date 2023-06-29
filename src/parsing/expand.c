@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/27 16:45:08 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/27 16:54:34 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_uint	check_expand(t_str *splited)
 			tmp = g_shx->envp;
 			while (tmp)
 			{
-				if (ft_strncmp(&splited[i][1], tmp->data, ft_strlen(&splited[i][1])) == 0)
+				if (!ft_strncmp(
+						&splited[i][1], tmp->data, ft_strlen(&splited[i][1])))
 				{
 					printf("check_expand var found = %s\n", (t_str)tmp->data);
 					j = 0;
