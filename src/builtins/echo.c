@@ -12,7 +12,7 @@
 
 #include <minish.h>
 
-t_uint echo_builtins(t_str *splited)
+t_uint	echo_builtins(t_str *splited)
 {
 	t_uint	i;
 

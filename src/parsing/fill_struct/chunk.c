@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/26 15:48:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/29 14:28:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ t_uint	last_chunk_end(t_chunk **chunk)
 t_uint	new_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited, t_uint type)
 {
 	t_uint	status;
-	t_chunk *new;
-	t_chunk *tmp;
+	t_chunk	*new;
+	t_chunk	*tmp;
 
 	if (type == C_PARENTHESIS)
 		type = PARENTHESIS;
