@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/29 14:30:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/29 17:08:11 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	expand(t_str *to_exp)
 	tmp = g_shx->envp;
 	while (tmp)
 	{
-		if (!ft_strncmp(&(*to_exp)[1], tmp->data, ft_strlen(&(*to_exp)[1])))
+		j = 0;
+		while (((t_str)(tmp->data))[j] != '=')
+			j++;
+		if (!ft_strncmp(&(*to_exp)[1], tmp->data, j)
+			&& ft_strlen(&(*to_exp)[1]) == j)
 		{
 			found = true;
-			j = 0;
-			while (((t_str)(tmp->data))[j] != '=')
-				j++;
-			j++;
-			*to_exp = ft_strdup(&tmp->data[j]);
+			*to_exp = ft_strdup(&tmp->data[++j]);
 		}
 		tmp = tmp->next;
 	}

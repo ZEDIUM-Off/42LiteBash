@@ -16,37 +16,39 @@ t_uint	exec_echo(t_cmd **_cmd)
 {
 	bool	n;
 	t_uint	i;
+	t_uint	j;
+	t_chunk	*tmp;
 
 	n = 0;
-	i = 0;
+	i = 1;
+	trace("exec_echo", "exec echo cmd", EXEC);
+	tmp = (*_cmd)->chunk;
 	while ((*_cmd)->cmd[i])
 	{
-		if (check_builtins((*_cmd)->cmd[0]) == ECHO_BI)
+		if (ft_strncmp((*_cmd)->cmd[i], "-n",
+				ft_strlen((*_cmd)->cmd[i])) == 0)
 		{
-			if (ft_strncmp((*_cmd)->cmd[1], "-n",
-					ft_strlen((*_cmd)->cmd[1])) == 0)
-				n = 1;
-			echo_builtins((*_cmd)->cmd[i + 1], 1 + n);
+			n = 1;
+			i++;
 		}
-		i++;
+		if (tmp && i == tmp->start - 1)
+		{
+			j = 0;
+			while (tmp->txt[j])
+				echo_builtins(tmp->txt[j++]);
+			while (i <= tmp->end)
+				i++;
+			tmp = tmp->next;
+		}
+		else
+		{
+			echo_builtins((*_cmd)->cmd[i]);
+			i++;
+		}
+		printf(" ");
 	}
-	// i = 0;
-	// while ((*_cmd)->chunk)
-	// {
-	// 	while ((*_cmd)->chunk->txt[i])
-	// 	{
-	// 		if (check_builtins((*_cmd)->cmd[0]) == ECHO_BI)
-	// 		{
-	// 			if (ft_strncmp((*_cmd)->cmd[1], "-n",
-	// 					ft_strlen((*_cmd)->cmd[1])) == 0)
-	// 				n = 1;
-	// 			echo_builtins((*_cmd)->chunk->txt[i], 0);
-	// 		}
-	// 		i++;
-	// 	}
-	// 	(*_cmd)->chunk = (*_cmd)->chunk->next;
-	// }
 	if (n == 0)
-		printf("\n");	
+		printf("\n");
+	log_action();
 	return (0);
 }

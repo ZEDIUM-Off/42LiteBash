@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/29 14:28:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/06/29 17:08:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_uint	fill_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited)
 {
 	t_uint	i;
 	t_uint	status;
-	
+
 	i = 0;
 	while (chunk_lim[0] != chunk_lim[1])
 		(*chunk)->txt[i++] = ft_strdup(splited[chunk_lim[0]++]);
@@ -49,7 +49,7 @@ t_uint	fill_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited)
 
 t_uint	last_chunk_end(t_chunk **chunk)
 {
-	t_chunk *tmp;
+	t_chunk	*tmp;
 
 	tmp = (*chunk);
 	while (tmp->next)
@@ -57,7 +57,7 @@ t_uint	last_chunk_end(t_chunk **chunk)
 	return (tmp->end);
 }
 
-t_uint	new_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited, t_uint type)
+t_uint	new_chunk(t_chunk **chunk, t_uint chunk_lim[2], t_str *splited, t_uint type)
 {
 	t_uint	status;
 	t_chunk	*new;

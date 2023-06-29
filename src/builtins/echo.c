@@ -12,9 +12,8 @@
 
 #include <minish.h>
 
-t_uint	echo_builtins(t_str cmd, t_uint i)
+t_uint	echo_builtins(t_str cmd)
 {
-	(void) i;
 	if (!cmd)
 		return (1);
 	printf("%s", cmd);

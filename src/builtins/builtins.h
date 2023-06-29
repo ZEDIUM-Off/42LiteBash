@@ -15,6 +15,6 @@
 
 # include <minish.h>
 
-t_uint echo_builtins(t_str cmd, t_uint i);
+t_uint	echo_builtins(t_str cmd);
 
 #endif
