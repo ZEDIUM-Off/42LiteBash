@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_env.c                                         :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/14 17:44:19 by bfaure           ###   ########lyon.fr   */
+/*   Created: 2023/08/14 15:14:36 by bfaure            #+#    #+#             */
+/*   Updated: 2023/08/14 16:24:31 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include <minish.h>
 
-t_list	*add_env_to_lst(char **envp)
+t_uint	pwd_builtins(void)
 {
-	t_list	*lst_env;
-	int		i;
+	t_str	pwd;
+	t_uint	size;
+	t_str	error;
 
-	i = -1;
-	trace("add_env_to_lst", "every things is in the name", PARSE);
-	lst_env = NULL;
-	while (envp[++i])
-		lst_add_back(&lst_env, envp[i], i);
-	log_action();
-	return (lst_env);
+	size = 1;
+	error = NULL;
+	while (error == NULL)
+	{
+		if (size != 1)
+			free(pwd);
+		pwd = malloc((sizeof(char) * size) + 1);
+		error = getcwd(pwd, size);
+		size++;
+	}
+	printf("pwd = %s\n", pwd);
+	if (pwd)
+		free(pwd);
+	return (1);
 }

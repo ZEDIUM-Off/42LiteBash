@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+         #
+#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/28 15:50:26 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/08/14 16:07:21 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,8 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/utils/clean_blocks.c \
 				src/builtins/echo.c \
 				src/core/exec_echo.c \
+				src/builtins/pwd.c \
+				src/builtins/cd.c \
 
 HEAD = $(shell find . -name "*.h")
 

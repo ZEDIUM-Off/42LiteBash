@@ -32,20 +32,22 @@ struct	s_dlist
 	t_dlist	*next;
 };
 
-t_list	*lst_create(void *data);
-void	lst_add_front(t_list **lst, void *data);
-void	lst_add_back(t_list **lst, void *data);
+t_list	*lst_create(void *data, t_uint index);
+void	lst_add_front(t_list **lst, void *data, t_uint index);
+void	lst_add_back(t_list **lst, void *data, t_uint index);
 void	lst_print(t_list **lst, t_str text);
 void	lst_clear(t_list **lst);
 void	lst_insert(t_list **lst, void *data, t_uint index);
 void	lst_remove(t_list **lst, t_uint index);
 void	lst_remove_first(t_list **lst);
 void	lst_remove_last(t_list **lst);
-t_list	*lst_get(t_list **lst, t_uint index);
+void	*lst_get(t_list **lst, t_uint index);
 void	lst_set(t_list **lst, t_uint index, void *data);
 t_list	*lst_get_first(t_list **lst);
 t_list	*lst_get_last(t_list **lst);
 t_uint	lst_size(t_list **lst);
+t_uint	lst_get_index(t_list **lst, t_str name);
+void	lst_remplace(t_list **lst, t_uint index, t_str data);
 
 t_dlist	*dlst_create(void *data);
 void	dlst_add_front(t_dlist **dlst, void *data);

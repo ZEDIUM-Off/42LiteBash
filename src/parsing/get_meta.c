@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_meta.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:22:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/23 14:26:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/14 15:02:11 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,27 @@
 
 static t_uint	one_char_meta(char *c)
 {
-		if (*c == '\'')
-			return (SINGLE_QUOTE);
-		else if (*c == '"')
-			return (DOUBLE_QUOTE);
-		else if (*c == '(')
-			return (O_PARENTHESIS);
-		else if (*c == ')')
-			return (C_PARENTHESIS);
-		else if (*c == '*')
-			return (WILD_CARD);
-		else if (*c == '&' && *(c + 1) == '&')
-			return (AND);
+	if (c == NULL)
+		return (NONE);
+	if (*c == '\'')
+		return (SINGLE_QUOTE);
+	else if (*c == '"')
+		return (DOUBLE_QUOTE);
+	else if (*c == '(')
+		return (O_PARENTHESIS);
+	else if (*c == ')')
+		return (C_PARENTHESIS);
+	else if (*c == '*')
+		return (WILD_CARD);
+	else if (*c == '&' && *(c + 1) == '&')
+		return (AND);
 	return (NONE);
 }
 
 static t_uint	mult_char_meta(char *c)
 {
+	if (c == NULL)
+		return (NONE);
 	if (*c == '<')
 	{
 		if (*(c + 1) == '<')
@@ -56,6 +60,8 @@ t_uint	get_meta_char(char *c)
 {
 	t_uint	type;
 
+	if (c == NULL)
+		return (NONE);
 	type = one_char_meta(c);
 	if (type != NONE)
 		return (type);

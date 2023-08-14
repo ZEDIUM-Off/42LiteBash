@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   lst_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:31:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 19:35:44 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/14 17:45:22 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	lst_add_front(t_list **lst, void *data)
+void	lst_add_front(t_list **lst, void *data, t_uint index)
 {
 	t_list	*new;
 
 	if (!lst)
 		return ;
-	new = lst_create(data);
+	new = lst_create(data, index);
 	*lst = new;
 }
 
-void	lst_add_back(t_list **lst, void *data)
+void	lst_add_back(t_list **lst, void *data, t_uint index)
 {
 	t_list	*new;
 	t_list	*tmp;
 
 	if (!lst)
 		return ;
-	new = lst_create(data);
+	new = lst_create(data, index);
 	if (!*lst)
 		*lst = new;
 	else
@@ -49,7 +49,7 @@ void	lst_insert(t_list **lst, void *data, t_uint index)
 
 	if (!lst)
 		return ;
-	new = lst_create(data);
+	new = lst_create(data, index);
 	if (!*lst)
 		*lst = new;
 	else

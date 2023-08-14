@@ -6,13 +6,13 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:28:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 15:20:36 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/14 17:44:41 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_list	*lst_create(void *data)
+t_list	*lst_create(void *data, t_uint index)
 {
 	t_list	*new;
 
@@ -20,6 +20,7 @@ t_list	*lst_create(void *data)
 	if (!new)
 		return (NULL);
 	new->data = data;
+	new->index = index;
 	new->next = NULL;
 	return (new);
 }
@@ -32,7 +33,7 @@ void	lst_print(t_list **lst, t_str text)
 	tmp = *lst;
 	while (tmp)
 	{
-		printf(text, tmp->data);
+		printf(text, tmp->index, tmp->data);
 		tmp = tmp->next;
 	}
 }

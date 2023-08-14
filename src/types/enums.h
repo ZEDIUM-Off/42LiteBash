@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/27 11:06:18 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/14 16:03:00 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ extern t_str g_meta_char[];
 enum e_builtin_type
 {
 	ECHO_BI = 1,
-	CD_BI,
-	PWD_BI,
-	EXPORT_BI,
-	UNSET_BI,
-	ENV_BI,
-	EXIT_BI,
+	CD_BI = 2,
+	PWD_BI = 3,
+	EXPORT_BI = 4,
+	UNSET_BI = 5,
+	ENV_BI = 6,
+	EXIT_BI = 7,
 };
 
 enum e_step_type

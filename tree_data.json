@@ -6,7 +6,23 @@
       "children": []
     }, 
     {
-      "name": "cat", 
+      "name": "test.out1", 
+      "children": []
+    }, 
+    {
+      "name": "out.1", 
+      "children": []
+    }, 
+    {
+      "name": "en.norm.pdf", 
+      "children": []
+    }, 
+    {
+      "name": "test.out", 
+      "children": []
+    }, 
+    {
+      "name": "norm.txt", 
       "children": []
     }, 
     {
@@ -16,11 +32,24 @@
           "name": "parsing", 
           "children": [
             {
-              "name": "syntax_check.c", 
-              "children": []
+              "name": "pipeline", 
+              "children": [
+                {
+                  "name": "pipeline.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "parse_pipe.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "pipeline.h", 
+                  "children": []
+                }
+              ]
             }, 
             {
-              "name": "reading_mode.c", 
+              "name": "pars_paths.c", 
               "children": []
             }, 
             {
@@ -28,7 +57,40 @@
               "children": []
             }, 
             {
+              "name": "expand.c", 
+              "children": []
+            }, 
+            {
+              "name": "syntax", 
+              "children": [
+                {
+                  "name": "syntax_check.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "syntax.h", 
+                  "children": []
+                }, 
+                {
+                  "name": "control_meta.c", 
+                  "children": []
+                }
+              ]
+            }, 
+            {
+              "name": "split_parse.c", 
+              "children": []
+            }, 
+            {
+              "name": "pars_env.c", 
+              "children": []
+            }, 
+            {
               "name": "get_meta.c", 
+              "children": []
+            }, 
+            {
+              "name": "skip_to_space.c", 
               "children": []
             }, 
             {
@@ -73,11 +135,57 @@
               ]
             }, 
             {
-              "name": "parsing.h", 
+              "name": "fill_struct", 
+              "children": [
+                {
+                  "name": "cmd.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "check_builtins.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "block.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "fill_struct.h", 
+                  "children": []
+                }, 
+                {
+                  "name": "chunk.c", 
+                  "children": []
+                }, 
+                {
+                  "name": "chunk_size.c", 
+                  "children": []
+                }
+              ]
+            }, 
+            {
+              "name": "new_file.c", 
               "children": []
             }, 
             {
-              "name": "ft_read.c", 
+              "name": "free_split_line.c", 
+              "children": []
+            }, 
+            {
+              "name": "parsing.h", 
+              "children": []
+            }
+          ]
+        }, 
+        {
+          "name": "builtins", 
+          "children": [
+            {
+              "name": "builtins.h", 
+              "children": []
+            }, 
+            {
+              "name": "echo.c", 
               "children": []
             }
           ]
@@ -125,6 +233,10 @@
             }, 
             {
               "name": "init_shell.c", 
+              "children": []
+            }, 
+            {
+              "name": "clean_blocks.c", 
               "children": []
             }, 
             {
@@ -288,6 +400,10 @@
                       "children": []
                     }, 
                     {
+                      "name": "ft_isspace.c", 
+                      "children": []
+                    }, 
+                    {
                       "name": "ft_strchr.c", 
                       "children": []
                     }, 
@@ -390,6 +506,10 @@
           "name": "core", 
           "children": [
             {
+              "name": "exec_echo.c", 
+              "children": []
+            }, 
+            {
               "name": "init_ctx.c", 
               "children": []
             }, 
@@ -419,6 +539,14 @@
       "children": []
     }, 
     {
+      "name": "valgrind_ignore_leaks.txt", 
+      "children": []
+    }, 
+    {
+      "name": "scrypt.norm.py", 
+      "children": []
+    }, 
+    {
       "name": "minishell.c", 
       "children": []
     }, 
@@ -428,6 +556,10 @@
     }, 
     {
       "name": "tree_data.json", 
+      "children": []
+    }, 
+    {
+      "name": "valgrind.txt", 
       "children": []
     }, 
     {
@@ -443,11 +575,15 @@
       "children": []
     }, 
     {
-      "name": "out1", 
+      "name": "test.out2", 
       "children": []
     }, 
     {
       "name": "Makefile", 
+      "children": []
+    }, 
+    {
+      "name": "valgrind-out.txt", 
       "children": []
     }
   ]

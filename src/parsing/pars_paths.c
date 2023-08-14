@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_env.c                                         :+:      :+:    :+:   */
+/*   pars_paths.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:09:23 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/13 13:57:18 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/14 17:46:43 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ t_list	*add_paths_to_lst(char **paths)
 
 	i = -1;
 	trace("add_paths_to_lst", "every things is in the name", PARSE);
-	lst_paths = lst_create(ft_strdup(paths[0]));
+	lst_paths = lst_create(ft_strdup(paths[0]), i);
 	while (paths[++i])
 	{
-		lst_add_back(&lst_paths, ft_strdup(paths[i]));
+		lst_add_back(&lst_paths, ft_strdup(paths[i]), i);
 	}
 	ft_free_tab(paths);
 	log_action();
