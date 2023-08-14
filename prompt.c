@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/29 15:16:17 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/07/26 11:50:50 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	prompt(char **env)
 			split_line(&g_shx->line_split, g_shx->line);
 		pars_line(&g_shx->blocks, g_shx->line_split);
 		log_struct();
-		exec_echo(&g_shx->blocks->ppl->cmd);
+		if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ECHO_BI)
+			exec_echo(&g_shx->blocks->ppl->cmd);
 		log_action();
 		clean_blocks(&g_shx->blocks);
 		g_shx->gc->free(g_shx->line);

@@ -12,11 +12,28 @@
 
 #include <minish.h>
 
+static void handle_chunk(t_chunk **tmp, t_uint *i)
+{
+	t_uint	j;
+
+	j = 0;
+	while ((*tmp)->txt[j])
+		echo_builtins((*tmp)->txt[j++]);
+	while (*i <= (*tmp)->end)
+		(*i)++;
+	*tmp = (*tmp)->next;
+}
+
+static void handle_cmd(t_cmd **_cmd, t_uint *i)
+{
+	echo_builtins((*_cmd)->cmd[*i]);
+	(*i)++;
+}
+
 t_uint	exec_echo(t_cmd **_cmd)
 {
 	bool	n;
 	t_uint	i;
-	t_uint	j;
 	t_chunk	*tmp;
 
 	n = 0;
@@ -26,25 +43,15 @@ t_uint	exec_echo(t_cmd **_cmd)
 	while ((*_cmd)->cmd[i])
 	{
 		if (ft_strncmp((*_cmd)->cmd[i], "-n",
-				ft_strlen((*_cmd)->cmd[i])) == 0)
+			ft_strlen((*_cmd)->cmd[i])) == 0)
 		{
 			n = 1;
 			i++;
 		}
 		if (tmp && i == tmp->start - 1)
-		{
-			j = 0;
-			while (tmp->txt[j])
-				echo_builtins(tmp->txt[j++]);
-			while (i <= tmp->end)
-				i++;
-			tmp = tmp->next;
-		}
+			handle_chunk(&tmp, &i);
 		else
-		{
-			echo_builtins((*_cmd)->cmd[i]);
-			i++;
-		}
+			handle_cmd(_cmd, &i);
 		printf(" ");
 	}
 	if (n == 0)
