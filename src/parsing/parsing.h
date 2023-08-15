@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/29 15:08:48 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 17:36:44 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void		skip_to_space(t_str str, t_uint *i);
 t_uint		get_meta_char(char *c);
 void		cmd_expand(t_cmd **cmd);
 
+void		make_env(t_uint env_var_name);
+t_str		inc_shlvl(void *data);
 t_str		*split_parser(t_str line);
 
 t_list		*get_path(char **env);
@@ -38,5 +40,7 @@ t_list		*add_env_to_lst(char **envp);
 t_list		*add_paths_to_lst(char **paths);
 
 t_file		new_file(t_str name);
+
+void		check_env(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/14 19:44:37 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 14:29:47 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void	prompt(char **env)
 		// Gérez les wildcards (*)
 
 		// Exécutez la commande avec fork et exec
-
-		str_prompt = lst_get(&g_shx->envp, 32);
+		str_prompt = lst_get(&g_shx->envp, lst_get_index(&g_shx->envp, "PWD="));
 		str_prompt += 4;
 		str_prompt = ft_strjoin(str_prompt, "$ ");
 		g_shx->line = readline(str_prompt);
@@ -50,12 +49,6 @@ void	prompt(char **env)
 		g_shx->status = check_syntax(g_shx->line);
 		if (g_shx->status == SYNTAX_ERROR)
 			printf("Syntax error\n");
-		// if (!ft_strncmp(g_shx->line, "exit", 5))
-		// 	exit_shell(420, "You say it, you assume it\n");
-		// if (!ft_strncmp(g_shx->line, "env", 3))
-		// 	lst_print(&g_shx->envp, "lst envp %s\n");
-		// if (!ft_strncmp(g_shx->line, "pwd", 3))
-		// 	pwd_builtins();
 		if (g_shx->line[0])
 			add_history(g_shx->line);
 		if (g_shx->line[0] && g_shx->status == SYNTAX_OK)

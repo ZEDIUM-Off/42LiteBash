@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:43:36 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/14 19:36:47 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 12:50:02 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,6 @@ t_uint	lst_get_index(t_list **lst, t_str name)
 		tmp = tmp->next;
 	}
 	return (tmp->index);
-}
-
-void	lst_remplace(t_list **lst, t_uint index, t_str data)
-{
-	t_list	*tmp;
-	t_uint	i;
-
-	if (!lst)
-		return ;
-	tmp = *lst;
-	i = 0;
-	while (tmp && i++ < index)
-		tmp = tmp->next;
-	if (tmp)
-	{
-		//free(tmp->data);
-		tmp->data = ft_strdup(data);
-	}
 }
 
 void	lst_set(t_list **lst, t_uint index, void *data)
