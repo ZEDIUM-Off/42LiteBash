@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/15 17:36:44 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 18:33:48 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ t_str		*split_parser(t_str line);
 t_list		*get_path(char **env);
 t_list		*add_env_to_lst(char **envp);
 t_list		*add_paths_to_lst(char **paths);
+t_list		*add_env_to_lst_export(char **envp);
+
+void		swap_nodes(t_list *current_node, t_list *next_node);
+void		sort_env_export(void);
 
 t_file		new_file(t_str name);
 

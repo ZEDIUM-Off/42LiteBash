@@ -24,7 +24,7 @@ static void handle_chunk(t_chunk **tmp, t_uint *i)
 	*tmp = (*tmp)->next;
 }
 
-static void handle_cmd(t_cmd **_cmd, t_uint *i)
+static void	handle_cmd(t_cmd **_cmd, t_uint *i)
 {
 	echo_builtins((*_cmd)->cmd[*i]);
 	(*i)++;
@@ -39,11 +39,13 @@ t_uint	exec_echo(t_cmd **_cmd)
 	n = 0;
 	i = 1;
 	trace("exec_echo", "exec echo cmd", EXEC);
+	if ((*_cmd)->cmd[i][0] == '\0')
+		return (1);
 	tmp = (*_cmd)->chunk;
 	while ((*_cmd)->cmd[i])
 	{
 		if (ft_strncmp((*_cmd)->cmd[i], "-n",
-			ft_strlen((*_cmd)->cmd[i])) == 0)
+				ft_strlen((*_cmd)->cmd[i])) == 0)
 		{
 			n = 1;
 			i++;

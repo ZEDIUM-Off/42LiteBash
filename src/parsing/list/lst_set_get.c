@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:43:36 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/15 12:50:02 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 13:42:17 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ void	*lst_get(t_list **lst, t_uint index)
 t_uint	lst_get_index(t_list **lst, t_str name)
 {
 	t_list	*tmp;
-	t_uint	i;
 
 	if (!lst)
 		return (0);
 	tmp = *lst;
-	i = 0;
 	printf("lst_get_index name = %s\n", name);
 	while (tmp)
 	{

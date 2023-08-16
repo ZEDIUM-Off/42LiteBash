@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pars_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/27 10:48:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/16 18:24:57 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include <minish.h>
 
 int	split_line(t_str **line_split, t_str line)
 {

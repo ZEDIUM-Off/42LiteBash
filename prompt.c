@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/15 14:29:47 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 17:00:24 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	prompt(char **env)
 {
 	t_uint	i;
 	t_str	str_prompt;
+	int		status;
 
 	i = 0;
 	(void)env;
@@ -23,6 +24,7 @@ void	prompt(char **env)
 	using_history();
 	read_history(".history");
 	stifle_history(1000);
+	status = 0;
 	while (i++ < 10)
 	{
 		// Gérez les signaux (ctrl-C, ctrl-D, ctrl-\)
@@ -53,19 +55,21 @@ void	prompt(char **env)
 			add_history(g_shx->line);
 		if (g_shx->line[0] && g_shx->status == SYNTAX_OK)
 			split_line(&g_shx->line_split, g_shx->line);
-		pars_line(&g_shx->blocks, g_shx->line_split);
+		status = pars_line(&g_shx->blocks, g_shx->line_split);
+		printf("status = %i\n", status);
 		log_struct();
 		if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ECHO_BI)
 			exec_echo(&g_shx->blocks->ppl->cmd);
-		if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == CD_BI)
+		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == CD_BI)
 			cd_builtins(g_shx->line_split[1]);
-		if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == PWD_BI)
+		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == PWD_BI)
 			pwd_builtins();
-		// if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXPORT_BI)
+		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXPORT_BI)
+			lst_print(&g_shx->envx, "lst envx %u %s\n");
 		// if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == UNSET_BI)
-		if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ENV_BI)
+		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ENV_BI)
 			lst_print(&g_shx->envp, "lst envp %u %s\n");
-		if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXIT_BI)
+		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXIT_BI)
 			exit_shell(420, "You say it, you assume it\n");
 		log_action();
 		clean_blocks(&g_shx->blocks);
