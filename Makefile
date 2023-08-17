@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/08/15 14:50:30 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/08/17 14:24:08 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/builtins/pwd.c \
 				src/builtins/cd.c \
 				src/parsing/make_env.c \
+				src/builtins/export.c \
 
 HEAD = $(shell find . -name "*.h")
 

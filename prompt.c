@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/16 17:00:24 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/17 16:05:37 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	prompt(char **env)
 		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == PWD_BI)
 			pwd_builtins();
 		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXPORT_BI)
-			lst_print(&g_shx->envx, "lst envx %u %s\n");
+			export_cmd(&g_shx->blocks->ppl->cmd);
 		// if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == UNSET_BI)
 		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ENV_BI)
 			lst_print(&g_shx->envp, "lst envp %u %s\n");

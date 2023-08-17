@@ -19,6 +19,6 @@ t_uint	echo_builtins(t_str cmd);
 t_uint	pwd_builtins(void);
 t_str	get_pwd(void);
 t_uint	cd_builtins(t_str path);
-void	export_cmd(t_str var);
+void	export_cmd(t_cmd **_cmd);
 
 #endif
