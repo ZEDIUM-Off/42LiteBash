@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   log.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/27 14:27:53 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 13:06:11 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	log_ppl(t_pipeline **ppl, t_uint lvl)
 	}
 }
 
-void	log_blocs(t_block **blocks, t_uint lvl)
+void	log_blocks(t_block **blocks, t_uint lvl)
 {
 	t_block	*_blocks;
 	t_uint	b_ctr;
@@ -155,6 +155,6 @@ void	log_blocs(t_block **blocks, t_uint lvl)
 void log_struct(void)
 {
 	printf("<<<<<<<<<<<<<<<< loging struct >>>>>>>>>>>>>>>>\n");
-	log_blocs(&g_shx->blocks, 0);
+	log_blocks(&g_shx->blocks, 0);
 	printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
 }

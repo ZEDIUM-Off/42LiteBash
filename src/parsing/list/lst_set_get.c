@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_set_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:43:36 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/14 19:36:47 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 12:20:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	*lst_get(t_list **lst, t_uint index)
 t_uint	lst_get_index(t_list **lst, t_str name)
 {
 	t_list	*tmp;
-	t_uint	i;
+	// t_uint	i;
 
 	if (!lst)
 		return (0);
 	tmp = *lst;
-	i = 0;
+	// i = 0;
 	printf("lst_get_index name = %s\n", name);
 	while (tmp)
 	{
 		if (ft_strnstr(tmp->data, name, ft_strlen(name)))
-			break ;
+				return (tmp->index);
 		tmp = tmp->next;
 	}
 	return (tmp->index);

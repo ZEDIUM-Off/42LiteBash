@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/14 14:01:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/16 12:21:26 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_block				t_block;
 typedef struct s_redirect			t_redirect;
 typedef struct s_pipeline			t_pipeline;
 typedef struct s_cmd				t_cmd;
+typedef struct s_process			t_process;
 
 typedef void (*						t_free_func)(void *ptr);
 typedef void *(*					t_malloc_func)(size_t size, bool count);
