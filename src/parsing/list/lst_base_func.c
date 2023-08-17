@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:28:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/14 17:44:41 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/15 12:54:45 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,19 @@ t_uint	lst_size(t_list **lst)
 		tmp = tmp->next;
 	}
 	return (i);
+}
+
+void	lst_remplace(t_list **lst, t_uint index, t_str data)
+{
+	t_list	*tmp;
+	t_uint	i;
+
+	if (!lst)
+		return ;
+	tmp = *lst;
+	i = 0;
+	while (tmp && i++ < index)
+		tmp = tmp->next;
+	if (tmp)
+		tmp->data = ft_strdup(data);
 }

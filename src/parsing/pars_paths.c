@@ -6,11 +6,11 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:09:23 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/14 17:46:43 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 18:25:02 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include <minish.h>
 
 t_list	*add_paths_to_lst(char **paths)
 {

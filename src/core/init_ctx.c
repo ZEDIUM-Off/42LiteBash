@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:16:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 16:20:24 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 16:24:58 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_sh_context(
 	ctx->tk = NULL;
 	ctx->error_handler = NULL;
 	ctx->envp = NULL;
+	ctx->envx = NULL;
 	ctx->argv = argv;
 	ctx->argc = argc;
 	ctx->lst_paths = NULL;

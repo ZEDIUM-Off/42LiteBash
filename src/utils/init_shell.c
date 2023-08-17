@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 14:40:50 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 18:35:02 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,8 @@ void	init_shell(
 	init_track();
 	g_shx->lst_paths = get_path(envp);
 	g_shx->envp = add_env_to_lst(envp);
+	g_shx->envx = add_env_to_lst(envp);
+	sort_env_export();
+	check_env();
+	log_action();
 }

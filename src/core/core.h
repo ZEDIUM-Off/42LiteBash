@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/29 15:07:13 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 16:24:13 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ struct s_sh_context {
 	t_tracker			*tk;
 	t_error_handler		*error_handler;
 	t_list				*envp;
+	t_list				*envx;
 	t_str				*argv;
 	int					argc;
 	t_list				*lst_paths;

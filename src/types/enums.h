@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/14 16:03:00 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/16 15:31:34 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ enum e_meta_type
 };
 
 extern t_str g_meta_char[];
+
+enum e_env_var_name
+{
+	PWD = 1,
+	SHLVL = 2,
+	OLD_PWD = 3,
+	ALL = 4,
+};
 
 enum e_builtin_type
 {
@@ -71,7 +79,7 @@ enum e_user_error_codes
 	NO_FILE_DIR,
 	IMPLICIT_REDIRECT,
 	SYNTAX_OK,
-	CMD_NOT_FOUND,
+	CMD_NOT_FOUND = 1,
 };
 
 enum e_parsing_error
