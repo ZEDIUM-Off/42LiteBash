@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/17 16:05:37 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 16:38:30 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	prompt(char **env)
 	read_history(".history");
 	stifle_history(1000);
 	status = 0;
-	while (i++ < 10)
+	while (i++ < 20)
 	{
 		// Gérez les signaux (ctrl-C, ctrl-D, ctrl-\)
 
@@ -66,7 +66,8 @@ void	prompt(char **env)
 			pwd_builtins();
 		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXPORT_BI)
 			export_cmd(&g_shx->blocks->ppl->cmd);
-		// if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == UNSET_BI)
+		if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == UNSET_BI)
+			unset_cmd(&g_shx->blocks->ppl->cmd);
 		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ENV_BI)
 			lst_print(&g_shx->envp, "lst envp %u %s\n");
 		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXIT_BI)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/16 18:35:21 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/21 16:50:42 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ t_list	*add_env_to_lst(char **envp)
 
 void	swap_nodes(t_list *current_node, t_list *next_node)
 {
-	int		index;
+	// t_uint		index;
 	char	*data;
 
 	data = NULL;
-	index = current_node->index;
-	current_node->index = next_node->index;
-	next_node->index = index;
+	// index = current_node->index;
+	// current_node->index = next_node->index;
+	// next_node->index = index;
 	data = current_node->data;
 	current_node->data = next_node->data;
 	next_node->data = data;

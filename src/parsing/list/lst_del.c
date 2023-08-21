@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_del.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:38:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 20:36:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/21 17:15:15 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,33 @@
 
 void	lst_remove(t_list **lst, t_uint index)
 {
-	t_list	*tmp;
-	t_uint	i;
+ 	t_list *current;
+    t_list *previous;
 
-	if (!lst)
-		return ;
-	tmp = *lst;
-	i = 0;
-	while (tmp && i++ < index)
-		tmp = tmp->next;
-	if (tmp)
-	{
-		if (tmp->next)
-			tmp->next = tmp->next->next;
-		else
-			tmp->next = NULL;
-		g_shx->gc->free(tmp->data);
-		g_shx->gc->free(tmp);
-	}
+	current = *lst;
+	previous = NULL;
+    if (!lst)
+        return;
+   while (current != NULL)
+    {
+        if (current->index == index)
+        {
+            if (previous == NULL)
+            {
+                *lst = current->next;
+            }
+            else
+            {
+                previous->next = current->next;
+            }
+            g_shx->gc->free(current->data);
+            g_shx->gc->free(current);
+            return;
+        }
+        previous = current;
+        current = current->next;
+    }
+	return ;
 }
 void	lst_remove_first(t_list **lst)
 {
