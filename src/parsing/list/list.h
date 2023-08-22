@@ -47,7 +47,7 @@ void	index_list_value(t_list **lst);
 t_list	*lst_get_first(t_list **lst);
 t_list	*lst_get_last(t_list **lst);
 t_uint	lst_size(t_list **lst);
-t_uint	lst_get_index(t_list **lst, t_str name);
+t_uint	lst_get_index(t_list **lst, t_str name, t_uint len);
 void	lst_remplace(t_list **lst, t_uint index, t_str data);
 
 t_dlist	*dlst_create(void *data);

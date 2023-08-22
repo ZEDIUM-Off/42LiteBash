@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:50:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/09 15:44:24 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/22 10:44:04 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 size_t		ft_strlen(const char *s);
 size_t		ft_strlen_line(char *str);
 size_t		ft_strlen_int(const char *s);
+size_t	    ft_strlen_to_char(const char *s, char c);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 
@@ -46,10 +47,10 @@ int			ft_isalpha(int c);
 int			ft_isalnum(int c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
+int			ft_isspace(int c);
 int			ft_atoi(const char *str);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-int			ft_isspace(int c);
 
 char		*ft_itoa(int n);
 char		*ft_strdup(const char *str);
