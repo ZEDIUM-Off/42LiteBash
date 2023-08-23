@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:28:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/15 12:54:45 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 16:01:05 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	lst_remplace(t_list **lst, t_uint index, t_str data)
 	t_list	*tmp;
 	t_uint	i;
 
+	trace("lst_remplace", "remplace data lst", PARSE);
 	if (!lst)
 		return ;
 	tmp = *lst;
@@ -81,5 +82,13 @@ void	lst_remplace(t_list **lst, t_uint index, t_str data)
 	while (tmp && i++ < index)
 		tmp = tmp->next;
 	if (tmp)
+	{
+		g_shx->gc->free(tmp->data);
 		tmp->data = ft_strdup(data);
+	}
+	printf("lst remplace index = %u\n", index);
+	printf("lst remplace data = %s\n", data);
+	if (tmp)
+		printf("lst remplace tmp->data = %s\n", (char *)tmp->data);
+	log_action();
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/22 11:50:53 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 14:51:44 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	prompt(char **env)
 		str_prompt = lst_get(&g_shx->envp, lst_get_index(&g_shx->envp, "PWD=", 4));
 		str_prompt += 4;
 		str_prompt = ft_strjoin(str_prompt, "$ ");
+		if (!str_prompt)
+			return ;
 		g_shx->line = readline(str_prompt);
 		free(str_prompt);
 		printf("%s\n", g_shx->line);

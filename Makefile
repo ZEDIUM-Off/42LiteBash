@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+         #
+#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/08/21 17:26:41 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/08/23 13:51:21 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS)
+CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
 
 DEB_FLAGS = -g3 -fsanitize=address
 
@@ -128,7 +128,7 @@ $(LIBFT_A):	force
 # ---- Variables Rules ---- #
 
 ${NAME}	:	${OBJS} $(LIBFT_A)
-			${CC} ${CFLAGS} $(INC) $^ -lreadline  -o $@
+			${CC} ${CFLAGS} $(INC) $^ -lreadline -o $@
 
 # ---- Compiled Rules ---- #
 

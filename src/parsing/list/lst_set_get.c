@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lst_set_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:43:36 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/22 12:37:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 14:33:23 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
+#include <string.h>
 
 void	*lst_get(t_list **lst, t_uint index)
 {
@@ -31,11 +32,10 @@ t_uint	lst_get_index(t_list **lst, t_str name, t_uint len)
 	t_list	*tmp;
 	t_uint	i;
 
-	if (!lst)
+	if (!lst || !name)
 		return (0);
 	tmp = *lst;
 	printf("lst_get_index name = %s\n", name);
-	printf("len = %i\n", len);
 	while (tmp)
 	{
 		i = 0;
