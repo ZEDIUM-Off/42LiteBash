@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   ft_strlen_to_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 23:43:36 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/27 23:43:36 by bfaure           ###   ########lyon.fr   */
+/*   Created: 2023/08/22 10:41:32 by bfaure            #+#    #+#             */
+/*   Updated: 2023/08/22 10:41:32 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include "../headers/libft.h"
+#include <stdio.h>
 
-# include <minish.h>
+size_t	ft_strlen_to_char(const char *s, char c)
+{
+	size_t	i;
 
-t_uint	echo_builtins(t_str cmd);
-t_uint	pwd_builtins(void);
-t_uint	cd_builtins(t_str path);
-void	export_cmd(t_str var);
-t_uint	run_builtin(t_uint	bi_id);
-t_uint	export_cmd(t_cmd **_cmd);
-t_uint  unset_cmd(t_cmd **_cmd);
-
-t_str	get_pwd(void);
-
-#endif
+	i = 0;
+	while (s[i] != '\0' && s[i] != c)
+		i++;
+    printf("ft_strlen_to_char i = %zu\n", i);
+	return (i);
+}

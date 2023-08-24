@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:09:23 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/16 18:25:02 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 14:50:01 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_list	*add_paths_to_lst(char **paths)
 	i = -1;
 	trace("add_paths_to_lst", "every things is in the name", PARSE);
 	lst_paths = lst_create(ft_strdup(paths[0]), i);
+	if (!lst_paths)
+		return (NULL);
 	while (paths[++i])
 	{
 		lst_add_back(&lst_paths, ft_strdup(paths[i]), i);

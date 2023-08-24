@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/16 12:22:48 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 15:33:21 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,17 @@ void	expand(t_str *to_exp)
 		{
 			found = true;
 			*to_exp = ft_strdup(&((char *)tmp->data)[++j]);
+			if (!*to_exp)
+				return ;
 		}
 		tmp = tmp->next;
 	}
 	if (!found)
+	{
 		*to_exp = ft_strdup("");
+		if (!*to_exp)
+			return ;
+	}
 }
 
 void	chunck_expand(t_chunk **chunk)

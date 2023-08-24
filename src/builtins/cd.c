@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/15 13:09:30 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/23 14:37:11 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ t_uint	cd_builtins(t_str path)
 	if (error_code < 0)
 		perror("ERROR : cd");
 	pwd = get_pwd();
-	env_name = malloc(sizeof(char) * 5);
 	env_name = ft_strdup("PWD=");
+	if (!env_name)
+		return (MALLOC_FAIL);
 	pwd = ft_strfjoin(env_name, pwd);
-	lst_remplace(&g_shx->envp, lst_get_index(&g_shx->envp, "PWD="), pwd);
+	if (!pwd)
+		return (MALLOC_FAIL);
+	lst_remplace(&g_shx->envp, lst_get_index(&g_shx->envp, "PWD=", 4), pwd);
 	if (pwd)
 		free(pwd);
 	log_action();
-	return (1);
+	return (0);
 }

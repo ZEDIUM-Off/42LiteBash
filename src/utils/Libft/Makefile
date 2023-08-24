@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 15:23:52 by bfaure            #+#    #+#              #
-#    Updated: 2023/06/09 11:59:37 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/08/23 14:23:02 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,8 @@ SRCS = ft_isalpha.c\
 	ft_isspace.c\
 	ft_split_space_tab.c \
 	ft_free_tab.c \
+	ft_strlen_to_char.c \
+	ft_strdup_char.c \
 
 DIR_SRCS = src/
 
@@ -78,7 +80,7 @@ HEADERS	= 	libft.h\
 			get_next_line.h\
 			ft_printf.h\
 
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 all :		${NAME}
 

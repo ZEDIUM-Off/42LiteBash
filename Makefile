@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/08/15 14:50:30 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/08/23 13:51:21 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,9 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/builtins/pwd.c \
 				src/builtins/cd.c \
 				src/parsing/make_env.c \
+				src/builtins/export.c \
+				src/builtins/unset.c \
+				src/parsing/list/lst_index.c \
 
 HEAD = $(shell find . -name "*.h")
 
@@ -78,7 +81,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS)
+CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
 
 DEB_FLAGS = -g3 -fsanitize=address
 
@@ -125,7 +128,7 @@ $(LIBFT_A):	force
 # ---- Variables Rules ---- #
 
 ${NAME}	:	${OBJS} $(LIBFT_A)
-			${CC} ${CFLAGS} $(INC) $^ -lreadline  -o $@
+			${CC} ${CFLAGS} $(INC) $^ -lreadline -o $@
 
 # ---- Compiled Rules ---- #
 

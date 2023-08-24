@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   lst_index.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 23:43:36 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/27 23:43:36 by bfaure           ###   ########lyon.fr   */
+/*   Created: 2023/08/21 17:24:47 by bfaure            #+#    #+#             */
+/*   Updated: 2023/08/21 17:24:47 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include <minish.h>
 
-# include <minish.h>
+void	index_list_value(t_list **lst)
+{
+	t_list	*tmp;
+	t_uint	index;
 
-t_uint	echo_builtins(t_str cmd);
-t_uint	pwd_builtins(void);
-t_uint	cd_builtins(t_str path);
-void	export_cmd(t_str var);
-t_uint	run_builtin(t_uint	bi_id);
-t_uint	export_cmd(t_cmd **_cmd);
-t_uint  unset_cmd(t_cmd **_cmd);
-
-t_str	get_pwd(void);
-
-#endif
+    tmp = *lst;
+    index = 0;
+	while (tmp)
+	{
+		tmp->index = index++;
+		tmp = tmp->next;
+	}
+	return ;
+}

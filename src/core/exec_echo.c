@@ -12,7 +12,7 @@
 
 #include <minish.h>
 
-static void handle_chunk(t_chunk **tmp, t_uint *i)
+static void	handle_chunk(t_chunk **tmp, t_uint *i)
 {
 	t_uint	j;
 
