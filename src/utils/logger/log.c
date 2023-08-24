@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/15 13:06:11 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/17 12:53:54 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	log_chunk(t_chunk **chunk, t_uint lvl)
 		if (_chunk->under_chunk)
 			log_chunk(&_chunk->under_chunk, lvl + 1);
 		if (_chunk->blocks)
-			log_blocs(&_chunk->blocks, lvl + 1);
+			log_blocks(&_chunk->blocks, lvl + 1);
 		_chunk = _chunk->next;
 	}
 }

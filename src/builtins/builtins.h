@@ -20,5 +20,6 @@ t_uint	pwd_builtins(void);
 t_str	get_pwd(void);
 t_uint	cd_builtins(t_str path);
 void	export_cmd(t_str var);
+t_uint	run_builtin(t_uint	bi_id);
 
 #endif
