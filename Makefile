@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/08/23 13:51:21 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/08/24 11:50:47 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,11 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/builtins/export.c \
 				src/builtins/unset.c \
 				src/parsing/list/lst_index.c \
+				src/core/execution/exec_cmd.c \
+				src/core/execution/run_pipeline.c \
+				src/core/execution/run_pipeline_utils.c \
+				src/core/execution/exec_redir_handle.c \
+				src/builtins/run_builtin.c \
 
 HEAD = $(shell find . -name "*.h")
 

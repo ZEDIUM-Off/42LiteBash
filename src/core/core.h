@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/16 16:24:13 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 11:57:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CORE_H
 # define CORE_H
 
+# include "execution/execution.h"
 # include <minish.h>
 
 struct s_sh_context {
@@ -23,6 +24,7 @@ struct s_sh_context {
 	t_block				*blocks;
 	t_tracker			*tk;
 	t_error_handler		*error_handler;
+	t_str				*env;
 	t_list				*envp;
 	t_list				*envx;
 	t_str				*argv;
@@ -31,6 +33,7 @@ struct s_sh_context {
 	t_str				prompt;
 	t_str				*line_split;
 	t_str				pwd;
+	t_uint				proc_count;
 };
 
 void	set_ctx(t_sh_context *ctx);

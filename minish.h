@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   minish.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/28 15:53:54 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 11:54:51 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISH_H
 # define MINISH_H
 
+# define PROMPT "minishell$"
+# define PROMPT_COLOR "\033[1;32m"
+# define PROMPT_COLOR_RESET "\033[0m"
+# define PROMPT_COLOR_ERROR "\033[1;31m"
+# define PROMPT_COLOR_WARNING "\033[1;33m"
+# define MAX_PROC 1000
 
 /**
 	===AUTHORIZED FUNCTIONS===

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/16 15:31:34 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 11:53:45 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ enum e_internal_error_codes
 	GARB_ALLOC_ERROR,
 	TRACKER_ALLOC_ERROR,
 	MALLOC_FAIL,
+	PIPE_FAIL,
+	FORK_FAIL,
 };
 
 enum e_user_error_codes

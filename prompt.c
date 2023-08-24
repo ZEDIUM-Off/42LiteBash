@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/23 14:51:44 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/24 12:57:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,22 @@ void	prompt(char **env)
 		if (status != 0)
 			continue ;
 		log_struct();
-		if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ECHO_BI)
-			exec_echo(&g_shx->blocks->ppl->cmd);
-		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == CD_BI)
-			cd_builtins(g_shx->line_split[1]);
-		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == PWD_BI)
-			pwd_builtins();
-		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXPORT_BI)
-			export_cmd(&g_shx->blocks->ppl->cmd);
-		if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == UNSET_BI)
-			unset_cmd(&g_shx->blocks->ppl->cmd);
-		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ENV_BI)
-			lst_print(&g_shx->envp, "lst envp %u %s\n");
-		else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXIT_BI)
-			exit_shell(420, "You say it, you assume it\n");
+		processing(&g_shx->blocks);
+
+		// if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ECHO_BI)
+		// 	exec_echo(&g_shx->blocks->ppl->cmd);
+		// else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == CD_BI)
+		// 	cd_builtins(g_shx->line_split[1]);
+		// else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == PWD_BI)
+		// 	pwd_builtins();
+		// else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXPORT_BI)
+		// 	export_cmd(&g_shx->blocks->ppl->cmd);
+		// if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == UNSET_BI)
+		// 	unset_cmd(&g_shx->blocks->ppl->cmd);
+		// else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ENV_BI)
+		// 	lst_print(&g_shx->envp, "lst envp %u %s\n");
+		// else if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == EXIT_BI)
+		// 	exit_shell(420, "You say it, you assume it\n");
 		log_action();
 		clean_blocks(&g_shx->blocks);
 		g_shx->gc->free(g_shx->line);

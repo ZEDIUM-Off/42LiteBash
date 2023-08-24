@@ -1,33 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.c                                       :+:      :+:    :+:   */
+/*   run_pipeline_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/24 11:35:38 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/08/24 11:38:04 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/08/24 13:26:56 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	init_shell(
-	t_sh_context *shx,
-	t_str *envp,
-	t_str *argv,
-	int argc
-)
+t_uint	wait_for_proc(void)
 {
-	init_sh_context(shx, argv, argc);
-	set_ctx(shx);
-	init_gc();
-	init_track();
-	g_shx->env = envp;
-	g_shx->lst_paths = get_path(envp);
-	g_shx->envp = add_env_to_lst(envp);
-	g_shx->envx = add_env_to_lst(envp);
-	sort_env_export();
-	check_env();
-	log_action();
+	return (0);
+}
+
+t_uint	newfd(int oldfd, int newfd)
+{
+	int	status;
+
+	printf("newfd\n");
+	if (oldfd != newfd)
+	{
+		if (dup2(oldfd, newfd) == -1)
+			return (errno);
+		status = close_fd(oldfd);
+		if (status != 0)
+			return (status);
+	}
+	return (0);
+}
+
+t_uint	close_fd(int fd)
+{
+	t_uint	status;
+
+	status = 0;
+	if (fd >= 0)
+	{
+		status = close(fd);
+		if (status != 0)
+			return (status);
+	}
+	return (0);
 }
