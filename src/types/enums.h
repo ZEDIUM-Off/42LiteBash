@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/24 11:53:45 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/25 13:12:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ enum e_internal_error_codes
 	MALLOC_FAIL,
 	PIPE_FAIL,
 	FORK_FAIL,
+	EXECVE_FAIL,
 };
 
 enum e_user_error_codes

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:50:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/24 13:27:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/25 12:52:44 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_uint	run_pipeline(t_pipeline **ppl, int in_fd)
 	if (!(*ppl)->next)
 	{
 		status = last_process(ppl, in_fd);
+		printf("last status = %u\n", status);
 		if (status != 0)
 			return (status);
 	}
@@ -86,12 +87,14 @@ t_uint	run_pipeline(t_pipeline **ppl, int in_fd)
 		if ((*ppl)->process.pid == 0)
 		{
 			status = child_process(ppl, in_fd);
+			printf("child status = %u\n", status);
 			if (status != 0)
 				return (status);
 		}
 		else
 		{
 			status = parent_process(ppl, in_fd);
+			printf("parent status = %u\n", status);
 			if (status != 0)
 				return (status);
 		}

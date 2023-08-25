@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/24 12:57:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/25 12:33:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	prompt(char **env)
 			continue ;
 		log_struct();
 		processing(&g_shx->blocks);
+		printf("processing done\n");
 
 		// if (check_builtins(g_shx->blocks->ppl->cmd->cmd[0]) == ECHO_BI)
 		// 	exec_echo(&g_shx->blocks->ppl->cmd);
