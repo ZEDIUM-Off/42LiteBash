@@ -24,8 +24,10 @@ t_uint	unset_cmd(t_cmd **_cmd)
 	{
 		while ((*_cmd)->cmd[i])
 		{
-			lst_remove(&g_shx->envx, lst_get_index(&g_shx->envx, (*_cmd)->cmd[i], ft_strlen((*_cmd)->cmd[i])));
-			lst_remove(&g_shx->envp, lst_get_index(&g_shx->envp, (*_cmd)->cmd[i], ft_strlen((*_cmd)->cmd[i])));
+			lst_remove(&g_shx->envx, lst_get_index(&g_shx->envx,
+					(*_cmd)->cmd[i], ft_strlen((*_cmd)->cmd[i])));
+			lst_remove(&g_shx->envp, lst_get_index(&g_shx->envp,
+					(*_cmd)->cmd[i], ft_strlen((*_cmd)->cmd[i])));
 			i++;
 		}
 	}

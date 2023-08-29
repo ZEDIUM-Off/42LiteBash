@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:43:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/24 12:10:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/29 16:03:30 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl)
 	else if (bi_id == UNSET_BI)
 		status = unset_cmd(&(*ppl)->cmd);
 	else if (bi_id == ENV_BI)
-		lst_print(&g_shx->envp, "lst envp %u %s\n");
+		lst_print(&g_shx->envp, "%u %s\n");
 	else if (bi_id == EXIT_BI)
 		exit_shell(420, "You say it, you assume it\n");
 	return (status);
