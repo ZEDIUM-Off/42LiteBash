@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 16:19:28 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/30 17:10:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:39:50 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_uint	export_cmd(t_cmd **_cmd)
 	t_uint	i;
 	t_uint	index;
 
-	trace("export_cmd", "cmd export", EXEC);
+	// trace("export_cmd", "cmd export", EXEC);
 	index = lst_get_last(&g_shx->envp)->index + 1;
 	i = 1;
 	if (!(*_cmd)->cmd[1])
@@ -66,6 +66,6 @@ t_uint	export_cmd(t_cmd **_cmd)
 		}
 	}
 	sort_env_export();
-	log_action();
+	// log_action();
 	return (0);
 }

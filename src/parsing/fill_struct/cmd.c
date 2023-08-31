@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/29 15:07:43 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:39:50 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_uint	new_cmd(t_cmd **_cmd, t_str *splited)
 	t_uint	status;
 
 	i = 0;
-	trace("*new_cmd", "fill cmd struct", PARSE);
+	// trace("*new_cmd", "fill cmd struct", PARSE);
 	while (splited[i])
 		i++;
 	status = create_cmd(_cmd, i);
@@ -121,6 +121,6 @@ t_uint	new_cmd(t_cmd **_cmd, t_str *splited)
 	if (status != 0)
 		return (status);
 	cmd_expand(_cmd);
-	log_action();
+	// log_action();
 	return (0);
 }

@@ -6,11 +6,24 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/23 15:33:21 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 14:28:39 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
+
+// static bool	check_expand(t_str *to_exp, t_uint j, t_list *tmp, bool found)
+// {
+// 	if (!ft_strncmp(&(*to_exp)[1], tmp->data, j)
+// 	&& ft_strlen(&(*to_exp)[1]) == j)
+// 	{
+// 		found = true;
+// 		*to_exp = ft_strdup(&((char *)tmp->data)[++j]);
+// 		if (!*to_exp)
+// 			return (false);
+// 	}
+// 	return (found);
+// }
 
 void	expand(t_str *to_exp)
 {
@@ -19,11 +32,13 @@ void	expand(t_str *to_exp)
 	t_list	*tmp;
 
 	tmp = g_shx->envp;
+	// found = false;
 	while (tmp)
 	{
 		j = 0;
 		while (((t_str)(tmp->data))[j] != '=')
 			j++;
+		// found = check_expand(to_exp, j, tmp, found);
 		if (!ft_strncmp(&(*to_exp)[1], tmp->data, j)
 			&& ft_strlen(&(*to_exp)[1]) == j)
 		{

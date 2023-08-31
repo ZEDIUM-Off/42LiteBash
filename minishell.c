@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 15:03:39 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:39:50 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	main(int argc, char **argv, char **envp)
 	t_sh_context	ctx;
 
 	init_shell(&ctx, envp, argv, argc);
-	trace("main", "start", START);
+	// trace("main", "start", START);
 	t_str test = new_str("test");
 	(void)test;
 	// lst_print(&g_shx->lst_paths, "lst_paths %s\n");
 	// lst_print(&g_shx->envp, "lst envp %s\n");
 	prompt(envp);
-	log_action();
+	// log_action();
 	return (0);
 }

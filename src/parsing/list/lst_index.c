@@ -17,8 +17,8 @@ void	index_list_value(t_list **lst)
 	t_list	*tmp;
 	t_uint	index;
 
-    tmp = *lst;
-    index = 0;
+	tmp = *lst;
+	index = 0;
 	while (tmp)
 	{
 		tmp->index = index++;

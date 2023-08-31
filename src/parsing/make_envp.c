@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_envp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:20:00 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/30 15:08:03 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:50:10 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	check_envp(void)
 				old_pwd++;
 			tmp = tmp->next;
 		}
-		printf("pwd = %i, shlvl = %i, old_pwd = %i\n", pwd, shlvl, old_pwd);
 		if (pwd < 1)
 			make_envp(PWD);
 		if (old_pwd < 1)
@@ -83,13 +82,12 @@ t_str	inc_shlvl(void *data)
 	t_str	new_shlvl;
 
 	new_shlvl = ft_strdup("SHLVL=");
-	printf("data = %s\n", (char*)data);
 	data += 6;
 	num_i = ft_atoi(data);
 	num_i++;
 	num_c = ft_itoa(num_i);
 	new_shlvl = ft_strfjoin(new_shlvl, num_c);
-	printf("new_shlvl = %s, num_i = %i, num_c = %s, data = %s\n", new_shlvl, num_i, num_c, (char*)data);
+	free(num_c);
 	return (new_shlvl);
 }
 

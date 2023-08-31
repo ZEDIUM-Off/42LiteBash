@@ -14,7 +14,7 @@
 
 t_uint	echo_builtins(t_str cmd)
 {
-	trace("echo_builtins", "the cmd echo", EXEC);
+	// trace("echo_builtins", "the cmd echo", EXEC);
 	if (!cmd)
 		return (1);
 	printf("%s", cmd);

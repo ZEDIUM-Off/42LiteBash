@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/29 15:27:28 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:41:53 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	prompt(char **env)
 	int		status;
 
 	(void)env;
-	trace("prompt", "display prompt", PARSE);
+	// trace("prompt", "display prompt", PARSE);
 	status = 0;
 	while (42)
 	{
@@ -57,13 +57,13 @@ void	prompt(char **env)
 		printf("status = %i\n", status);
 		if (status != 0)
 			continue ;
-		log_struct();
+		// log_struct();
 		processing(&g_shx->blocks);
 		printf("processing done\n");
-		log_action();
+		// log_action();
 		clean_blocks(&g_shx->blocks);
 		g_shx->gc->free(g_shx->line);
 	}
-	log_action();
+	// log_action();
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/16 18:24:57 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:39:50 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	split_line(t_str **line_split, t_str line)
 	t_uint	i;
 
 	i = 0;
-	trace("split_line", "split the line", PARSE);
+	// trace("split_line", "split the line", PARSE);
 	if (*line_split)
 		free_split_line(line_split);
 	*line_split = split_parser(line);
@@ -28,7 +28,7 @@ int	split_line(t_str **line_split, t_str line)
 		printf("g_shx->line_split[%i] = [%s]\n", i, (*line_split)[i]);
 		i++;
 	}
-	log_action();
+	// log_action();
 	return (0);
 }
 
@@ -60,7 +60,7 @@ int	find_blocks(t_block	**blocks, t_str *splited)
 
 	i = 0;
 	par = false;
-	trace("find_blocks", "find blocks", PARSE);
+	// trace("find_blocks", "find blocks", PARSE);
 	while (splited[i])
 	{
 		status = find_meta_and_add_block(blocks, splited, i, &par);
@@ -78,13 +78,13 @@ int	pars_line(t_block **out, t_str *splited)
 {
 	t_uint	status;
 
-	trace("pars_line", "parse the line", PARSE);
+	// trace("pars_line", "parse the line", PARSE);
 	status = find_blocks(out, splited);
 	if (status != 0)
 		return (status);
 	status = parse_pipeline(out, splited);
 	if (status != 0)
 		return (status);
-	log_action();
+	// log_action();
 	return (0);
 }

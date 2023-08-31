@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:14:36 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/15 14:39:35 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:39:50 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ t_uint	pwd_builtins(void)
 {
 	t_str	pwd;
 
-	trace("pwd_builtins", "pwd cmd", EXEC);
+	// trace("pwd_builtins", "pwd cmd", EXEC);
 	pwd = get_pwd();
 	printf("pwd = %s\n", pwd);
 	if (pwd)
 		free(pwd);
-	log_action();
+	// log_action();
 	return (1);
 }

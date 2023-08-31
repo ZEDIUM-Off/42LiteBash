@@ -16,7 +16,7 @@ t_uint	unset_cmd(t_cmd **_cmd)
 {
 	t_uint	i;
 
-	trace("unset_cmd", "cmd unset", EXEC);
+	// trace("unset_cmd", "cmd unset", EXEC);
 	i = 1;
 	if (!(*_cmd)->cmd[1])
 		return (0);
@@ -33,6 +33,6 @@ t_uint	unset_cmd(t_cmd **_cmd)
 	}
 	index_list_value(&g_shx->envp);
 	index_list_value(&g_shx->envx);
-	log_action();
+	// log_action();
 	return (0);
 }

@@ -38,7 +38,7 @@ t_uint	exec_echo(t_cmd **_cmd)
 
 	n = 0;
 	i = 1;
-	trace("exec_echo", "exec echo cmd", EXEC);
+	// trace("exec_echo", "exec echo cmd", EXEC);
 	if ((*_cmd)->cmd[i][0] == '\0')
 		return (1);
 	tmp = (*_cmd)->chunk;
@@ -58,6 +58,6 @@ t_uint	exec_echo(t_cmd **_cmd)
 	}
 	if (n == 0)
 		printf("\n");
-	log_action();
+	// log_action();
 	return (0);
 }

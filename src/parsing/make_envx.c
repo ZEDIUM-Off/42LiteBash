@@ -65,7 +65,6 @@ void	check_envx(void)
 				old_pwd++;
 			tmp = tmp->next;
 		}
-		printf("pwd = %i, shlvl = %i, old_pwd = %i\n", pwd, shlvl, old_pwd);
 		if (pwd < 1)
 			make_envx(PWD);
 		if (old_pwd < 1)

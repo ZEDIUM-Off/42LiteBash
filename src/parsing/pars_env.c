@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/30 12:58:45 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:39:50 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_list	*add_env_to_lst(char **envp)
 	int		i;
 
 	i = -1;
-	trace("add_env_to_lst", "every things is in the name", PARSE);
+	// trace("add_env_to_lst", "every things is in the name", PARSE);
 	lst_env = NULL;
 	while (envp[++i])
 		lst_add_back(&lst_env, envp[i], i);
-	log_action();
+	// log_action();
 	return (lst_env);
 }
 
