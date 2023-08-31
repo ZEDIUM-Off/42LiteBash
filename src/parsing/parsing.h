@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/24 11:24:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/30 15:03:06 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void		skip_to_space(t_str str, t_uint *i);
 t_uint		get_meta_char(char *c);
 void		cmd_expand(t_cmd **cmd);
 
-void		make_env(t_uint env_var_name);
 t_str		inc_shlvl(void *data);
 t_str		*split_parser(t_str line);
 
@@ -46,6 +45,7 @@ void		sort_env_export(void);
 
 t_file		new_file(t_str name);
 
-void		check_env(void);
+void		check_envp(void);
+void		check_envx(void);
 
 #endif

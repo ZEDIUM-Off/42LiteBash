@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/24 11:35:38 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/30 15:04:24 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	init_shell(
 	g_shx->lst_paths = get_path(envp);
 	g_shx->envp = add_env_to_lst(envp);
 	g_shx->envx = add_env_to_lst(envp);
+	check_envp();
+	check_envx();
 	sort_env_export();
-	check_env();
 	log_action();
 }

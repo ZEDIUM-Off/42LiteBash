@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/08/24 11:50:47 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/08/30 16:00:09 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/core/exec_echo.c \
 				src/builtins/pwd.c \
 				src/builtins/cd.c \
-				src/parsing/make_env.c \
+				src/parsing/make_envp.c \
+				src/parsing/make_envx.c \
 				src/builtins/export.c \
 				src/builtins/unset.c \
 				src/parsing/list/lst_index.c \
@@ -86,7 +87,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
+CFLAGS = -Wall -Werror -Wextra #$(DEB_FLAGS) 
 
 DEB_FLAGS = -g3 -fsanitize=address
 
