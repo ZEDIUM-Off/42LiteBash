@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/31 15:39:34 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/01 12:33:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,9 @@ t_list	*add_env_to_lst(t_sh_context *shx, char **envp)
 
 void	swap_nodes(t_list *current_node, t_list *next_node)
 {
-	// t_uint		index;
 	char	*data;
 
 	data = NULL;
-	// index = current_node->index;
-	// current_node->index = next_node->index;
-	// next_node->index = index;
 	data = current_node->data;
 	current_node->data = next_node->data;
 	next_node->data = data;

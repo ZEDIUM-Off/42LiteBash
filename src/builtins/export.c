@@ -6,18 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 16:19:28 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/31 16:28:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/01 12:31:58 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-// static t_str	make_arg_var(t_cmd **_cmd, t_uint i)
-// {
-	
-// }
-
-static t_uint	export_cmd_add__to_lst(t_cmd **_cmd, t_uint i, t_uint index)
+static t_uint	export_cmd_add_to_lst(t_cmd **_cmd, t_uint i, t_uint index)
 {
 	t_str			argv;
 	t_str			argb;
@@ -64,7 +59,7 @@ t_uint	export_cmd(t_cmd **_cmd)
 	{
 		while ((*_cmd)->chunk || (*_cmd)->cmd[i])
 		{
-			if (export_cmd_add__to_lst((_cmd), i, index) == MALLOC_FAIL)
+			if (export_cmd_add_to_lst((_cmd), i, index) == MALLOC_FAIL)
 				return (MALLOC_FAIL);
 			index++;
 			if ((*_cmd)->chunk)

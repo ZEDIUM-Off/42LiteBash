@@ -6,24 +6,30 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/31 16:15:34 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/01 12:32:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
+<<<<<<< HEAD
 void	expand(t_sh_context *shx, t_str *to_exp)
-{
-	t_uint	j;
-	bool	found;
-	t_list	*tmp;
+=======
+// static bool	check_expand(t_str *to_exp, t_uint j, t_list *tmp, bool found)
+// 	if (!ft_strncmp(&(*to_exp)[1], tmp->data, j)
 
+<<<<<<< HEAD
 	tmp = shx->envp;
+=======
+	tmp = g_shx->envp;
+	// found = false;
+>>>>>>> c1ecc1274db8fab36dc065c83c7a3bb9b431e90f
 	while (tmp)
 	{
 		j = 0;
 		while (((t_str)(tmp->data))[j] != '=')
 			j++;
+		// found = check_expand(to_exp, j, tmp, found);
 		if (!ft_strncmp(&(*to_exp)[1], tmp->data, j)
 			&& ft_strlen(&(*to_exp)[1]) == j)
 		{
