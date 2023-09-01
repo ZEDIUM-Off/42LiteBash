@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:09:23 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:34:37 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/01 12:35:56 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ t_list	*add_paths_to_lst(t_sh_context *shx, char **paths)
 	i = -1;
 	trace(shx, "add_paths_to_lst", "every things is in the name", PARSE);
 	lst_paths = lst_create(shx, ft_strdup(paths[0]), i);
+	if (!lst_paths)
+		return (NULL);
+	while (paths[++i])
+	{
 		lst_add_back(shx, &lst_paths, ft_strdup(paths[i]), i);
 	}
 	ft_free_tab(paths);
