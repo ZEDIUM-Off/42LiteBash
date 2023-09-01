@@ -14,11 +14,13 @@
 
 static void	handle_chunk(t_chunk **tmp, t_uint *i)
 {
-	t_uint	j;
+	t_uint				j;
+	t_sh_context	*shx;
 
+	shx = (*tmp)->shx;
 	j = 0;
 	while ((*tmp)->txt[j])
-		echo_builtins((*tmp)->txt[j++]);
+		echo_builtins(shx, (*tmp)->txt[j++]);
 	while (*i <= (*tmp)->end)
 		(*i)++;
 	*tmp = (*tmp)->next;
@@ -26,7 +28,10 @@ static void	handle_chunk(t_chunk **tmp, t_uint *i)
 
 static void	handle_cmd(t_cmd **_cmd, t_uint *i)
 {
-	echo_builtins((*_cmd)->cmd[*i]);
+	t_sh_context	*shx;
+
+	shx = (*_cmd)->shx;
+	echo_builtins(shx, (*_cmd)->cmd[*i]);
 	(*i)++;
 }
 
@@ -35,10 +40,12 @@ t_uint	exec_echo(t_cmd **_cmd)
 	bool	n;
 	t_uint	i;
 	t_chunk	*tmp;
+	t_sh_context	*shx;
 
+	shx = (*_cmd)->shx;
 	n = 0;
 	i = 1;
-	trace("exec_echo", "exec echo cmd", EXEC);
+	trace(shx, "exec_echo", "exec echo cmd", EXEC);
 	if ((*_cmd)->cmd[i][0] == '\0')
 		return (1);
 	tmp = (*_cmd)->chunk;
@@ -58,6 +65,6 @@ t_uint	exec_echo(t_cmd **_cmd)
 	}
 	if (n == 0)
 		printf("\n");
-	log_action();
+	log_action(shx);
 	return (0);
 }

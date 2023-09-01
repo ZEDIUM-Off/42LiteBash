@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 14:05:06 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/24 13:32:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/01 11:38:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_uint	check_builtins(char *str)
 {
-	printf("check_builtins str = %s\n", str);
 	if (!ft_strncmp(str, "echo", 4))
 		return (ECHO_BI);
 	else if (!ft_strncmp(str, "cd", 2))
@@ -29,6 +28,5 @@ t_uint	check_builtins(char *str)
 		return (ENV_BI);
 	else if (!ft_strncmp(str, "exit", 4))
 		return (EXIT_BI);
-	printf("check_builtins = NONE\n");
 	return (0);
 }

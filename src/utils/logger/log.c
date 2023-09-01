@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/17 12:53:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/31 15:32:57 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ t_str	rep_char(int count, char c)
 	return (str);
 }
 
-void	log_action(void)
+void	log_action(t_sh_context *shx)
 {
 	t_tracker			*tk;
 	t_garbage_collector	*gc;
 
-	tk = g_shx->tk;
-	gc = g_shx->gc;
+	tk = shx->tk;
+	gc = shx->gc;
 	printf("============== loging step %d: %s ==================\n", tk->step_nb, tk->step_name);
 	printf("step type: %d\n", tk->step_type);
 	printf("current function: [%s]\n", tk->current_func);
@@ -152,9 +152,9 @@ void	log_blocks(t_block **blocks, t_uint lvl)
 	}
 }
 
-void log_struct(void)
+void log_struct(t_sh_context *shx)
 {
 	printf("<<<<<<<<<<<<<<<< loging struct >>>>>>>>>>>>>>>>\n");
-	log_blocks(&g_shx->blocks, 0);
+	log_blocks(&shx->blocks, 0);
 	printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
 }

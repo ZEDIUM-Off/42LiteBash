@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:17:48 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/17 17:16:59 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 16:10:08 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ t_uint	find_chunk(
 		}
 		(*i)++;
 	}
-	return meta;
+	return (meta);
 }
 
-t_uint	chunk_size(t_chunk	**chunk, t_str *splited, t_uint *i, bool *chunk_found)
+t_uint	chunk_size(
+	t_sh_context *shx,
+	t_chunk	**chunk, t_str *splited, t_uint *i, bool *chunk_found)
 {
 	t_uint	chunk_lim[2];
 	t_uint	meta;
@@ -47,14 +49,14 @@ t_uint	chunk_size(t_chunk	**chunk, t_str *splited, t_uint *i, bool *chunk_found)
 	meta = find_chunk(splited, i, chunk_found, chunk_lim);
 	if (*chunk_found)
 	{
-		status = new_chunk(chunk, chunk_lim, splited, meta);
+		status = new_chunk(shx, chunk, chunk_lim, splited, meta);
 		if (status != 0)
 			return (status);
 	}
 	return (0);
 }
 
-t_uint	get_chunks(t_chunk **chunk, t_str *splited)
+t_uint	get_chunks(t_sh_context *shx, t_chunk **chunk, t_str *splited)
 {
 	t_uint	i;
 	t_uint	status;
@@ -64,7 +66,7 @@ t_uint	get_chunks(t_chunk **chunk, t_str *splited)
 	chunk_found = true;
 	while (splited[i] && chunk_found)
 	{
-		status = chunk_size(chunk, splited, &i, &chunk_found);
+		status = chunk_size(shx, chunk, splited, &i, &chunk_found);
 		if (status != 0)
 			return (status);
 		if (*chunk)
@@ -73,7 +75,7 @@ t_uint	get_chunks(t_chunk **chunk, t_str *splited)
 	return (0);
 }
 
-t_uint	under_chunk(t_chunk **chunk, t_str *splited)
+t_uint	under_chunk(t_sh_context *shx, t_chunk **chunk, t_str *splited)
 {
 	t_uint	status;
 	t_uint	i;
@@ -81,9 +83,10 @@ t_uint	under_chunk(t_chunk **chunk, t_str *splited)
 
 	chunk_found = true;
 	i = 0;
-	while (splited[i] && i < ((*chunk)->end - (*chunk)->start) + 1 && chunk_found)
+	while (splited[i]
+		&& i < ((*chunk)->end - (*chunk)->start) + 1 && chunk_found)
 	{
-		status = chunk_size(&(*chunk)->under_chunk, splited, &i, &chunk_found);
+		status = chunk_size(shx, &(*chunk)->under_chunk, splited, &i, &chunk_found);
 		if (status != 0)
 			return (status);
 		if ((*chunk)->under_chunk)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:32:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/19 14:58:06 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:29:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ struct s_ptr
 	bool			counted;
 };
 
-void	*gc_malloc(size_t size, bool count);
-void	gc_free(void *ptr);
-void	gc_free_all(void);
-void	init_gc(void);
+void	*gc_malloc(t_sh_context *shx, size_t size, bool count);
+void	gc_free(t_sh_context *shx, void *ptr);
+void	gc_free_all(t_sh_context *shx);
+void	init_gc(t_sh_context *shx);
 
 #endif

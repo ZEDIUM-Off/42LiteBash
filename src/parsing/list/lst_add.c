@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   lst_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:31:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/14 17:45:22 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:25:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	lst_add_front(t_list **lst, void *data, t_uint index)
+void	lst_add_front(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 {
 	t_list	*new;
 
 	if (!lst)
 		return ;
-	new = lst_create(data, index);
+	new = lst_create(shx, data, index);
 	*lst = new;
 }
 
-void	lst_add_back(t_list **lst, void *data, t_uint index)
+void	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 {
 	t_list	*new;
 	t_list	*tmp;
 
 	if (!lst)
 		return ;
-	new = lst_create(data, index);
+	new = lst_create(shx, data, index);
 	if (!*lst)
 		*lst = new;
 	else
@@ -41,7 +41,7 @@ void	lst_add_back(t_list **lst, void *data, t_uint index)
 	}
 }
 
-void	lst_insert(t_list **lst, void *data, t_uint index)
+void	lst_insert(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 {
 	t_list	*new;
 	t_list	*tmp;
@@ -49,7 +49,7 @@ void	lst_insert(t_list **lst, void *data, t_uint index)
 
 	if (!lst)
 		return ;
-	new = lst_create(data, index);
+	new = lst_create(shx, data, index);
 	if (!*lst)
 		*lst = new;
 	else

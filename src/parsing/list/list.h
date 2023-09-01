@@ -15,8 +15,6 @@
 
 # include <minish.h>
 
-
-
 struct	s_list
 {
 	t_uint	index;
@@ -32,15 +30,16 @@ struct	s_dlist
 	t_dlist	*next;
 };
 
-t_list	*lst_create(void *data, t_uint index);
-void	lst_add_front(t_list **lst, void *data, t_uint index);
-void	lst_add_back(t_list **lst, void *data, t_uint index);
+t_list	*lst_create(t_sh_context *shx, void *data, t_uint index);
+void	lst_add_front(t_sh_context *shx,
+			t_list **lst, void *data, t_uint index);
+void	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index);
 void	lst_print(t_list **lst, t_str text);
-void	lst_clear(t_list **lst);
-void	lst_insert(t_list **lst, void *data, t_uint index);
-void	lst_remove(t_list **lst, t_uint index);
-void	lst_remove_first(t_list **lst);
-void	lst_remove_last(t_list **lst);
+void	lst_clear(t_sh_context *shx, t_list **lst);
+void	lst_insert(t_sh_context *shx, t_list **lst, void *data, t_uint index);
+void	lst_remove(t_sh_context *shx, t_list **lst, t_uint index);
+void	lst_remove_first(t_sh_context *shx, t_list **lst);
+void	lst_remove_last(t_sh_context *shx, t_list **lst);
 void	*lst_get(t_list **lst, t_uint index);
 void	lst_set(t_list **lst, t_uint index, void *data);
 void	index_list_value(t_list **lst);
@@ -48,17 +47,18 @@ t_list	*lst_get_first(t_list **lst);
 t_list	*lst_get_last(t_list **lst);
 t_uint	lst_size(t_list **lst);
 t_uint	lst_get_index(t_list **lst, t_str name, t_uint len);
-void	lst_remplace(t_list **lst, t_uint index, t_str data);
+void	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data);
 
-t_dlist	*dlst_create(void *data);
-void	dlst_add_front(t_dlist **dlst, void *data);
-void	dlst_add_back(t_dlist **dlst, void *data);
+t_dlist	*dlst_create(t_sh_context *shx, void *data);
+void	dlst_add_front(t_sh_context *shx, t_dlist **dlst, void *data);
+void	dlst_add_back(t_sh_context *shx, t_dlist **dlst, void *data);
 void	dlst_print(t_dlist **dlst, t_str text);
-void	dlst_clear(t_dlist **dlst);
-void	dlst_insert(t_dlist **dlst, void *data, t_uint index);
-void	dlst_remove(t_dlist **dlst, t_uint index);
-void	dlst_remove_first(t_dlist **dlst);
-void	dlst_remove_last(t_dlist **dlst);
+void	dlst_clear(t_sh_context *shx, t_dlist **dlst);
+void	dlst_insert(t_sh_context *shx,
+			t_dlist **dlst, void *data, t_uint index);
+void	dlst_remove(t_sh_context *shx, t_dlist **dlst, t_uint index);
+void	dlst_remove_first(t_sh_context *shx, t_dlist **dlst);
+void	dlst_remove_last(t_sh_context *shx, t_dlist **dlst);
 t_dlist	*dlst_get(t_dlist **dlst, t_uint index);
 void	dlst_set(t_dlist **dlst, t_uint index, void *data);
 t_dlist	*dlst_get_first(t_dlist **dlst);

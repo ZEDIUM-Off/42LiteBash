@@ -6,22 +6,16 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:38:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/24 13:26:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/01 11:37:35 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	wait_for_proc(void)
-{
-	return (0);
-}
-
 t_uint	newfd(int oldfd, int newfd)
 {
 	int	status;
 
-	printf("newfd\n");
 	if (oldfd != newfd)
 	{
 		if (dup2(oldfd, newfd) == -1)

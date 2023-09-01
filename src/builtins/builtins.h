@@ -15,9 +15,9 @@
 
 # include <minish.h>
 
-t_uint	echo_builtins(t_str cmd);
-t_uint	pwd_builtins(void);
-t_uint	cd_builtins(t_str path);
+t_uint	echo_builtins(t_sh_context *shx, t_str cmd);
+t_uint	pwd_builtins(t_sh_context *shx);
+t_uint	cd_builtins(t_sh_context *shx, t_str path);
 t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl);
 t_uint	export_cmd(t_cmd **_cmd);
 t_uint	unset_cmd(t_cmd **_cmd);

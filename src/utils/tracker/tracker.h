@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:07:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/06 14:58:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/31 14:30:29 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ struct s_tracker
 	t_tracker	*next;
 };
 
-void	trace(t_str func_name, t_str step_name, t_uint step_type);
-void	init_track(void);
+void	trace(
+			t_sh_context *shx, t_str func_name,
+			t_str step_name, t_uint step_type);
+void	init_track(t_sh_context *shx);
 
 #endif

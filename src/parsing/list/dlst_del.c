@@ -6,13 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:52:38 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 20:31:57 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/31 14:35:26 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	dlst_remove(t_dlist **dlst, t_uint index)
+void	dlst_remove(t_sh_context *shx, t_dlist **dlst, t_uint index)
 {
 	t_dlist	*tmp;
 	t_uint	i;
@@ -33,12 +33,12 @@ void	dlst_remove(t_dlist **dlst, t_uint index)
 			tmp->prev = tmp->prev->prev;
 		else
 			tmp->prev = NULL;
-		g_shx->gc->free(tmp->data);
-		g_shx->gc->free(tmp);
+		shx->gc->free(shx, tmp->data);
+		shx->gc->free(shx, tmp);
 	}
 }
 
-void	dlst_remove_first(t_dlist **dlst)
+void	dlst_remove_first(t_sh_context *shx, t_dlist **dlst)
 {
 	t_dlist	*tmp;
 
@@ -49,12 +49,12 @@ void	dlst_remove_first(t_dlist **dlst)
 	{
 		*dlst = tmp->next;
 		(*dlst)->prev = NULL;
-		g_shx->gc->free(tmp->data);
-		g_shx->gc->free(tmp);
+		shx->gc->free(shx, tmp->data);
+		shx->gc->free(shx, tmp);
 	}
 }
 
-void	dlst_remove_last(t_dlist **dlst)
+void	dlst_remove_last(t_sh_context *shx, t_dlist **dlst)
 {
 	t_dlist	*tmp;
 
@@ -66,7 +66,7 @@ void	dlst_remove_last(t_dlist **dlst)
 		while (tmp->next->next)
 			tmp = tmp->next;
 		tmp->next = NULL;
-		g_shx->gc->free(tmp->data);
-		g_shx->gc->free(tmp);
+		shx->gc->free(shx, tmp->data);
+		shx->gc->free(shx, tmp);
 	}
 }

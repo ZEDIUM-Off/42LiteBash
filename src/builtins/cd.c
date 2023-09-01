@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/23 14:37:11 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 16:22:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	cd_builtins(t_str path)
+t_uint	cd_builtins(t_sh_context *shx, t_str path)
 {
 	t_str	pwd;
 	int		error_code;
 	t_str	env_name;
 
-	trace("cd_builtins", "cd cmd", EXEC);
+	trace(shx, "cd_builtins", "cd cmd", EXEC);
 	error_code = chdir(path);
 	printf("cd_builtins error_code : %i\n", error_code);
 	if (error_code < 0)
@@ -30,9 +30,10 @@ t_uint	cd_builtins(t_str path)
 	pwd = ft_strfjoin(env_name, pwd);
 	if (!pwd)
 		return (MALLOC_FAIL);
-	lst_remplace(&g_shx->envp, lst_get_index(&g_shx->envp, "PWD=", 4), pwd);
+	lst_remplace(shx,
+		&shx->envp, lst_get_index(&shx->envp, "PWD=", 4), pwd);
 	if (pwd)
 		free(pwd);
-	log_action();
+	log_action(shx);
 	return (0);
 }

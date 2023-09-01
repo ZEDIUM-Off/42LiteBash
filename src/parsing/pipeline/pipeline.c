@@ -6,35 +6,39 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/27 10:48:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/01 10:04:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	create_ppl(t_pipeline **new, t_uint size, t_str *splited)
+t_uint	create_ppl(
+		t_sh_context *shx, t_pipeline **new, t_uint size, t_str *splited)
 {
 	t_uint	status;
 
-	*new = (t_pipeline *)g_shx->gc->malloc(sizeof(t_pipeline), true);
+	*new = (t_pipeline *)shx->gc->malloc(shx, sizeof(t_pipeline), true);
 	if (!(*new))
 		return (MALLOC_FAIL);
 	(*new)->cmd = NULL;
+	(*new)->shx = shx;
+	(*new)->process = (t_process){.pid = -42, .status = -42};
 	(*new)->redir = (t_redirect){.in_type = NONE, .out_type = NONE};
 	(*new)->next = NULL;
-	status = parse_pipe(new, splited, size);
+	status = parse_pipe(shx, new, splited, size);
 	if (status != 0)
 		return (status);
 	return (0);
 }
 
-t_uint	add_ppl(t_pipeline **pipeline, t_uint size, t_str *splited)
+t_uint	add_ppl(
+		t_sh_context *shx, t_pipeline **pipeline, t_uint size, t_str *splited)
 {
 	t_pipeline	*new;
 	t_pipeline	*tmp;
 	t_uint		status;
 
-	status = create_ppl(&new, size, splited);
+	status = create_ppl(shx, &new, size, splited);
 	if (status != 0)
 		return (status);
 	if (!*pipeline)

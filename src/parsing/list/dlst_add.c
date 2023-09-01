@@ -6,31 +6,31 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:49:07 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/07 20:03:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/31 15:24:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	dlst_add_front(t_dlist **dlst, void *data)
+void	dlst_add_front(t_sh_context *shx, t_dlist **dlst, void *data)
 {
 	t_dlist	*new;
 
 	if (!dlst)
 		return ;
-	new = dlst_create(data);
+	new = dlst_create(shx, data);
 	new->next = *dlst;
 	(*dlst)->prev = new;
 	*dlst = new;
 }
-void	dlst_add_back(t_dlist **dlst, void *data)
+void	dlst_add_back(t_sh_context *shx, t_dlist **dlst, void *data)
 {
 	t_dlist	*new;
 	t_dlist	*tmp;
 
 	if (!dlst)
 		return ;
-	new = dlst_create(data);
+	new = dlst_create(shx, data);
 	if (!*dlst)
 		*dlst = new;
 	else
@@ -43,7 +43,7 @@ void	dlst_add_back(t_dlist **dlst, void *data)
 	}
 }
 
-void	dlst_insert(t_dlist **dlst, void *data, t_uint index)
+void	dlst_insert(t_sh_context *shx, t_dlist **dlst, void *data, t_uint index)
 {
 	t_dlist	*new;
 	t_dlist	*tmp;
@@ -51,7 +51,7 @@ void	dlst_insert(t_dlist **dlst, void *data, t_uint index)
 
 	if (!dlst)
 		return ;
-	new = dlst_create(data);
+	new = dlst_create(shx, data);
 	if (!*dlst)
 		*dlst = new;
 	else

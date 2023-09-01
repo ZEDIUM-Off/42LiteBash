@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.c                                       :+:      :+:    :+:   */
+/*   here_doc_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 16:36:45 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/09/01 11:44:32 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/09/01 11:50:25 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	init_shell(
-	t_sh_context *shx,
-	t_str *envp,
-	t_str *argv,
-	int argc
-)
+t_uint	here_doc(t_file	*file)
 {
-	init_sh_context(shx, argv, argc, envp);
-	init_gc(shx);
-	init_track(shx);
-	shx->lst_paths = get_path(shx, envp);
-	shx->envp = add_env_to_lst(shx, envp);
-	shx->envx = add_env_to_lst(shx, envp);
-	sort_env_export(shx);
-	check_env(shx);
-	log_action(shx);
+	(void)file;
+	return (0);
 }

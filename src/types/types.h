@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/16 12:21:26 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/31 14:30:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,14 @@ typedef struct s_pipeline			t_pipeline;
 typedef struct s_cmd				t_cmd;
 typedef struct s_process			t_process;
 
-typedef void (*						t_free_func)(void *ptr);
-typedef void *(*					t_malloc_func)(size_t size, bool count);
+typedef void (*						t_free_func)(
+	t_sh_context	*shx,
+	void *ptr
+);
+typedef void *(*					t_malloc_func)(
+	t_sh_context	*shx,
+	size_t size,
+	bool count
+);
 
 #endif

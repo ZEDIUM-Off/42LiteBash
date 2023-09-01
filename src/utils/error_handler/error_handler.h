@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/29 14:40:23 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:30:32 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ struct	s_error
 	void	*var;
 };
 
-void	exit_shell(t_uint error_code, char *msg);
+void	exit_shell(t_sh_context *shx, t_uint error_code, char *msg);
 
 #endif

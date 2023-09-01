@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   split_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/23 14:42:44 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 16:41:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	skip_parts(t_str str, bool *s_quote, bool *d_quote)
+t_uint	skip_parts(t_str str, bool quotes[2])
 {
 	t_uint	i;
 	t_uint	meta;
@@ -23,9 +23,9 @@ t_uint	skip_parts(t_str str, bool *s_quote, bool *d_quote)
 	{
 		i++;
 		if (meta == SINGLE_QUOTE)
-			*s_quote = !(*s_quote);
+			quotes[0] = !quotes[0];
 		if (meta == DOUBLE_QUOTE)
-			*d_quote = !(*d_quote);
+			quotes[1] = !quotes[1];
 		if (meta == DOLLAR)
 			skip_to_space(str, &i);
 		if (meta >= APPEND_REDIRECT && meta <= AND)
@@ -33,7 +33,7 @@ t_uint	skip_parts(t_str str, bool *s_quote, bool *d_quote)
 	}
 	else
 	{
-		if (*d_quote || *s_quote)
+		if (quotes[1] || quotes[0])
 			while (str[i] && get_meta_char(&str[i]) == NONE)
 				i++;
 		skip_to_space(str, &i);
@@ -45,33 +45,34 @@ t_uint	count_parts(t_str str)
 {
 	t_uint	n_parts;
 	t_uint	i;
-	bool	s_quote;
-	bool	d_quote;
+	bool	quotes[2];
 
 	n_parts = 0;
 	i = 0;
-	s_quote = false;
-	d_quote = false;
+	quotes[0] = false;
+	quotes[1] = false;
 	while (str[i])
 	{
-		if (!d_quote && !s_quote)
+		if (!quotes[1] && !quotes[0])
 			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 				i++;
 		n_parts++;
-		i += skip_parts(&str[i], &s_quote, &d_quote);
+		i += skip_parts(&str[i], quotes);
 	}
 	printf("count_parts -> n_parts = %i\n", n_parts);
 	return (n_parts);
 }
 
-t_uint	new_part(char **dest, t_str src, bool *s_quote, bool *d_quote)
+t_uint	new_part(
+	t_sh_context *shx, char **dest, t_str src, bool quotes[2])
 {
 	t_uint	i;
 	t_uint	j;
 
 	j = 0;
-	i = skip_parts(src, s_quote, d_quote);
-	*dest = g_shx->gc->malloc(sizeof(char) * (i + 1), true);
+	i = skip_parts(src, quotes);
+	*dest = shx->gc->malloc(shx,
+			sizeof(char) * (i + 1), true);
 	if (!*dest)
 		return (-1);
 	while (j < i)
@@ -83,25 +84,24 @@ t_uint	new_part(char **dest, t_str src, bool *s_quote, bool *d_quote)
 	return (i);
 }
 
-static t_str	*meta_cut(t_str *dest, t_str src)
+static t_str	*meta_cut(t_sh_context *shx, t_str *dest, t_str src)
 {
 	t_uint	i;
 	t_uint	k;
 	t_uint	parts;
-	bool	s_quote;
-	bool	d_quote;
+	bool	quotes[2];
 
 	i = 0;
 	k = 0;
 	parts = count_parts(src);
-	s_quote = false;
-	d_quote = false;
+	quotes[0] = false;
+	quotes[1] = false;
 	while (src[i] && k < parts)
 	{
-		if (!d_quote && !s_quote)
+		if (!quotes[1] && !quotes[0])
 			while (src[i] && (src[i] == ' ' || src[i] == '\t'))
 				i++;
-		i += new_part(&dest[k], &src[i], &s_quote, &d_quote);
+		i += new_part(shx, &dest[k], &src[i], quotes);
 		if (!dest[k])
 			return (NULL);
 		k++;
@@ -110,13 +110,13 @@ static t_str	*meta_cut(t_str *dest, t_str src)
 	return (dest);
 }
 
-t_str	*split_parser(t_str line)
+t_str	*split_parser(t_sh_context *shx, t_str line)
 {
 	t_str	*parts;
 
-	parts = g_shx->gc->malloc(sizeof(t_str)
+	parts = shx->gc->malloc(shx, sizeof(t_str)
 			* (count_parts(line) + 1), true);
 	if (!parts)
 		return (printf("malloc failed\n"), NULL);
-	return (meta_cut(parts, line));
+	return (meta_cut(shx, parts, line));
 }

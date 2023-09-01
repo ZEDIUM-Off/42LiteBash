@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pars_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/16 18:24:57 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 16:42:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-int	split_line(t_str **line_split, t_str line)
+int	split_line(t_sh_context *shx, t_str **line_split, t_str line)
 {
 	t_uint	i;
 
 	i = 0;
-	trace("split_line", "split the line", PARSE);
+	trace(shx, "split_line", "split the line", PARSE);
 	if (*line_split)
-		free_split_line(line_split);
-	*line_split = split_parser(line);
+		free_split_line(shx, line_split);
+	*line_split = split_parser(shx, line);
 	if (!(*line_split))
 		return (printf("MALLOC FAIL IN SPLIT LINE\n"), MALLOC_FAIL);
 	while ((*line_split)[i])
@@ -28,15 +28,15 @@ int	split_line(t_str **line_split, t_str line)
 		printf("g_shx->line_split[%i] = [%s]\n", i, (*line_split)[i]);
 		i++;
 	}
-	log_action();
+	log_action(shx);
 	return (0);
 }
 
-int	find_meta_and_add_block(
+int	find_meta_and_add_block(t_sh_context *shx,
 	t_block **blocks, t_str *splited, t_uint i, bool *par)
 {
-	t_uint	meta;
-	t_uint	status;
+	t_uint			meta;
+	t_uint			status;
 
 	meta = get_meta_char(&splited[i][0]);
 	if (meta == O_PARENTHESIS)
@@ -45,46 +45,46 @@ int	find_meta_and_add_block(
 		*par = false;
 	if ((meta == AND || meta == OR) && *par == false)
 	{
-		status = add_block(blocks, meta, i);
+		status = add_block(shx, blocks, meta, i);
 		if (status != 0)
 			return (status);
 	}
 	return (0);
 }
 
-int	find_blocks(t_block	**blocks, t_str *splited)
+int	find_blocks(t_sh_context *shx, t_block	**blocks, t_str *splited)
 {
-	t_uint	i;
-	t_uint	status;
-	bool	par;
+	t_uint			i;
+	t_uint			status;
+	bool			par;
 
 	i = 0;
 	par = false;
-	trace("find_blocks", "find blocks", PARSE);
+	trace(shx, "find_blocks", "find blocks", PARSE);
 	while (splited[i])
 	{
-		status = find_meta_and_add_block(blocks, splited, i, &par);
+		status = find_meta_and_add_block(shx, blocks, splited, i, &par);
 		if (status != 0)
 			return (status);
 		i++;
 	}
-	status = add_block(blocks, NONE, i);
+	status = add_block(shx, blocks, NONE, i);
 	if (status != 0)
 		return (status);
 	return (0);
 }
 
-int	pars_line(t_block **out, t_str *splited)
+int	pars_line(t_sh_context *shx, t_block **out, t_str *splited)
 {
-	t_uint	status;
+	t_uint			status;
 
-	trace("pars_line", "parse the line", PARSE);
-	status = find_blocks(out, splited);
+	trace(shx, "pars_line", "parse the line", PARSE);
+	status = find_blocks(shx, out, splited);
 	if (status != 0)
 		return (status);
-	status = parse_pipeline(out, splited);
+	status = parse_pipeline(shx, out, splited);
 	if (status != 0)
 		return (status);
-	log_action();
+	log_action(shx);
 	return (0);
 }

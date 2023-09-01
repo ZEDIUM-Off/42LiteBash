@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/08/24 11:50:47 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/09/01 12:27:00 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,9 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/core/execution/exec_cmd.c \
 				src/core/execution/run_pipeline.c \
 				src/core/execution/run_pipeline_utils.c \
+				src/core/execution/process_utils.c \
 				src/core/execution/exec_redir_handle.c \
+				src/core/execution/here_doc_handler.c \
 				src/builtins/run_builtin.c \
 
 HEAD = $(shell find . -name "*.h")

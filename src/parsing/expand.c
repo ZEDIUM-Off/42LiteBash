@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/23 15:33:21 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 16:15:34 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	expand(t_str *to_exp)
+void	expand(t_sh_context *shx, t_str *to_exp)
 {
 	t_uint	j;
 	bool	found;
 	t_list	*tmp;
 
-	tmp = g_shx->envp;
+	tmp = shx->envp;
 	while (tmp)
 	{
 		j = 0;
@@ -42,7 +42,7 @@ void	expand(t_str *to_exp)
 	}
 }
 
-void	chunck_expand(t_chunk **chunk)
+void	chunck_expand(t_sh_context *shx, t_chunk **chunk)
 {
 	t_uint	i;
 
@@ -53,13 +53,13 @@ void	chunck_expand(t_chunk **chunk)
 		{
 			if (get_meta_char(&(*chunk)->txt[i][0]) == DOLLAR
 				&& (*chunk)->txt[i][1] != '\0')
-				expand(&(*chunk)->txt[i]);
+				expand(shx, &(*chunk)->txt[i]);
 			i++;
 		}
 	}
 }
 
-void	cmd_expand(t_cmd **cmd)
+void	cmd_expand(t_sh_context *shx, t_cmd **cmd)
 {
 	t_uint	i;
 	t_chunk	*tmp;
@@ -70,14 +70,14 @@ void	cmd_expand(t_cmd **cmd)
 	{
 		if (tmp && i == tmp->start)
 		{
-			chunck_expand(&tmp);
+			chunck_expand(shx, &tmp);
 			while (i < tmp->end)
 				i++;
 			tmp = tmp->next;
 		}
 		if (get_meta_char(&(*cmd)->cmd[i][0]) == DOLLAR
 			&& (*cmd)->cmd[i][1] != '\0')
-			expand(&(*cmd)->cmd[i]);
+			expand(shx, &(*cmd)->cmd[i]);
 		i++;
 	}
 }

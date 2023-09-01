@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   dlst_base_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:47:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/13 15:20:26 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/08/31 15:23:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_dlist	*dlst_create(void *data)
+t_dlist	*dlst_create(t_sh_context *shx, void *data)
 {
 	t_dlist	*new;
 
-	new = g_shx->gc->malloc(sizeof(t_dlist), true);
+	new = shx->gc->malloc(shx, sizeof(t_dlist), true);
 	if (!new)
 		return (NULL);
 	new->data = data;
@@ -37,7 +37,7 @@ void	dlst_print(t_dlist **dlst, t_str text)
 	}
 }
 
-void	dlst_clear(t_dlist **dlst)
+void	dlst_clear(t_sh_context *shx, t_dlist **dlst)
 {
 	t_dlist	*tmp;
 	t_dlist	*tmp2;
@@ -46,8 +46,8 @@ void	dlst_clear(t_dlist **dlst)
 	while (tmp)
 	{
 		tmp2 = tmp->next;
-		g_shx->gc->free(tmp->data);
-		g_shx->gc->free(tmp);
+		shx->gc->free(shx, tmp->data);
+		shx->gc->free(shx, tmp);
 		tmp = tmp2;
 	}
 	*dlst = NULL;

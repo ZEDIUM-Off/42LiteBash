@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/24 11:54:51 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/08/31 15:31:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define PROMPT_COLOR_RESET "\033[0m"
 # define PROMPT_COLOR_ERROR "\033[1;31m"
 # define PROMPT_COLOR_WARNING "\033[1;33m"
-# define MAX_PROC 1000
+# define MAX_PROC_NB 1000
 
 /**
 	===AUTHORIZED FUNCTIONS===
@@ -62,8 +62,6 @@
 # include "src/utils/utils.h"
 # include "src/builtins/builtins.h"
 
-extern t_sh_context	*g_shx;
-
-void	prompt(char **env);
+void	prompt(t_sh_context *shx, char **env);
 
 #endif
