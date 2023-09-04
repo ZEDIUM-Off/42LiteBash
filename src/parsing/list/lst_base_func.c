@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:28:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 10:42:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 13:47:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 	t_list	*tmp;
 	t_uint	i;
 
-	//trace(shx, "lst_remplace", "remplace data lst", PARSE);
 	if (!lst)
 		return ;
 	tmp = *lst;
@@ -90,5 +89,4 @@ void	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 	printf("lst remplace data = %s\n", data);
 	if (tmp)
 		printf("lst remplace tmp->data = %s\n", (char *)tmp->data);
-	//log_action(shx);
 }

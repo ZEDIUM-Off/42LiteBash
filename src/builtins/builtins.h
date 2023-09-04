@@ -22,5 +22,6 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl);
 t_uint	export_cmd(t_cmd **_cmd);
 t_uint	unset_cmd(t_cmd **_cmd);
 t_str	get_pwd(void);
+void	check_exit(t_uint bi_id, t_pipeline **ppl);
 
 #endif
