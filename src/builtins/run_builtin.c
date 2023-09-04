@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:43:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 16:33:03 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 10:45:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl)
 	if (bi_id == ECHO_BI)
 		status = exec_echo(&(*ppl)->cmd);
 	else if (bi_id == PWD_BI)
-		status = pwd_builtins(shx);
+		status = pwd_builtins();
 	else if (bi_id == CD_BI)
 		status = cd_builtins(shx, (*ppl)->cmd->cmd[1]);
 	else if (bi_id == EXPORT_BI)

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:33:59 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 10:42:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_list	*add_env_to_lst(t_sh_context *shx, char **envp)
 	int		i;
 
 	i = -1;
-	trace(shx, "add_env_to_lst", "every things is in the name", PARSE);
+	//trace(shx, "add_env_to_lst", "every things is in the name", PARSE);
 	lst_env = NULL;
 	while (envp[++i])
 		lst_add_back(shx, &lst_env, envp[i], i);
-	log_action(shx);
+	//log_action(shx);
 	return (lst_env);
 }
 

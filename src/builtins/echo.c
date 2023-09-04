@@ -12,9 +12,8 @@
 
 #include <minish.h>
 
-t_uint	echo_builtins(t_sh_context *shx, t_str cmd)
+t_uint	echo_builtins(t_str cmd)
 {
-	trace(shx, "echo_builtins", "the cmd echo", EXEC);
 	if (!cmd)
 		return (1);
 	printf("%s", cmd);

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:31:14 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 10:42:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	prompt(t_sh_context *shx, char **env)
 	int		status;
 
 	(void)env;
-	trace(shx, "prompt", "display prompt", PARSE);
+	//trace(shx, "prompt", "display prompt", PARSE);
 	status = 0;
 	while (42)
 	{
@@ -61,10 +61,10 @@ void	prompt(t_sh_context *shx, char **env)
 		log_struct(shx);
 		processing(&shx->blocks);
 		printf("processing done\n");
-		log_action(shx);
+		//log_action(shx);
 		clean_blocks(shx, &shx->blocks);
 		shx->gc->free(shx, shx->line);
 	}
-	log_action(shx);
+	//log_action(shx);
 	return ;
 }

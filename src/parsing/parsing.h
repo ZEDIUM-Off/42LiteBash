@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:34:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 11:18:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,17 @@ struct s_block
 	bool			exec_result;
 };
 
+struct s_quote_test
+{
+	bool			s_quote;
+	bool			d_quote;
+};
+
 int			split_line(t_sh_context *shx, t_str **line_split, t_str line);
 void		free_split_line(t_sh_context *shx, t_str **line_split);
 int			pars_line(t_sh_context *shx, t_block **out, t_str *splited);
 void		skip_to_space(t_str str, t_uint *i);
+void		skip_space(t_str str, t_uint *i);
 
 t_uint		get_meta_char(char *c);
 void		cmd_expand(t_sh_context *shx, t_cmd **cmd);
