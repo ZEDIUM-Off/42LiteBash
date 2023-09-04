@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/09/04 14:02:51 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/09/04 23:45:47 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/fill_struct/chunk.c \
 				src/parsing/fill_struct/check_builtins.c \
 				src/parsing/pipeline/parse_pipe.c\
+				src/parsing/pipeline/parse_redirect.c\
 				src/parsing/pipeline/pipeline.c \
 				src/parsing/new_file.c \
 				src/parsing/skip_to_space.c \
@@ -74,6 +75,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/builtins/unset.c \
 				src/parsing/list/lst_index.c \
 				src/core/execution/exec_cmd.c \
+				src/core/files.c \
 				src/core/execution/run_pipeline.c \
 				src/core/execution/run_pipeline_utils.c \
 				src/core/execution/process_utils.c \

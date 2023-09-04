@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 14:25:38 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 23:35:04 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ void	init_sh_context(
 			);
 
 t_uint	exec_echo(t_cmd **_cmd);
+t_uint	close_files(t_pipeline **ppl);
+t_uint	open_file(t_file *file, t_uint type);
 
 #endif

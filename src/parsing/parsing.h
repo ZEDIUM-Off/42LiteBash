@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/04 11:18:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 15:32:58 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ t_list		*add_env_to_lst_export(t_sh_context *shx, char **envp);
 void		swap_nodes(t_list *current_node, t_list *next_node);
 void		sort_env_export(t_sh_context *shx);
 
-t_file		new_file(t_str name);
-
+t_uint		new_file(t_file *file, t_str name);
 void		check_env(t_sh_context *shx);
 
 #endif

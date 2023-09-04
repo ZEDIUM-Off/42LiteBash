@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 17:01:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 15:16:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct	s_redirect
 {
 	t_uint	in_type;
 	t_uint	out_type;
+	t_str	here_doc_txt;
 	t_file	infile;
 	t_file	outfile;
 };
@@ -65,9 +66,13 @@ struct	s_chunk
 };
 
 int			parse_pipeline(t_sh_context *shx, t_block **blocks, t_str *splited);
-
-t_uint		create_ppl(t_sh_context *shx, t_pipeline **new, t_uint size, t_str *splited);
-t_uint		add_ppl(t_sh_context *shx, t_pipeline **pipeline, t_uint size, t_str *splited);
+int			extract_redirect(
+				t_pipeline **ppl,
+				t_str **cmd_no_redir, t_str *splited, t_uint size);
+t_uint		create_ppl(t_sh_context *shx, t_pipeline **new,
+				t_uint size, t_str *splited);
+t_uint		add_ppl(t_sh_context *shx, t_pipeline **pipeline,
+				t_uint size, t_str *splited);
 int			parse_pipe(t_sh_context *shx,
 				t_pipeline **ppl, t_str *splited, t_uint size);
 

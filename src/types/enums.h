@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/01 12:25:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 16:01:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ enum e_user_error_codes
 	NO_FILE_DIR,
 	IMPLICIT_REDIRECT,
 	SYNTAX_OK,
-	CMD_NOT_FOUND = 1,
+	CMD_NOT_FOUND,
 };
 
 enum e_parsing_error

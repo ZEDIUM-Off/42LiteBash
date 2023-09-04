@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 15:31:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 23:47:07 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define PROMPT_COLOR_ERROR "\033[1;31m"
 # define PROMPT_COLOR_WARNING "\033[1;33m"
 # define MAX_PROC_NB 1000
+# define HERE_DOC_TMP_FILE "/tmp/minishell_here_doc.tmp"
 
 /**
 	===AUTHORIZED FUNCTIONS===

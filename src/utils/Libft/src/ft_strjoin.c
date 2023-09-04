@@ -15,19 +15,19 @@
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
-	int		i;
-	int		k;
+	size_t	i;
+	size_t	j;
 
-	if (!s1 || !s2)
-		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		str[i] = s1[i];
-	k = 0;
-	while (s2[k])
-		str[i++] = s2[k++];
-	return (str[i] = '\0', str);
+		return (0);
+	i = 0;
+	j = 0;
+	while (s1 && s1[i])
+		str[j++] = s1[i++];
+	i = 0;
+	while (s2 && s2[i])
+		str[j++] = s2[i++];
+	str[j] = '\0';
+	return (str);
 }
