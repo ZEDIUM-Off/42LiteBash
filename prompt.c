@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/09/04 11:51:49 by  mchenava        ###   ########.fr       */
+=======
+/*   Updated: 2023/09/04 11:51:34 by bfaure           ###   ########lyon.fr   */
+>>>>>>> d745d3fcf9d175344ac746388b6cd3442a337fd7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +40,7 @@ void	prompt(t_sh_context *shx, char **env)
 		// Gérez les wildcards (*)
 
 		// Exécutez la commande avec fork et exec
-		str_prompt = lst_get(&shx->envp, lst_get_index(&shx->envp, "PWD=", 4));
+		str_prompt = ft_strdup((t_str)lst_get(&shx->envp, lst_get_index(&shx->envp, "PWD=", 4)));
 		str_prompt += 4;
 		str_prompt = ft_strjoin(str_prompt, "$ ");
 		if (!str_prompt)

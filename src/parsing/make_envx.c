@@ -71,6 +71,6 @@ void	check_envx(t_sh_context *shx)
 			make_envx(shx, OLD_PWD);
 		if (shlvl < 1)
 			make_envx(shx, SHLVL);
-	}
+		}
 	return ;
 }
