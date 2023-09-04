@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/01 12:35:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 10:42:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	init_shell(
 	shx->envx = add_env_to_lst(shx, envp);
 	sort_env_export(shx);
 	check_env(shx);
-	log_action(shx);
+	//log_action(shx);
 }

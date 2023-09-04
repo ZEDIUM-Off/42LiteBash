@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:32:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 10:42:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_uint	new_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited)
 	t_uint	status;
 
 	i = 0;
-	trace(shx, "*new_cmd", "fill cmd struct", PARSE);
+	//trace(shx, "*new_cmd", "fill cmd struct", PARSE);
 	while (splited[i])
 		i++;
 	status = create_cmd(shx, _cmd, i);
@@ -124,6 +124,6 @@ t_uint	new_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited)
 	if (status != 0)
 		return (status);
 	cmd_expand(shx, _cmd);
-	log_action(shx);
+	//log_action(shx);
 	return (0);
 }

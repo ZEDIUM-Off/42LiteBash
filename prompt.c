@@ -6,7 +6,7 @@
 /*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/04 11:44:46 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/04 11:51:34 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	prompt(t_sh_context *shx, char **env)
 	int		status;
 
 	(void)env;
-	trace(shx, "prompt", "display prompt", PARSE);
+	//trace(shx, "prompt", "display prompt", PARSE);
 	status = 0;
 	while (42)
 	{
@@ -62,10 +62,10 @@ void	prompt(t_sh_context *shx, char **env)
 		log_struct(shx);
 		processing(&shx->blocks);
 		printf("processing done\n");
-		log_action(shx);
+		//log_action(shx);
 		clean_blocks(shx, &shx->blocks);
 		shx->gc->free(shx, shx->line);
 	}
-	log_action(shx);
+	//log_action(shx);
 	return ;
 }

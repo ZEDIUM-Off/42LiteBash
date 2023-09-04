@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 16:19:28 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:31:58 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 10:42:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_uint	export_cmd(t_cmd **_cmd)
 	t_sh_context	*shx;
 
 	shx = (*_cmd)->shx;
-	trace(shx, "export_cmd", "cmd export", EXEC);
+	//trace(shx, "export_cmd", "cmd export", EXEC);
 	index = lst_get_last(&shx->envp)->index + 1;
 	i = 1;
 	if (!(*_cmd)->cmd[1])
@@ -70,6 +70,6 @@ t_uint	export_cmd(t_cmd **_cmd)
 		}
 	}
 	sort_env_export(shx);
-	log_action(shx);
+	//log_action(shx);
 	return (0);
 }

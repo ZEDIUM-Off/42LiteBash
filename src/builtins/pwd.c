@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:14:36 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:32:08 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 10:44:50 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,13 @@ t_str	get_pwd(void)
 	return (pwd);
 }
 
-t_uint	pwd_builtins(t_sh_context *shx)
+t_uint	pwd_builtins(void)
 {
 	t_str	pwd;
 
-	trace(shx, "pwd_builtins", "pwd cmd", EXEC);
 	pwd = get_pwd();
 	printf("pwd = %s\n", pwd);
 	if (pwd)
 		free(pwd);
-	log_action(shx);
 	return (1);
 }

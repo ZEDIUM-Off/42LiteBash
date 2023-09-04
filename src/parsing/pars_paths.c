@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:09:23 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:35:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 10:50:16 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_list	*add_paths_to_lst(t_sh_context *shx, char **paths)
 	int		i;
 
 	i = -1;
-	trace(shx, "add_paths_to_lst", "every things is in the name", PARSE);
 	lst_paths = lst_create(shx, ft_strdup(paths[0]), i);
 	if (!lst_paths)
 		return (NULL);
@@ -27,7 +26,6 @@ t_list	*add_paths_to_lst(t_sh_context *shx, char **paths)
 		lst_add_back(shx, &lst_paths, ft_strdup(paths[i]), i);
 	}
 	ft_free_tab(paths);
-	log_action(shx);
 	return (lst_paths);
 }
 
@@ -37,7 +35,6 @@ t_list	*complet_paths(t_sh_context *shx, char **paths)
 	t_uint	len;
 
 	i = 0;
-	trace(shx, "complet_path", "complet the paths with / at end", PARSE);
 	while (paths[i])
 	{
 		len = ft_strlen(paths[i]) - 1;
@@ -50,7 +47,6 @@ t_list	*complet_paths(t_sh_context *shx, char **paths)
 		i++;
 	}
 	i = 0;
-	log_action(shx);
 	return (add_paths_to_lst(shx, paths));
 }
 
@@ -61,7 +57,6 @@ t_list	*get_path(t_sh_context *shx, char **env)
 	t_str	path;
 
 	i = 0;
-	trace(shx, "get_path", "pars the path from envp", PARSE);
 	path = NULL;
 	while (env[i])
 	{
@@ -78,6 +73,5 @@ t_list	*get_path(t_sh_context *shx, char **env)
 	paths = ft_split(path, ':');
 	if (!paths)
 		return (NULL);
-	log_action(shx);
 	return (complet_paths(shx, paths));
 }
