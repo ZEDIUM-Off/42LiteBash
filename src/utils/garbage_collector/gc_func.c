@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc_func.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 15:31:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 13:10:17 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	gc_free_all(t_sh_context *shx)
 	while (ptrs)
 	{
 		tmp = ptrs;
-		free(tmp->ptr);
+		if (tmp->ptr)
+			free(tmp->ptr);
 		if (ptrs->counted)
 			gc->nb_ptrs--;
 		ptrs = ptrs->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/04 12:57:44 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 13:14:48 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	prompt(t_sh_context *shx, char **env)
 		processing(&shx->blocks);
 		printf("processing done\n");
 		clean_blocks(shx, &shx->blocks);
-		shx->gc->free(shx, shx->line);
+		free(shx->line);
+		shx->line = NULL;
 	}
 	return ;
 }
