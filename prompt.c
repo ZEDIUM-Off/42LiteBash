@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/04 10:42:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 11:51:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	prompt(t_sh_context *shx, char **env)
 	int		status;
 
 	(void)env;
-	//trace(shx, "prompt", "display prompt", PARSE);
 	status = 0;
 	while (42)
 	{
@@ -42,11 +41,11 @@ void	prompt(t_sh_context *shx, char **env)
 		str_prompt = ft_strjoin(str_prompt, "$ ");
 		if (!str_prompt)
 			return ;
-		// freopen("/dev/tty", "r", stdin);
-		shx->line = readline(str_prompt);
+		while (!shx->line || !shx->line[0])
+			shx->line = readline(str_prompt);
 		add_history(shx->line);
 		free(str_prompt);
-		printf("%s\n", shx->line);
+		printf("[%s]\n", shx->line);
 		shx->status = check_syntax(shx->line);
 		if (shx->status == SYNTAX_ERROR)
 			printf("Syntax error\n");
@@ -57,14 +56,12 @@ void	prompt(t_sh_context *shx, char **env)
 		status = pars_line(shx, &shx->blocks, shx->line_split);
 		printf("status = %i\n", status);
 		if (status != 0)
-			continue ;
+			return ;
 		log_struct(shx);
 		processing(&shx->blocks);
 		printf("processing done\n");
-		//log_action(shx);
 		clean_blocks(shx, &shx->blocks);
 		shx->gc->free(shx, shx->line);
 	}
-	//log_action(shx);
 	return ;
 }
