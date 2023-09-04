@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/01 11:47:01 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 13:31:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 
 	status = 0;
 	bi_id = check_builtins((*ppl)->cmd->cmd[0]);
+	check_exit(bi_id, ppl);
 	wait_any_proc(block);
 	(*ppl)->process.pid = fork();
 	if ((*ppl)->process.pid == -1)
