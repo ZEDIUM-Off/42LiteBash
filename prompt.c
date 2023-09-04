@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:31:14 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/04 11:44:46 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,16 @@ void	prompt(t_sh_context *shx, char **env)
 		// Gérez les wildcards (*)
 
 		// Exécutez la commande avec fork et exec
-		str_prompt = lst_get(&shx->envp, lst_get_index(&shx->envp, "PWD=", 4));
+		str_prompt = ft_strdup((t_str)lst_get(&shx->envp, lst_get_index(&shx->envp, "PWD=", 4)));
 		str_prompt += 4;
 		str_prompt = ft_strjoin(str_prompt, "$ ");
 		if (!str_prompt)
 			return ;
 		// freopen("/dev/tty", "r", stdin);
 		shx->line = readline(str_prompt);
-		add_history(shx->line);
 		free(str_prompt);
+		if (shx->line && shx->line[0])
+			add_history(shx->line);
 		printf("%s\n", shx->line);
 		shx->status = check_syntax(shx->line);
 		if (shx->status == SYNTAX_ERROR)
