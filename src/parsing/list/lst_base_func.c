@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_base_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:28:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 13:47:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/06 20:01:46 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,29 @@ t_list	*lst_create(t_sh_context *shx, void *data, t_uint index)
 	return (new);
 }
 
-void	lst_print(t_list **lst, t_str text)
+t_uint	lst_print(t_list **lst, t_str text)
 
 {
 	t_list	*tmp;
 
+	if (!lst)
+		return (NULL_DATA);
 	tmp = *lst;
 	while (tmp)
 	{
 		printf(text, tmp->index, tmp->data);
 		tmp = tmp->next;
 	}
+	return (0);
 }
 
-void	lst_clear(t_sh_context *shx, t_list **lst)
+t_uint	lst_clear(t_sh_context *shx, t_list **lst)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
 
+	if (!lst)
+		return (NULL_DATA);
 	tmp = *lst;
 	while (tmp)
 	{
@@ -52,6 +57,7 @@ void	lst_clear(t_sh_context *shx, t_list **lst)
 		tmp = tmp2;
 	}
 	*lst = NULL;
+	return (0);
 }
 
 t_uint	lst_size(t_list **lst)
@@ -69,13 +75,15 @@ t_uint	lst_size(t_list **lst)
 	return (i);
 }
 
-void	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
+t_uint	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 {
 	t_list	*tmp;
 	t_uint	i;
 
 	if (!lst)
-		return ;
+		return (NULL_DATA);
+	if (!data)
+		return (NULL_DATA);
 	tmp = *lst;
 	i = 0;
 	while (tmp && i++ < index)
@@ -84,9 +92,12 @@ void	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 	{
 		shx->gc->free(shx, tmp->data);
 		tmp->data = ft_strdup(data);
+		if (!tmp->data)
+			return (MALLOC_FAIL);
 	}
 	printf("lst remplace index = %u\n", index);
 	printf("lst remplace data = %s\n", data);
 	if (tmp)
 		printf("lst remplace tmp->data = %s\n", (char *)tmp->data);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 17:04:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/06 19:37:45 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <minish.h>
 
 t_str	new_str(t_sh_context *shx, t_str str);
-void	init_shell(
+t_uint	init_shell(
 			t_sh_context *shx,
 			t_str *envp,
 			t_str *argv,

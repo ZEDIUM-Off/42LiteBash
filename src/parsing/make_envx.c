@@ -12,65 +12,84 @@
 
 #include <minish.h>
 
-static void	make_envx(t_sh_context *shx, t_uint env_var_name)
+static t_uint	make_envx(t_sh_context *shx, t_uint env_var_name)
 {
 	t_str	env_name;
+	t_uint	status;
 
+	status = 0;
 	if (env_var_name == PWD)
 	{
 		env_name = ft_strdup("PWD=");
 		env_name = ft_strfjoin(env_name, get_pwd());
-		lst_add_back(shx, &shx->envx, env_name, 0);
+		status += lst_add_back(shx, &shx->envx, env_name, 0);
 	}
 	if (env_var_name == SHLVL)
-		lst_add_back(shx, &shx->envx, "SHLVL=1", 1);
+		status += lst_add_back(shx, &shx->envx, "SHLVL=2", 1);
 	if (env_var_name == OLD_PWD)
-		lst_add_back(shx, &shx->envx, "OLD_PWD=", 2);
+		status += lst_add_back(shx, &shx->envx, "OLD_PWD=", 2);
 	if (env_var_name == ALL)
 	{
 		env_name = ft_strdup("PWD=");
 		env_name = ft_strfjoin(env_name, get_pwd());
-		lst_add_back(shx, &shx->envx, env_name, 0);
-		lst_add_back(shx, &shx->envx, "SHLVL=2", 1);
-		lst_add_back(shx, &shx->envx, "OLDPWD=", 2);
+		status += lst_add_back(shx, &shx->envx, env_name, 0);
+		status += lst_add_back(shx, &shx->envx, "SHLVL=2", 1);
+		status += lst_add_back(shx, &shx->envx, "OLDPWD=", 2);
 	}
-	return ;
+	return (status);
 }
 
-void	check_envx(t_sh_context *shx)
+static t_uint	check_status_env(t_sh_context *shx, t_status_env *data)
 {
-	t_list	*tmp;
-	t_uint	pwd;
-	t_uint	shlvl;
-	t_uint	old_pwd;
+	t_uint	status;
 
-	pwd = 0;
-	shlvl = 0;
-	old_pwd = 0;
-	if (!shx->envx)
-		make_envx(shx, ALL);
+	status = 0;
+	if (data->pwd < 1)
+		status += make_envx(shx, PWD);
+	if (data->old_pwd < 1)
+		status += make_envx(shx, OLD_PWD);
+	if (data->shlvl < 1)
+		status += make_envx(shx, SHLVL);
+	return (status);
+}
+
+static t_uint	cmp_env(t_sh_context *shx, t_status_env *data, t_list *tmp)
+{
+	t_uint	status;
+
+	status = 0;
+	if (ft_strnstr(tmp->data, "PWD=", 4))
+		data->pwd++;
+	else if (ft_strnstr(tmp->data, "SHLVL=", 6))
+	{
+		status += lst_remplace(shx, &shx->envx, tmp->index,
+				inc_shlvl(tmp->data));
+		data->shlvl++;
+	}
+	else if (ft_strnstr(tmp->data, "OLDPWD=", 8))
+		data->old_pwd++;
+	return (status);
+}
+
+t_uint	check_envx(t_sh_context *shx)
+{
+	t_list			*tmp;
+	t_status_env	*data;
+	t_uint			status;
+
+	status = 0;
+	if (!shx->envp)
+		status += make_envx(shx, ALL);
 	else
 	{
+		data = shx->s_env;
 		tmp = shx->envx;
 		while (tmp)
 		{
-			if (ft_strnstr(tmp->data, "PWD=", 4))
-				pwd++;
-			else if (ft_strnstr(tmp->data, "SHLVL=", 6))
-			{
-				lst_remplace(shx, &shx->envx, tmp->index, inc_shlvl(tmp->data));
-				shlvl++;
-			}
-			else if (ft_strnstr(tmp->data, "OLDPWD=", 8))
-				old_pwd++;
+			status += cmp_env(shx, data, tmp);
 			tmp = tmp->next;
 		}
-		if (pwd < 1)
-			make_envx(shx, PWD);
-		if (old_pwd < 1)
-			make_envx(shx, OLD_PWD);
-		if (shlvl < 1)
-			make_envx(shx, SHLVL);
-		}
-	return ;
+		check_status_env(shx, data);
+	}
+	return (status);
 }

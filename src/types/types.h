@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 11:04:29 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/05 12:15:32 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_pipeline			t_pipeline;
 typedef struct s_cmd				t_cmd;
 typedef struct s_process			t_process;
 typedef struct s_quote_test			t_quote_test;
+typedef struct s_status_env			t_status_env;
 
 typedef void (*						t_free_func)(
 	t_sh_context	*shx,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/04 15:32:58 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/06 19:34:34 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ struct s_block
 	bool			exec_result;
 };
 
+struct s_status_env
+{
+	t_uint	pwd;
+	t_uint	shlvl;
+	t_uint	old_pwd;
+};
+
 struct s_quote_test
 {
 	bool			s_quote;
@@ -40,7 +47,6 @@ void		skip_space(t_str str, t_uint *i);
 t_uint		get_meta_char(char *c);
 void		cmd_expand(t_sh_context *shx, t_cmd **cmd);
 
-void		make_env(t_sh_context *shx, t_uint env_var_name);
 t_str		inc_shlvl(void *data);
 t_str		*split_parser(t_sh_context *shx, t_str line);
 
@@ -53,6 +59,7 @@ void		swap_nodes(t_list *current_node, t_list *next_node);
 void		sort_env_export(t_sh_context *shx);
 
 t_uint		new_file(t_file *file, t_str name);
-void		check_env(t_sh_context *shx);
+t_uint		check_env(t_sh_context *shx);
+t_uint		check_envx(t_sh_context *shx);
 
 #endif

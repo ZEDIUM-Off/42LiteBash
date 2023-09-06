@@ -3,78 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   make_envp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:20:00 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:37:12 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/06 21:26:10 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	check_env(t_sh_context *shx)
-{
-	t_list	*tmp;
-	t_uint	pwd;
-	t_uint	shlvl;
-	t_uint	old_pwd;
-
-	pwd = 0;
-	shlvl = 0;
-	old_pwd = 0;
-	if (!shx->envp)
-		make_env(shx, ALL);
-	else
-	{
-		tmp = shx->envp;
-		while (tmp)
-		{
-			if (ft_strnstr(tmp->data, "PWD=", 4))
-				pwd++;
-			else if (ft_strnstr(tmp->data, "SHLVL=", 6))
-			{
-				lst_remplace(shx, &shx->envp, tmp->index, inc_shlvl(tmp->data));
-				shlvl++;
-			}
-			else if (ft_strnstr(tmp->data, "OLDPWD=", 8))
-				old_pwd++;
-			tmp = tmp->next;
-		}
-		// printf("pwd = %i, shlvl = %i, old_pwd = %i\n", pwd, shlvl, old_pwd);
-		if (pwd < 1)
-			make_env(shx, PWD);
-		if (old_pwd < 1)
-			make_env(shx, OLD_PWD);
-		if (shlvl < 1)
-			make_env(shx, SHLVL);
-	}
-	return ;
-}
-
-t_str	inc_shlvl(void *data)
-{
-	int		num_i;
-	t_str	num_c;
-	t_str	new_shlvl;
-
-	new_shlvl = ft_strdup("SHLVL=");
-	data += 6;
-	num_i = ft_atoi(data);
-	num_i++;
-	num_c = ft_itoa(num_i);
-	new_shlvl = ft_strfjoin(new_shlvl, num_c);
-	return (new_shlvl);
-}
-
-void	make_env(t_sh_context *shx, t_uint env_var_name)
+static t_uint	make_env(t_sh_context *shx, t_uint env_var_name)
 {
 	t_str	env_name;
+	t_uint	status;
 
+	status = 0;
 	if (env_var_name == PWD)
 	{
 		env_name = ft_strdup("PWD=");
 		env_name = ft_strfjoin(env_name, get_pwd());
-		lst_add_back(shx, &shx->envp, env_name, 0);
+		status += lst_add_back(shx, &shx->envp, env_name, 0);
 	}
 	if (env_var_name == SHLVL)
 		lst_add_back(shx, &shx->envp, "SHLVL=1", 1);
@@ -84,64 +32,66 @@ void	make_env(t_sh_context *shx, t_uint env_var_name)
 	{
 		env_name = ft_strdup("PWD=");
 		env_name = ft_strfjoin(env_name, get_pwd());
-		lst_add_back(shx, &shx->envp, env_name, 0);
-		lst_add_back(shx, &shx->envp, "SHLVL=1", 1);
-		lst_add_back(shx, &shx->envp, "OLDPWD=", 2);
+		status += lst_add_back(shx, &shx->envp, env_name, 0);
+		status += lst_add_back(shx, &shx->envp, "SHLVL=2", 1);
+		status += lst_add_back(shx, &shx->envp, "OLDPWD=", 2);
 	}
-	return ;
+	return (status);
 }
 
-// void	check_envp(void)
-// {
-// 	t_list	*tmp;
-// 	t_uint	pwd;
-// 	t_uint	shlvl;
-// 	t_uint	old_pwd;
+static t_uint	check_status_env(t_sh_context *shx, t_status_env *data)
+{
+	t_uint	status;
 
-// 	pwd = 0;
-// 	shlvl = 0;
-// 	old_pwd = 0;
-// 	if (!g_shx->envp)
-// 		make_envp(ALL);
-// 	else
-// 	{
-// 		tmp = g_shx->envp;
-// 		while (tmp)
-// 		{
-// 			if (ft_strnstr(tmp->data, "PWD=", 4))
-// 				pwd++;
-// 			else if (ft_strnstr(tmp->data, "SHLVL=", 6))
-// 			{
-// 				lst_remplace(&g_shx->envp, tmp->index, inc_shlvl(tmp->data));
-// 				shlvl++;
-// 			}
-// 			else if (ft_strnstr(tmp->data, "OLDPWD=", 8))
-// 				old_pwd++;
-// 			tmp = tmp->next;
-// 		}
-// 		if (pwd < 1)
-// 			make_envp(PWD);
-// 		if (old_pwd < 1)
-// 			make_envp(OLD_PWD);
-// 		if (shlvl < 1)
-// 			make_envp(SHLVL);
-// 	}
-// 	return ;
-// }
+	status = 0;
+	if (data->pwd < 1)
+		status += make_env(shx, PWD);
+	if (data->old_pwd < 1)
+		status += make_env(shx, OLD_PWD);
+	if (data->shlvl < 1)
+		status += make_env(shx, SHLVL);
+	return (status);
+}
 
-// t_str	inc_shlvl(void *data)
-// {
-// 	int		num_i;
-// 	t_str	num_c;
-// 	t_str	new_shlvl;
+static t_uint	cmp_env(t_sh_context *shx, t_status_env *data, t_list *tmp)
+{
+	t_uint	status;
 
-// 	new_shlvl = ft_strdup("SHLVL=");
-// 	data += 6;
-// 	num_i = ft_atoi(data);
-// 	num_i++;
-// 	num_c = ft_itoa(num_i);
-// 	new_shlvl = ft_strfjoin(new_shlvl, num_c);
-// 	free(num_c);
-// 	return (new_shlvl);
-// }
+	status = 0;
+	if (ft_strnstr(tmp->data, "PWD=", 4))
+		data->pwd++;
+	else if (ft_strnstr(tmp->data, "SHLVL=", 6))
+	{
+		status += lst_remplace(shx, &shx->envp, tmp->index,
+				inc_shlvl(tmp->data));
+		data->shlvl++;
+	}
+	else if (ft_strnstr(tmp->data, "OLDPWD=", 8))
+		data->old_pwd++;
+	return (status);
+}
+
+t_uint	check_env(t_sh_context *shx)
+{
+	t_list			*tmp;
+	t_status_env	*data;
+	t_uint			status;
+
+	status = 0;
+	if (!shx->envp)
+		status += make_env(shx, ALL);
+	else
+	{
+		data = shx->s_env;
+		tmp = shx->envp;
+		while (tmp)
+		{
+			status += cmp_env(shx, data, tmp);
+			tmp = tmp->next;
+		}
+		check_status_env(shx, data);
+	}
+	return (status);
+}
+
 

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lst_set_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:43:36 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 11:38:09 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/06 20:01:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 #include <string.h>
 
-void	*lst_get(t_list **lst, t_uint index)
+t_uint	*lst_get(t_list **lst, t_uint index)
 {
 	t_list	*tmp;
 	t_uint	i;
@@ -32,7 +32,7 @@ t_uint	lst_get_index(t_list **lst, t_str name, t_uint len)
 	t_list	*tmp;
 
 	if (!lst || !name)
-		return (0);
+		return (NULL_DATA);
 	tmp = *lst;
 	while (tmp)
 	{
@@ -43,19 +43,20 @@ t_uint	lst_get_index(t_list **lst, t_str name, t_uint len)
 	return (0);
 }
 
-void	lst_set(t_list **lst, t_uint index, void *data)
+t_uint	lst_set(t_list **lst, t_uint index, void *data)
 {
 	t_list	*tmp;
 	t_uint	i;
 
 	if (!lst)
-		return ;
+		return (NULL_DATA);
 	tmp = *lst;
 	i = 0;
 	while (tmp && i++ < index)
 		tmp = tmp->next;
 	if (tmp)
 		tmp->data = data;
+	return (0);
 }
 
 t_list	*lst_get_first(t_list **lst)

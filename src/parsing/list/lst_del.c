@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lst_del.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:38:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 15:27:45 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/06 20:01:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
+t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 {
 	t_list	*current;
 	t_list	*previous;
@@ -20,7 +20,7 @@ void	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 	current = *lst;
 	previous = NULL;
 	if (!lst)
-		return ;
+		return (NULL_DATA);
 	while (current != NULL)
 	{
 		if (current->index == index)
@@ -31,19 +31,19 @@ void	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 				previous->next = current->next;
 			shx->gc->free(shx, current->data);
 			shx->gc->free(shx, current);
-			return ;
+			return (0);
 		}
 		previous = current;
 		current = current->next;
 	}
-	return ;
+	return (0);
 }
-void	lst_remove_first(t_sh_context *shx, t_list **lst)
+t_uint	lst_remove_first(t_sh_context *shx, t_list **lst)
 {
 	t_list	*tmp;
 
 	if (!lst)
-		return ;
+		return (NULL_DATA);
 	tmp = *lst;
 	if (tmp)
 	{
@@ -51,13 +51,14 @@ void	lst_remove_first(t_sh_context *shx, t_list **lst)
 		shx->gc->free(shx, tmp->data);
 		shx->gc->free(shx, tmp);
 	}
+	return (0);
 }
-void	lst_remove_last(t_sh_context *shx, t_list **lst)
+t_uint	lst_remove_last(t_sh_context *shx, t_list **lst)
 {
 	t_list	*tmp;
 
 	if (!lst)
-		return ;
+		return (NULL_DATA);
 	tmp = *lst;
 	if (tmp)
 	{
@@ -67,4 +68,5 @@ void	lst_remove_last(t_sh_context *shx, t_list **lst)
 		shx->gc->free(shx, tmp->next);
 		tmp->next = NULL;
 	}
+	return (0);
 }

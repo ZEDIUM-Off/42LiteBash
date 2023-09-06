@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 16:01:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/06 20:01:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,15 @@ enum e_step_type
 
 enum e_internal_error_codes
 {
-	GARB_ALLOC_ERROR,
-	TRACKER_ALLOC_ERROR,
-	MALLOC_FAIL,
-	PIPE_FAIL,
-	FORK_FAIL,
-	EXECVE_FAIL,
-	WAITPID_FAIL,
-	PROC_NOT_TERMINATED,
+	GARB_ALLOC_ERROR = 1,
+	TRACKER_ALLOC_ERROR = 2,
+	MALLOC_FAIL = 3,
+	PIPE_FAIL = 4,
+	FORK_FAIL = 5,
+	EXECVE_FAIL = 6,
+	WAITPID_FAIL = 7,
+	PROC_NOT_TERMINATED = 8,
+	NULL_DATA = 9,
 };
 
 enum e_user_error_codes

@@ -31,23 +31,23 @@ struct	s_dlist
 };
 
 t_list	*lst_create(t_sh_context *shx, void *data, t_uint index);
-void	lst_add_front(t_sh_context *shx,
+t_uint	lst_add_front(t_sh_context *shx,
 			t_list **lst, void *data, t_uint index);
-void	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index);
-void	lst_print(t_list **lst, t_str text);
-void	lst_clear(t_sh_context *shx, t_list **lst);
-void	lst_insert(t_sh_context *shx, t_list **lst, void *data, t_uint index);
-void	lst_remove(t_sh_context *shx, t_list **lst, t_uint index);
-void	lst_remove_first(t_sh_context *shx, t_list **lst);
-void	lst_remove_last(t_sh_context *shx, t_list **lst);
-void	*lst_get(t_list **lst, t_uint index);
-void	lst_set(t_list **lst, t_uint index, void *data);
-void	index_list_value(t_list **lst);
+t_uint	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index);
+t_uint	lst_print(t_list **lst, t_str text);
+t_uint	lst_clear(t_sh_context *shx, t_list **lst);
+t_uint	lst_insert(t_sh_context *shx, t_list **lst, void *data, t_uint index);
+t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index);
+t_uint	lst_remove_first(t_sh_context *shx, t_list **lst);
+t_uint	lst_remove_last(t_sh_context *shx, t_list **lst);
+t_uint	*lst_get(t_list **lst, t_uint index);
+t_uint	lst_set(t_list **lst, t_uint index, void *data);
+t_uint	index_list_value(t_list **lst);
 t_list	*lst_get_first(t_list **lst);
 t_list	*lst_get_last(t_list **lst);
 t_uint	lst_size(t_list **lst);
 t_uint	lst_get_index(t_list **lst, t_str name, t_uint len);
-void	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data);
+t_uint	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data);
 
 t_dlist	*dlst_create(t_sh_context *shx, void *data);
 void	dlst_add_front(t_sh_context *shx, t_dlist **dlst, void *data);

@@ -12,11 +12,13 @@
 
 #include <minish.h>
 
-void	index_list_value(t_list **lst)
+t_uint	index_list_value(t_list **lst)
 {
 	t_list	*tmp;
 	t_uint	index;
 
+	if (!lst)
+		return (NULL_DATA);
 	tmp = *lst;
 	index = 0;
 	while (tmp)
@@ -24,5 +26,5 @@ void	index_list_value(t_list **lst)
 		tmp->index = index++;
 		tmp = tmp->next;
 	}
-	return ;
+	return (0);
 }
