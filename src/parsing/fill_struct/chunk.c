@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/31 16:10:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/07 17:03:39 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,18 @@ t_uint	create_chunk(
 	return (0);
 }
 
-t_uint	fill_chunk(
-	t_sh_context *shx, t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited)
+t_uint	fill_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited)
 {
 	t_uint	i;
-	t_uint	status;
 
 	i = 0;
 	while (chunk_lim[0] != chunk_lim[1])
-		(*chunk)->txt[i++] = ft_strdup(splited[chunk_lim[0]++]);
-	(*chunk)->txt[i] = NULL;
-	if ((*chunk)->type == PARENTHESIS)
 	{
-		status = pars_line(shx, &(*chunk)->blocks, (*chunk)->txt);
-		if (status != 0)
-			return (status);
+		(*chunk)->txt[i] = ft_strdup(splited[chunk_lim[0]++]);
+		if (!(*chunk)->txt[i++])
+			return (MALLOC_FAIL);
 	}
+	(*chunk)->txt[i] = NULL;
 	return (0);
 }
 
@@ -69,12 +65,10 @@ t_uint	new_chunk(
 	t_chunk	*new;
 	t_chunk	*tmp;
 
-	if (type == C_PARENTHESIS)
-		type = PARENTHESIS;
 	status = create_chunk(shx, &new, chunk_lim, type);
 	if (status != 0)
 		return (status);
-	status = fill_chunk(shx, &new, chunk_lim, splited);
+	status = fill_chunk(&new, chunk_lim, splited);
 	if (status != 0)
 		return (status);
 	if (!(*chunk))
