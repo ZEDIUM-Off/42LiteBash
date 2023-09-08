@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 14:30:17 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 15:57:30 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ enum e_meta_type
 	HERE_DOC, // <<
 	DOLLAR_Q, // $?
 	DOLLAR_D, // $$
-	OR, // ||
-	AND, // &&
+	// OR, // ||
+	// AND, // &&
 	PIPE, // |
 	DOLLAR, //$
 	SINGLE_QUOTE, // '
 	DOUBLE_QUOTE, // "
-	O_PARENTHESIS, // (
-	C_PARENTHESIS, // )
-	PARENTHESIS, // ()
-	WILD_CARD, // *
+	// O_PARENTHESIS, // (
+	// C_PARENTHESIS, // )
+	// PARENTHESIS, // ()
+	// WILD_CARD, // *
 };
 
 extern t_str g_meta_char[];

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:35:55 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/06/08 16:46:19 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/07 17:04:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ struct s_syntax_checker
 
 t_uint	check_syntax(t_str line_read);
 void	control_quoting(char *c, t_syntax_checker *syx);
-void	control_parenthesis(char *c, t_syntax_checker *syx);
 void	control_redirection(char *c, t_syntax_checker *syx);
 void	control_pipe(char *c, t_syntax_checker *syx);
-void	control_boolean(char *c, t_syntax_checker *syx);
 
 #endif

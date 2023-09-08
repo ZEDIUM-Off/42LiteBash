@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:54:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 17:05:45 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 15:57:23 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_uint	set_in_redir(t_pipeline **ppl, t_uint meta, t_str *splited, t_uint *i)
 {
 	t_uint	status;
 
-	printf ("set_in_redir, i = %d\n", *i);
 	(*ppl)->redir.in_type = meta;
 	meta = get_meta_char(&splited[*i][0]);
 	if ((meta == SINGLE_QUOTE || meta == DOUBLE_QUOTE))
@@ -33,7 +32,6 @@ t_uint	set_in_redir(t_pipeline **ppl, t_uint meta, t_str *splited, t_uint *i)
 		return (status);
 	if (get_meta_char(&(*ppl)->redir.infile.file_name[0]) != NONE)
 		return (NO_FILE_DIR);
-	printf ("set_in_redir, after i = %d\n", *i);
 	return (0);
 }
 
@@ -58,13 +56,9 @@ int	set_redir(t_pipeline **ppl, t_uint meta, t_str *splited, t_uint *i)
 {
 	*i += 1;
 	if (meta == APPEND_REDIRECT || meta == OUT_REDIRECT)
-	{
 		return (set_out_redir(ppl, meta, splited, i));
-	}
 	if (meta == IN_REDIRECT || meta == HERE_DOC)
-	{
 		return (set_in_redir(ppl, meta, splited, i));
-	}
 	return (0);
 }
 
@@ -78,14 +72,11 @@ int	extract_redirect(
 
 	nb_parts = 0;
 	i = 0;
-	printf ("extract_redirect size: %d\n", size);
 	while (i < size)
 	{
-		printf ("splited[%d] = [%s]\n", i, splited[i]);
 		meta = get_meta_char(&splited[i][0]);
 		if (meta >= IN_REDIRECT && meta <= HERE_DOC)
 		{
-			printf ("redir -> %u\n", meta);
 			status = set_redir(ppl, meta, splited, &i);
 			if (status != 0)
 				return (status);

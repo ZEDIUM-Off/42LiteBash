@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/08 14:29:22 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 15:56:29 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ t_uint	fill_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited)
 	i = 0;
 	while (splited[i])
 	{
+		printf ("splited[%d] = %s\n", i, splited[i]);
 		if (cmd_curs == 0)
 		{
 			status = handle_quote(
@@ -111,7 +112,6 @@ t_uint	new_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited)
 	t_uint	status;
 
 	i = 0;
-	//trace(shx, "*new_cmd", "fill cmd struct", PARSE);
 	while (splited[i])
 		i++;
 	status = create_cmd(shx, _cmd, i);
@@ -124,6 +124,5 @@ t_uint	new_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited)
 	if (status != 0)
 		return (status);
 	cmd_expand(shx, _cmd);
-	//log_action(shx);
 	return (0);
 }

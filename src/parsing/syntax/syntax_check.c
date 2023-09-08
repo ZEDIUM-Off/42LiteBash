@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:35:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/14 14:53:15 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 17:04:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ t_uint	check_syntax(t_str line)
 	while (line[syx.cursor] && syx.status != SYNTAX_ERROR)
 	{
 		control_quoting(&line[syx.cursor], &syx);
-		control_parenthesis(&line[syx.cursor], &syx);
 		control_redirection(&line[syx.cursor], &syx);
-		control_boolean(&line[syx.cursor], &syx);
 		control_pipe(&line[syx.cursor], &syx);
 		syx.cursor++;
 	}

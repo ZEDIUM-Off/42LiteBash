@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 15:32:57 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/07 16:57:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,10 @@ t_str g_meta_char[] =
 	[HERE_DOC] = "<<",
 	[DOLLAR_Q] = "$?",
 	[DOLLAR_D] = "$$",
-	[OR] = "||",
-	[AND] = "&&",
 	[PIPE] = "|",
 	[DOLLAR] = "$",
 	[SINGLE_QUOTE] = "'",
 	[DOUBLE_QUOTE] = "\"",
-	[O_PARENTHESIS] = "(",
-	[C_PARENTHESIS] = ")",
-	[PARENTHESIS] = "()",
-	[WILD_CARD] = "*",
 };
 
 t_str	rep_char(int count, char c)
