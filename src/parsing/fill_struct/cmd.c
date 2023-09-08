@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/04 10:42:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/08 14:29:22 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@ t_uint	create_cmd(t_sh_context *shx, t_cmd **new, t_uint size)
 	return (0);
 }
 
-t_uint	get_valid_paths(t_sh_context *shx, t_str	*cmd, t_str src)
+t_uint	get_valid_paths(t_sh_context *shx, t_str *cmd, t_str src)
 {
 	t_list		*tmp;
 
 	if (src && access(src, X_OK) == 0)
-		*cmd = ft_strdup(src);
+		*cmd = ft_strdup(shx, src);
 	tmp = shx->lst_paths;
 	while (tmp)
 	{
-		*cmd = ft_strjoin(tmp->data, src);
+		*cmd = ft_strjoin(shx, tmp->data, src);
 		if (!*cmd)
 			return (MALLOC_FAIL);
 		if (access(*cmd, X_OK) == 0)
 			return (0);
-		free(*cmd);
+		shx->gc->free(shx, *cmd);
 		tmp = tmp->next;
 	}
 	return (CMD_NOT_FOUND);
@@ -64,7 +64,7 @@ t_uint	handle_quote(t_sh_context *shx, t_str *cmd, t_str *splited, t_uint *i)
 	else if (*i != 0)
 		return (SYNTAX_ERROR);
 	if (check_builtins(splited[*i]))
-		*cmd = ft_strdup(splited[*i]);
+		*cmd = ft_strdup(shx, splited[*i]);
 	else
 	{
 		status = get_valid_paths(shx, cmd, splited[*i]);
@@ -95,7 +95,7 @@ t_uint	fill_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited)
 		}
 		else if (splited[i])
 		{
-			(*_cmd)->cmd[cmd_curs++] = ft_strdup(splited[i]);
+			(*_cmd)->cmd[cmd_curs++] = ft_strdup(shx, splited[i]);
 			if (!(*_cmd)->cmd[cmd_curs - 1])
 				return (MALLOC_FAIL);
 		}

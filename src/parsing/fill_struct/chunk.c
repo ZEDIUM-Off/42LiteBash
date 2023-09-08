@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/08/31 16:10:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/07 13:39:28 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_uint	fill_chunk(
 
 	i = 0;
 	while (chunk_lim[0] != chunk_lim[1])
-		(*chunk)->txt[i++] = ft_strdup(splited[chunk_lim[0]++]);
+		(*chunk)->txt[i++] = ft_strdup(shx, splited[chunk_lim[0]++]);
 	(*chunk)->txt[i] = NULL;
 	if ((*chunk)->type == PARENTHESIS)
 	{

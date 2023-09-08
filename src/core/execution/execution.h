@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:04:01 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 23:15:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/07 17:02:47 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 t_uint	handle_chunck(t_chunk **chunk);
 void	handle_sigchld(int sig);
-t_uint	here_doc(t_str *content, t_str delimiter);
+t_uint	here_doc(t_sh_context *shx, t_str *content, t_str delimiter);
 t_uint	exec_bin(t_pipeline	**ppl);
 t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd);
 t_uint	processing(t_block **blocks);

@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:28:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/06 20:01:46 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 13:39:28 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,9 @@ t_uint	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 	if (tmp)
 	{
 		shx->gc->free(shx, tmp->data);
-		tmp->data = ft_strdup(data);
+		tmp->data = ft_strdup(shx, data);
 		if (!tmp->data)
 			return (MALLOC_FAIL);
 	}
-	printf("lst remplace index = %u\n", index);
-	printf("lst remplace data = %s\n", data);
-	if (tmp)
-		printf("lst remplace tmp->data = %s\n", (char *)tmp->data);
 	return (0);
 }

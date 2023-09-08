@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/libft.h"
+#include <libft.h>
 
 static char	*ft_strcpy(char *dst, const char *src)
 {
@@ -26,11 +26,11 @@ static char	*ft_strcpy(char *dst, const char *src)
 	return (dst);
 }
 
-char	*ft_strdup(const char *str)
+char	*ft_strdup(t_sh_context *shx, const char *str)
 {
 	char	*dest;
 
-	dest = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	dest = shx->gc->malloc(shx, sizeof(char) * (ft_strlen(str) + 1), false);
 	if (!dest)
 		return (NULL);
 	return (ft_strcpy(dest, str));

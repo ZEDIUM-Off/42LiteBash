@@ -40,7 +40,7 @@ t_uint	lst_insert(t_sh_context *shx, t_list **lst, void *data, t_uint index);
 t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index);
 t_uint	lst_remove_first(t_sh_context *shx, t_list **lst);
 t_uint	lst_remove_last(t_sh_context *shx, t_list **lst);
-t_uint	*lst_get(t_list **lst, t_uint index);
+void	*lst_get(t_list **lst, t_uint index);
 t_uint	lst_set(t_list **lst, t_uint index, void *data);
 t_uint	index_list_value(t_list **lst);
 t_list	*lst_get_first(t_list **lst);

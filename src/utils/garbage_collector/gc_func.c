@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 13:10:17 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 14:36:55 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,37 @@ void	*gc_malloc(t_sh_context *shx, size_t size, bool count)
 void	gc_free(t_sh_context *shx, void *ptr)
 {
 	t_ptr				*ptrs;
+	t_ptr				*prev;
 	t_ptr				*tmp;
-	t_ptr				*top;
 	t_garbage_collector	*gc;
 
 	gc = shx->gc;
 	ptrs = gc->ptrs;
-	top = ptrs;
+	prev = NULL;
 	while (ptrs)
 	{
 		if (ptrs->ptr == ptr)
 		{
 			tmp = ptrs;
+			if (prev)
+				prev->next = ptrs->next;
+			else
+				gc->ptrs = ptrs->next;
 			free(tmp->ptr);
 			if (ptrs->counted)
 				gc->nb_ptrs--;
+			if (prev)
+				ptrs = prev->next;
+			else
+				ptrs = gc->ptrs;
+			free(tmp);
+		}
+		else
+		{
+			prev = ptrs;
 			ptrs = ptrs->next;
 		}
-		ptrs = ptrs->next;
 	}
-	gc->ptrs = top;
 }
 
 void	gc_free_all(t_sh_context *shx)
@@ -85,6 +96,9 @@ void	gc_free_all(t_sh_context *shx)
 		if (ptrs->counted)
 			gc->nb_ptrs--;
 		ptrs = ptrs->next;
+		free(tmp);
 	}
 	gc->ptrs = top;
+	free(gc);
+	free(shx->tk);
 }

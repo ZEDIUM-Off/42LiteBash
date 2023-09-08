@@ -6,14 +6,14 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/06 20:01:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 14:30:17 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUMS_H
 # define ENUMS_H
 
-# include <minish.h>
+// # include <minish.h>
 
 enum e_meta_type
 {

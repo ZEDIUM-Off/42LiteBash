@@ -12,13 +12,13 @@
 
 #include <minish.h>
 
-t_str	inc_shlvl(void *data)
+t_str	inc_shlvl(t_sh_context *shx, void *data)
 {
 	int		num_i;
 	t_str	num_c;
 	t_str	new_shlvl;
 
-	new_shlvl = ft_strdup("SHLVL=");
+	new_shlvl = ft_strdup(shx, "SHLVL=");
 	if (!new_shlvl)
 		return (NULL);
 	data += 6;
@@ -27,7 +27,7 @@ t_str	inc_shlvl(void *data)
 	num_c = ft_itoa(num_i);
 	if (!num_c)
 		return (NULL);
-	new_shlvl = ft_strfjoin(new_shlvl, num_c);
+	new_shlvl = ft_strjoin(shx, new_shlvl, num_c);
 	free(num_c);
 	if (!new_shlvl)
 		return (NULL);

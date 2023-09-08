@@ -6,20 +6,20 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:43:36 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/06 20:01:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 12:55:58 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 #include <string.h>
 
-t_uint	*lst_get(t_list **lst, t_uint index)
+void	*lst_get(t_list **lst, t_uint index)
 {
 	t_list	*tmp;
 	t_uint	i;
 
 	if (!lst)
-		return (NULL);
+		return ((void *)NULL_DATA);
 	tmp = *lst;
 	i = 0;
 	while (tmp && i++ < index)

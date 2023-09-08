@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:31:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/06 20:01:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 15:35:51 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_uint	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 			tmp = tmp->next;
 		tmp->next = new;
 	}
+	printf("data = %s\n", (t_str)data);
 	return (0);
 }
 

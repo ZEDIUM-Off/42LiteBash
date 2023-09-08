@@ -30,75 +30,63 @@ ssize_t	ft_cont_word(char const *s, char c)
 	return (n + 1);
 }
 
-static	size_t	ft_len_word(char const	*s, char c, size_t i, size_t n)
+static int	ft_count_words(char const *str, char sep)
 {
-	if (n == 0)
-	{
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		return (i);
-	}
-	if (n == 1)
-	{
-		while (s[i] == c && c != '\0')
-			i++;
-		return (i);
-	}
-	return (0);
-}
-
-static void	ft_free(char **strs)
-{
-	size_t	i;
+	int	i;
+	int	count;
 
 	i = 0;
-	while (strs[i])
+	count = 0;
+	while (str[i])
 	{
-		free(strs[i]);
-		i++;
+		if (str[i] != sep)
+		{
+			count++;
+			while (str[i] != sep && str[i])
+				i++;
+		}
+		else
+			i++;
 	}
-	free(strs);
+	return (count);
 }
 
-static ssize_t	ft_split_iteration(char const *s, char c, char **strs,
-	ssize_t nbword)
+static char	**ft_str_cut(t_sh_context *shx,
+	char **dest, char const *src, char sep)
 {
-	ssize_t	i;
-	size_t	len;
-	size_t	start;
+	int	i;
+	int	j;
+	int	k;
 
-	len = 0;
 	i = 0;
-	start = 0;
-	while (nbword > i + 1)
+	k = 0;
+	while (src[i] && ft_count_words(src, sep) - k > 0)
 	{
-		start = ft_len_word(s, c, len, 1);
-		len = ft_len_word(s, c, start, 0) - start;
-		strs[i] = ft_substr(s, start, len);
-		if (strs[i] == NULL)
-			return (ft_free(strs), -1);
-		i++;
-		len += start;
+		while (src[i] && src[i] == sep)
+			i++;
+		j = i;
+		while (src[j] && src[j] != sep)
+			j++;
+		dest[k] = shx->gc->malloc(shx, sizeof(char)
+				* (j - i + 1), false);
+		if (!dest[k])
+			return (ft_free_tab(shx, dest), NULL);
+		j = 0;
+		while (src[i] && src[i] != sep)
+			dest[k][j++] = src[i++];
+		dest[k++][j] = '\0';
 	}
-	strs[i] = NULL;
-	return (i);
+	dest[k] = NULL;
+	return (dest);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(t_sh_context *shx, char const *s, char c)
 {
-	char	**strs;
-	ssize_t	nbword;
-	ssize_t	i;
+	char	**tabx;
 
-	if (s == NULL)
+	tabx = shx->gc->malloc(shx, sizeof(char *)
+			* (ft_count_words(s, c) + 1), false);
+	if (!tabx)
 		return (NULL);
-	nbword = ft_cont_word(s, c);
-	strs = malloc((sizeof(char *)) * (nbword) + 1);
-	if (!strs)
-		return (NULL);
-	i = ft_split_iteration(s, c, strs, nbword);
-	if (i == -1)
-		return (NULL);
-	strs[i] = NULL;
-	return (strs);
+	return (ft_str_cut(shx, tabx, s, c));
 }

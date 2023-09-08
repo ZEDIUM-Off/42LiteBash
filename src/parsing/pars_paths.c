@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_paths.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:09:23 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/04 10:50:16 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/08 12:55:37 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ t_list	*add_paths_to_lst(t_sh_context *shx, char **paths)
 	int		i;
 
 	i = -1;
-	lst_paths = lst_create(shx, ft_strdup(paths[0]), i);
+	lst_paths = lst_create(shx, ft_strdup(shx, paths[0]), i);
 	if (!lst_paths)
 		return (NULL);
 	while (paths[++i])
 	{
-		lst_add_back(shx, &lst_paths, ft_strdup(paths[i]), i);
+		lst_add_back(shx, &lst_paths, ft_strdup(shx, paths[i]), i);
 	}
-	ft_free_tab(paths);
+	ft_free_tab(shx, paths);
 	return (lst_paths);
 }
 
@@ -40,9 +40,9 @@ t_list	*complet_paths(t_sh_context *shx, char **paths)
 		len = ft_strlen(paths[i]) - 1;
 		if (paths[i][len] != '/')
 		{
-			paths[i] = ft_strfjoin(paths[i], "/");
+			paths[i] = ft_strfjoin(shx, paths[i], "/");
 			if (!paths)
-				return (ft_free_tab(paths), NULL);
+				return (ft_free_tab(shx, paths), NULL);
 		}
 		i++;
 	}
@@ -70,7 +70,7 @@ t_list	*get_path(t_sh_context *shx, char **env)
 	if (!path)
 		return (NULL);
 	path += 5;
-	paths = ft_split(path, ':');
+	paths = ft_split(shx, path, ':');
 	if (!paths)
 		return (NULL);
 	return (complet_paths(shx, paths));

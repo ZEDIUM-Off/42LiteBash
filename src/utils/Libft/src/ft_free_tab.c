@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aviscogl <aviscogl@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:39:27 by bfaure            #+#    #+#             */
-/*   Updated: 2023/06/08 20:20:58 by aviscogl         ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 14:07:06 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void	ft_free_tab_len(char **strs, int len)
 	return ;
 }
 
-void	ft_free_tab(char **strs)
+void	ft_free_tab(t_sh_context *shx, char **strs)
 {
 	size_t	i;
 
 	i = 0;
 	while (strs[i])
 	{
-		free(strs[i]);
+		shx->gc->free(shx, strs[i]);
 		i++;
 	}
-	free(strs);
+	shx->gc->free(shx, strs);
 	return ;
 }

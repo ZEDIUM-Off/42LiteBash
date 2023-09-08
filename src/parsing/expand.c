@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/01 12:36:16 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/07 13:39:28 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	expand(t_sh_context *shx, t_str *to_exp)
 			&& ft_strlen(&(*to_exp)[1]) == j)
 		{
 			found = true;
-			*to_exp = ft_strdup(&((char *)tmp->data)[++j]);
+			*to_exp = ft_strdup(shx, &((char *)tmp->data)[++j]);
 			if (!*to_exp)
 				return ;
 		}
@@ -37,7 +37,7 @@ void	expand(t_sh_context *shx, t_str *to_exp)
 	}
 	if (!found)
 	{
-		*to_exp = ft_strdup("");
+		*to_exp = ft_strdup(shx, "");
 		if (!*to_exp)
 			return ;
 	}
