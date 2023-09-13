@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 15:23:52 by bfaure            #+#    #+#              #
-#    Updated: 2023/08/23 14:23:02 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/09/07 17:06:57 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ SRCS = ft_isalpha.c\
 	ft_strfjoin.c\
 	ft_strjoin.c\
 	ft_strtrim.c\
-	ft_split.c\
 	ft_itoa.c\
 	ft_strmapi.c\
 	ft_striteri.c\
@@ -59,10 +58,11 @@ SRCS = ft_isalpha.c\
 	get_next_line.c\
 	get_next_line_utils.c\
 	ft_isspace.c\
-	ft_split_space_tab.c \
 	ft_free_tab.c \
 	ft_strlen_to_char.c \
 	ft_strdup_char.c \
+	ft_split.c\
+	#ft_split_space_tab.c \
 
 DIR_SRCS = src/
 
@@ -94,7 +94,7 @@ re :		fclean
 			$(MAKE) all
 
 ${DIR_OBJS}%.o: 	${DIR_SRCS}%.c	${addprefix ${DIR_HEAD}, ${HEADERS}} | ${DIR_OBJS}
-					${CC} ${CFLAGS} -I ${DIR_HEAD} -c $< -o $@
+					${CC} ${CFLAGS} -I${DIR_HEAD} -I../../../ -c $< -o $@
 
 ${DIR_OBJS}		:
 					${MKDIR} ${DIR_OBJS}

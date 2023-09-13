@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 23:35:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/08 14:40:10 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	update_proc(t_block **block, int status, pid_t pid)
 
 	ppl = (*block)->ppl;
 	shx = (*block)->shx;
+	proc_found = 0;
 	while (ppl && !proc_found)
 	{
 		if (ppl->process.pid == pid)

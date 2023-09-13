@@ -6,13 +6,13 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:04:17 by bfaure            #+#    #+#             */
-/*   Updated: 2023/01/19 21:24:17 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 14:36:36 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(t_sh_context *shx, char const *s1, char const *set)
 {
 	size_t	len;
 
@@ -23,5 +23,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = ft_strlen(s1);
 	while (len > 0 && ft_strchr(set, s1[len]))
 		len--;
-	return (ft_substr(s1, 0, len + 1));
+	return (ft_substr(shx, s1, 0, len + 1));
 }

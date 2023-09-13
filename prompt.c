@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/04 23:47:11 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/08 14:37:03 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,17 @@ void	prompt(t_sh_context *shx, char **env)
 		// Gérez les wildcards (*)
 
 		// Exécutez la commande avec fork et exec
-		str_prompt = ft_strdup((t_str)lst_get(&shx->envp, lst_get_index(&shx->envp, "PWD=", 4)));
+		// char *test = shx->gc->malloc(shx, 10, true);
+		// shx->gc->free(shx, test);
+		str_prompt = ft_strdup(shx, (t_str)lst_get(&shx->envp, lst_get_index(&shx->envp, "PWD=", 4)));
 		str_prompt += 4;
-		str_prompt = ft_strjoin(str_prompt, "$ ");
+		str_prompt = ft_strfjoin(shx, str_prompt, "$ ");
 		if (!str_prompt)
 			return ;
 		while (!shx->line || !shx->line[0])
 			shx->line = readline(str_prompt);
 		add_history(shx->line);
-		free(str_prompt);
+		shx->gc->free(shx, str_prompt);
 		printf("[%s]\n", shx->line);
 		shx->status = check_syntax(shx->line);
 		if (shx->status == SYNTAX_ERROR)
@@ -57,7 +59,7 @@ void	prompt(t_sh_context *shx, char **env)
 		printf("status = %i\n", status);
 		if (status != 0)
 			return ;
-		log_struct(shx);
+		// log_struct(shx);
 		processing(&shx->blocks);
 		printf("processing done\n");
 		clean_blocks(shx, &shx->blocks);

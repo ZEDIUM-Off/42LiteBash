@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:54:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 11:12:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/08 15:57:23 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_uint	set_in_redir(t_pipeline **ppl, t_uint meta, t_str *splited, t_uint *i)
 	else
 	{
 		if ((*ppl)->redir.in_type == HERE_DOC)
-			status = here_doc(&(*ppl)->redir.here_doc_txt, splited[*i]);
+			status = here_doc((*ppl)->shx,
+					&(*ppl)->redir.here_doc_txt, splited[*i]);
 		else
 			status = new_file(&(*ppl)->redir.infile, splited[*i]);
 	}
@@ -82,7 +83,7 @@ int	extract_redirect(
 			log_redir(&(*ppl)->redir, 0);
 		}
 		else
-			(*cmd_no_redir)[nb_parts++] = ft_strdup(splited[i]);
+			(*cmd_no_redir)[nb_parts++] = ft_strdup((*ppl)->shx, splited[i]);
 		i++;
 	}
 	(*cmd_no_redir)[nb_parts] = NULL;

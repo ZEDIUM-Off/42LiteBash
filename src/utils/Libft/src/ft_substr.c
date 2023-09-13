@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/libft.h"
+#include "../../../../minish.h"
 
 static char	*ft_cpy(char *dst, const char *src, unsigned int start, size_t len)
 {
@@ -29,18 +29,20 @@ static char	*ft_cpy(char *dst, const char *src, unsigned int start, size_t len)
 	return (dst);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(t_sh_context *shx, char const *s,
+	unsigned int start, size_t len)
 {
 	char	*dest;
 
 	if (!s)
 		return (NULL);
 	if (start > ft_strlen(s))
-		return (ft_strdup(""));
+		return (ft_strdup(shx, ""));
 	if (len < ft_strlen(&s[start]))
-		dest = malloc(sizeof(char) * (len + 1));
+		dest = shx->gc->malloc(shx, sizeof(char) * (len + 1), false);
 	else
-		dest = malloc(sizeof(char) * (ft_strlen(&s[start]) + 1));
+		dest = shx->gc->malloc(shx, sizeof(char)
+				* (ft_strlen(&s[start]) + 1), false);
 	if (!dest)
 		return (NULL);
 	return (ft_cpy(dest, s, start, len));

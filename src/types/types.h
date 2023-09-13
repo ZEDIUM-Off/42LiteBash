@@ -6,14 +6,14 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/05 12:15:32 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 14:30:01 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-# include <minish.h>
+// # include <minish.h>
 
 typedef unsigned int				t_uint;
 typedef unsigned char				t_uchar;

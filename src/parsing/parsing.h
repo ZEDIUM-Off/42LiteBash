@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/06 19:34:34 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/07 17:01:19 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		skip_space(t_str str, t_uint *i);
 t_uint		get_meta_char(char *c);
 void		cmd_expand(t_sh_context *shx, t_cmd **cmd);
 
-t_str		inc_shlvl(void *data);
+t_str		inc_shlvl(t_sh_context *shx, void *data);
 t_str		*split_parser(t_sh_context *shx, t_str line);
 
 t_list		*get_path(t_sh_context *shx, char **env);

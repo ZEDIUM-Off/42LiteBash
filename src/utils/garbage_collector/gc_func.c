@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/08 12:12:44 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 11:50:45 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ void	gc_free_all(t_sh_context *shx)
 		if (ptrs->counted)
 			gc->nb_ptrs--;
 		ptrs = ptrs->next;
+		free(tmp);
 	}
 	gc->ptrs = top;
+	free(gc);
+	free(shx->tk);
 }

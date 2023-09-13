@@ -10,15 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/libft.h"
+#include <libft.h>
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(t_sh_context *shx, char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;
 	size_t	j;
 
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	str = shx->gc->malloc(shx, sizeof(char) * (ft_strlen(s1)
+				+ ft_strlen(s2) + 1), true);
 	if (!str)
 		return (0);
 	i = 0;

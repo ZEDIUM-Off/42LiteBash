@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:44:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/05 00:07:36 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/07 17:02:18 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	here_doc(t_str *content, t_str delimiter)
+t_uint	here_doc(t_sh_context *shx, t_str *content, t_str delimiter)
 {
 	t_str	line;
 	t_uint	status;
@@ -30,11 +30,11 @@ t_uint	here_doc(t_str *content, t_str delimiter)
 			free(line);
 			return (0);
 		}
-		*content = ft_strjoin(*content, line);
+		*content = ft_strjoin(shx, *content, line);
 		free(line);
 		if (!*content)
 			return (MALLOC_FAIL);
-		*content = ft_strjoin(*content, "\n");
+		*content = ft_strjoin(shx, *content, "\n");
 		if (!*content)
 			return (MALLOC_FAIL);
 	}

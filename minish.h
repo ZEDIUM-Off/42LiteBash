@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minish.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 23:47:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/07 14:35:25 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 # include <stdbool.h>    // bool
 # include <fcntl.h>      // O_RDONLY...
 
-# include "src/utils/Libft/headers/libft.h"
 # include "src/types/types.h"
+# include "src/utils/Libft/headers/libft.h"
 # include "src/types/enums.h"
 # include "src/core/core.h"
 # include "src/parsing/list/list.h"

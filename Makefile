@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/09/06 21:25:14 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/09/08 14:32:05 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,9 +70,9 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/core/exec_echo.c \
 				src/builtins/pwd.c \
 				src/builtins/cd.c \
-				src/parsing/make_envp.c \
-				src/parsing/make_envx.c \
-				src/parsing/make_env_utils.c \
+				src/parsing/make_env/make_envp.c \
+				src/parsing/make_env/make_envx.c \
+				src/parsing/make_env/make_env_utils.c \
 				src/builtins/export.c \
 				src/builtins/unset.c \
 				src/parsing/list/lst_index.c \
@@ -85,7 +85,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/core/execution/here_doc_handler.c \
 				src/builtins/run_builtin.c \
 
-HEAD = $(shell find . -name "*.h")
+# HEAD = $(shell find . -name "*.h") #pas legal
 
 INC = -I. -I$(DIR_LIBFT)
 
@@ -93,7 +93,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
+CFLAGS = -Wall -Werror -Wextra -g3 #$(DEB_FLAGS) 
 
 DEB_FLAGS = -g3 -fsanitize=address
 
@@ -144,7 +144,7 @@ ${NAME}	:	${OBJS} $(LIBFT_A)
 
 # ---- Compiled Rules ---- #
 
-${DIR_OBJS}%.o:%.c ${HEAD} 
+${DIR_OBJS}%.o:%.c 
 	@				$(MKDIR) $(shell dirname $@)
 					${CC} ${CFLAGS} $(INC) -c $<  -o $@
 
