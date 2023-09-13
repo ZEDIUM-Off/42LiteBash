@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/09/08 14:32:05 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/09/11 13:07:09 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra -g3 #$(DEB_FLAGS) 
+CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
 
 DEB_FLAGS = -g3 -fsanitize=address
 

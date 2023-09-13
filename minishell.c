@@ -6,12 +6,11 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 12:58:02 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 19:06:48 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
-
 
 int	main(int argc, char **argv, char **envp)
 {

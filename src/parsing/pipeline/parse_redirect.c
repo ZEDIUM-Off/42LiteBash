@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:54:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/08 15:57:23 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/11 13:28:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	extract_redirect(
 			status = set_redir(ppl, meta, splited, &i);
 			if (status != 0)
 				return (status);
-			log_redir(&(*ppl)->redir, 0);
+			// log_redir(&(*ppl)->redir, 0);
 		}
 		else
 			(*cmd_no_redir)[nb_parts++] = ft_strdup((*ppl)->shx, splited[i]);
