@@ -6,13 +6,13 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:43:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/11 13:05:18 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 14:06:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl)
+t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl, bool fork)
 {
 	t_uint			status;
 	t_sh_context	*shx;
@@ -34,15 +34,13 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl)
 	else if (bi_id == EXIT_BI)
 		exit_shell(shx, 420, "You say it, you assume it\n");
 	// log_struct(shx);
-	exit(status);
+	if (fork)
+		exit(status);
 	return (status);
 }
 
-void	check_exit(t_uint bi_id, t_pipeline **ppl)
+void	check_no_fork_bi(t_uint bi_id, t_pipeline **ppl)
 {
-	t_sh_context	*shx;
-
-	shx = (*ppl)->shx;
-	if (bi_id == EXIT_BI)
-		exit_shell(shx, 420, "You say it, you assume it\n");
+	if (bi_id == EXIT_BI || bi_id == EXPORT_BI || bi_id == UNSET_BI)
+		run_builtin (bi_id, ppl, false);
 }
