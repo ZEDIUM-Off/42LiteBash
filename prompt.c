@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/13 14:39:00 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 14:43:49 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	prompt(t_sh_context *shx, char **env)
 			return ;
 		log_struct(shx);
 		processing(&shx->blocks);
-		printf("processing done\n");
+		// printf("processing done\n");
 		clean_blocks(shx, &shx->blocks);
 		free(shx->line);
 		shx->line = NULL;

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:39:22 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/05 00:02:14 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 14:36:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ t_uint	default_ppl_redir(t_pipeline **ppl, int in_fd, int out_fd)
 	status = 0;
 	if (in_fd != STDIN_FILENO && (*ppl)->redir.in_type == NONE)
 	{
+		printf("in_fd = %d\n", in_fd);
 		status = newfd(in_fd, STDIN_FILENO);
 		if (status != 0)
 			return (status);
 	}
 	if (out_fd != STDOUT_FILENO && (*ppl)->redir.out_type == NONE)
 	{
+		printf("out_fd = %d\n", out_fd);
 		status = newfd(out_fd, STDOUT_FILENO);
 		if (status != 0)
 			return (status);
@@ -38,7 +40,6 @@ t_uint	infile_redir(t_pipeline **ppl)
 
 	if ((*ppl)->redir.in_type != NONE)
 	{
-		printf("there is a redir in : %s\n", (*ppl)->redir.infile.file_name);
 		if ((*ppl)->redir.in_type == HERE_DOC)
 		{
 			status = handle_here_doc(ppl);
@@ -61,7 +62,6 @@ t_uint	outfile_redir(t_pipeline **ppl)
 
 	if ((*ppl)->redir.out_type != NONE)
 	{
-		printf("there is a redir out : %s\n", (*ppl)->redir.outfile.file_name);
 		status = open_file(&(*ppl)->redir.outfile, (*ppl)->redir.out_type);
 		if (status != 0)
 			return (status);

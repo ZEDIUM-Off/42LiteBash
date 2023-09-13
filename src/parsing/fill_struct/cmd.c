@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/08 15:56:29 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 14:34:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_uint	create_cmd(t_sh_context *shx, t_cmd **new, t_uint size)
 {
-	printf ("cmd size: %d\n", size);
 	*new = (t_cmd *)shx->gc->malloc(shx, sizeof(t_cmd), true);
 	if (!(*new))
 		return (MALLOC_FAIL);
@@ -86,7 +85,6 @@ t_uint	fill_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited)
 	i = 0;
 	while (splited[i])
 	{
-		printf ("splited[%d] = %s\n", i, splited[i]);
 		if (cmd_curs == 0)
 		{
 			status = handle_quote(

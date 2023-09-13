@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc_func.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/08 14:36:55 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 11:50:45 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,37 +44,29 @@ void	*gc_malloc(t_sh_context *shx, size_t size, bool count)
 
 void	gc_free(t_sh_context *shx, void *ptr)
 {
-	t_ptr				*ptrs;
 	t_ptr				*prev;
-	t_ptr				*tmp;
+	t_ptr				*curr;
 	t_garbage_collector	*gc;
 
 	gc = shx->gc;
-	ptrs = gc->ptrs;
 	prev = NULL;
-	while (ptrs)
+	curr = gc->ptrs;
+	while (curr)
 	{
-		if (ptrs->ptr == ptr)
+		if (curr->ptr == ptr)
 		{
-			tmp = ptrs;
 			if (prev)
-				prev->next = ptrs->next;
+				prev->next = curr->next;
 			else
-				gc->ptrs = ptrs->next;
-			free(tmp->ptr);
-			if (ptrs->counted)
+				gc->ptrs = curr->next;
+			free(curr->ptr);
+			if (curr->counted)
 				gc->nb_ptrs--;
-			if (prev)
-				ptrs = prev->next;
-			else
-				ptrs = gc->ptrs;
-			free(tmp);
+			free(curr);
+			return ;
 		}
-		else
-		{
-			prev = ptrs;
-			ptrs = ptrs->next;
-		}
+		prev = curr;
+		curr = curr->next;
 	}
 }
 
