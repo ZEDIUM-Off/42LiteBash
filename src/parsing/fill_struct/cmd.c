@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/07 17:19:53 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/08 12:37:56 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,11 @@ t_uint	new_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited)
 	status = fill_cmd(shx, _cmd, splited);
 	if (status != 0)
 		return (status);
+	printf("cmd filled\n");
 	status = get_chunks(shx, &(*_cmd)->chunk, (*_cmd)->cmd);
 	if (status != 0)
 		return (status);
+	printf("chunks filled\n");
 	cmd_expand(shx, _cmd);
 	return (0);
 }
