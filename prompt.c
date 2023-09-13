@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/11 13:02:32 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 13:10:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	prompt(t_sh_context *shx, char **env)
 		printf("status = %i\n", status);
 		if (status != 0)
 			return ;
-		// log_struct(shx);
+		log_struct(shx);
 		processing(&shx->blocks);
-		printf("processing done\n");
+		// printf("processing done\n");
 		clean_blocks(shx, &shx->blocks);
 		free(shx->line);
 		shx->line = NULL;
