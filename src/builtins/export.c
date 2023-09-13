@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 16:19:28 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/08 15:43:59 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 19:22:40 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static t_uint	export_cmd_add_to_lst(t_cmd **_cmd, t_uint i, t_uint index)
 
 	status = 0;
 	shx = (*_cmd)->shx;
-	trace(shx, "export_cmd_add_to_lst", "add to lst the export var", EXEC);
 	argv = ft_strdup(shx, (*_cmd)->cmd[i]);
 	if (!argv)
 		return (MALLOC_FAIL);
@@ -45,7 +44,6 @@ static t_uint	export_cmd_add_to_lst(t_cmd **_cmd, t_uint i, t_uint index)
 	else if (ft_strchr(argv, '=') != NULL)
 		status |= lst_remplace(shx, &shx->envp, lst_get_index(&shx->envp, argb,
 					ft_strlen_to_char(argv, '=')), argv);
-	log_action(shx);
 	return (shx->gc->free(shx, argb), status);
 }
 
@@ -58,7 +56,6 @@ t_uint	export_cmd(t_cmd **_cmd)
 
 	status = 0;
 	shx = (*_cmd)->shx;
-	trace(shx, "export_cmd", "cmd export", EXEC);
 	index = lst_get_last(&shx->envp)->index + 1;
 	i = 1;
 	if (!(*_cmd)->cmd[1])
@@ -78,7 +75,5 @@ t_uint	export_cmd(t_cmd **_cmd)
 				(*_cmd)->chunk = (*_cmd)->chunk->next;
 		}
 	}
-	printf("status = %u\n", status);
-	log_action(shx);
 	return (sort_env_export(shx), status);
 }

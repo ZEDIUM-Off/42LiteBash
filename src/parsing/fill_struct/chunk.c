@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/08 15:55:48 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/08 19:27:03 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_uint	fill_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited)
 	i = 0;
 	while (chunk_lim[0] != chunk_lim[1])
 	{
-		(*chunk)->txt[i] = ft_strdup(splited[chunk_lim[0]++]);
+		(*chunk)->txt[i] = ft_strdup((*chunk)->shx, splited[chunk_lim[0]++]);
 		if (!(*chunk)->txt[i++])
 			return (MALLOC_FAIL);
 	}

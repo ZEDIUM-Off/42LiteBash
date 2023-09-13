@@ -24,12 +24,6 @@ static void	handle_chunk(t_chunk **tmp, t_uint *i)
 	*tmp = (*tmp)->next;
 }
 
-// static void	handle_cmd(t_cmd **_cmd, t_uint *i)
-// {
-// 	echo_builtins((*_cmd)->cmd[*i]);
-// 	(*i)++;
-// }
-
 t_uint	exec_echo(t_cmd **_cmd)
 {
 	bool	n;
