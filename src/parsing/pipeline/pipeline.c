@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 13:16:41 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 14:21:54 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_uint	create_ppl(
 	(*new)->redir = (t_redirect){.in_type = NONE, .out_type = NONE};
 	(*new)->next = NULL;
 	status = parse_pipe(shx, new, splited, size);
-	printf("create_ppl : size = %d, splited = %s, status = %d\n", size, splited[0], status);
 	if (status != 0)
 		return (status);
 	return (0);
@@ -39,7 +38,6 @@ t_uint	add_ppl(
 	t_pipeline	*tmp;
 	t_uint		status;
 
-	printf("new pipeline : size = %d, splited = %s\n", size, splited[0]);
 	status = create_ppl(shx, &new, size, splited);
 	if (status != 0)
 		return (status);

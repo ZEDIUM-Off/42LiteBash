@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 09:46:27 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 13:41:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 14:16:33 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_uint	add_block(t_sh_context *shx, t_block **block)
 	if (!*block)
 		*block = new;
 	else
-		printf("block already exists\n");
-	printf("add_block : block = %p, new = %p\n", *block, new);
+		return (printf("ERROR: block already exists\n"), BLOCK_ALREADY_EXISTS);
 	return (0);
 }

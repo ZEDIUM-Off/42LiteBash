@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/07 17:01:19 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 14:30:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_list		*add_env_to_lst_export(t_sh_context *shx, char **envp);
 void		swap_nodes(t_list *current_node, t_list *next_node);
 void		sort_env_export(t_sh_context *shx);
 
-t_uint		new_file(t_file *file, t_str name);
+t_uint		new_file(t_sh_context *shx, t_file *file, t_str name, t_uint type);
 t_uint		check_env(t_sh_context *shx);
 t_uint		check_envx(t_sh_context *shx);
 

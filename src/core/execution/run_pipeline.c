@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:50:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 13:04:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 14:14:54 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,13 @@ t_uint	run_pipeline(t_block **block, t_pipeline **ppl, int in_fd)
 
 t_uint	processing(t_block **blocks)
 {
-	t_block	*_block;
 	t_uint	status;
 
-	_block = *blocks;
-	// signal(SIGCHLD, handle_sigchld);
-	while (_block)
-	{
-		status = run_pipeline(&_block, &(_block->ppl), STDIN_FILENO);
-		if (status != 0 && status != 1)
-			return (status);
-		status = wait_all_proc(&_block);
-		if (status != 0)
-			return (status);
-		_block = _block->next;
-	}
+	status = run_pipeline(blocks, &((*blocks)->ppl), STDIN_FILENO);
+	if (status != 0 && status != 1)
+		return (status);
+	status = wait_all_proc(blocks);
+	if (status != 0)
+		return (status);
 	return (0);
 }

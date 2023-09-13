@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/07 17:23:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 14:35:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,11 @@
 
 int	split_line(t_sh_context *shx, t_str **line_split, t_str line)
 {
-	t_uint	i;
-
-	i = 0;
 	if (*line_split)
 		free_split_line(shx, line_split);
 	*line_split = split_parser(shx, line);
 	if (!(*line_split))
 		return (printf("MALLOC FAIL IN SPLIT LINE\n"), MALLOC_FAIL);
-	while ((*line_split)[i])
-	{
-		printf("g_shx->line_split[%i] = [%s]\n", i, (*line_split)[i]);
-		i++;
-	}
 	return (0);
 }
 

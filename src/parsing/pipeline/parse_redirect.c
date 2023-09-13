@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:54:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/11 13:28:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 14:32:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ t_uint	set_in_redir(t_pipeline **ppl, t_uint meta, t_str *splited, t_uint *i)
 	(*ppl)->redir.in_type = meta;
 	meta = get_meta_char(&splited[*i][0]);
 	if ((meta == SINGLE_QUOTE || meta == DOUBLE_QUOTE))
-		status = new_file(&(*ppl)->redir.infile, splited[++*i++]);
+		status = new_file((*ppl)->shx,
+				&(*ppl)->redir.infile, splited[++*i++], (*ppl)->redir.in_type);
 	else
 	{
 		if ((*ppl)->redir.in_type == HERE_DOC)
 			status = here_doc((*ppl)->shx,
 					&(*ppl)->redir.here_doc_txt, splited[*i]);
 		else
-			status = new_file(&(*ppl)->redir.infile, splited[*i]);
+			status = new_file((*ppl)->shx,
+					&(*ppl)->redir.infile, splited[*i], (*ppl)->redir.in_type);
 	}
 	if (status != 0)
 		return (status);
@@ -42,9 +44,11 @@ t_uint	set_out_redir(t_pipeline **ppl, t_uint meta, t_str *splited, t_uint *i)
 	(*ppl)->redir.out_type = meta;
 	meta = get_meta_char(&splited[*i][0]);
 	if (meta == SINGLE_QUOTE || meta == DOUBLE_QUOTE)
-		status = new_file(&(*ppl)->redir.outfile, splited[++*i++]);
+		status = new_file((*ppl)->shx, &(*ppl)->redir.outfile,
+				splited[++*i++], (*ppl)->redir.out_type);
 	else
-		status = new_file(&(*ppl)->redir.outfile, splited[*i]);
+		status = new_file((*ppl)->shx, &(*ppl)->redir.outfile,
+				splited[*i], (*ppl)->redir.out_type);
 	if (status != 0)
 		return (status);
 	if (get_meta_char(&(*ppl)->redir.outfile.file_name[0]) != NONE)
@@ -80,7 +84,6 @@ int	extract_redirect(
 			status = set_redir(ppl, meta, splited, &i);
 			if (status != 0)
 				return (status);
-			// log_redir(&(*ppl)->redir, 0);
 		}
 		else
 			(*cmd_no_redir)[nb_parts++] = ft_strdup((*ppl)->shx, splited[i]);
