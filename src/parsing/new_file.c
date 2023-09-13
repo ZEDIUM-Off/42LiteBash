@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:42:54 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 13:55:03 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 14:11:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_uint	new_file(t_file *file, t_str name)
 	printf ("new_file (test_file), status = %d\n", status);
 	if (status != 0)
 		return (status);
-	file->file_name = strdup(name);
+	file->file_name = strdup(name); //changer ca
 	if (!file->file_name)
 		return (MALLOC_FAIL);
 	file->fd = -1;
