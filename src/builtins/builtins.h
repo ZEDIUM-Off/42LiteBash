@@ -23,6 +23,5 @@ t_uint	export_cmd(t_cmd **_cmd);
 t_uint	unset_cmd(t_cmd **_cmd);
 t_str	get_pwd(void);
 t_uint	check_no_fork_bi(t_uint bi_id, t_pipeline **ppl);
-t_uint	check_export_return(t_cmd **_cmd, t_uint index, t_uint status);
 
 #endif

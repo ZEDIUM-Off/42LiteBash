@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/13 14:30:18 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 20:08:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ void		skip_to_space(t_str str, t_uint *i);
 void		skip_space(t_str str, t_uint *i);
 
 t_uint		get_meta_char(char *c);
-void		cmd_expand(t_sh_context *shx, t_cmd **cmd);
+t_uint		cmd_expand(t_sh_context *shx, t_cmd **cmd);
 
 t_str		inc_shlvl(t_sh_context *shx, void *data);
 t_str		*split_parser(t_sh_context *shx, t_str line);
 
 t_list		*get_path(t_sh_context *shx, char **env);
-t_list		*add_env_to_lst(t_sh_context *shx, char **envp);
+t_uint		add_env_to_lst(t_sh_context *shx, t_list *list_env, char **envp);
 t_list		*add_paths_to_lst(t_sh_context *shx, char **paths);
 t_list		*add_env_to_lst_export(t_sh_context *shx, char **envp);
 

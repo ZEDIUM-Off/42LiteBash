@@ -31,6 +31,7 @@ static t_uint	unset_remove(t_sh_context *shx, t_cmd **_cmd,
 	return (status);
 }
 
+// fix merge conflict
 t_uint	unset_cmd(t_cmd **_cmd)
 {
 	t_sh_context	*shx;
@@ -41,16 +42,27 @@ t_uint	unset_cmd(t_cmd **_cmd)
 	status = SKIP_FORK;
 	i = 1;
 	if (!(*_cmd)->cmd[1])
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	else
 	{
 		while ((*_cmd)->cmd[i])
 		{
-			status |= unset_remove(shx, (_cmd), i, status);
+			status = lst_remove(shx, &shx->envx, lst_get_index(&shx->envx,
+						(*_cmd)->cmd[i], ft_strlen((*_cmd)->cmd[i])));
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
+			status = lst_remove(shx, &shx->envp, lst_get_index(&shx->envp,
+						(*_cmd)->cmd[i], ft_strlen((*_cmd)->cmd[i])));
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
 			i++;
 		}
 	}
-	status |= index_list_value(&shx->envp);
-	status |= index_list_value(&shx->envx);
-	return (status);
+	status = index_list_value(&shx->envp);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	status = index_list_value(&shx->envx);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	return (CONTINUE_PROC);
 }

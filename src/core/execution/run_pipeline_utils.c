@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:38:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/01 11:37:35 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/14 01:42:14 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,20 @@ t_uint	newfd(int oldfd, int newfd)
 	if (oldfd != newfd)
 	{
 		if (dup2(oldfd, newfd) == -1)
-			return (errno);
+			return (handle_error(DUP_FAIL, NULL));
 		status = close_fd(oldfd);
-		if (status != 0)
-			return (status);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	close_fd(int fd)
 {
-	t_uint	status;
-
-	status = 0;
 	if (fd >= 0)
 	{
-		status = close(fd);
-		if (status != 0)
-			return (status);
+		if (close(fd) == -1)
+			return (handle_error(CLOSE_FAIL, NULL));
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }

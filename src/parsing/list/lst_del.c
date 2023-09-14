@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:38:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 17:28:12 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/14 02:12:45 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 	current = *lst;
 	previous = NULL;
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	while (current != NULL)
 	{
 		if (current->index == index)
@@ -31,12 +31,12 @@ t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 				previous->next = current->next;
 			shx->gc->free(shx, current->data);
 			shx->gc->free(shx, current);
-			return (0);
+			return (CONTINUE_PROC);
 		}
 		previous = current;
 		current = current->next;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	lst_remove_first(t_sh_context *shx, t_list **lst)
@@ -44,7 +44,7 @@ t_uint	lst_remove_first(t_sh_context *shx, t_list **lst)
 	t_list	*tmp;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	tmp = *lst;
 	if (tmp)
 	{
@@ -52,7 +52,7 @@ t_uint	lst_remove_first(t_sh_context *shx, t_list **lst)
 		shx->gc->free(shx, tmp->data);
 		shx->gc->free(shx, tmp);
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	lst_remove_last(t_sh_context *shx, t_list **lst)
@@ -60,7 +60,7 @@ t_uint	lst_remove_last(t_sh_context *shx, t_list **lst)
 	t_list	*tmp;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	tmp = *lst;
 	if (tmp)
 	{
@@ -70,5 +70,5 @@ t_uint	lst_remove_last(t_sh_context *shx, t_list **lst)
 		shx->gc->free(shx, tmp->next);
 		tmp->next = NULL;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }

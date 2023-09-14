@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/09/13 18:16:27 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/09/14 02:07:34 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,9 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/utils/garbage_collector/gc_func.c \
 				src/utils/garbage_collector/gc_init.c \
 				src/utils/error_handler/exit_shell.c \
+				src/utils/error_handler/get_error_msg.c \
+				src/utils/error_handler/handle_error.c \
+				src/utils/error_handler/error_from_errno.c \
 				src/utils/logger/log.c \
 				src/core/init_ctx.c \
 				minishell.c \

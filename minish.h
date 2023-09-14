@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minish.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 14:35:25 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 19:02:44 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@
 # include "src/utils/utils.h"
 # include "src/builtins/builtins.h"
 
-void	prompt(t_sh_context *shx, char **env);
+t_uint	prompt(t_sh_context *shx, char **env);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_base_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:28:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 13:39:28 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 23:51:11 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ t_uint	lst_print(t_list **lst, t_str text)
 	t_list	*tmp;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	tmp = *lst;
 	while (tmp)
 	{
 		printf(text, tmp->index, tmp->data);
 		tmp = tmp->next;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	lst_clear(t_sh_context *shx, t_list **lst)
@@ -47,7 +47,7 @@ t_uint	lst_clear(t_sh_context *shx, t_list **lst)
 	t_list	*tmp2;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	tmp = *lst;
 	while (tmp)
 	{
@@ -57,7 +57,7 @@ t_uint	lst_clear(t_sh_context *shx, t_list **lst)
 		tmp = tmp2;
 	}
 	*lst = NULL;
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	lst_size(t_list **lst)
@@ -81,9 +81,9 @@ t_uint	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 	t_uint	i;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	if (!data)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	tmp = *lst;
 	i = 0;
 	while (tmp && i++ < index)
@@ -93,7 +93,7 @@ t_uint	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 		shx->gc->free(shx, tmp->data);
 		tmp->data = ft_strdup(shx, data);
 		if (!tmp->data)
-			return (MALLOC_FAIL);
+			return (handle_error(MALLOC_FAIL, NULL));
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }

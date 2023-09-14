@@ -17,5 +17,5 @@ t_uint	echo_builtins(t_str cmd)
 	if (!cmd)
 		return (1);
 	printf("%s", cmd);
-	return (0);
+	return (CONTINUE_PROC);
 }

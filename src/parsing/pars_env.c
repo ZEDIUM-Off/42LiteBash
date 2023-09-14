@@ -3,27 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   pars_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/06 19:41:50 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 23:02:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_list	*add_env_to_lst(t_sh_context *shx, char **envp)
+t_uint	add_env_to_lst(t_sh_context *shx, t_list	*lst_env, char **envp)
 {
-	t_list	*lst_env;
+	t_uint	status;
 	int		i;
 
-	i = -1;
-	//trace(shx, "add_env_to_lst", "every things is in the name", PARSE);
+	i = 0;
 	lst_env = NULL;
-	while (envp[++i])
-		lst_add_back(shx, &lst_env, envp[i], i);
-	//log_action(shx);
-	return (lst_env);
+	while (envp[i])
+	{
+		status = lst_add_back(shx, &lst_env, envp[i], i);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
+		i++;
+	}
+	return (CONTINUE_PROC);
 }
 
 void	swap_nodes(t_list *current_node, t_list *next_node)

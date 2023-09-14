@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 14:05:06 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/04 13:42:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 17:58:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ t_uint	check_builtins(char *str)
 		return (ENV_BI);
 	else if (!ft_strncmp(str, "exit", 4))
 		return (EXIT_BI);
-	return (0);
+	return (CONTINUE_PROC);
 }

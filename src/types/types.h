@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 14:30:01 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 15:45:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ typedef char						*t_str;
 
 typedef struct s_sh_context			t_sh_context;
 typedef struct s_file				t_file;
+typedef struct s_error				t_error;
 typedef struct s_garbage_collector	t_garbage_collector;
 typedef struct s_ptr				t_ptr;
-typedef struct s_error_handler		t_error_handler;
 typedef struct s_tracker			t_tracker;
 typedef struct s_parsing_data		t_p_data;
 typedef struct s_list				t_list;

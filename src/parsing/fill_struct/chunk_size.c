@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:17:48 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/08 12:46:45 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 19:58:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ t_uint	chunk_size(
 	if (*chunk_found)
 	{
 		status = new_chunk(shx, chunk, chunk_lim, splited, meta);
-		if (status != 0)
-			return (status);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	get_chunks(t_sh_context *shx, t_chunk **chunk, t_str *splited)
@@ -65,12 +65,12 @@ t_uint	get_chunks(t_sh_context *shx, t_chunk **chunk, t_str *splited)
 	while (splited[i] && chunk_found)
 	{
 		status = chunk_size(shx, chunk, splited, &i, &chunk_found);
-		if (status != 0)
-			return (status);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
 		if (*chunk)
 			i = last_chunk_end(chunk) + 1;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	under_chunk(t_sh_context *shx, t_chunk **chunk, t_str *splited)
@@ -85,10 +85,10 @@ t_uint	under_chunk(t_sh_context *shx, t_chunk **chunk, t_str *splited)
 		&& i < ((*chunk)->end - (*chunk)->start) + 1 && chunk_found)
 	{
 		status = chunk_size(shx, &(*chunk)->under_chunk, splited, &i, &chunk_found);
-		if (status != 0)
-			return (status);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
 		if ((*chunk)->under_chunk)
 			i = last_chunk_end(&((*chunk)->under_chunk)) + 1;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }

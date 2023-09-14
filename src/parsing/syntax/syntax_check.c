@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:35:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 17:04:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 18:13:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	init_syntax_checker(t_syntax_checker *syx)
 	syx->quote_ctr = 0;
 	syx->db_quote_ctr = 0;
 	syx->parenthesis_ctr = 0;
-	syx->status = SYNTAX_OK;
 }
 
 t_uint	check_syntax(t_str line)
