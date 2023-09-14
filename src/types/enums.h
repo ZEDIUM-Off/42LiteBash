@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/14 02:12:56 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/14 12:21:25 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,13 @@ enum e_meta_type
 	HERE_DOC, // <<
 	DOLLAR_Q, // $?
 	DOLLAR_D, // $$
-	// OR, // ||
-	// AND, // &&
+	PLUS_EQUAL, // +=
 	PIPE, // |
 	DOLLAR, //$
 	SINGLE_QUOTE, // '
 	DOUBLE_QUOTE, // "
-	// O_PARENTHESIS, // (
-	// C_PARENTHESIS, // )
-	// PARENTHESIS, // ()
-	// WILD_CARD, // *
+	EQUAL, // =
+	INVALID_META,
 };
 
 extern t_str g_meta_char[];
@@ -83,6 +80,7 @@ enum e_error_codes
 	CMD_NOT_FOUND,
 	CLOSE_FAIL,
 	DUP_FAIL,
+	SKIP_FORK,
 };
 
 enum e_parsing_error

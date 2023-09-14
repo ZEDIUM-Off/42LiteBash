@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/14 01:56:11 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/14 11:53:37 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,27 @@ t_uint	init_shell(
 	status = init_gc(shx);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
-	init_track(shx);
+	status = init_track(shx);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
 	shx->lst_paths = get_path(shx, envp);
-	status = add_env_to_lst(shx, shx->envp, envp);
-	if (status != CONTINUE_PROC)
+	if (!shx->lst_paths)
 		return (handle_error(MALLOC_FAIL, NULL));
-	status = add_env_to_lst(shx, shx->envx, envp);
-	if (status != CONTINUE_PROC)
-		return (handle_error(MALLOC_FAIL, NULL));
-	status = create_s_env(shx);
-	if (status != CONTINUE_PROC)
-		return (handle_error(status, NULL));
-	status = check_env(shx);
-	if (status != CONTINUE_PROC)
-		return (handle_error(status, NULL));
-	status = create_s_env(shx);
-	if (status != CONTINUE_PROC)
-		return (handle_error(status, NULL));
+	// status = add_env_to_lst(shx, shx->envp, envp);
+	// if (status != CONTINUE_PROC)
+	// 	return (handle_error(MALLOC_FAIL, NULL));
+	// status = add_env_to_lst(shx, shx->envx, envp);
+	// if (status != CONTINUE_PROC)
+	// 	return (handle_error(MALLOC_FAIL, NULL));
+	// status = create_s_env(shx);
+	// if (status != CONTINUE_PROC)
+	// 	return (handle_error(status, NULL));
+	// status = check_env(shx);
+	// if (status != CONTINUE_PROC)
+	// 	return (handle_error(status, NULL));
+	// status = create_s_env(shx);
+	// if (status != CONTINUE_PROC)
+	// 	return (handle_error(status, NULL));
 	// status = check_envx(shx);
 	// if (status != CONTINUE_PROC)
 	// 	return (handle_error(status, NULL));
