@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/09/14 02:07:34 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/09/14 11:40:40 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
 
-DEB_FLAGS = -g3 #-fsanitize=address
+DEB_FLAGS = -g3 -fsanitize=address
 
 # ********* RULES ******** #
 

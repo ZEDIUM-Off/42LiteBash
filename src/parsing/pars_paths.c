@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_paths.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:09:23 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/08 12:55:37 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/14 11:53:12 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ t_list	*add_paths_to_lst(t_sh_context *shx, char **paths)
 		return (NULL);
 	while (paths[++i])
 	{
-		lst_add_back(shx, &lst_paths, ft_strdup(shx, paths[i]), i);
+		if (lst_add_back(shx, &lst_paths, ft_strdup(shx, paths[i]), i)
+			!= CONTINUE_PROC)
+			return (NULL);
 	}
 	ft_free_tab(shx, paths);
 	return (lst_paths);
@@ -63,6 +65,8 @@ t_list	*get_path(t_sh_context *shx, char **env)
 		if (ft_strnstr(env[i], "PATH=", 5) != NULL)
 		{
 			path = ft_strnstr(env[i], "PATH=", 5);
+			if (!path)
+				return (NULL);
 			break ;
 		}
 		i++;
