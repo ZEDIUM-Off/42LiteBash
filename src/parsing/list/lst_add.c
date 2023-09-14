@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:31:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/14 02:06:43 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/14 11:55:59 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ t_uint	lst_append(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 	t_uint	i;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	if (!data)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	tmp = *lst;
 	i = 0;
 	while (tmp && i++ < index)
@@ -89,7 +89,7 @@ t_uint	lst_append(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 	{
 		tmp->data = ft_strfjoin(shx, tmp->data, data);
 		if (!tmp->data)
-			return (MALLOC_FAIL);
+			return (handle_chunck(MALLOC_FAIL, NULL));
 	}
 	return (0);
 }

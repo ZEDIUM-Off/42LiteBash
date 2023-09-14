@@ -76,61 +76,93 @@ t_str	create_export_argc(t_cmd **_cmd, t_uint i)
 	return (argc);
 }
 
+static t_uint	check_args_error(t_cmd **_cmd, t_uint i, t_uint index)
+{
+	t_str	arga;
+	t_str	argb;
+	t_str	argc;
+	t_uint	status;
+
+	arga = create_export_arga((_cmd), i);
+	if (!arga)
+		return (handle_error(MALLOC_FAIL, NULL));
+	argb = create_export_argb((_cmd), i);
+	if (!argb)
+		return (handle_error(MALLOC_FAIL, NULL));
+	argc = create_export_argc((_cmd), i);
+	if (!argc)
+		return (handle_error(MALLOC_FAIL, NULL));
+	printf("arga = %s\n", arga);
+	printf("argb = %s\n", argb);
+	printf("argc = %s\n", argc);
+	status = export_cmd_add_to_lst_equal((_cmd), i, index);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	return (CONTINUE_PROC);
+}
 
 //print lst_get_index pour verifier sa valeur
-static t_uint	export_cmd_add_to_lst(t_cmd **_cmd, t_uint i, t_uint index)
+static t_uint	export_cmd_add_to_lst_equal(t_cmd **_cmd, t_uint i, t_uint index)
 {
-	t_str			arga;
-	t_str			argb;
-	t_str			argc;
 	t_sh_context	*shx;
 	t_uint			status;
 
 	status = 0;
 	shx = (*_cmd)->shx;
-	arga = create_export_arga((_cmd), i);
-	argb = create_export_argb((_cmd), i);
-	argc = create_export_argc((_cmd), i);
-	printf("arga = %s\n", arga);
-	printf("argb = %s\n", argb);
-	printf("argc = %s\n", argc);
 	if (!lst_get_index(&shx->envx, argb, ft_strlen_to_char(arga, '=')) && !ft_strchr(arga, '+'))
-		status |= lst_add_back(shx, &shx->envx, arga, index);
+		status = lst_add_back(shx, &shx->envx, arga, index);
 	else if (!ft_strchr(arga, '+'))
-		status |= lst_remplace(shx, &shx->envx, lst_get_index(&shx->envx, argb,
+		status = lst_remplace(shx, &shx->envx, lst_get_index(&shx->envx, argb,
 					ft_strlen_to_char(arga, '=')), arga);
+	if (status != CONTINUE_PROC)
+		return (
+			shx->gc->free(shx, arga), shx->gc->free(shx, argb),
+			shx->gc->free(shx, argc), handle_error(status, NULL));
 	if (!lst_get_index(&shx->envp, argb, ft_strlen_to_char(arga, '=') && !ft_strchr(arga, '+'))
 		&& ft_strchr(arga, '='))
-		status |= lst_add_back(shx, &shx->envp, arga, index);
+		status = lst_add_back(shx, &shx->envp, arga, index);
 	else if (!ft_strchr(arga, '='))
-		status |= lst_remplace(shx, &shx->envp, lst_get_index(&shx->envp, argb,
+		status = lst_remplace(shx, &shx->envp, lst_get_index(&shx->envp, argb,
 					ft_strlen_to_char(arga, '=')), arga);
-/*===========================================================================================================*/
+	if (status != CONTINUE_PROC)
+		return (
+			shx->gc->free(shx, arga), shx->gc->free(shx, argb),
+			shx->gc->free(shx, argc), handle_error(status, NULL));
+	return (shx->gc->free(shx, argb), CONTINUE_PROC);
+}
+
+static t_uint	export_cmd_add_to_lst_plus(t_cmd **_cmd, t_uint i, t_uint index)
+{
 	if (lst_get_index(&shx->envx, argb, ft_strlen_to_char(arga, '=')) && ft_strchr(arga, '+'))
-		status |= lst_append(shx, &shx->envx, lst_get_index(&shx->envx, argb,
+		status = lst_append(shx, &shx->envx, lst_get_index(&shx->envx, argb,
 					ft_strlen_to_char(arga, '+')), (*_cmd)->chunk->txt[0]);
 	else if (ft_strchr(arga, '+'))
-		status |= lst_add_back(shx, &shx->envx, argc, index);
+		status = lst_add_back(shx, &shx->envx, argc, index);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
 	if (lst_get_index(&shx->envp, argb, ft_strlen_to_char(arga, '=') && ft_strchr(arga, '+')))
-		status |= lst_append(shx, &shx->envp, lst_get_index(&shx->envx, argb,
+		status = lst_append(shx, &shx->envp, lst_get_index(&shx->envx, argb,
 					ft_strlen_to_char(arga, '+')), (*_cmd)->chunk->txt[0]);
 	else if (!ft_strchr(arga, '='))
-		status |= lst_add_back(shx, &shx->envp, arga, index);
-	return (shx->gc->free(shx, argb), status);
+		status = lst_add_back(shx, &shx->envp, arga, index);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	return (shx->gc->free(shx, argb), CONTINUE_PROC);
 }
 
 t_uint	check_export_return(t_cmd **_cmd, t_uint index, t_uint status)
 {
 	t_uint	i;
+	t_uint	status;
 
 	i = 1;
-	while ((*_cmd)->chunk && (*_cmd)->cmd[i])
+	while ((*_cmd)->cmd[i])
 	{
 		if (!ft_strchr((*_cmd)->cmd[i], '\"'))
 		{
-			status |= export_cmd_add_to_lst((_cmd), i, index);
-			if (status > 0)
-				return (status);
+			status = check_args_error((_cmd), i, index);
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
 		}
 		index++;
 		if ((*_cmd)->chunk)
@@ -139,5 +171,9 @@ t_uint	check_export_return(t_cmd **_cmd, t_uint index, t_uint status)
 		if ((*_cmd)->chunk)
 			(*_cmd)->chunk = (*_cmd)->chunk->next;
 	}
-	return (status);
+	while ((*_cmd)->chunk)
+	{
+		
+	}
+	return (CONTINUE_PROC);
 }
