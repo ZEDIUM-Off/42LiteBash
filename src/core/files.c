@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 23:33:05 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 13:46:31 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 17:58:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_uint	open_file(t_file *file, t_uint type)
 			return (errno);
 		file->is_open = true;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	close_files(t_pipeline **ppl)
@@ -52,5 +52,5 @@ t_uint	close_files(t_pipeline **ppl)
 			return (errno);
 		(*ppl)->redir.outfile.is_open = false;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 14:24:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/14 01:43:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ enum e_step_type
 	END,
 };
 
-enum e_internal_error_codes
+enum e_error_codes
 {
-	GARB_ALLOC_ERROR = 1,
-	TRACKER_ALLOC_ERROR,
+	CONTINUE_PROC = 0,
+	STOP_PROC = 1,
+	EXIT_SHELL = 2,
 	MALLOC_FAIL,
 	PIPE_FAIL,
 	FORK_FAIL,
@@ -77,17 +78,11 @@ enum e_internal_error_codes
 	WAITPID_FAIL,
 	PROC_NOT_TERMINATED,
 	NULL_DATA,
-	BLOCK_ALREADY_EXISTS,
-};
-
-enum e_user_error_codes
-{
 	SYNTAX_ERROR,
 	NO_FILE_DIR,
-	IMPLICIT_REDIRECT,
-	SYNTAX_OK,
 	CMD_NOT_FOUND,
-	NO_FILE_NAME,
+	CLOSE_FAIL,
+	DUP_FAIL,
 };
 
 enum e_parsing_error

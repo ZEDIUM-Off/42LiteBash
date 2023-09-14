@@ -51,5 +51,5 @@ t_uint	exec_echo(t_cmd **_cmd)
 	}
 	if (n == 0)
 		printf("\n");
-	return (0);
+	return (CONTINUE_PROC);
 }

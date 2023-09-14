@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:50:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 14:14:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/14 01:07:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@ t_uint	run_pipeline(t_block **block, t_pipeline **ppl, int in_fd)
 		if (pipe((*ppl)->process.pipefd) == -1)
 			return (PIPE_FAIL);
 		status = exec_cmd(block, ppl, in_fd, (*ppl)->process.pipefd[1]);
-		if (status != 0)
-			return (status);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
 		status = close_fd((*ppl)->process.pipefd[1]);
-		if (status != 0)
-			return (status);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
 		is_any_proc_ended(block);
 		return (run_pipeline(block, &(*ppl)->next, (*ppl)->process.pipefd[0]));
 	}
 	else
 	{
 		status = exec_cmd(block, ppl, in_fd, STDOUT_FILENO);
-		if (status != 0)
-			return (status);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
 		is_any_proc_ended(block);
-		return (0);
+		return (CONTINUE_PROC);
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	processing(t_block **blocks)
@@ -46,9 +46,9 @@ t_uint	processing(t_block **blocks)
 
 	status = run_pipeline(blocks, &((*blocks)->ppl), STDIN_FILENO);
 	if (status != 0 && status != 1)
-		return (status);
+		return (handle_error(status, NULL));
 	status = wait_all_proc(blocks);
-	if (status != 0)
-		return (status);
-	return (0);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	return (CONTINUE_PROC);
 }

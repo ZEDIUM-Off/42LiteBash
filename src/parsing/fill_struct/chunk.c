@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:59:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/13 12:13:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 19:54:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ t_uint	create_chunk(
 {
 	*new = (t_chunk *)shx->gc->malloc(shx, sizeof(t_chunk), true);
 	if (!(*new))
-		return (MALLOC_FAIL);
+		return (handle_error(MALLOC_FAIL, NULL));
 	(*new)->txt = (char **)shx->gc->malloc(shx,
 			sizeof(char *) * ((chunk_lim[1] - chunk_lim[0]) + 1), true);
 	if (!(*new)->txt)
-		return (MALLOC_FAIL);
+		return (handle_error(MALLOC_FAIL, NULL));
 	(*new)->start = chunk_lim[0];
 	(*new)->end = chunk_lim[1];
 	(*new)->type = type;
@@ -29,7 +29,7 @@ t_uint	create_chunk(
 	(*new)->under_chunk = NULL;
 	(*new)->next = NULL;
 	(*new)->shx = shx;
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	fill_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited)
@@ -41,10 +41,10 @@ t_uint	fill_chunk(t_chunk	**chunk, t_uint	chunk_lim[2], t_str *splited)
 	{
 		(*chunk)->txt[i] = ft_strdup((*chunk)->shx, splited[chunk_lim[0]++]);
 		if (!(*chunk)->txt[i++])
-			return (MALLOC_FAIL);
+			return (handle_error(MALLOC_FAIL, NULL));
 	}
 	(*chunk)->txt[i] = NULL;
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	last_chunk_end(t_chunk **chunk)
@@ -66,11 +66,11 @@ t_uint	new_chunk(
 	t_chunk	*tmp;
 
 	status = create_chunk(shx, &new, chunk_lim, type);
-	if (status != 0)
-		return (status);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
 	status = fill_chunk(&new, chunk_lim, splited);
-	if (status != 0)
-		return (status);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
 	if (!(*chunk))
 		(*chunk) = new;
 	else
@@ -81,7 +81,7 @@ t_uint	new_chunk(
 		tmp->next = new;
 	}
 	status = under_chunk(shx, &new, new->txt);
-	if (status != 0)
-		return (status);
-	return (0);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	return (CONTINUE_PROC);
 }

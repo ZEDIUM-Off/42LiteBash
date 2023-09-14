@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 14:31:44 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 20:08:54 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ struct	s_chunk
 	t_chunk			*under_chunk;
 };
 
-int			parse_pipeline(t_sh_context *shx, t_block **blocks, t_str *splited);
-int			extract_redirect(
+t_uint		parse_pipeline(t_sh_context *shx, t_block **blocks, t_str *splited);
+t_uint		extract_redirect(
 				t_pipeline **ppl,
 				t_str **cmd_no_redir, t_str *splited, t_uint size);
 t_uint		create_ppl(t_sh_context *shx, t_pipeline **new,
 				t_uint size, t_str *splited);
 t_uint		add_ppl(t_sh_context *shx, t_pipeline **pipeline,
 				t_uint size, t_str *splited);
-int			parse_pipe(t_sh_context *shx,
+t_uint		parse_pipe(t_sh_context *shx,
 				t_pipeline **ppl, t_str *splited, t_uint size);
 
 #endif /* PIPELINE_H */

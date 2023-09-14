@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/08 19:06:48 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 19:02:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	main(int argc, char **argv, char **envp)
 	t_sh_context	ctx;
 	t_uint			status;
 
-	status = 0;
-	status |= init_shell(&ctx, envp, argv, argc);
-	if (status > 0)
+	status = init_shell(&ctx, envp, argv, argc);
+	if (status != CONTINUE_PROC)
 		return (exit_shell(&ctx, status, "init_shell ERROR"), status);
-	prompt(&ctx, envp);
+	status = prompt(&ctx, envp);
+	if (status != CONTINUE_PROC)
+		return (exit_shell(&ctx, status, "prompt ERROR"), status);
 }

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 11:50:45 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 17:56:42 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	*gc_malloc(t_sh_context *shx, size_t size, bool count)
 
 	new_ptr = malloc(sizeof(t_ptr));
 	if (!new_ptr)
-		exit_shell(shx,
-			GARB_ALLOC_ERROR, "failed to allocate a gc node");
+		return (NULL);
 	new_ptr->ptr = malloc(size);
 	if (!new_ptr->ptr)
 		return (NULL);

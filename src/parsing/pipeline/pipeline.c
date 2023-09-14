@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 14:21:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 20:05:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ t_uint	create_ppl(
 
 	*new = (t_pipeline *)shx->gc->malloc(shx, sizeof(t_pipeline), true);
 	if (!(*new))
-		return (MALLOC_FAIL);
+		return (handle_error(MALLOC_FAIL, NULL));
 	(*new)->cmd = NULL;
 	(*new)->shx = shx;
 	(*new)->process = (t_process){.pid = -42, .status = -42};
 	(*new)->redir = (t_redirect){.in_type = NONE, .out_type = NONE};
 	(*new)->next = NULL;
 	status = parse_pipe(shx, new, splited, size);
-	if (status != 0)
-		return (status);
-	return (0);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	return (CONTINUE_PROC);
 }
 
 t_uint	add_ppl(
@@ -39,8 +39,8 @@ t_uint	add_ppl(
 	t_uint		status;
 
 	status = create_ppl(shx, &new, size, splited);
-	if (status != 0)
-		return (status);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
 	if (!*pipeline)
 		*pipeline = new;
 	else
@@ -50,5 +50,5 @@ t_uint	add_ppl(
 			tmp = tmp->next;
 		tmp->next = new;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }

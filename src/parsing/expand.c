@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/07 13:39:28 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 20:04:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	expand(t_sh_context *shx, t_str *to_exp)
+t_uint	expand(t_sh_context *shx, t_str *to_exp)
 {
 	t_uint	j;
 	bool	found;
@@ -24,14 +24,13 @@ void	expand(t_sh_context *shx, t_str *to_exp)
 		j = 0;
 		while (((t_str)(tmp->data))[j] != '=')
 			j++;
-		// found = check_expand(to_exp, j, tmp, found);
 		if (!ft_strncmp(&(*to_exp)[1], tmp->data, j)
 			&& ft_strlen(&(*to_exp)[1]) == j)
 		{
 			found = true;
 			*to_exp = ft_strdup(shx, &((char *)tmp->data)[++j]);
 			if (!*to_exp)
-				return ;
+				return (handle_error(MALLOC_FAIL, NULL));
 		}
 		tmp = tmp->next;
 	}
@@ -39,13 +38,15 @@ void	expand(t_sh_context *shx, t_str *to_exp)
 	{
 		*to_exp = ft_strdup(shx, "");
 		if (!*to_exp)
-			return ;
+			return (handle_error(MALLOC_FAIL, NULL));
 	}
+	return (CONTINUE_PROC);
 }
 
-void	chunck_expand(t_sh_context *shx, t_chunk **chunk)
+t_uint	chunck_expand(t_sh_context *shx, t_chunk **chunk)
 {
 	t_uint	i;
+	t_uint	status;
 
 	if ((*chunk)->type == DOUBLE_QUOTE)
 	{
@@ -54,15 +55,21 @@ void	chunck_expand(t_sh_context *shx, t_chunk **chunk)
 		{
 			if (get_meta_char(&(*chunk)->txt[i][0]) == DOLLAR
 				&& (*chunk)->txt[i][1] != '\0')
-				expand(shx, &(*chunk)->txt[i]);
+			{
+				status = expand(shx, &(*chunk)->txt[i]);
+				if (status != CONTINUE_PROC)
+					return (handle_error(status, NULL));
+			}
 			i++;
 		}
 	}
+	return (CONTINUE_PROC);
 }
 
-void	cmd_expand(t_sh_context *shx, t_cmd **cmd)
+t_uint	cmd_expand(t_sh_context *shx, t_cmd **cmd)
 {
 	t_uint	i;
+	t_uint	status;
 	t_chunk	*tmp;
 
 	i = 0;
@@ -71,14 +78,21 @@ void	cmd_expand(t_sh_context *shx, t_cmd **cmd)
 	{
 		if (tmp && i == tmp->start)
 		{
-			chunck_expand(shx, &tmp);
+			status = chunck_expand(shx, &tmp);
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
 			while (i < tmp->end)
 				i++;
 			tmp = tmp->next;
 		}
 		if (get_meta_char(&(*cmd)->cmd[i][0]) == DOLLAR
 			&& (*cmd)->cmd[i][1] != '\0')
+		{
 			expand(shx, &(*cmd)->cmd[i]);
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
+		}
 		i++;
 	}
+	return (CONTINUE_PROC);
 }

@@ -18,7 +18,7 @@ t_uint	index_list_value(t_list **lst)
 	t_uint	index;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	tmp = *lst;
 	index = 0;
 	while (tmp)
@@ -26,5 +26,5 @@ t_uint	index_list_value(t_list **lst)
 		tmp->index = index++;
 		tmp = tmp->next;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }

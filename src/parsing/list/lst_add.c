@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:31:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/08 19:43:02 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 18:45:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ t_uint	lst_add_front(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 	t_list	*new;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	new = lst_create(shx, data, index);
 	if (!new)
-		return (MALLOC_FAIL);
+		return (handle_error(MALLOC_FAIL, NULL));
 	*lst = new;
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index)
@@ -31,10 +31,10 @@ t_uint	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 	t_list	*tmp;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	new = lst_create(shx, data, index);
 	if (!new)
-		return (MALLOC_FAIL);
+		return (handle_error(MALLOC_FAIL, NULL));
 	if (!*lst)
 		*lst = new;
 	else
@@ -44,7 +44,7 @@ t_uint	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 			tmp = tmp->next;
 		tmp->next = new;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
 
 t_uint	lst_insert(t_sh_context *shx, t_list **lst, void *data, t_uint index)
@@ -54,10 +54,10 @@ t_uint	lst_insert(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 	t_uint	i;
 
 	if (!lst)
-		return (NULL_DATA);
+		return (handle_error(NULL_DATA, NULL));
 	new = lst_create(shx, data, index);
 	if (!new)
-		return (MALLOC_FAIL);
+		return (handle_error(MALLOC_FAIL, NULL));
 	if (!*lst)
 		*lst = new;
 	else
@@ -69,5 +69,5 @@ t_uint	lst_insert(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 		new->next = tmp->next;
 		tmp->next = new;
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
