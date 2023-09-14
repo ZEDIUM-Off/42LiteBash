@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:38:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/06 20:01:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 17:28:12 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 		if (current->index == index)
 		{
 			if (previous == NULL)
-					*lst = current->next;
+				*lst = current->next;
 			else
 				previous->next = current->next;
 			shx->gc->free(shx, current->data);
@@ -38,6 +38,7 @@ t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 	}
 	return (0);
 }
+
 t_uint	lst_remove_first(t_sh_context *shx, t_list **lst)
 {
 	t_list	*tmp;
@@ -53,6 +54,7 @@ t_uint	lst_remove_first(t_sh_context *shx, t_list **lst)
 	}
 	return (0);
 }
+
 t_uint	lst_remove_last(t_sh_context *shx, t_list **lst)
 {
 	t_list	*tmp;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 14:24:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 18:32:04 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ enum e_step_type
 
 enum e_internal_error_codes
 {
+	CONTINUE_PROC = 0,
 	GARB_ALLOC_ERROR = 1,
 	TRACKER_ALLOC_ERROR,
 	MALLOC_FAIL,
@@ -78,6 +79,7 @@ enum e_internal_error_codes
 	PROC_NOT_TERMINATED,
 	NULL_DATA,
 	BLOCK_ALREADY_EXISTS,
+	SKIP_FORK,
 };
 
 enum e_user_error_codes

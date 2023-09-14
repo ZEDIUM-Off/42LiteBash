@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:43:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 14:06:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/13 18:33:04 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl, bool fork)
 		status = pwd_builtins();
 	else if (bi_id == CD_BI)
 		status = cd_builtins(shx, (*ppl)->cmd->cmd[1]);
-	else if (bi_id == EXPORT_BI)
+	else if (bi_id == EXPORT_BI && !fork)
 		status = export_cmd(&(*ppl)->cmd);
-	else if (bi_id == UNSET_BI)
+	else if (bi_id == UNSET_BI && !fork)
 		status = unset_cmd(&(*ppl)->cmd);
-	else if (bi_id == ENV_BI)
+	else if (bi_id == ENV_BI && fork)
 		lst_print(&shx->envp, "%u %s\n");
-	else if (bi_id == EXIT_BI)
+	else if (bi_id == EXIT_BI && !fork)
 		exit_shell(shx, 420, "You say it, you assume it\n");
-	// log_struct(shx);
 	if (fork)
 		exit(status);
 	return (status);
 }
 
-void	check_no_fork_bi(t_uint bi_id, t_pipeline **ppl)
+t_uint	check_no_fork_bi(t_uint bi_id, t_pipeline **ppl)
 {
-	if (bi_id == EXIT_BI || bi_id == EXPORT_BI || bi_id == UNSET_BI)
-		run_builtin (bi_id, ppl, false);
+	if (bi_id == EXIT_BI || bi_id == EXPORT_BI || bi_id == UNSET_BI || bi_id == ENV_BI)
+		return (run_builtin (bi_id, ppl, false));
+	return (CONTINUE_PROC);
 }

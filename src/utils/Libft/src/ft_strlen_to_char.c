@@ -20,6 +20,5 @@ size_t	ft_strlen_to_char(const char *s, char c)
 	i = 0;
 	while (s[i] != '\0' && s[i] != c)
 		i++;
-    printf("ft_strlen_to_char i = %zu\n", i);
 	return (i);
 }

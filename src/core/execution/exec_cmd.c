@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 14:21:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/13 18:31:31 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 
 	status = 0;
 	bi_id = check_builtins((*ppl)->cmd->cmd[0]);
-	check_no_fork_bi(bi_id, ppl);
+	if (check_no_fork_bi(bi_id, ppl) == SKIP_FORK)
+		return (CONTINUE_PROC);
 	wait_any_proc(block);
 	(*ppl)->process.pid = fork();
 	if ((*ppl)->process.pid == -1)
