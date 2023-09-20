@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 20:08:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/18 10:55:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_uint	parse_pipe(
 	if (!cmd_no_redir)
 		return (handle_error(MALLOC_FAIL, NULL));
 	status = extract_redirect(ppl, &cmd_no_redir, splited, size);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	status = parse_export(shx, cmd_no_redir);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	status = new_cmd(shx, &((*ppl)->cmd), cmd_no_redir);

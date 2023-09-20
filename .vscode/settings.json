@@ -1,5 +1,6 @@
 {
 	"files.associations": {
+		"*.js": "typescript",
 		"garbage.h": "c",
 		"core.h": "c",
 		"minish.h": "c",
@@ -19,6 +20,7 @@
 		"string": "c",
 		"string_view": "c",
 		"unordered_map": "c",
-		"vector": "c"
+		"vector": "c",
+		"sstream": "c"
 	}
 }

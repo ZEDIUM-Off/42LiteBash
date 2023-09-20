@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/14 01:44:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/18 10:56:21 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <minish.h>
 
-# define GARB_ALLOC_ERROR_MSG "Erreur d'allocation du garbage collector"
-# define TRACKER_ALLOC_ERROR_MSG "Erreur d'allocation du tracker"
 # define MALLOC_FAIL_MSG "Echec de l'allocation mémoire"
 # define PIPE_FAIL_MSG "Echec de la création du pipe"
 # define FORK_FAIL_MSG "Echec du fork"

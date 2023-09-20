@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/13 18:45:02 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/16 11:20:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_uint	cd_builtins(t_sh_context *shx, t_str path)
 	int		error_code;
 	t_str	env_name;
 
-	//trace(shx, "cd_builtins", "cd cmd", EXEC);
 	error_code = chdir(path);
 	printf("cd_builtins error_code : %i\n", error_code);
 	if (error_code < 0)
@@ -31,9 +30,8 @@ t_uint	cd_builtins(t_sh_context *shx, t_str path)
 	if (!pwd)
 		return (handle_error(MALLOC_FAIL, NULL));
 	lst_remplace(shx,
-		&shx->envp, lst_get_index(&shx->envp, "PWD=", 4), pwd);
+		&shx->envp, lst_get_index(&shx->envp, "PWD="), pwd);
 	if (pwd)
 		free(pwd);
-	//log_action(shx);
 	return (CONTINUE_PROC);
 }
