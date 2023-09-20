@@ -32,22 +32,25 @@ t_uint	exec_echo(t_cmd **_cmd)
 
 	n = 0;
 	i = 1;
-	if ((*_cmd)->cmd[i][0] == '\0')
+	if (!(*_cmd)->cmd[i] || (*_cmd)->cmd[i][0] == '\0')
 		return (1);
 	tmp = (*_cmd)->chunk;
-	while ((*_cmd)->cmd[i])
+	while ((*_cmd)->cmd[i] != NULL)
 	{
-		if (ft_strncmp((*_cmd)->cmd[i], "-n",
-				ft_strlen((*_cmd)->cmd[i])) == 0)
+		if (ft_strnstr((*_cmd)->cmd[i], "-n",
+				ft_strlen((*_cmd)->cmd[i])))
 		{
+			printf("PASS in -n exec_echo\n");
 			n = 1;
 			i++;
 		}
-		if (tmp && i == tmp->start - 1)
-			handle_chunk(&tmp, &i);
-		else
-			echo_builtins((*_cmd)->cmd[i++]);
-		printf(" ");
+		if (tmp)
+			handle_chunck(&tmp, &i);
+		if ((*_cmd)->cmd[i])
+			printf("%s", (*_cmd)->cmd[i]);
+		if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] != '\0')
+			printf(" ");
+		i++;
 	}
 	if (n == 0)
 		printf("\n");

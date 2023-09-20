@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/16 11:29:32 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/20 13:02:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ t_uint	skip_parts(t_str str, t_quote_test *quotes)
 	t_uint	meta;
 
 	i = 0;
-	meta = get_meta_char(&str[i]);
-	if (check_builtins(&str[i++]) == EXPORT_BI)
-		skip_to_pipe(str, &i);
-	else if (meta != NONE)
+	meta = get_meta_char(&str[i++]);
+	if (meta != NONE)
 	{
 		if (meta == SINGLE_QUOTE)
 			quotes->s_quote = !quotes->s_quote;
@@ -29,7 +27,7 @@ t_uint	skip_parts(t_str str, t_quote_test *quotes)
 			quotes->d_quote = !quotes->d_quote;
 		if (meta == DOLLAR)
 			skip_to_space(str, &i);
-		if (meta >= APPEND_REDIRECT && meta <= DOLLAR_D)
+		if (meta >= APPEND_REDIRECT && meta <= PLUS_EQUAL)
 			i++;
 	}
 	else
@@ -60,28 +58,39 @@ t_uint	count_parts(t_str str)
 		if (str[i])
 			n_parts++;
 		i += skip_parts(&str[i], &quotes);
+		if (str[i] && str[i] != ' ' && str[i] != '\t'
+			&& !quotes.s_quote && !quotes.d_quote)
+			n_parts++;
 	}
 	return (n_parts);
 }
 
-t_uint	new_part(
-	t_sh_context *shx, char **dest, t_str src, t_quote_test *quotes)
+t_uint	new_part(t_sh_context *shx, t_str **dest,
+	t_str src, t_quote_test *quotes)
 {
 	t_uint	i;
 	t_uint	j;
 
 	j = 0;
 	i = skip_parts(src, quotes);
-	*dest = shx->gc->malloc(shx,
-			sizeof(char) * (i + 1), true);
-	if (!*dest)
+	**dest = shx->gc->malloc(shx, sizeof(char) * (i + 1), true);
+	if (!**dest)
 		return (-1);
 	while (j < i)
 	{
-		(*dest)[j] = src[j];
+		(**dest)[j] = src[j];
 		j++;
 	}
-	(*dest)[j] = '\0';
+	(**dest)[j] = '\0';
+	if (src[i] && src[i] != ' ' && src[i] != '\t'
+		&& !quotes->s_quote && !quotes->d_quote)
+	{
+		(*dest)++;
+		**dest = shx->gc->malloc(shx, sizeof(char), true);
+		if (!**dest)
+			return (-1);
+		(**dest)[0] = '\0';
+	}
 	return (i);
 }
 
@@ -89,25 +98,25 @@ static t_str	*meta_cut(t_sh_context *shx, t_str *dest, t_str src)
 {
 	t_quote_test	quotes;
 	t_uint			i;
-	t_uint			k;
 	t_uint			parts;
+	t_str			*temp_dest;
 
 	i = 0;
-	k = 0;
 	parts = count_parts(src);
 	quotes.s_quote = false;
 	quotes.d_quote = false;
-	while (src[i] && k < parts)
+	temp_dest = dest;
+	while (src[i] && temp_dest < dest + parts)
 	{
 		if (!quotes.s_quote && !quotes.d_quote)
 			while (src[i] && (src[i] == ' ' || src[i] == '\t'))
 				i++;
-		i += new_part(shx, &dest[k], &src[i], &quotes);
-		if (!dest[k])
+		i += new_part(shx, &temp_dest, &src[i], &quotes);
+		if (!*temp_dest)
 			return (NULL);
-		k++;
+		temp_dest++;
 	}
-	dest[k] = NULL;
+	*temp_dest = NULL;
 	return (dest);
 }
 
