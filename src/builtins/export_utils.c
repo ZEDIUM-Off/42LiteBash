@@ -36,7 +36,7 @@ t_uint	parse_export(t_str *cmd)
 		if (quotes->s_quote || quotes->d_quote)
 			while (str[i] && get_meta_char(&str[i]) == NONE)
 				i++;
-		skip_to_space(str, &i);
+		
 	}
 	return (CONTINUE_PROC);
 }

@@ -6,8 +6,13 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 10:55:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/18 10:56:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/20 10:27:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_uint
+t_uint	export_cmd(t_cmd *cmd)
+{
+	t_uint	i;
+
+
+}
