@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/16 11:27:53 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/20 16:44:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,6 @@ t_uint	prompt(t_sh_context *shx, char **env)
 			status = split_line(shx, &shx->line_split, shx->line);
 			if (status != CONTINUE_PROC)
 				return (handle_error(status, NULL));
-			int i = 0;
-			while (shx->line_split[i])
-			{
-				printf("splited [%s]\n", shx->line_split[i]);
-				i++;
-			}
 		}
 		status = pars_line(shx, &shx->blocks, shx->line_split);
 		if (status != CONTINUE_PROC)

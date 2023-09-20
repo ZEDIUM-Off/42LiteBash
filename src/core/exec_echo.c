@@ -12,15 +12,20 @@
 
 #include <minish.h>
 
-static void	handle_chunk(t_chunk **tmp, t_uint *i)
+static void	echo_chunck(t_cmd **cmd, t_chunk **tmp, t_uint *i)
 {
 	t_uint				j;
 
 	j = 0;
-	while ((*tmp)->txt[j])
-		echo_builtins((*tmp)->txt[j++]);
-	while (*i <= (*tmp)->end)
-		(*i)++;
+	while ((*tmp)->txt[j] && get_meta_char((*tmp)->txt[j]) != (*tmp)->type)
+	{
+		printf("%s", (*tmp)->txt[j]);
+		j++;
+	}
+	if ((*cmd)->cmd[(*tmp)->end + 1])
+		*i = (*tmp)->end + 1;
+	else
+		*i = (*tmp)->end; 
 	*tmp = (*tmp)->next;
 }
 
@@ -35,7 +40,7 @@ t_uint	exec_echo(t_cmd **_cmd)
 	if (!(*_cmd)->cmd[i] || (*_cmd)->cmd[i][0] == '\0')
 		return (1);
 	tmp = (*_cmd)->chunk;
-	while ((*_cmd)->cmd[i] != NULL)
+	while ((*_cmd)->cmd[i] && (*_cmd)->cmd[i] != NULL )
 	{
 		if (ft_strnstr((*_cmd)->cmd[i], "-n",
 				ft_strlen((*_cmd)->cmd[i])))
@@ -45,8 +50,10 @@ t_uint	exec_echo(t_cmd **_cmd)
 			i++;
 		}
 		if (tmp)
-			handle_chunck(&tmp, &i);
-		if ((*_cmd)->cmd[i])
+			echo_chunck(_cmd, &tmp, &i);
+		if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] == '\0' && (*_cmd)->cmd[i + 1])
+			i++;
+		if ((*_cmd)->cmd[i] && get_meta_char((*_cmd)->cmd[i]) != DOUBLE_QUOTE)
 			printf("%s", (*_cmd)->cmd[i]);
 		if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] != '\0')
 			printf(" ");
