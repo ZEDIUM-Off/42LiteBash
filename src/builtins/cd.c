@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/13 18:45:02 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/18 16:51:16 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_uint	cd_builtins(t_sh_context *shx, t_str path)
 	if (!pwd)
 		return (handle_error(MALLOC_FAIL, NULL));
 	lst_remplace(shx,
-		&shx->envp, lst_get_index(&shx->envp, "PWD=", 4), pwd);
+		&shx->envp, lst_get_index(&shx->envp, "PWD="), pwd);
 	if (pwd)
 		free(pwd);
 	//log_action(shx);

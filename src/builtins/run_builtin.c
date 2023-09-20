@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:43:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/14 02:10:13 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/18 17:00:37 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl, bool fork)
 		status = pwd_builtins();
 	else if (bi_id == CD_BI)
 		status = cd_builtins((*ppl)->shx, (*ppl)->cmd->cmd[1]);
-	else if (bi_id == EXPORT_BI && !fork)
-		status = export_cmd(&(*ppl)->cmd);
-	else if (bi_id == UNSET_BI && !fork)
-		status = unset_cmd(&(*ppl)->cmd);
-	else if (bi_id == ENV_BI)
-		status = lst_print(&(*ppl)->shx->envp, "%u %s\n");
+	// else if (bi_id == EXPORT_BI && !fork)
+	// 	status = export_cmd(&(*ppl)->cmd);
+	// else if (bi_id == UNSET_BI && !fork)
+	// 	status = unset_cmd(&(*ppl)->cmd);
+	// else if (bi_id == ENV_BI)
+	// 	status = lst_print(&(*ppl)->shx->envp, "%u %s\n");
 	else if (bi_id == EXIT_BI && !fork)
 		exit_shell((*ppl)->shx, 420, "You say it, you assume it\n");
 	if (status != CONTINUE_PROC)
