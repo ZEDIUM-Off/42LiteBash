@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_paths.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:09:23 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/14 11:53:12 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/22 16:11:42 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*add_paths_to_lst(t_sh_context *shx, char **paths)
 	int		i;
 
 	i = -1;
-	lst_paths = lst_create(shx, ft_strdup(shx, paths[0]), i);
+	lst_paths = lst_create(shx, ft_strdup(shx, paths[0]));
 	if (!lst_paths)
 		return (NULL);
 	while (paths[++i])

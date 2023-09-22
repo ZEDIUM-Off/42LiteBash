@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ctx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:16:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 16:54:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/22 15:56:37 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@ void	init_sh_context(
 	ctx->proc_nb = 0;
 	ctx->env = envp;
 	ctx->s_env = NULL;
+	ctx->envp = NULL;
+	ctx->envx = NULL;
 }

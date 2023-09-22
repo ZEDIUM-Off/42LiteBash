@@ -17,7 +17,6 @@
 
 struct	s_list
 {
-	t_uint	index;
 	void	*data;
 	t_list	*next;
 };
@@ -30,7 +29,7 @@ struct	s_dlist
 	t_dlist	*next;
 };
 
-t_list	*lst_create(t_sh_context *shx, void *data, t_uint index);
+t_list	*lst_create(t_sh_context *shx, void *data);
 t_uint	lst_add_front(t_sh_context *shx,
 			t_list **lst, void *data, t_uint index);
 t_uint	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index);

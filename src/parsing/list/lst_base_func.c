@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lst_base_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:28:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 23:51:11 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/22 16:11:05 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_list	*lst_create(t_sh_context *shx, void *data, t_uint index)
+t_list	*lst_create(t_sh_context *shx, void *data)
 {
 	t_list	*new;
 
@@ -20,7 +20,6 @@ t_list	*lst_create(t_sh_context *shx, void *data, t_uint index)
 	if (!new)
 		return (NULL);
 	new->data = data;
-	new->index = index;
 	new->next = NULL;
 	return (new);
 }
@@ -35,7 +34,7 @@ t_uint	lst_print(t_list **lst, t_str text)
 	tmp = *lst;
 	while (tmp)
 	{
-		printf(text, tmp->index, tmp->data);
+		printf(text, tmp->data);
 		tmp = tmp->next;
 	}
 	return (CONTINUE_PROC);
