@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/20 10:33:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/22 14:22:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,23 @@ t_uint	parse_pipe(
 t_uint	process_block(
 		t_sh_context *shx, t_block **blocks, t_str *splited)
 {
-	t_uint	status;
-	t_uint	start;
-	t_uint	i;
+	t_uint			status;
+	t_uint			start;
+	t_uint			i;
+	t_uint			meta;
+	t_quote_test	quotes;
 
 	i = 0;
 	start = i;
+	quotes = (t_quote_test){false, false};
 	while (splited[i] && i < (*blocks)->block_end)
 	{
-		if (get_meta_char(&splited[i][0]) == PIPE)
+		meta = get_meta_char(&splited[i][0]);
+		if (meta == SINGLE_QUOTE)
+			quotes.s_quote = !quotes.s_quote;
+		if (meta == DOUBLE_QUOTE)
+			quotes.d_quote = !quotes.d_quote;
+		if (meta == PIPE && !quotes.s_quote && !quotes.d_quote)
 		{
 			status = add_ppl(shx, &(*blocks)->ppl, i - start, &splited[start]);
 			if (status != CONTINUE_PROC)
