@@ -12,21 +12,34 @@
 
 #include <minish.h>
 
-static void	echo_chunck(t_cmd **cmd, t_chunk **tmp, t_uint *i)
+static void	echo_chunck(t_chunk **tmp, t_uint *i)
 {
 	t_uint				j;
 
 	j = 0;
-	while ((*tmp)->txt[j] && get_meta_char((*tmp)->txt[j]) != (*tmp)->type)
+	while ((*tmp)->txt[j])
 	{
-		printf("%s", (*tmp)->txt[j]);
+		if (get_meta_char((*tmp)->txt[j]) != (*tmp)->type)
+			printf("%s", (*tmp)->txt[j]);
 		j++;
 	}
-	if ((*cmd)->cmd[(*tmp)->end + 1])
-		*i = (*tmp)->end + 1;
-	else
-		*i = (*tmp)->end; 
+	*i = (*tmp)->end + 1;
 	*tmp = (*tmp)->next;
+}
+
+bool	check_backslash(t_cmd **_cmd, t_uint *i, bool *n)
+{
+	bool	find;
+
+	find = false;
+	if (ft_strnstr((*_cmd)->cmd[*i], "-n", ft_strlen((*_cmd)->cmd[*i]))
+		&& ((*_cmd)->cmd[*i][2] == ' ' || (*_cmd)->cmd[*i][2] == '\0'))
+	{
+		find = true;
+		*n = 1;
+		*i += 1;
+	}
+	return (find);
 }
 
 t_uint	exec_echo(t_cmd **_cmd)
@@ -40,24 +53,22 @@ t_uint	exec_echo(t_cmd **_cmd)
 	if (!(*_cmd)->cmd[i] || (*_cmd)->cmd[i][0] == '\0')
 		return (1);
 	tmp = (*_cmd)->chunk;
-	while ((*_cmd)->cmd[i] && (*_cmd)->cmd[i] != NULL )
+	while ((*_cmd)->cmd[i] && (*_cmd)->cmd[i] != NULL)
 	{
-		if (ft_strnstr((*_cmd)->cmd[i], "-n",
-				ft_strlen((*_cmd)->cmd[i])))
+		if (check_backslash(_cmd, &i, &n))
+			continue ;
+		else if (tmp && i + 1 == tmp->start)
+			echo_chunck(&tmp, &i);
+		else
 		{
-			printf("PASS in -n exec_echo\n");
-			n = 1;
+			if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] == '\0')
+				i++;
+			if ((*_cmd)->cmd[i])
+				printf("%s", (*_cmd)->cmd[i]);
 			i++;
 		}
-		if (tmp)
-			echo_chunck(_cmd, &tmp, &i);
-		if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] == '\0' && (*_cmd)->cmd[i + 1])
-			i++;
-		if ((*_cmd)->cmd[i] && get_meta_char((*_cmd)->cmd[i]) != DOUBLE_QUOTE)
-			printf("%s", (*_cmd)->cmd[i]);
 		if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] != '\0')
 			printf(" ");
-		i++;
 	}
 	if (n == 0)
 		printf("\n");
