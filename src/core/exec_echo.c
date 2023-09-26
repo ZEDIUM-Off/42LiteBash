@@ -12,7 +12,7 @@
 
 #include <minish.h>
 
-static void	echo_chunck(t_chunk **tmp, t_uint *i)
+static void	echo_chunck(t_cmd **_cmd, t_chunk **tmp, t_uint *i)
 {
 	t_uint				j;
 
@@ -23,7 +23,10 @@ static void	echo_chunck(t_chunk **tmp, t_uint *i)
 			printf("%s", (*tmp)->txt[j]);
 		j++;
 	}
-	*i = (*tmp)->end + 1;
+	if ((*_cmd)->cmd[*i + 1])
+		*i = (*tmp)->end + 1;
+	else
+		*i = (*tmp)->end;
 	*tmp = (*tmp)->next;
 }
 
@@ -55,20 +58,19 @@ t_uint	exec_echo(t_cmd **_cmd)
 	tmp = (*_cmd)->chunk;
 	while ((*_cmd)->cmd[i] && (*_cmd)->cmd[i] != NULL)
 	{
-		if (check_backslash(_cmd, &i, &n))
+		if (i == 1 && n == 0 && check_backslash(_cmd, &i, &n))
 			continue ;
 		else if (tmp && i + 1 == tmp->start)
-			echo_chunck(&tmp, &i);
+			echo_chunck(_cmd, &tmp, &i);
 		else
 		{
-			if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] == '\0')
-				i++;
-			if ((*_cmd)->cmd[i])
-				printf("%s", (*_cmd)->cmd[i]);
-			i++;
+			if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] != '\0')
+				printf("%s", (*_cmd)->cmd[i++]);
 		}
 		if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] != '\0')
 			printf(" ");
+		if ((*_cmd)->cmd[i])
+			i++;
 	}
 	if (n == 0)
 		printf("\n");

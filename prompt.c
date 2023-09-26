@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/20 16:44:38 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/26 17:37:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,37 @@ t_uint	prompt(t_sh_context *shx, char **env)
 		}
 		// shx->gc->free(shx, str_prompt);
 		printf("[%s]\n", shx->line);
-		status = check_syntax(shx->line);
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
 		if (shx->line[0])
 			add_history(shx->line);
+		// status = check_syntax(shx->line);
+		// if (status != CONTINUE_PROC)
+		// 	return (handle_error(status, NULL));
 		if (shx->line[0])
 		{
 			status = split_line(shx, &shx->line_split, shx->line);
 			if (status != CONTINUE_PROC)
 				return (handle_error(status, NULL));
+			int i = 0;
+			while (shx->line_split[i])
+			{
+				printf("[%s]\n", shx->line_split[i]);
+				i++;
+			}
 		}
-		status = pars_line(shx, &shx->blocks, shx->line_split);
+		status = check_splited(&shx->line_split);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
-		log_struct(shx);
-		status = processing(&shx->blocks);
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
-		clean_blocks(shx, &shx->blocks);
+		else if (shx->line_split && shx->line_split[0])
+		{
+			status = pars_line(shx, &shx->blocks, shx->line_split);
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
+			log_struct(shx);
+			status = processing(&shx->blocks);
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
+			clean_blocks(shx, &shx->blocks);
+		}
 		free(shx->line);
 		shx->line = NULL;
 	}

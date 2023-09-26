@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/20 12:46:37 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/26 14:05:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ enum e_error_codes
 	CLOSE_FAIL,
 	DUP_FAIL,
 	SKIP_FORK,
+	UNCLOSED_QUOTES,
 };
 
 enum e_parsing_error

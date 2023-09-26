@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/16 11:19:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/26 17:35:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ void		sort_env_export(t_sh_context *shx);
 t_uint		new_file(t_sh_context *shx, t_file *file, t_str name, t_uint type);
 t_uint		check_env(t_sh_context *shx);
 t_uint		check_envx(t_sh_context *shx);
+bool		check_no_space(t_str str, t_uint i, t_quote_test	*quotes);
 
 #endif
