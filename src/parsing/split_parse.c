@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/20 13:02:02 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/26 17:37:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ t_uint	count_parts(t_str str)
 		if (str[i])
 			n_parts++;
 		i += skip_parts(&str[i], &quotes);
-		if (str[i] && str[i] != ' ' && str[i] != '\t'
-			&& !quotes.s_quote && !quotes.d_quote)
+		if (check_no_space(str, i, &quotes))
 			n_parts++;
 	}
 	return (n_parts);
@@ -71,19 +70,15 @@ t_uint	new_part(t_sh_context *shx, t_str **dest,
 	t_uint	i;
 	t_uint	j;
 
-	j = 0;
+	j = -1;
 	i = skip_parts(src, quotes);
 	**dest = shx->gc->malloc(shx, sizeof(char) * (i + 1), true);
 	if (!**dest)
 		return (-1);
-	while (j < i)
-	{
+	while (++j < i)
 		(**dest)[j] = src[j];
-		j++;
-	}
 	(**dest)[j] = '\0';
-	if (src[i] && src[i] != ' ' && src[i] != '\t'
-		&& !quotes->s_quote && !quotes->d_quote)
+	if (check_no_space(src, i, quotes))
 	{
 		(*dest)++;
 		**dest = shx->gc->malloc(shx, sizeof(char), true);

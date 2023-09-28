@@ -1,40 +1,47 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   syntax_check.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 12:35:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 18:13:23 by  mchenava        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// /* ************************************************************************** */
+// /*                                                                            */
+// /*                                                        :::      ::::::::   */
+// /*   syntax_check.c                                     :+:      :+:    :+:   */
+// /*                                                    +:+ +:+         +:+     */
+// /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+// /*                                                +#+#+#+#+#+   +#+           */
+// /*   Created: 2023/06/08 12:35:47 by  mchenava         #+#    #+#             */
+// /*   Updated: 2023/09/26 14:07:25 by  mchenava        ###   ########.fr       */
+// /*                                                                            */
+// /* ************************************************************************** */
 
-#include <minish.h>
+// #include <minish.h>
 
-static void	init_syntax_checker(t_syntax_checker *syx)
-{
-	syx->cursor = 0;
-	syx->quote_ctr = 0;
-	syx->db_quote_ctr = 0;
-	syx->parenthesis_ctr = 0;
-}
+// t_uint	check_syntax(t_str *splited)
+// {
+// 	t_uint	i;
+// 	t_uint	status;
+// 	t_uint	meta;
+// 	t_uint	s_quote;
+// 	t_uint	db_quote;
 
-t_uint	check_syntax(t_str line)
-{
-	t_syntax_checker	syx;
-
-	init_syntax_checker(&syx);
-	while (line[syx.cursor] && syx.status != SYNTAX_ERROR)
-	{
-		control_quoting(&line[syx.cursor], &syx);
-		control_redirection(&line[syx.cursor], &syx);
-		control_pipe(&line[syx.cursor], &syx);
-		syx.cursor++;
-	}
-	if (syx.quote_ctr % 2 != 0
-		|| syx.db_quote_ctr % 2 != 0
-		|| syx.parenthesis_ctr != 0)
-		syx.status = SYNTAX_ERROR;
-	return (syx.status);
-}
+// 	i = 0;
+// 	s_quote = 0;
+// 	db_quote = 0;
+// 	while (splited[i])
+// 	{
+// 		if (splited[i][0] == '\0')
+// 			i++;
+// 		meta = get_meta_char(splited[i]);
+// 		if (meta == SINGLE_QUOTE)
+// 			s_quote++;
+// 		else if (meta == DOUBLE_QUOTE)
+// 			db_quote++;
+// 		else if (meta == PIPE)
+// 			status = control_pipe(splited, &i);
+// 		else if (meta >= IN_REDIRECT && meta <= HERE_DOC)
+// 			status = check_redirection(splited, &i);
+// 		else if (meta == INVALID_META)
+// 			return (handle_error(INVALID_META, splited[i]));
+// 		if (status != CONTINUE_PROC)
+// 			return (handle_error(status, splited[i]));
+// 	}
+// 	if (s_quote % 2 != 0 || db_quote % 2 != 0)
+// 		return (handle_error(UNCLOSED_QUOTES, NULL));
+// 	return (CONTINUE_PROC);
+// }

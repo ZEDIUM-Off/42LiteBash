@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/09/14 11:40:40 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/09/26 10:45:53 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/list/lst_del.c  \
 				src/parsing/syntax/syntax_check.c \
 				src/parsing/syntax/control_meta.c \
+				src/parsing/syntax/check_splited.c \
 				src/parsing/get_meta.c \
 				src/utils/tracker/init_track.c \
 				src/utils/tracker/track.c \
