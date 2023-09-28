@@ -6,7 +6,7 @@
 /*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/28 17:07:54 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 19:16:11 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ t_uint	add_env_to_lst(t_sh_context *shx, char **envp)
 	while (envp[i])
 	{
 		status = lst_add_back(shx, &shx->envp, envp[i]);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
 		status = lst_add_back(shx, &shx->envx, envp[i]);
-		printf("add_env_to_lst status = %u\n", status);
-		// printf("add_env_to_lst **envp = %s\n", envp[0]);
-		// printf("add_env_to_lst lst_env = %s\n", (t_str)(*lst_env)->data);
-		printf("add_env_to_lst shx->envp = %s\n", (t_str)shx->envp);
-		printf("add_env_to_lst shx->envp = %s\n", (t_str)shx->envx);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 		i++;
+		printf("add_env_to_lst status = %u\n", status);
+		printf("add_env_to_lst shx->envp = %s\n", (t_str)shx->envp);
+		printf("add_env_to_lst shx->envx = %s\n", (t_str)shx->envx);
 	}
 	return (CONTINUE_PROC);
 }
