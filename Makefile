@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/09/26 10:45:53 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/09/28 15:12:11 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/list/lst_del.c  \
 				src/parsing/syntax/syntax_check.c \
 				src/parsing/syntax/control_meta.c \
-				src/parsing/syntax/check_splited.c \
 				src/parsing/get_meta.c \
 				src/utils/tracker/init_track.c \
 				src/utils/tracker/track.c \
@@ -79,7 +78,6 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/make_env/make_env_utils.c \
 				src/builtins/export.c \
 				src/builtins/unset.c \
-				src/parsing/list/lst_index.c \
 				src/core/execution/exec_cmd.c \
 				src/core/files.c \
 				src/core/execution/run_pipeline.c \
@@ -89,6 +87,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/core/execution/here_doc_handler.c \
 				src/builtins/run_builtin.c \
 				src/builtins/export_utils.c \
+				#src/parsing/syntax/check_splited.c \#
 
 # HEAD = $(shell find . -name "*.h") #pas legal
 

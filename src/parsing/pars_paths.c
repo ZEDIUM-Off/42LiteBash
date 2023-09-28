@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_paths.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:09:23 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/22 16:11:42 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 15:01:40 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list	*add_paths_to_lst(t_sh_context *shx, char **paths)
 		return (NULL);
 	while (paths[++i])
 	{
-		if (lst_add_back(shx, &lst_paths, ft_strdup(shx, paths[i]), i)
+		if (lst_add_back(shx, &lst_paths, ft_strdup(shx, paths[i]))
 			!= CONTINUE_PROC)
 			return (NULL);
 	}

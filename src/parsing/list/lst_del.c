@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_del.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:38:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/14 02:12:45 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/28 14:26:00 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 {
 	t_list	*current;
 	t_list	*previous;
+	t_uint	i;
 
 	current = *lst;
 	previous = NULL;
@@ -23,7 +24,7 @@ t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 		return (handle_error(NULL_DATA, NULL));
 	while (current != NULL)
 	{
-		if (current->index == index)
+		if (i == index)
 		{
 			if (previous == NULL)
 				*lst = current->next;
@@ -33,6 +34,7 @@ t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 			shx->gc->free(shx, current);
 			return (CONTINUE_PROC);
 		}
+		i++;
 		previous = current;
 		current = current->next;
 	}
