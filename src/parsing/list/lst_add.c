@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   lst_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:31:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/20 10:28:04 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/28 17:11:25 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	lst_add_front(t_sh_context *shx, t_list **lst, void *data, t_uint index)
+t_uint	lst_add_front(t_sh_context *shx, t_list **lst, void *data)
 {
 	t_list	*new;
 
 	if (!lst)
 		return (handle_error(NULL_DATA, NULL));
-	new = lst_create(shx, data, index);
+	new = lst_create(shx, data);
 	if (!new)
 		return (handle_error(MALLOC_FAIL, NULL));
 	*lst = new;
 	return (CONTINUE_PROC);
 }
 
-t_uint	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index)
+t_uint	lst_add_back(t_sh_context *shx, t_list **lst, void *data)
 {
 	t_list	*new;
 	t_list	*tmp;
 
 	if (!lst)
 		return (handle_error(NULL_DATA, NULL));
-	new = lst_create(shx, data, index);
+	new = lst_create(shx, data);
 	if (!new)
 		return (handle_error(MALLOC_FAIL, NULL));
 	if (!*lst)
@@ -44,6 +44,7 @@ t_uint	lst_add_back(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 			tmp = tmp->next;
 		tmp->next = new;
 	}
+	printf("lst_add_back tmp = %s\n", (t_str)tmp->data);
 	return (CONTINUE_PROC);
 }
 
@@ -55,7 +56,7 @@ t_uint	lst_insert(t_sh_context *shx, t_list **lst, void *data, t_uint index)
 
 	if (!lst)
 		return (handle_error(NULL_DATA, NULL));
-	new = lst_create(shx, data, index);
+	new = lst_create(shx, data);
 	if (!new)
 		return (handle_error(MALLOC_FAIL, NULL));
 	if (!*lst)

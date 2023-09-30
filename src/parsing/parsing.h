@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/26 17:35:52 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/28 17:07:18 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_str		inc_shlvl(t_sh_context *shx, void *data);
 t_str		*split_parser(t_sh_context *shx, t_str line);
 
 t_list		*get_path(t_sh_context *shx, char **env);
-t_uint		add_env_to_lst(t_sh_context *shx, t_list *list_env, char **envp);
+t_uint		add_env_to_lst(t_sh_context *shx, char **envp);
 t_list		*add_paths_to_lst(t_sh_context *shx, char **paths);
 t_list		*add_env_to_lst_export(t_sh_context *shx, char **envp);
 

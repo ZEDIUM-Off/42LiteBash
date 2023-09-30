@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_envp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:20:00 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/14 11:38:03 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/28 15:09:39 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ static t_uint	make_env(t_sh_context *shx, t_uint env_var_name)
 		env_name = ft_strfjoin(shx, env_name, get_pwd());
 		if (!env_name)
 			return (handle_error(MALLOC_FAIL, NULL));
-		status = lst_add_back(shx, &shx->envp, env_name, 0);
+		status = lst_add_back(shx, &shx->envp, env_name);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 	}
 	if (env_var_name == SHLVL)
 	{
-		status = lst_add_back(shx, &shx->envp, "SHLVL=1", 1);
+		status = lst_add_back(shx, &shx->envp, "SHLVL=1");
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 	}
 	if (env_var_name == OLD_PWD)
 	{
-		status = lst_add_back(shx, &shx->envp, "OLD_PWD=", 2);
+		status = lst_add_back(shx, &shx->envp, "OLD_PWD=");
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 	}
@@ -49,13 +49,13 @@ static t_uint	make_env(t_sh_context *shx, t_uint env_var_name)
 		env_name = ft_strfjoin(shx, env_name, get_pwd());
 		if (!env_name)
 			return (handle_error(MALLOC_FAIL, NULL));
-		status = lst_add_back(shx, &shx->envp, env_name, 0);
+		status = lst_add_back(shx, &shx->envp, env_name);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
-		status = lst_add_back(shx, &shx->envp, "SHLVL=2", 1);
+		status = lst_add_back(shx, &shx->envp, "SHLVL=2");
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
-		status = lst_add_back(shx, &shx->envp, "OLDPWD=", 2);
+		status = lst_add_back(shx, &shx->envp, "OLDPWD=");
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 	}
@@ -96,7 +96,7 @@ static t_uint	cmp_env(t_sh_context *shx, t_status_env *data, t_list *tmp)
 		data->pwd++;
 	else if (ft_strnstr(tmp->data, "SHLVL=", 6))
 	{
-		status = lst_remplace(shx, &shx->envp, tmp->index,
+		status = lst_remplace(shx, &shx->envp, lst_get_index(&tmp, tmp->data),
 				inc_shlvl(shx, tmp->data));
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));

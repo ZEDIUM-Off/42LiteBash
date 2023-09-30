@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/26 17:37:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/09/28 14:57:29 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ t_uint	prompt(t_sh_context *shx, char **env)
 				i++;
 			}
 		}
-		status = check_splited(&shx->line_split);
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
-		else if (shx->line_split && shx->line_split[0])
+		// status = check_splited(&shx->line_split);
+		// if (status != CONTINUE_PROC)
+		// 	return (handle_error(status, NULL));
+		/* else */ if (shx->line_split && shx->line_split[0])
 		{
 			status = pars_line(shx, &shx->blocks, shx->line_split);
 			if (status != CONTINUE_PROC)
