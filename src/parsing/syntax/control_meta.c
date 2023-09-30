@@ -1,47 +1,44 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   control_meta.c                                     :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2023/06/08 15:44:50 by  mchenava         #+#    #+#             */
-// /*   Updated: 2023/09/26 17:00:26 by  mchenava        ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   control_meta.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/08 15:44:50 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/09/28 10:14:44 by  mchenava        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// #include <minish.h>
+#include <minish.h>
 
-// t_uint	control_quoting(char *c, t_syntax_checker *syx)
-// {
-// 	int	type;
+void	control_quoting(t_uint meta, t_uint *s_quote, t_uint *db_quote)
+{
+	if (meta == SINGLE_QUOTE)
+		*s_quote += 1;
+	else if (meta == DOUBLE_QUOTE)
+		*db_quote += 1;
+}
 
-// 	type = get_meta_char(c);
-// 	if (type == SINGLE_QUOTE)
-// 		syx->quote_ctr++;
-// 	else if (type == DOUBLE_QUOTE)
-// 		syx->db_quote_ctr++;
-// }
+t_uint	control_redirection(char *c, t_syntax_checker *syx)
+{
+	int	type;
 
-// t_uint	control_redirection(char *c, t_syntax_checker *syx)
-// {
-// 	int	type;
+	type = get_meta_char(c);
+	if (type == APPEND_REDIRECT || type == HERE_DOC)
+	{
+		syx->cursor++;
+		type = get_meta_char(c + 1);
+		if (type == APPEND_REDIRECT || type == HERE_DOC)
+			syx->status = SYNTAX_ERROR;
+	}
+}
 
-// 	type = get_meta_char(c);
-// 	if (type == APPEND_REDIRECT || type == HERE_DOC)
-// 	{
-// 		syx->cursor++;
-// 		type = get_meta_char(c + 1);
-// 		if (type == APPEND_REDIRECT || type == HERE_DOC)
-// 			syx->status = SYNTAX_ERROR;
-// 	}
-// }
+t_uint	control_pipe(t_str *splited, t_uint *i)
+{
+	t_uint	status;
 
-// t_uint	control_pipe(t_str current, t_uint *i)
-// {
-// 	t_uint	status;
-
-// 	t_uint	j;
-// 	if (splited[*i + 1] == NULL || splited[*i - 1][0] == '\0')
-// 		return (handle_error(PIPE_AFTER_PIPE, NULL));
-// }
+	t_uint	j;
+	if (splited[*i + 1] == NULL || splited[*i - 1][0] == '\0')
+		return (handle_error(PIPE_AFTER_PIPE, NULL));
+}
