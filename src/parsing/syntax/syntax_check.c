@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:35:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/28 10:12:03 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/02 15:50:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_uint	check_syntax(t_str *splited)
 	i = 0;
 	s_quote = 0;
 	db_quote = 0;
+	status = CONTINUE_PROC;
 	while (splited[i])
 	{
 		if (splited[i][0] == '\0')
@@ -33,11 +34,12 @@ t_uint	check_syntax(t_str *splited)
 		else if (meta == PIPE)
 			status = control_pipe(splited, &i);
 		else if (meta >= IN_REDIRECT && meta <= HERE_DOC)
-			status = check_redirection(splited, &i);
+			status = control_redirection(splited, &i);
 		else if (meta == INVALID_META)
 			return (handle_error(INVALID_META, splited[i]));
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, splited[i]));
+		i++;
 	}
 	if (s_quote % 2 != 0 || db_quote % 2 != 0)
 		return (handle_error(UNCLOSED_QUOTES, NULL));

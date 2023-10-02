@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/26 14:05:36 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/02 15:49:46 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ enum e_meta_type
 	SINGLE_QUOTE, // '
 	DOUBLE_QUOTE, // "
 	EQUAL, // =
-	INVALID_META,
 };
 
 extern t_str g_meta_char[];
@@ -82,6 +81,7 @@ enum e_error_codes
 	DUP_FAIL,
 	SKIP_FORK,
 	UNCLOSED_QUOTES,
+	INVALID_META,
 };
 
 enum e_parsing_error

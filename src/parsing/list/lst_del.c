@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_del.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:38:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/28 14:26:00 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/10/01 13:41:55 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ t_uint	lst_remove(t_sh_context *shx, t_list **lst, t_uint index)
 
 	current = *lst;
 	previous = NULL;
-	if (!lst)
-		return (handle_error(NULL_DATA, NULL));
+	i = 0;
 	while (current != NULL)
 	{
 		if (i == index)

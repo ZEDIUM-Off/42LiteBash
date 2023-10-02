@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/18 10:56:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/02 15:24:29 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@
 # define WAITPID_FAIL_MSG "Echec de waitpid"
 # define PROC_NOT_TERMINATED_MSG "Processus non terminé"
 # define NULL_DATA_MSG "Données nulles"
-# define SYNTAX_ERROR_MSG "Erreur de syntaxe"
+# define SYNTAX_ERROR_MSG "syntax error near unexpected token"
 # define NO_FILE_DIR_MSG "Fichier ou répertoire non trouvé"
 # define CMD_NOT_FOUND_MSG "Commande non trouvée"
 # define CLOSE_FAIL_MSG "Echec de la fermeture du fd"
 # define DUP_FAIL_MSG "Echec de la duplication du fd"
+# define INVALID_META_MSG "syntax error near invalid token"
+# define UNCLOSED_QUOTES_MSG "unclosed quotes"
 # define NO_ERROR_MSG "\0"
 
 struct	s_error

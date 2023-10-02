@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/28 14:57:29 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 15:00:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@ t_uint	prompt(t_sh_context *shx, char **env)
 				i++;
 			}
 		}
-		// status = check_splited(&shx->line_split);
-		// if (status != CONTINUE_PROC)
-		// 	return (handle_error(status, NULL));
-		/* else */ if (shx->line_split && shx->line_split[0])
+		status = check_syntax(shx->line_split);
+		printf("status = %d\n", status);
+		if (status == CONTINUE_PROC && shx->line_split && shx->line_split[0])
 		{
 			status = pars_line(shx, &shx->blocks, shx->line_split);
 			if (status != CONTINUE_PROC)
@@ -70,6 +69,8 @@ t_uint	prompt(t_sh_context *shx, char **env)
 				return (handle_error(status, NULL));
 			clean_blocks(shx, &shx->blocks);
 		}
+		else if (status == EXIT_SHELL)
+			return (handle_error(status, NULL));
 		free(shx->line);
 		shx->line = NULL;
 	}
