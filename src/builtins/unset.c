@@ -23,9 +23,9 @@ static t_uint	unset_remove(t_sh_context *shx, t_cmd **_cmd,
 	index_envp = lst_get_index(&shx->envp, (*_cmd)->cmd[i]);
 	index_envx = lst_get_index(&shx->envx, (*_cmd)->cmd[i]);
 	if (index_envp)
-		status |= lst_remove(shx, &shx->envp, index_envp);
+		status = lst_remove(shx, &shx->envp, index_envp);
 	if (index_envx)
-		status |= lst_remove(shx, &shx->envx, index_envx);
+		status = lst_remove(shx, &shx->envx, index_envx);
 	return (status);
 }
 

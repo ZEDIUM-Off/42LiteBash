@@ -46,6 +46,7 @@ t_list	*lst_get_last(t_list **lst);
 t_uint	lst_size(t_list **lst);
 t_uint	lst_get_index(t_list **lst, t_str name);
 t_uint	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data);
+int		lst_check(t_list **lst, t_str name);
 
 t_dlist	*dlst_create(t_sh_context *shx, void *data);
 void	dlst_add_front(t_sh_context *shx, t_dlist **dlst, void *data);

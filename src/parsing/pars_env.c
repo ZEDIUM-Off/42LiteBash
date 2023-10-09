@@ -6,7 +6,7 @@
 /*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/28 19:16:11 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 18:15:47 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ t_uint	add_env_to_lst(t_sh_context *shx, char **envp)
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 		i++;
-		printf("add_env_to_lst status = %u\n", status);
-		printf("add_env_to_lst shx->envp = %s\n", (t_str)shx->envp);
-		printf("add_env_to_lst shx->envx = %s\n", (t_str)shx->envx);
 	}
 	return (CONTINUE_PROC);
 }
