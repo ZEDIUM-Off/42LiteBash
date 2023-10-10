@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/09/28 15:12:11 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/10/10 11:39:45 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/utils/clean_blocks.c \
 				src/builtins/echo.c \
 				src/core/exec_echo.c \
+				src/core/handle_sig.c \
 				src/builtins/pwd.c \
 				src/builtins/cd.c \
 				src/parsing/make_env/make_envp.c \
@@ -87,9 +88,8 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/core/execution/here_doc_handler.c \
 				src/builtins/run_builtin.c \
 				src/builtins/export_utils.c \
-				#src/parsing/syntax/check_splited.c \#
 
-# HEAD = $(shell find . -name "*.h") #pas legal
+HEAD = $(shell find . -name "*.h") #pas legal
 
 INC = -I. -I$(DIR_LIBFT)
 
@@ -97,7 +97,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
+CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) /usr/local/Cellar/readline/8.2.1/lib/libreadline.a -I/usr/local/Cellar/readline/include
 
 DEB_FLAGS = -g3 -fsanitize=address
 
@@ -144,11 +144,11 @@ $(LIBFT_A):	force
 # ---- Variables Rules ---- #
 
 ${NAME}	:	${OBJS} $(LIBFT_A)
-			${CC} ${CFLAGS} $(INC) $^ -lreadline -o $@
+			${CC} ${CFLAGS} $(INC) $^ -o $@
 
 # ---- Compiled Rules ---- #
 
-${DIR_OBJS}%.o:%.c 
+${DIR_OBJS}%.o:%.c
 	@				$(MKDIR) $(shell dirname $@)
 					${CC} ${CFLAGS} $(INC) -c $<  -o $@
 

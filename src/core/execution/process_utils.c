@@ -6,21 +6,11 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/14 01:07:16 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/05 10:40:11 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
-
-void	handle_sigchld(int sig)
-{
-	int		status;
-	pid_t	pid;
-
-	pid = waitpid(-1, &status, WNOHANG);
-	if (pid > 0)
-		printf("Le processus enfant %d a terminé avec le signal : %d\n", pid, sig);
-}
 
 t_uint	check_proc_status(t_block **block)
 {

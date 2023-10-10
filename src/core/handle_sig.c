@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 11:43:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/18 10:56:21 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/06 11:14:09 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 void	handle_sigint(int sig)
 {
-	(void)sig;
+	g_signal = sig;
+	printf("sigint: %d\n", sig);
 	printf("\n");
+	rl_set_prompt("$>");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }
 
 void	handle_sigquit(int sig)
 {
-	(void)sig;
-	printf("Quit: 3\n");
+	g_signal = sig;
+	printf("sigquit: %d\n", sig);
+	printf("exit\n");
 }
 
 void	handle_sigchld(int sig)
@@ -31,13 +37,13 @@ void	handle_sigchld(int sig)
 
 	pid = waitpid(-1, &status, WNOHANG);
 	if (pid > 0)
-		printf("Le processus enfant %d a terminé avec le signal : %d\n", pid, sig);
+		printf("Le processus \
+			enfant %d a terminé avec le signal : %d\n", pid, sig);
 }
 
-void handle_eof(int sig)
+void	handle_eof(int sig)
 {
-	(void)sig;
+	g_signal = sig;
 	printf("exit\n");
-	exit(EXIT_SUCCESS);
+	// exit_shell(EXIT_SUCCESS);
 }
-

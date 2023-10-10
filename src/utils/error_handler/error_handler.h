@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/02 15:24:29 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/05 10:02:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define NULL_DATA_MSG "Données nulles"
 # define SYNTAX_ERROR_MSG "syntax error near unexpected token"
 # define NO_FILE_DIR_MSG "Fichier ou répertoire non trouvé"
-# define CMD_NOT_FOUND_MSG "Commande non trouvée"
+# define CMD_NOT_FOUND_MSG "command not found"
 # define CLOSE_FAIL_MSG "Echec de la fermeture du fd"
 # define DUP_FAIL_MSG "Echec de la duplication du fd"
 # define INVALID_META_MSG "syntax error near invalid token"
@@ -40,7 +40,7 @@ struct	s_error
 	void	*var;
 };
 
-void	exit_shell(t_sh_context *shx, t_uint error_code, char *msg);
+void	exit_shell(t_sh_context *shx, t_uint error_code);
 t_uint	handle_error(t_uint error_code, t_str err_var);
 t_str	get_error_msg(t_uint error_code);
 t_uint	open_error(int errnum, t_str filename);

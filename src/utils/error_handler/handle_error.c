@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:58:19 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/02 15:49:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/05 09:50:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ t_uint	handle_error(t_uint error_code, t_str err_var)
 	t_str	error_msg;
 
 	error_msg = get_error_msg(error_code);
-	printf("error_code: %d\n", error_code);
 	if (error_msg && error_code > 2)
 	{
-		write(2, "minish: ", 8);
+		write(2, "minishell: ", 12);
 		if (error_code != SYNTAX_ERROR)
 		{
 			write(2, err_var, ft_strlen(err_var));

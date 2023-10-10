@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 19:02:44 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/06 11:19:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # include <termios.h>    // tcsetattr, tcgetattr
 # include <term.h>       // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <sys/ioctl.h>  // ioctl
-# include <readline/readline.h> // readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
+# include "readline/readline.h" // readline, rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
 # include <readline/history.h>
 # include <stdbool.h>    // bool
 # include <fcntl.h>      // O_RDONLY...
@@ -63,6 +63,8 @@
 # include "src/utils/utils.h"
 # include "src/builtins/builtins.h"
 
-t_uint	prompt(t_sh_context *shx, char **env);
+int	g_signal;
+
+t_uint	prompt(t_sh_context *shx);
 
 #endif

@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/28 17:09:46 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/10/10 11:39:14 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
+
+void	init_signals(void)
+{
+	signal(SIGQUIT, handle_sigquit);
+	// signal(SIGTSTP, SIG_IGN);
+	signal(SIGINT, handle_sigint);
+}
 
 t_uint	init_shell(
 	t_sh_context *shx,
@@ -34,24 +41,8 @@ t_uint	init_shell(
 	status = add_env_to_lst(shx, envp);
 	if (status != CONTINUE_PROC)
 		return (handle_error(MALLOC_FAIL, NULL));
-	printf("init_shell shx->envp = %s\n", (t_str)shx->envp);
-	lst_print(&shx->envp, "envp\n");
-	lst_print(&shx->envx, "envx\n");
-	// status = add_env_to_lst(shx, &shx->envx, envp);
-	// if (status != CONTINUE_PROC)
-	// 	return (handle_error(MALLOC_FAIL, NULL));
-	// status = create_s_env(shx);
-	// if (status != CONTINUE_PROC)
-	// 	return (handle_error(status, NULL));
-	// status = check_env(shx);
-	// if (status != CONTINUE_PROC)
-	// 	return (handle_error(status, NULL));
-	// status = create_s_env(shx);
-	// if (status != CONTINUE_PROC)
-	// 	return (handle_error(status, NULL));
-	// status = check_envx(shx);
-	// if (status != CONTINUE_PROC)
-	// 	return (handle_error(status, NULL));
-	// sort_env_export(shx);
+	lst_print(&shx->envp, "envp : %s\n");
+	lst_print(&shx->envx, "envx : %s\n");
+	init_signals();
 	return (CONTINUE_PROC);
 }
