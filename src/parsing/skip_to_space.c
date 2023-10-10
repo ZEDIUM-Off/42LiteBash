@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   skip_to_space.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:36:51 by  mchenava         #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/09/30 14:00:46 by bfaure           ###   ########lyon.fr   */
+=======
 /*   Updated: 2023/09/30 11:13:45 by  mchenava        ###   ########.fr       */
+>>>>>>> bf2cccdb85b54c45900a93774ed923a80f5ba719
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +35,10 @@ void	skip_to_pipe(t_str str, t_uint *i)
 		*i += 1;
 }
 
-bool	check_no_space(t_str str, t_uint i, t_quote_test	*quotes)
+bool	check_no_space(t_str str, t_uint i, t_quote_test *quotes)
 {
-	t_uint	meta1;
-	t_uint	meta2;
+    t_uint    meta1;
+    t_uint    meta2;
 
 	meta1 = get_meta_char(&str[i]);
 	meta2 = get_meta_char(&str[i - 1]);
@@ -45,3 +49,4 @@ bool	check_no_space(t_str str, t_uint i, t_quote_test	*quotes)
 		&& (meta2 == SINGLE_QUOTE || meta2 == DOUBLE_QUOTE
 			|| meta2 == EQUAL || meta2 == PLUS_EQUAL || meta2 == NONE));
 }
+

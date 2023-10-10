@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/10 11:39:14 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/10 11:40:59 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ t_uint	init_shell(
 	status = add_env_to_lst(shx, envp);
 	if (status != CONTINUE_PROC)
 		return (handle_error(MALLOC_FAIL, NULL));
-	lst_print(&shx->envp, "envp : %s\n");
-	lst_print(&shx->envx, "envx : %s\n");
-	init_signals();
+	sort_env_export(shx);
 	return (CONTINUE_PROC);
 }

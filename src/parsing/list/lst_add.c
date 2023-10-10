@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:31:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/01 13:35:38 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/09 16:47:24 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ t_uint	lst_append(t_sh_context *shx, t_list **lst, t_uint index, t_str data)
 		if (!tmp->data)
 			return (handle_error(MALLOC_FAIL, NULL));
 	}
-	return (0);
+	return (CONTINUE_PROC);
 }
