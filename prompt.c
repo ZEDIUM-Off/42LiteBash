@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/10/05 10:45:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/16 19:12:04 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_uint	get_prompt(t_sh_context	*shx)
 	if (!str_prompt)
 		return (handle_error(MALLOC_FAIL, NULL));
 	str_prompt += 4;
-	str_prompt = ft_strfjoin(shx, str_prompt, "$ ");
+	str_prompt = ft_strjoin(shx, str_prompt, "$> ");
 	if (!str_prompt)
 		return (handle_error(MALLOC_FAIL, NULL));
 	while (!shx->line || !shx->line[0])
@@ -40,7 +40,6 @@ t_uint	get_prompt(t_sh_context	*shx)
 t_uint	format_prompt(t_sh_context *shx)
 {
 	t_uint	status;
-	t_uint	i;
 
 	if (shx->line[0])
 	{
@@ -51,12 +50,6 @@ t_uint	format_prompt(t_sh_context *shx)
 		{
 			free(shx->line);
 			shx->line = NULL;
-		}
-		i = 0;
-		while (shx->line_split[i])
-		{
-			printf("[%s]\n", shx->line_split[i]);
-			i++;
 		}
 	}
 	status = check_syntax(shx->line_split);

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 16:57:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/13 12:17:03 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ void	log_cmd(t_cmd **cmd, t_uint lvl)
 	t_str	tabs;
 
 	_cmd = *cmd;
-	i = 0;
+	i = -1;
 	tabs = rep_char(lvl, '\t');
 	printf("%s│\t│\n%s│\t└── cmd: ", tabs, tabs);
-	while (_cmd->cmd[i])
-		printf("[%s],", _cmd->cmd[i++]);
+	while (_cmd->cmd[++i])
+		printf("%d-[%s],", i, _cmd->cmd[i]);
 	printf("\n");
 	if (_cmd->chunk)
 		log_chunk(&_cmd->chunk, lvl);

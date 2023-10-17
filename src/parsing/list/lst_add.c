@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:31:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/09 16:47:24 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 09:27:07 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_uint	lst_add_front(t_sh_context *shx, t_list **lst, void *data)
 	new = lst_create(shx, data);
 	if (!new)
 		return (handle_error(MALLOC_FAIL, NULL));
+	new->next = *lst;
 	*lst = new;
 	return (CONTINUE_PROC);
 }

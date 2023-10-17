@@ -3,138 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 10:55:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/07 17:40:57 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 10:13:33 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-static t_str	export_find_name(t_cmd **_cmd)
+t_uint	export(t_sh_context *shx, t_export *to_export)
 {
-	static t_uint	i = 1;
-	t_sh_context	*shx;
+	t_uint	status;
+	int		index;
+	t_str	tmp;
 
-	shx = (*_cmd)->shx;
-	while ((*_cmd)->cmd[i])
+	tmp = NULL;
+	index = env_get_index(shx, &shx->envx, to_export->name);
+	status = CONTINUE_PROC;
+	if (to_export->type == PLUS_EQUAL && index != -1)
+		tmp = lst_get(&shx->envx, index);
+	status = build_var(shx, to_export, tmp);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	if (index == -1)
 	{
-		printf("i in export_find_name = %u\n", i);
-		if (!(*_cmd)->cmd[i + 1])
-			return ((*_cmd)->cmd[i]);
-		if ((*_cmd)->cmd[i + 1][0] == '\0' && ((*_cmd)->cmd[i + 2][0] == '=' || (*_cmd)->cmd[i + 2][0] == '+'))
-			return (i += 2, ft_strjoin(shx, (*_cmd)->cmd[i - 2], (*_cmd)->cmd[i]));
-		if ((*_cmd)->cmd[i + 1][0] != '\0')
-			return ((*_cmd)->cmd[i]);
-		i++;
+		if (to_export->type == NONE)
+			lst_add_back(shx, &shx->envx, ft_strdup(shx, to_export->name));
+		else
+			lst_add_back(shx, &shx->envx, ft_strdup(shx, to_export->builded));
 	}
-	return (NULL);
-}
-
-static t_str	join_export(t_sh_context *shx, t_cmd **_cmd)
-{
-	t_str	arga;
-	t_uint	i;
-
-	i = 1;
-	arga = ft_strdup(shx, "");
-	while ((*_cmd)->cmd[i])
-	{
-		printf("PASS\n");
-		printf("i = %u\n", i);
-		printf("i + 1 = %u\n", i + 1);
-		if ((*_cmd)->chunk && ((*_cmd)->cmd[i + 1] && (*_cmd)->cmd[i + 1][0] == '\0'))
-		{
-			printf("chunk = %s\n", (*_cmd)->chunk->txt[0]);
-			arga = ft_strfjoin(shx, arga, (*_cmd)->chunk->txt[0]);
-			i = (*_cmd)->chunk->end;
-			printf("i = %u\n", i);
-			(*_cmd)->chunk = (*_cmd)->chunk->next;
-		}
-		if ((*_cmd)->cmd[i] && ((*_cmd)->cmd[i + 1] && (*_cmd)->cmd[i + 1][0] == '\0'))
-		{
-			i += 2;
-			printf("cmd[%u] = %s\n", i, (*_cmd)->cmd[i]);
-			arga = ft_strfjoin(shx, arga, (*_cmd)->cmd[i]);
-		}
-		i++;
-	}
-	return (arga);
-}
-
-static t_uint	export_add(t_sh_context *shx, t_cmd **_cmd, t_uint status)
-{
-	int		export_check;
-	t_str	argv1;
-	t_str	argv2;
-	t_str	argv3;
-
-	argv1 = export_find_name(_cmd);
-	if (ft_strchr(argv1, '+'))
-		argv1 = ft_strfjoin(shx, argv1, "=");
-	argv2 = join_export(shx, _cmd);
-	export_check = lst_check(&shx->envx, argv1);
-	status = lst_get_index(&shx->envx, argv2);
-	printf("argv1 = %s\n", argv1);
-	printf("argv2 = %s\n", argv2);
-	printf("export_check = %d\n", export_check);
-	printf("status = %d\n", status);
-	// argv1 = ft_strjoin(shx, argv1, "=");
-	argv3 = ft_strfjoin(shx, argv1, argv2);
-	// printf("argv1  2 = %s\n", argv1);
-	printf("argv2  2 = %s\n", argv2);
-	if (export_check == -1)
-	{
-		status = lst_add_back(shx, &shx->envx, argv3);
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
-		if (ft_strchr(argv2, '+'))
-		{
-			status = lst_append(shx, &shx->envx, status, argv2);
-			if (status != CONTINUE_PROC)
-				return (handle_error(status, NULL));
-		}
-		if (ft_strchr(argv2, '='))
-		{
-			status = lst_add_back(shx, &shx->envp, argv3);
-			if (status != CONTINUE_PROC)
-				return (handle_error(status, NULL));
-		}
-	}
-	else
-	{
-		status = lst_set(&shx->envx, status, argv3);
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
-		if (ft_strchr(argv2, '+'))
-		{
-			status = lst_append(shx, &shx->envx, status, argv2);
-			if (status != CONTINUE_PROC)
-				return (handle_error(status, NULL));
-		}
-		if (ft_strchr(argv2, '='))
-		{
-			status = lst_add_back(shx, &shx->envp, argv3);
-			if (status != CONTINUE_PROC)
-				return (handle_error(status, NULL));
-		}
-	}
-	return (CONTINUE_PROC);
+	else if (to_export->type != NONE)
+		lst_set(&shx->envx, index, ft_strdup(shx, to_export->builded));
+	return (status);
 }
 
 t_uint	export_cmd(t_cmd **_cmd)
 {
-	t_sh_context	*shx;
-	t_uint			status;
+	t_export	to_export;
+	t_uint		i;
+	t_uint		status;
+	t_chunk		*chunk;
 
-	shx = (*_cmd)->shx;
-	status = SKIP_FORK;
+	i = 1;
+	chunk = (*_cmd)->chunk;
+	status = CONTINUE_PROC;
 	if (!(*_cmd)->cmd[1])
-		return (lst_print(&shx->envx, "declare -x %s\n"));
-	else
+		lst_print(&(*_cmd)->shx->envx, "declare -x %s\n");
+	while ((*_cmd)->cmd[i])
 	{
-		status = export_add(shx, _cmd, status);
+		init_export((*_cmd)->shx, &to_export);
+		if (chunk && chunk->start == i + 1)
+			status = handle_chunk_var(&chunk, _cmd, &to_export, &i);
+		else if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i][0] != '+'
+			&& (*_cmd)->cmd[i][0] != '=')
+			status = handle_var(_cmd, &chunk, &to_export, &i);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
+		printf ("cmd[%d] = %s\n", i, (*_cmd)->cmd[i]);
+		if ((*_cmd)->cmd[i] && (*_cmd)->cmd[i + 1]
+			&& ((*_cmd)->cmd[i + 1][0] == '+' || (*_cmd)->cmd[i + 1][0] == '='))
+			status = handle_plus_equal(_cmd, &chunk, &to_export, &i);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
+		printf ("exp cmd[%d] = %s\n", i, (*_cmd)->cmd[i]);
+		status = export((*_cmd)->shx, &to_export);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 	}

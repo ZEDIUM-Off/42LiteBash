@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_set_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:43:36 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/29 20:34:59 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/10/17 09:35:29 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*lst_get(t_list **lst, t_uint index)
 	t_uint	i;
 
 	if (!lst)
-		return ((void *)NULL_DATA);
+		return (NULL);
 	tmp = *lst;
 	i = 0;
 	while (tmp && i++ < index)
@@ -27,23 +27,23 @@ void	*lst_get(t_list **lst, t_uint index)
 	return (tmp->data);
 }
 
-t_uint	lst_get_index(t_list **lst, t_str name)
+int	lst_get_index(t_list **lst, t_str name)
 {
 	t_list	*tmp;
 	t_uint	i;
 
 	if (!lst || !name)
-		return (handle_error(NULL_DATA, NULL));
+		return (-1);
 	i = 0;
 	tmp = *lst;
 	while (tmp)
 	{
-		if (ft_strnstr(tmp->data, name, ft_strlen(name)))
+		if (ft_strnstr((t_str)tmp->data, name, ft_strlen(name)))
 			return (i);
 		i++;
 		tmp = tmp->next;
 	}
-	return (CONTINUE_PROC);
+	return (-1);
 }
 
 t_uint	lst_set(t_list **lst, t_uint index, void *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/06 19:37:45 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 13:31:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ void	clean_blocks(t_sh_context *shx, t_block **blocks);
 void	clean_ppl(t_sh_context *shx, t_pipeline **ppl);
 void	clean_cmd(t_sh_context *shx, t_cmd **cmd);
 void	clean_chunk(t_sh_context *shx, t_chunk **chunk);
+char	*ft_strinstert(t_sh_context *shx, char *src,
+			char *to_insert, int index);
 
 #endif

@@ -6,11 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/10/10 11:39:45 by  mchenava        ###   ########.fr        #
-=======
-#    Updated: 2023/09/30 16:19:23 by bfaure           ###   ########lyon.fr    #
->>>>>>> 884395a4c302bd5ddc7ef09595aaf7df1a81e93a
+#    Updated: 2023/10/16 13:31:58 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +48,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/utils/error_handler/handle_error.c \
 				src/utils/error_handler/error_from_errno.c \
 				src/utils/logger/log.c \
+				src/utils/ft_strinsert.c \
 				src/core/init_ctx.c \
 				minishell.c \
 				prompt.c \
@@ -74,7 +71,6 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/expand.c \
 				src/utils/clean_blocks.c \
 				src/builtins/echo.c \
-				src/core/exec_echo.c \
 				src/core/handle_sig.c \
 				src/builtins/pwd.c \
 				src/builtins/cd.c \
@@ -82,6 +78,9 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/make_env/make_envx.c \
 				src/parsing/make_env/make_env_utils.c \
 				src/builtins/export/export.c \
+				src/builtins/export/export_utils.c \
+				src/builtins/export/export_value_types.c \
+				src/builtins/export/export_var_types.c \
 				src/builtins/unset.c \
 				src/core/execution/exec_cmd.c \
 				src/core/files.c \
@@ -102,7 +101,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) /usr/local/Cellar/readline/8.2.1/lib/libreadline.a -I/usr/local/Cellar/readline/include
+CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
 
 DEB_FLAGS = -g3 -fsanitize=address
 
@@ -149,7 +148,7 @@ $(LIBFT_A):	force
 # ---- Variables Rules ---- #
 
 ${NAME}	:	${OBJS} $(LIBFT_A)
-			${CC} ${CFLAGS} $(INC) $^ -o $@
+			${CC} ${CFLAGS} $(INC) $^ -lreadline -o $@
 
 # ---- Compiled Rules ---- #
 

@@ -12,21 +12,21 @@
 
 #include <minish.h>
 
-int lst_check(t_list **lst, t_str name)
+int	lst_check(t_list **lst, t_str name)
 {
-    t_list	*tmp;
-    t_uint	i;
+	t_list	*tmp;
+	t_uint	i;
 
-    if (!lst || !name)
-        return (handle_error(NULL_DATA, NULL));
-    i = 0;
-    tmp = *lst;
-    while (tmp)
-    {
-        if (ft_strnstr(tmp->data, name, ft_strlen(name)))
-            return (1);
-        i++;
-        tmp = tmp->next;
-    }
-    return (-1);
+	if (!lst || !name)
+		return (handle_error(NULL_DATA, NULL));
+	i = 0;
+	tmp = *lst;
+	while (tmp)
+	{
+		if (ft_strnstr(tmp->data, name, ft_strlen(name)))
+			return (1);
+		i++;
+		tmp = tmp->next;
+	}
+	return (-1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:17:48 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/20 16:14:53 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/10/13 12:21:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_uint	find_chunk(
 		{
 			*chunk_found = true;
 			chunk_lim[0] = ++(*i);
-			printf("chunk_lim[%d] = %s\n", 0, splited[*i]);
 			while (meta != get_meta_char(&splited[*i][0]))
 				(*i)++;
 			chunk_lim[1] = *i;
