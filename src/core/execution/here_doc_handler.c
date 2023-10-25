@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:44:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/14 01:47:37 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/25 15:38:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_uint	here_doc(t_sh_context *shx, t_str *content, t_str delimiter)
 	t_str	line;
 	t_uint	status;
 
-	status = 0;
+	status = CONTINUE_PROC;
 	if (*content)
 		shx->gc->free(shx, *content);
 	while (status == 0)

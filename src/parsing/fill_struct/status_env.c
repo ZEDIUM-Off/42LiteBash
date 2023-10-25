@@ -16,7 +16,7 @@ t_uint	create_s_env(t_sh_context *shx)
 {
 	if (!shx->s_env)
 		shx->s_env = (t_status_env *)shx->gc->malloc(shx,
-					sizeof(t_status_env), true);
+				sizeof(t_status_env), true);
 	if (!shx->s_env)
 		return (handle_error(MALLOC_FAIL, NULL));
 	shx->s_env->old_pwd = 0;

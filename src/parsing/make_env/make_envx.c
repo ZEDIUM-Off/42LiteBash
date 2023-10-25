@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_envxx.c                                        :+:      :+:    :+:   */
+/*   make_envxx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -112,7 +112,7 @@ t_uint	check_envx(t_sh_context *shx)
 	t_status_env	*data;
 	t_uint			status;
 
-	status = 0;
+	status = CONTINUE_PROC;
 	if (!shx->envp)
 	{
 		status = make_envx(shx, ALL);

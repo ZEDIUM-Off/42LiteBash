@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:39:22 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/14 01:48:15 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/25 15:38:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_uint	default_ppl_redir(t_pipeline **ppl, int in_fd, int out_fd)
 {
 	t_uint	status;
 
-	status = 0;
+	status = CONTINUE_PROC;
 	if (in_fd != STDIN_FILENO && (*ppl)->redir.in_type == NONE)
 	{
 		printf("in_fd = %d\n", in_fd);
@@ -76,7 +76,7 @@ t_uint	handle_redir(t_pipeline **ppl, int in_fd, int out_fd)
 {
 	t_uint	status;
 
-	status = 0;
+	status = CONTINUE_PROC;
 	status = default_ppl_redir(ppl, in_fd, out_fd);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));

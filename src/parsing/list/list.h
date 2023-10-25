@@ -44,7 +44,7 @@ t_uint	lst_set(t_list **lst, t_uint index, void *data);
 t_list	*lst_get_first(t_list **lst);
 t_list	*lst_get_last(t_list **lst);
 t_uint	lst_size(t_list **lst);
-int	lst_get_index(t_list **lst, t_str name);
+int		lst_get_index(t_list **lst, t_str name);
 t_uint	lst_remplace(t_sh_context *shx, t_list **lst, t_uint index, t_str data);
 int		lst_check(t_list **lst, t_str name);
 

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/16 13:31:18 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/23 15:31:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void	clean_cmd(t_sh_context *shx, t_cmd **cmd);
 void	clean_chunk(t_sh_context *shx, t_chunk **chunk);
 char	*ft_strinstert(t_sh_context *shx, char *src,
 			char *to_insert, int index);
+t_uint	ft_write_history(t_str line);
+t_uint	ft_read_history(void);
 
 #endif

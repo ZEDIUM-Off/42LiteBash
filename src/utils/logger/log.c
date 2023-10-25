@@ -6,26 +6,11 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/13 12:17:03 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/24 15:20:58 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
-
-t_str g_meta_char[] =
-{
-	[NONE] = "",
-	[IN_REDIRECT] = "<",
-	[OUT_REDIRECT] = ">",
-	[APPEND_REDIRECT] = ">>",
-	[HERE_DOC] = "<<",
-	[DOLLAR_Q] = "$?",
-	[DOLLAR_D] = "$$",
-	[PIPE] = "|",
-	[DOLLAR] = "$",
-	[SINGLE_QUOTE] = "'",
-	[DOUBLE_QUOTE] = "\"",
-};
 
 t_str	rep_char(int count, char c)
 {
@@ -58,6 +43,19 @@ void	log_chunk(t_chunk **chunk, t_uint lvl)
 	t_uint	i;
 	t_uint	c_ctr;
 	t_str	tabs;
+	t_str meta_char[] = {
+		[NONE] = "",
+		[IN_REDIRECT] = "<",
+		[OUT_REDIRECT] = ">",
+		[APPEND_REDIRECT] = ">>",
+		[HERE_DOC] = "<<",
+		[DOLLAR_Q] = "$?",
+		[DOLLAR_D] = "$$",
+		[PIPE] = "|",
+		[DOLLAR] = "$",
+		[SINGLE_QUOTE] = "'",
+		[DOUBLE_QUOTE] = "\"",
+	};
 
 	_chunk = *chunk;
 	c_ctr = 1;
@@ -65,9 +63,9 @@ void	log_chunk(t_chunk **chunk, t_uint lvl)
 	while (_chunk)
 	{
 		if (_chunk->next)
-			printf("%s│\t\t│\n%s│\t\t├── chunk %-5d: start = %d, end = %d, type = %s\n", tabs, tabs, c_ctr++, _chunk->start, _chunk->end, g_meta_char[_chunk->type]);
+			printf("%s│\t\t│\n%s│\t\t├── chunk %-5d: start = %d, end = %d, type = %s\n", tabs, tabs, c_ctr++, _chunk->start, _chunk->end, meta_char[_chunk->type]);
 		else
-			printf("%s│\t\t│\n%s│\t\t└── chunk %-5d:start = %d, end = %d, type = %s\n", tabs, tabs, c_ctr++, _chunk->start, _chunk->end, g_meta_char[_chunk->type]);
+			printf("%s│\t\t│\n%s│\t\t└── chunk %-5d:start = %d, end = %d, type = %s\n", tabs, tabs, c_ctr++, _chunk->start, _chunk->end, meta_char[_chunk->type]);
 		if (_chunk->next)
 			printf("%s│\t\t│\t└── chunk txt: ", tabs);
 		else
@@ -76,10 +74,6 @@ void	log_chunk(t_chunk **chunk, t_uint lvl)
 		while (_chunk->txt[i])
 			printf("[%s],", _chunk->txt[i++]);
 		printf("\n");
-		if (_chunk->under_chunk)
-			log_chunk(&_chunk->under_chunk, lvl + 1);
-		if (_chunk->blocks)
-			log_blocks(&_chunk->blocks, lvl + 1);
 		_chunk = _chunk->next;
 	}
 }

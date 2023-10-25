@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/13 20:04:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/24 14:53:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,15 @@ t_uint	cmd_expand(t_sh_context *shx, t_cmd **cmd)
 		if (get_meta_char(&(*cmd)->cmd[i][0]) == DOLLAR
 			&& (*cmd)->cmd[i][1] != '\0')
 		{
-			expand(shx, &(*cmd)->cmd[i]);
+			status = expand(shx, &(*cmd)->cmd[i]);
 			if (status != CONTINUE_PROC)
 				return (handle_error(status, NULL));
+		}
+		else if (get_meta_char(&(*cmd)->cmd[i][0]) == DOLLAR_Q)
+		{
+			(*cmd)->cmd[i] = ft_itoa(g_exit_status);
+			if (!(*cmd)->cmd[i])
+				return (handle_error(MALLOC_FAIL, NULL));
 		}
 		i++;
 	}

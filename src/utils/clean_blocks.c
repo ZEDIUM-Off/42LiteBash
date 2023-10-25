@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:17:13 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/04 13:14:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/24 15:03:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ void	clean_chunk(t_sh_context *shx, t_chunk **chunk)
 	{
 		tmp = *chunk;
 		*chunk = (*chunk)->next;
-		if (tmp->under_chunk)
-			clean_chunk(shx, &tmp->under_chunk);
-		if (tmp->blocks)
-			clean_blocks(shx, &tmp->blocks);
 		free_split_line(shx, &tmp->txt);
 		shx->gc->free(shx, tmp);
 	}

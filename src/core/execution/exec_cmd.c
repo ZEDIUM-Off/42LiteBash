@@ -6,41 +6,17 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/20 12:46:53 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/24 15:15:37 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	handle_chunck(t_chunk **chunk)
-{
-	t_uint	status;
-
-	status = 0;
-	if ((*chunk) && (*chunk)->blocks)
-	{
-		status = processing(&(*chunk)->blocks);
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
-	}
-	if ((*chunk) && (*chunk)->under_chunk)
-	{
-		status = handle_chunck(&(*chunk)->under_chunk);
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
-	}
-	return (CONTINUE_PROC);
-}
-
 t_uint	exec_bin(t_pipeline	**ppl)
 {
-	t_uint			status;
 	t_sh_context	*shx;
 
 	shx = (*ppl)->shx;
-	status = handle_chunck(&((*ppl)->cmd->chunk));
-	if (status != CONTINUE_PROC)
-		exit (EXIT_FAILURE);
 	if (execve((*ppl)->cmd->cmd[0], (*ppl)->cmd->cmd, shx->env) == -1)
 		exit (EXIT_FAILURE);
 	exit (EXIT_SUCCESS);
@@ -64,13 +40,13 @@ t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 	{
 		status = handle_redir(ppl, in_fd, out_fd);
 		if (status != CONTINUE_PROC)
-			exit (EXIT_FAILURE);
+			exit (status);
 		if (bi_id != 0)
 			status = run_builtin(bi_id, ppl, true);
 		else
 			status = exec_bin(ppl);
 		if (status != CONTINUE_PROC)
-			exit (EXIT_FAILURE);
+			exit (status);
 		exit (EXIT_SUCCESS);
 	}
 	return (CONTINUE_PROC);

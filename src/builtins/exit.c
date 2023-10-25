@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_sig.c                                       :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 11:43:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/24 14:56:55 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/10/24 12:09:25 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/10/24 12:23:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	handle_sigint(int sig)
+t_uint	exit_bi(t_cmd *cmd)
 {
-	(void)sig;
-	printf("\n");
-	exit(STOP_PROC);
-}
+	t_uint	i;
 
-void	handle_sigstp(int sig)
-{
-	printf("sigstp: %d\n", sig);
-}
-
-void	handle_sigchld(int sig)
-{
-	printf ("sigchld: %d\n", sig);
-}
-
-void	handle_sigquit(int sig)
-{
-	printf("sigquit: %d\n", sig);
+	i = 0;
+	printf ("exit\n");
+	while (cmd->cmd[1] && cmd->cmd[1][i])
+	{
+		if (!ft_isdigit(cmd->cmd[1][i]))
+			return (handle_error(EXIT_ARG, cmd->cmd[1]));
+		i++;
+	}
+	if (cmd->cmd[1] && cmd->cmd[2])
+		return (handle_error(EXIT_TOO_ARG, cmd->cmd[1]));
+	if (cmd->cmd[1])
+		g_exit_status = ft_atoi(cmd->cmd[1]);
+	return (EXIT_SHELL);
 }

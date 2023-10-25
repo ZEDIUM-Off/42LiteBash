@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/05 10:40:11 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/24 12:41:02 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ t_uint	wait_all_proc(t_block **block)
 	while (shx->proc_nb > 0)
 	{
 		pid = waitpid(-1, &status, 0);
-		if (pid == -1)
-			return (check_proc_status(block));
+		if (pid == -1 && errno != ECHILD)
+			return (WAITPID_FAIL);
+		if (pid == -1 && errno == ECHILD)
+			return (CONTINUE_PROC);
 		while (pid > 0)
 		{
 			update_proc(block, status, pid);

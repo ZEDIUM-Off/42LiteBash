@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/10/16 19:12:04 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/25 14:30:29 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_uint	get_prompt(t_sh_context	*shx)
 {
 	t_str	str_prompt;
 
+	ft_read_history();
 	str_prompt = ft_strdup(shx, (t_str)lst_get(&shx->envp,
 				lst_get_index(&shx->envp, "PWD=")));
 	if (!str_prompt)
@@ -33,7 +34,7 @@ t_uint	get_prompt(t_sh_context	*shx)
 	shx->gc->free(shx, str_prompt);
 	printf("[%s]\n", shx->line);
 	if (shx->line[0])
-		add_history(shx->line);
+		ft_write_history(shx->line);
 	return (CONTINUE_PROC);
 }
 
@@ -52,8 +53,14 @@ t_uint	format_prompt(t_sh_context *shx)
 			shx->line = NULL;
 		}
 	}
-	status = check_syntax(shx->line_split);
-	return (status);
+	t_uint i =0;
+	while (shx->line_split[i])
+	{
+		printf("[%s]", shx->line_split[i]);
+		i++;
+	}
+	printf ("\n");
+	return (check_syntax(shx->line_split));
 }
 
 t_uint	use_prompt(t_sh_context *shx)
@@ -71,22 +78,36 @@ t_uint	use_prompt(t_sh_context *shx)
 	return (CONTINUE_PROC);
 }
 
-// Gérez les signaux (ctrl-C, ctrl-D, ctrl-\)
 t_uint	prompt(t_sh_context *shx)
 {
 	t_uint	status;
+	pid_t	pid;
+	int		exit_status;
 
 	status = CONTINUE_PROC;
 	while (status != EXIT_SHELL)
 	{
-		status = get_prompt(shx);
-		if (status != CONTINUE_PROC)
-			continue ;
-		status = format_prompt(shx);
-		if (status != CONTINUE_PROC)
-			continue ;
-		if (status == CONTINUE_PROC && shx->line_split && shx->line_split[0])
-			status = use_prompt(shx);
+		pid = fork();
+		if (pid == -1)
+			return (handle_error(FORK_FAIL, NULL));
+		if (pid == 0)
+		{
+			signal(SIGINT, handle_sigint);
+			status = get_prompt(shx);
+			if (status != CONTINUE_PROC)
+				exit (status);
+			status = format_prompt(shx);
+			if (status != CONTINUE_PROC)
+				exit (status);
+			if (shx->line_split && shx->line_split[0])
+				status = use_prompt(shx);
+			exit (status);
+		}
+		else
+		{
+			waitpid(pid, &exit_status, 0);
+			status = WEXITSTATUS(exit_status);
+		}
 	}
 	return (status);
 }
