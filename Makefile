@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/10/25 14:15:27 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/10/26 11:50:27 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,13 +151,13 @@ $(LIBFT_A):	force
 # ---- Variables Rules ---- #
 
 ${NAME}	:	${OBJS} $(LIBFT_A)
-			${CC} ${CFLAGS} $(INC) $^ -lreadline -o $@
+			${CC} ${CFLAGS} $(INC) $^ -L/usr/local/opt/readline/lib -lreadline -o $@
 
 # ---- Compiled Rules ---- #
 
 ${DIR_OBJS}%.o:%.c
 	@				$(MKDIR) $(shell dirname $@)
-					${CC} ${CFLAGS} $(INC) -c $<  -o $@
+					${CC} ${CFLAGS} $(INC) -I/usr/local/opt/readline/include -c $<  -o $@
 
 watch : $(DIR_SRC)
 	fswatch -o $^ | make && ./$(NAME)

@@ -24,6 +24,8 @@
 		"sstream": "c",
 		"cstdlib": "c",
 		"readline.h": "c",
-		"stat.h": "c"
+		"stat.h": "c",
+		"stdint.h": "c",
+		"limits.h": "c"
 	}
 }

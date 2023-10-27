@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:36:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/10 11:42:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/27 10:58:19 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	skip_to_space(t_str str, t_uint *i)
 {
-	while (str[*i] && str[*i] != ' ' && str[*i] != '\t'
+	while (str && str[*i] && str[*i] != ' ' && str[*i] != '\t'
 		&& get_meta_char(&str[*i]) == NONE)
 		*i += 1;
 }
@@ -41,7 +41,9 @@ bool	check_no_space(t_str str, t_uint i, t_quote_test *quotes)
 	return (str[i] && str[i] != ' ' && str[i] != '\t'
 		&& !quotes->s_quote && !quotes->d_quote
 		&& (meta1 == SINGLE_QUOTE || meta1 == DOUBLE_QUOTE
-			|| meta1 == EQUAL || meta1 == PLUS_EQUAL || meta1 == NONE)
+			|| meta1 == EQUAL || meta1 == PLUS_EQUAL
+			|| meta1 == PLUS || meta1 == MINUS || meta1 == NONE)
 		&& (meta2 == SINGLE_QUOTE || meta2 == DOUBLE_QUOTE
-			|| meta2 == EQUAL || meta2 == PLUS_EQUAL || meta2 == NONE));
+			|| meta2 == EQUAL || meta2 == PLUS_EQUAL
+			|| meta2 == PLUS || meta2 == MINUS || meta2 == NONE));
 }

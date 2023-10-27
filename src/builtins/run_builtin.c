@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:43:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/24 13:12:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/26 11:20:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl, bool fork)
 		status = export_cmd(&(*ppl)->cmd);
 	else if (bi_id == UNSET_BI && !fork)
 		status = unset_cmd(&(*ppl)->cmd);
-	else if (bi_id == ENV_BI)
+	else if (bi_id == ENV_BI && !fork)
 		status = lst_print(&(*ppl)->shx->envp, "%s\n");
 	else if (bi_id == EXIT_BI && !fork)
 		status = exit_bi((*ppl)->cmd);

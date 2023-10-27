@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/24 14:49:41 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/26 12:33:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ t_uint	count_parts(t_str str)
 				i++;
 		if (str[i])
 			n_parts++;
-		i += skip_parts(&str[i], &quotes);
+		if (str[i])
+			i += skip_parts(&str[i], &quotes);
 		if (check_no_space(str, i, &quotes))
 			n_parts++;
 	}

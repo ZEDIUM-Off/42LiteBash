@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_sig.c                                       :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 11:43:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/26 11:53:18 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/10/26 12:50:25 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/10/26 12:50:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minish.h>
+#include "../headers/libft.h"
 
-void	handle_sigint(int sig)
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	g_exit_status = 126 + sig;
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
+	size_t	i;
+	size_t	j;
 
-void	handle_sigstp(int sig)
-{
-	printf("sigstp: %d\n", sig);
-}
-
-void	handle_sigchld(int sig)
-{
-	printf ("sigchld: %d\n", sig);
-}
-
-void	handle_sigquit(int sig)
-{
-	printf("sigquit: %d\n", sig);
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (reject[j])
+		{
+			if (s[i] == reject[j])
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (i);
 }

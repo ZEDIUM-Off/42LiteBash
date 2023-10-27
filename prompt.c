@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/10/25 14:30:29 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/27 12:07:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ t_uint	use_prompt(t_sh_context *shx)
 
 	status = pars_line(shx, &shx->blocks, shx->line_split);
 	if (status != CONTINUE_PROC)
-		return (handle_error(status, NULL));
+		return (clean_blocks(shx, &shx->blocks), handle_error(status, NULL));
 	log_struct(shx);
 	status = processing(&shx->blocks);
 	if (status != CONTINUE_PROC)
-		return (handle_error(status, NULL));
+		return (clean_blocks(shx, &shx->blocks), handle_error(status, NULL));
 	clean_blocks(shx, &shx->blocks);
 	return (CONTINUE_PROC);
 }
@@ -81,33 +81,21 @@ t_uint	use_prompt(t_sh_context *shx)
 t_uint	prompt(t_sh_context *shx)
 {
 	t_uint	status;
-	pid_t	pid;
-	int		exit_status;
 
 	status = CONTINUE_PROC;
 	while (status != EXIT_SHELL)
 	{
-		pid = fork();
-		if (pid == -1)
-			return (handle_error(FORK_FAIL, NULL));
-		if (pid == 0)
-		{
-			signal(SIGINT, handle_sigint);
-			status = get_prompt(shx);
-			if (status != CONTINUE_PROC)
-				exit (status);
-			status = format_prompt(shx);
-			if (status != CONTINUE_PROC)
-				exit (status);
-			if (shx->line_split && shx->line_split[0])
-				status = use_prompt(shx);
-			exit (status);
-		}
-		else
-		{
-			waitpid(pid, &exit_status, 0);
-			status = WEXITSTATUS(exit_status);
-		}
+		signal(SIGINT, handle_sigint);
+		status = get_prompt(shx);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
+		status = format_prompt(shx);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
+		if (shx->line_split && shx->line_split[0])
+			status = use_prompt(shx);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
 	}
 	return (status);
 }

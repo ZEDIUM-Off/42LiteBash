@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 15:23:52 by bfaure            #+#    #+#              #
-#    Updated: 2023/09/14 11:40:33 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/10/26 12:51:24 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS = ft_isalpha.c\
 	ft_strfjoin.c\
 	ft_strjoin.c\
 	ft_strtrim.c\
+	ft_strcspn.c\
 	ft_itoa.c\
 	ft_strmapi.c\
 	ft_striteri.c\

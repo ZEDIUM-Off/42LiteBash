@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/24 15:37:48 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/26 22:46:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_uint	init_shell(
 {
 	t_uint	status;
 
-	signal(SIGINT, SIG_IGN);
 	init_sh_context(shx, argv, argc, envp);
 	status = init_gc(shx);
 	if (status != CONTINUE_PROC)

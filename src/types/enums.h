@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/25 14:47:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/27 10:06:04 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ enum e_meta_type
 	SINGLE_QUOTE,
 	DOUBLE_QUOTE,
 	EQUAL,
+	MINUS,
+	PLUS,
 };
 
 extern t_str	g_meta_char[];
@@ -78,6 +80,7 @@ enum e_error_codes
 	NO_FILE_DIR,
 	CMD_NOT_FOUND,
 	IS_DIR,
+	PERM_DENIED,
 	CLOSE_FAIL,
 	DUP_FAIL,
 	SKIP_FORK,

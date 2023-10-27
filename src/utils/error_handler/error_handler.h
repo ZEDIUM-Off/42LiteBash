@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/25 14:52:29 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/27 11:40:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ struct	s_error
 	void	*var;
 };
 
-void	exit_shell(t_sh_context *shx, t_uint error_code);
+void	exit_shell(t_sh_context *shx);
 t_uint	handle_error(t_uint error_code, t_str err_var);
 t_str	get_error_msg(t_uint error_code);
 t_uint	open_error(int errnum, t_str filename);
+void	set_exit_status(t_uint	error_code);
 
 #endif

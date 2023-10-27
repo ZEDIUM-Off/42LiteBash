@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:17:48 by bfaure            #+#    #+#             */
-/*   Updated: 2023/10/25 15:42:14 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/27 10:28:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_uint	find_chunk(t_uint *i, bool *chunk_found, t_chunk_utils *chunk_utils)
 {
 	t_uint	meta;
 
+	// printf ("find_chunk\n");
+	// printf ("splited[%d] = %s\n", *i, chunk_utils->splited[*i]);
 	while (chunk_utils->splited[*i] && !(*chunk_found))
 	{
 		meta = get_meta_char(&chunk_utils->splited[*i][0]);
