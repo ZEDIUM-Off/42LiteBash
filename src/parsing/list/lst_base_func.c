@@ -6,7 +6,7 @@
 /*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:28:14 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/29 18:24:25 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/10/22 08:42:07 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_uint	lst_print(t_list **lst, t_str text)
 		printf(text, tmp->data);
 		tmp = tmp->next;
 	}
+	printf("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n");
 	return (CONTINUE_PROC);
 }
 

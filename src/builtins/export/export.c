@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 10:55:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/17 10:13:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/22 08:37:16 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_uint	export_cmd(t_cmd **_cmd)
 	t_uint		i;
 	t_uint		status;
 	t_chunk		*chunk;
-
+	
 	i = 1;
 	chunk = (*_cmd)->chunk;
 	status = CONTINUE_PROC;

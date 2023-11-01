@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minish.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/06 11:19:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/19 15:51:23 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 	getenv, tcsetattr, tcgetattr, tgetent, tgetflag,
 	tgetnum, tgetstr, tgoto, tputs
 	**/
+extern int	g_signal;
+
 # include <stdio.h>      // printf
 # include <stdlib.h>     // malloc, free, exit, getenv
 # include <unistd.h>     // access, open, read, close, fork, chdir, getcwd, execve, dup, dup2, pipe, isatty, ttyname, ttyslot, unlink
@@ -62,8 +64,6 @@
 # include "src/parsing/syntax/syntax.h"
 # include "src/utils/utils.h"
 # include "src/builtins/builtins.h"
-
-int	g_signal;
 
 t_uint	prompt(t_sh_context *shx);
 

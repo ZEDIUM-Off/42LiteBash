@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/05 10:23:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/19 15:48:45 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
+
+int	g_signal;
 
 int	main(int argc, char **argv, char **envp)
 {
