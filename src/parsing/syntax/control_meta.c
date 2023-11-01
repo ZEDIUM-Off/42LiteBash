@@ -6,18 +6,18 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:44:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/02 15:10:45 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/24 15:24:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	control_quoting(t_uint meta, t_uint *s_quote, t_uint *db_quote)
+void	control_quoting(t_uint meta, t_quote_test *quotes)
 {
 	if (meta == SINGLE_QUOTE)
-		*s_quote += 1;
+		quotes->s_quote += 1;
 	else if (meta == DOUBLE_QUOTE)
-		*db_quote += 1;
+		quotes->d_quote += 1;
 }
 
 t_uint	control_redirection(t_str *splited, t_uint *i)

@@ -6,18 +6,11 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/10 11:40:59 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/26 22:46:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
-
-void	init_signals(void)
-{
-	signal(SIGQUIT, handle_sigquit);
-	// signal(SIGTSTP, SIG_IGN);
-	signal(SIGINT, handle_sigint);
-}
 
 t_uint	init_shell(
 	t_sh_context *shx,

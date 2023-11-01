@@ -23,6 +23,9 @@
 		"vector": "c",
 		"sstream": "c",
 		"cstdlib": "c",
-		"readline.h": "c"
+		"readline.h": "c",
+		"stat.h": "c",
+		"stdint.h": "c",
+		"limits.h": "c"
 	}
 }

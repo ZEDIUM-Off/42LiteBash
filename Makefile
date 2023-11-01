@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/10/16 13:31:58 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/10/26 11:50:27 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/fill_struct/chunk.c \
 				src/parsing/fill_struct/check_builtins.c \
 				src/parsing/fill_struct/status_env.c	\
+				src/parsing/fill_struct/check_cmd.c	\
 				src/parsing/pipeline/parse_pipe.c\
 				src/parsing/pipeline/parse_redirect.c\
 				src/parsing/pipeline/pipeline.c \
@@ -70,10 +71,12 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/parsing/skip_to_space.c \
 				src/parsing/expand.c \
 				src/utils/clean_blocks.c \
+				src/utils/hist_handler.c \
 				src/builtins/echo.c \
 				src/core/handle_sig.c \
 				src/builtins/pwd.c \
 				src/builtins/cd.c \
+				src/builtins/exit.c \
 				src/parsing/make_env/make_envp.c \
 				src/parsing/make_env/make_envx.c \
 				src/parsing/make_env/make_env_utils.c \
@@ -148,13 +151,13 @@ $(LIBFT_A):	force
 # ---- Variables Rules ---- #
 
 ${NAME}	:	${OBJS} $(LIBFT_A)
-			${CC} ${CFLAGS} $(INC) $^ -lreadline -o $@
+			${CC} ${CFLAGS} $(INC) $^ -L/usr/local/opt/readline/lib -lreadline -o $@
 
 # ---- Compiled Rules ---- #
 
 ${DIR_OBJS}%.o:%.c
 	@				$(MKDIR) $(shell dirname $@)
-					${CC} ${CFLAGS} $(INC) -c $<  -o $@
+					${CC} ${CFLAGS} $(INC) -I/usr/local/opt/readline/include -c $<  -o $@
 
 watch : $(DIR_SRC)
 	fswatch -o $^ | make && ./$(NAME)

@@ -44,6 +44,7 @@ t_uint	get_value(t_cmd **_cmd, t_chunk **chunk,
 t_uint	set_var(t_sh_context *shx, t_export *to_export);
 t_uint	append_var(t_sh_context *shx, t_export *to_export);
 t_uint	build_var(t_sh_context *shx, t_export *to_export, t_str current);
-int	env_get_index(t_sh_context *shx, t_list **env, t_str name);
+int		env_get_index(t_sh_context *shx, t_list **env, t_str name);
+t_uint	exit_bi(t_cmd *cmd);
 
 #endif

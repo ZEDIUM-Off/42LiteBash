@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:49:07 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/08/31 15:24:36 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/24 13:00:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	dlst_add_front(t_sh_context *shx, t_dlist **dlst, void *data)
 	(*dlst)->prev = new;
 	*dlst = new;
 }
+
 void	dlst_add_back(t_sh_context *shx, t_dlist **dlst, void *data)
 {
 	t_dlist	*new;

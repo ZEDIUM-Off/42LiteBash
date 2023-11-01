@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/05 10:02:10 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/27 11:40:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define DUP_FAIL_MSG "Echec de la duplication du fd"
 # define INVALID_META_MSG "syntax error near invalid token"
 # define UNCLOSED_QUOTES_MSG "unclosed quotes"
+# define EXPORT_NOT_VALID_ID_MSG "not a valid identifier"
+# define EXIT_ARG_MSG "numeric argument required"
+# define EXIT_TOO_ARG_MSG "too many arguments"
+# define IS_DIR_MSG "Is a directory"
 # define NO_ERROR_MSG "\0"
 
 struct	s_error
@@ -40,9 +44,10 @@ struct	s_error
 	void	*var;
 };
 
-void	exit_shell(t_sh_context *shx, t_uint error_code);
+void	exit_shell(t_sh_context *shx);
 t_uint	handle_error(t_uint error_code, t_str err_var);
 t_str	get_error_msg(t_uint error_code);
 t_uint	open_error(int errnum, t_str filename);
+void	set_exit_status(t_uint	error_code);
 
 #endif

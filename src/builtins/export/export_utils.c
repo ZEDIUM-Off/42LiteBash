@@ -36,8 +36,8 @@ t_uint	build_var(t_sh_context *shx, t_export *to_export, t_str current)
 		tmp = ft_strfjoin(shx, tmp, "\"");
 		to_export->builded = ft_strdup(shx, tmp);
 		if (!to_export->builded)
-			return (free(tmp), handle_error(MALLOC_FAIL, NULL));
-		free(tmp);
+			return (shx->gc->free(shx, tmp), handle_error(MALLOC_FAIL, NULL));
+		shx->gc->free(shx, tmp);
 	}
 	return (CONTINUE_PROC);
 }
@@ -54,7 +54,7 @@ int	env_get_index(t_sh_context *shx, t_list **env, t_str name)
 	tmp = ft_strjoin(shx, name, "=");
 	printf ("tmp = %s\n", tmp);
 	ind2 = lst_get_index(env, tmp);
-	free(tmp);
+	shx->gc->free(shx, tmp);
 	if (ind1 == ind2)
 		return (ind1);
 	if (ind1 != -1)

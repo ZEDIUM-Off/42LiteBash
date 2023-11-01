@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:27:43 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/22 14:22:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/27 12:09:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,37 @@ t_uint	parse_pipe(
 	return (CONTINUE_PROC);
 }
 
-t_uint	process_block(
-		t_sh_context *shx, t_block **blocks, t_str *splited)
+void	update_quote_test(t_uint meta, t_quote_test *quotes)
+{
+	if (meta == SINGLE_QUOTE)
+		quotes->s_quote = !quotes->s_quote;
+	if (meta == DOUBLE_QUOTE)
+		quotes->d_quote = !quotes->d_quote;
+}
+
+t_uint	process_block(t_sh_context *shx, t_block **blocks,
+		t_str *splited, t_quote_test *quotes)
 {
 	t_uint			status;
 	t_uint			start;
 	t_uint			i;
 	t_uint			meta;
-	t_quote_test	quotes;
 
 	i = 0;
 	start = i;
-	quotes = (t_quote_test){false, false};
+	*quotes = (t_quote_test){false, false};
 	while (splited[i] && i < (*blocks)->block_end)
 	{
 		meta = get_meta_char(&splited[i][0]);
-		if (meta == SINGLE_QUOTE)
-			quotes.s_quote = !quotes.s_quote;
-		if (meta == DOUBLE_QUOTE)
-			quotes.d_quote = !quotes.d_quote;
-		if (meta == PIPE && !quotes.s_quote && !quotes.d_quote)
+		update_quote_test(meta, quotes);
+		if (meta == PIPE && !quotes->s_quote && !quotes->d_quote)
 		{
 			status = add_ppl(shx, &(*blocks)->ppl, i - start, &splited[start]);
 			if (status != CONTINUE_PROC)
 				return (handle_error(status, NULL));
 			start = i + 1;
 		}
-		(i)++;
+		i++;
 	}
 	status = add_ppl(shx, &(*blocks)->ppl, i - start, &splited[start]);
 	if (status != CONTINUE_PROC)
@@ -67,9 +71,10 @@ t_uint	process_block(
 
 t_uint	parse_pipeline(t_sh_context *shx, t_block **blocks, t_str *splited)
 {
-	t_uint	status;
+	t_uint			status;
+	t_quote_test	quotes;
 
-	status = process_block(shx, blocks, splited);
+	status = process_block(shx, blocks, splited, &quotes);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	return (CONTINUE_PROC);

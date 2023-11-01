@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:59:49 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/11 10:34:02 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/24 15:07:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_process			t_process;
 typedef struct s_quote_test			t_quote_test;
 typedef struct s_status_env			t_status_env;
 typedef struct s_export				t_export;
+typedef struct s_chunk_utils		t_chunk_utils;
 
 typedef void (*						t_free_func)(
 	t_sh_context	*shx,

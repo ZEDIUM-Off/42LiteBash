@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/10 12:06:50 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/27 10:06:04 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@
 enum e_meta_type
 {
 	NONE,
-	IN_REDIRECT, // <
-	OUT_REDIRECT, // >
-	APPEND_REDIRECT, // >>
-	HERE_DOC, // <<
-	DOLLAR_Q, // $?
-	DOLLAR_D, // $$
-	PLUS_EQUAL, // +=
-	PIPE, // |
-	DOLLAR, //$
-	SINGLE_QUOTE, // '
-	DOUBLE_QUOTE, // "
-	EQUAL, // =
+	IN_REDIRECT,
+	OUT_REDIRECT,
+	APPEND_REDIRECT,
+	HERE_DOC,
+	DOLLAR_Q,
+	DOLLAR_D,
+	PLUS_EQUAL,
+	PIPE,
+	DOLLAR,
+	SINGLE_QUOTE,
+	DOUBLE_QUOTE,
+	EQUAL,
+	MINUS,
+	PLUS,
 };
 
-extern t_str g_meta_char[];
+extern t_str	g_meta_char[];
 
 enum e_env_var_name
 {
@@ -77,33 +79,16 @@ enum e_error_codes
 	SYNTAX_ERROR,
 	NO_FILE_DIR,
 	CMD_NOT_FOUND,
+	IS_DIR,
+	PERM_DENIED,
 	CLOSE_FAIL,
 	DUP_FAIL,
 	SKIP_FORK,
 	UNCLOSED_QUOTES,
 	INVALID_META,
 	EXPORT_NOT_VALID_ID,
-};
-
-enum e_parsing_error
-{
-	DOUBLE_QUOTE_ERROR = -1,
-	SIMPLE_QUOTE_ERROR = -2,
-	BRACKET_ERROR = -3,
-};
-
-enum e_parsing_succes
-{
-	DOUBLE_QUOTE_SUCCES = 1,
-	SIMPLE_QUOTE_SUCCES = 2,
-	BRACKET_SUCCES = 3,
-};
-
-enum e_chunk_type
-{
-	DOUBLE_QUOTE_CHUNK,
-	SIMPLE_QUOTE_CHUNK,
-	BRACKET_CHUNK,
+	EXIT_ARG,
+	EXIT_TOO_ARG,
 };
 
 #endif

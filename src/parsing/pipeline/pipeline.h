@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 20:08:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/24 15:05:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ struct	s_chunk
 	t_str			*txt;
 	t_uint			type;
 	t_uint			start;
-	t_block			*blocks;
 	t_chunk			*next;
-	t_chunk			*under_chunk;
 };
 
 t_uint		parse_pipeline(t_sh_context *shx, t_block **blocks, t_str *splited);

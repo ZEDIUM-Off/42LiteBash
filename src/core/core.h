@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/05 10:06:46 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/23 16:11:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_uint	exec_echo(t_cmd **_cmd);
 t_uint	close_files(t_pipeline **ppl);
 t_uint	open_file(t_file *file, t_uint type);
 void	handle_sigint(int sig);
+void	handle_sigstp(int sig);
 void	handle_sigquit(int sig);
-void	handle_eof(int sig);
 
 #endif

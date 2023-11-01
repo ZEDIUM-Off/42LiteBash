@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:22:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/02 15:50:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/10/27 10:05:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static t_uint	one_char_meta(char *c)
 		return (DOUBLE_QUOTE);
 	else if (*c == '=')
 		return (EQUAL);
+	else if (*c == '-')
+		return (MINUS);
 	else if (*c == ';' || *c == '&' || *c == '(' || *c == ')')
 		return (INVALID_META);
 	return (NONE);
@@ -35,7 +37,7 @@ static t_uint	mult_char_meta(char *c)
 	{
 		if (*(c + 1) == '=')
 			return (PLUS_EQUAL);
-		return (INVALID_META);
+		return (PLUS);
 	}
 	if (*c == '<')
 	{
