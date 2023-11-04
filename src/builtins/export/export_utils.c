@@ -22,7 +22,8 @@ t_uint	build_var(t_sh_context *shx, t_export *to_export, t_str current)
 		i = 0;
 		while (current[i] && current[i] != '"')
 			i++;
-		i++;
+		if (current[i])
+			i++;
 		while (current[i] && current[i] != '"')
 			i++;
 		to_export->builded = ft_strinstert(shx, current, to_export->value, i);
