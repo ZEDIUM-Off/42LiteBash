@@ -30,7 +30,7 @@ char	*ft_strdup(t_sh_context *shx, const char *str)
 {
 	char	*dest;
 
-	dest = shx->gc->malloc(shx, sizeof(char) * (ft_strlen(str) + 1), false);
+	dest = gc_malloc(shx, sizeof(char) * (ft_strlen(str) + 1), false);
 	if (!dest)
 		return (NULL);
 	return (ft_strcpy(dest, str));

@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 15:23:52 by bfaure            #+#    #+#              #
-#    Updated: 2023/10/26 12:51:24 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/11/06 11:11:17 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = ft_isalpha.c\
 	ft_memmove.c\
 	ft_strlcat.c\
 	ft_strncmp.c\
+	ft_strcmp.c\
 	ft_tolower.c\
 	ft_isalnum.c\
 	ft_isdigit.c\

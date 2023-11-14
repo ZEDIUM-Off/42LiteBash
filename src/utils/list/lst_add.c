@@ -6,11 +6,26 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:31:33 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/17 09:27:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/06 11:27:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
+
+t_list	*lstcpy(t_sh_context *shx, t_list *lst)
+{
+	t_list	*new;
+	t_list	*tmp;
+
+	new = NULL;
+	tmp = lst;
+	while (tmp)
+	{
+		lst_add_back(shx, &new, ft_strdup(shx, tmp->data));
+		tmp = tmp->next;
+	}
+	return (new);
+}
 
 t_uint	lst_add_front(t_sh_context *shx, t_list **lst, void *data)
 {

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:16:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/24 14:58:45 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/09 10:51:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	init_sh_context(
 	ctx->line_split = NULL;
 	ctx->pwd = NULL;
 	ctx->proc_nb = 0;
-	ctx->env = envp;
+	ctx->envp = envp;
 	ctx->s_env = NULL;
-	ctx->envp = NULL;
-	ctx->envx = NULL;
+	ctx->env = NULL;
 }

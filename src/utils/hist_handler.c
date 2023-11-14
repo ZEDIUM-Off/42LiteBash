@@ -6,33 +6,32 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 15:21:07 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/26 12:52:15 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/09 10:57:35 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	ft_write_history(t_str line)
+t_uint	ft_write_history(t_sh_context *shx, t_str line)
 {
-	int	fd;
+	int		fd;
 
-	fd = open(HIST_FILE, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	fd = open(shx->histfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
-		return (handle_error(NO_FILE_DIR, NULL));
+		return (handle_error(OPEN_FAIL, shx->histfile));
 	write(fd, "\n", 1);
 	write(fd, line, ft_strlen(line));
-	close(fd);
-	return (CONTINUE_PROC);
+	return (close_fd(fd));
 }
 
-t_uint	ft_read_history(void)
+t_uint	ft_read_history(t_sh_context *shx)
 {
 	int		fd;
 	t_str	line;
 
-	fd = open(HIST_FILE, O_RDONLY);
+	fd = open(shx->histfile, O_RDWR | O_CREAT, 0644);
 	if (fd == -1)
-		return (handle_error(NO_FILE_DIR, NULL));
+		return (handle_error(OPEN_FAIL, shx->histfile));
 	rl_clear_history();
 	line = get_next_line(fd);
 	while (line)
@@ -42,6 +41,5 @@ t_uint	ft_read_history(void)
 		free(line);
 		line = get_next_line(fd);
 	}
-	close(fd);
-	return (CONTINUE_PROC);
+	return (close_fd(fd));
 }

@@ -12,29 +12,33 @@
 
 #include <minish.h>
 
+void	skip_until_insert(t_str str, t_uint *i)
+{
+	while (str[*i] && str[*i] != '"')
+		*i += 1;
+	if (str[*i])
+		*i += 1;
+	while (str[*i] && str[*i] != '"')
+		*i += 1;
+}
+
 t_uint	build_var(t_sh_context *shx, t_export *to_export, t_str current)
 {
 	t_str	tmp;
 	t_uint	i;
 
-	if (current)
+	if (current && current[ft_strlen(to_export->name)] == '=')
 	{
 		i = 0;
-		while (current[i] && current[i] != '"')
-			i++;
-		if (current[i])
-			i++;
-		while (current[i] && current[i] != '"')
-			i++;
+		skip_until_insert(current, &i);
 		to_export->builded = ft_strinstert(shx, current, to_export->value, i);
 		if (!to_export->builded)
 			return (handle_error(MALLOC_FAIL, NULL));
 	}
 	else
 	{
-		tmp = ft_strjoin(shx, to_export->name, "=\"");
+		tmp = ft_strjoin(shx, to_export->name, "=");
 		tmp = ft_strfjoin(shx, tmp, to_export->value);
-		tmp = ft_strfjoin(shx, tmp, "\"");
 		to_export->builded = ft_strdup(shx, tmp);
 		if (!to_export->builded)
 			return (shx->gc->free(shx, tmp), handle_error(MALLOC_FAIL, NULL));
@@ -43,25 +47,24 @@ t_uint	build_var(t_sh_context *shx, t_export *to_export, t_str current)
 	return (CONTINUE_PROC);
 }
 
-int	env_get_index(t_sh_context *shx, t_list **env, t_str name)
+int	env_get_index(t_list **env, t_str name)
 {
-	t_str	tmp;
-	int		ind1;
-	int		ind2;
+	t_list	*tmp;
+	t_uint	i;
 
-	tmp = NULL;
-	printf("env get index name = %s\n", name);
-	ind1 = lst_get_index(env, name);
-	tmp = ft_strjoin(shx, name, "=");
-	printf ("tmp = %s\n", tmp);
-	ind2 = lst_get_index(env, tmp);
-	shx->gc->free(shx, tmp);
-	if (ind1 == ind2)
-		return (ind1);
-	if (ind1 != -1)
-		return (ind1);
-	else if (ind2 != -1)
-		return (ind2);
+	if (!*env || !name)
+		return (-1);
+	i = 0;
+	tmp = *env;
+	while (tmp && tmp->data)
+	{
+		if (ft_strnstr((t_str)tmp->data, name, ft_strlen(name))
+			&& (((t_str)tmp->data)[ft_strlen(name)] == '='
+			|| !(((t_str)tmp->data)[ft_strlen(name)])))
+			return (i);
+		i++;
+		tmp = tmp->next;
+	}
 	return (-1);
 }
 
@@ -83,6 +86,8 @@ t_uint	check_var(t_sh_context *shx, t_str var, t_export *to_export)
 {
 	t_uint	i;
 
+	if (!var)
+		return (handle_error(EXPORT_NOT_VALID_ID, var));
 	if (!ft_isalpha(var[0]) && var[0] != '_')
 		return (handle_error(EXPORT_NOT_VALID_ID, var));
 	i = 1;

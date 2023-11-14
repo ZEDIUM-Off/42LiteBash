@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:43:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/26 11:20:48 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/14 14:12:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,28 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl, bool fork)
 	if (bi_id == ECHO_BI)
 		status = exec_echo(&(*ppl)->cmd);
 	else if (bi_id == PWD_BI)
-		status = pwd_builtins();
-	else if (bi_id == CD_BI)
+		status = pwd_builtins((*ppl)->shx);
+	else if (bi_id == CD_BI && !fork)
 		status = cd_builtins((*ppl)->shx, (*ppl)->cmd->cmd[1]);
 	else if (bi_id == EXPORT_BI && !fork)
 		status = export_cmd(&(*ppl)->cmd);
 	else if (bi_id == UNSET_BI && !fork)
 		status = unset_cmd(&(*ppl)->cmd);
-	else if (bi_id == ENV_BI && !fork)
-		status = lst_print(&(*ppl)->shx->envp, "%s\n");
+	else if (bi_id == ENV_BI)
+		status = lst_print(&(*ppl)->shx->env, "%s\n");
 	else if (bi_id == EXIT_BI && !fork)
 		status = exit_bi((*ppl)->cmd);
-	if (fork)
-		exit (status);
 	return (handle_error(status, NULL));
 }
 
 t_uint	check_no_fork_bi(t_uint bi_id, t_pipeline **ppl)
 {
-	if (bi_id == EXIT_BI
-		|| bi_id == EXPORT_BI || bi_id == UNSET_BI || bi_id == ENV_BI)
+	if (bi_id == EXIT_BI || bi_id == EXPORT_BI || bi_id == CD_BI
+		|| bi_id == UNSET_BI)
+	{
+		if ((*ppl)->next)
+			return (CONTINUE_PROC);
 		return (run_builtin (bi_id, ppl, false));
+	}
 	return (CONTINUE_PROC);
 }

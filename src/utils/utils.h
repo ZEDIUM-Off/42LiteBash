@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/26 12:52:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/13 15:30:20 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ t_uint	init_shell(
 void	clean_blocks(t_sh_context *shx, t_block **blocks);
 void	clean_ppl(t_sh_context *shx, t_pipeline **ppl);
 void	clean_cmd(t_sh_context *shx, t_cmd **cmd);
-void	clean_chunk(t_sh_context *shx, t_chunk **chunk);
 char	*ft_strinstert(t_sh_context *shx, char *src,
 			char *to_insert, int index);
-t_uint	ft_write_history(t_str line);
-t_uint	ft_read_history(void);
+t_uint	ft_write_history(t_sh_context *shx, t_str line);
+t_uint	ft_read_history(t_sh_context *shx);
 
 #endif

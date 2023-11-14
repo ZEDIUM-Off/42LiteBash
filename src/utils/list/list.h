@@ -64,5 +64,6 @@ t_dlist	*dlst_get_first(t_dlist **dlst);
 t_dlist	*dlst_get_last(t_dlist **dlst);
 t_uint	dlst_size(t_dlist **dlst);
 t_uint	lst_append(t_sh_context *shx, t_list **lst, t_uint index, t_str data);
+t_list	*lstcpy(t_sh_context *shx, t_list *lst);
 
 #endif

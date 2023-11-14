@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/24 15:20:58 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/13 15:22:20 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,47 +37,6 @@ void	log_action(t_sh_context *shx)
 	printf("====================================================\n\n");
 }
 
-void	log_chunk(t_chunk **chunk, t_uint lvl)
-{
-	t_chunk	*_chunk;
-	t_uint	i;
-	t_uint	c_ctr;
-	t_str	tabs;
-	t_str meta_char[] = {
-		[NONE] = "",
-		[IN_REDIRECT] = "<",
-		[OUT_REDIRECT] = ">",
-		[APPEND_REDIRECT] = ">>",
-		[HERE_DOC] = "<<",
-		[DOLLAR_Q] = "$?",
-		[DOLLAR_D] = "$$",
-		[PIPE] = "|",
-		[DOLLAR] = "$",
-		[SINGLE_QUOTE] = "'",
-		[DOUBLE_QUOTE] = "\"",
-	};
-
-	_chunk = *chunk;
-	c_ctr = 1;
-	tabs = rep_char(lvl, '\t');
-	while (_chunk)
-	{
-		if (_chunk->next)
-			printf("%s│\t\t│\n%s│\t\t├── chunk %-5d: start = %d, end = %d, type = %s\n", tabs, tabs, c_ctr++, _chunk->start, _chunk->end, meta_char[_chunk->type]);
-		else
-			printf("%s│\t\t│\n%s│\t\t└── chunk %-5d:start = %d, end = %d, type = %s\n", tabs, tabs, c_ctr++, _chunk->start, _chunk->end, meta_char[_chunk->type]);
-		if (_chunk->next)
-			printf("%s│\t\t│\t└── chunk txt: ", tabs);
-		else
-			printf("%s│\t\t\t└── chunk txt: ", tabs);
-		i = 0;
-		while (_chunk->txt[i])
-			printf("[%s],", _chunk->txt[i++]);
-		printf("\n");
-		_chunk = _chunk->next;
-	}
-}
-
 void	log_cmd(t_cmd **cmd, t_uint lvl)
 {
 	t_cmd	*_cmd;
@@ -90,9 +49,6 @@ void	log_cmd(t_cmd **cmd, t_uint lvl)
 	printf("%s│\t│\n%s│\t└── cmd: ", tabs, tabs);
 	while (_cmd->cmd[++i])
 		printf("%d-[%s],", i, _cmd->cmd[i]);
-	printf("\n");
-	if (_cmd->chunk)
-		log_chunk(&_cmd->chunk, lvl);
 }
 
 void	log_redir(t_redirect *redir, t_uint lvl)

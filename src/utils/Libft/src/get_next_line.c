@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:38:58 by bfaure            #+#    #+#             */
-/*   Updated: 2023/02/22 10:30:52 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/13 15:01:33 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ char	*line_get(char *buff, ssize_t cursor, char *line, int fd)
 		}
 		if (ft_strchr_gnl(buff, '\n') > -1 || cursor == 0)
 		{
-			line = ft_strnjoin(line, buff, ft_strchr_gnl(buff, '\n'));
+			line = gnl_strnjoin(line, buff, ft_strchr_gnl(buff, '\n'));
 			if (!line)
 				return (clear_buff(buff), free(line), NULL);
 			return (clear_buff(buff), line);
 		}
-		line = ft_strnjoin(line, buff, BUFFER_SIZE);
+		line = gnl_strnjoin(line, buff, BUFFER_SIZE);
 		if (!line)
 			return (clear_buff(buff), free(line), NULL);
 		buff[0] = '\0';

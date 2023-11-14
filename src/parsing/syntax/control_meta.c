@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:44:50 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/24 15:24:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/09 10:12:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,29 @@
 
 void	control_quoting(t_uint meta, t_quote_test *quotes)
 {
-	if (meta == SINGLE_QUOTE)
-		quotes->s_quote += 1;
-	else if (meta == DOUBLE_QUOTE)
-		quotes->d_quote += 1;
+	if (meta == SINGLE_QUOTE && quotes->d_quote != 1)
+	{
+		if (quotes->s_quote == 1)
+			quotes->s_quote -= 1;
+		else
+			quotes->s_quote += 1;
+	}
+	else if (meta == DOUBLE_QUOTE && quotes->s_quote != 1)
+	{
+		if (quotes->d_quote == 1)
+			quotes->d_quote -= 1;
+		else
+			quotes->d_quote += 1;
+	}
 }
 
 t_uint	control_redirection(t_str *splited, t_uint *i)
 {
 	t_uint	meta;
 
-	printf ("control redirect\n");
 	meta = get_meta_char(splited[*i + 1]);
-	if (meta != NONE)
+	if ((meta >= IN_REDIRECT && meta <= HERE_DOC)
+		|| meta == INVALID_META || meta == PIPE || meta == EQUAL)
 		return (handle_error(SYNTAX_ERROR, splited[*i + 1]));
 	if (splited[*i + 1] == NULL)
 		return (handle_error(SYNTAX_ERROR, NL));

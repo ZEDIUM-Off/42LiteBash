@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/24 15:05:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/14 16:45:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@
 struct	s_file
 {
 	int		fd;
+	bool	valid;
 	bool	is_open;
 	t_str	file_name;
 };
 
 struct	s_redirect
 {
-	t_uint	in_type;
-	t_uint	out_type;
-	t_str	here_doc_txt;
-	t_file	infile;
-	t_file	outfile;
+	t_uint			in_type;
+	t_uint			out_type;
+	t_str			here_doc_txt;
+	t_file			infile;
+	t_file			outfile;
 };
 struct s_process
 {
@@ -39,6 +40,8 @@ struct s_process
 
 struct s_pipeline
 {
+	bool			exec;
+	t_uint			size;
 	t_sh_context	*shx;
 	t_redirect		redir;
 	t_cmd			*cmd;
@@ -49,18 +52,8 @@ struct s_pipeline
 struct s_cmd
 {
 	t_sh_context	*shx;
+	t_uint			size;
 	t_str			*cmd;
-	t_chunk			*chunk;
-};
-
-struct	s_chunk
-{
-	t_sh_context	*shx;
-	t_uint			end;
-	t_str			*txt;
-	t_uint			type;
-	t_uint			start;
-	t_chunk			*next;
 };
 
 t_uint		parse_pipeline(t_sh_context *shx, t_block **blocks, t_str *splited);
@@ -72,6 +65,6 @@ t_uint		create_ppl(t_sh_context *shx, t_pipeline **new,
 t_uint		add_ppl(t_sh_context *shx, t_pipeline **pipeline,
 				t_uint size, t_str *splited);
 t_uint		parse_pipe(t_sh_context *shx,
-				t_pipeline **ppl, t_str *splited, t_uint size);
+				t_pipeline **ppl, t_str *splited);
 
 #endif /* PIPELINE_H */

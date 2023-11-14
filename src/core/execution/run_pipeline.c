@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:50:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/24 14:48:41 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/14 16:57:39 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_uint	run_pipeline(t_block **block, t_pipeline **ppl, int in_fd)
 {
 	t_uint		status;
 
-	if ((*ppl)->next)
+	if ((*ppl)->next && (*ppl)->cmd->cmd[0])
 	{
 		if (pipe((*ppl)->process.pipefd) == -1)
 			return (PIPE_FAIL);
@@ -29,7 +29,7 @@ t_uint	run_pipeline(t_block **block, t_pipeline **ppl, int in_fd)
 		is_any_proc_ended(block);
 		return (run_pipeline(block, &(*ppl)->next, (*ppl)->process.pipefd[0]));
 	}
-	else
+	else if ((*ppl)->cmd->cmd[0])
 	{
 		status = exec_cmd(block, ppl, in_fd, STDOUT_FILENO);
 		if (status != CONTINUE_PROC)

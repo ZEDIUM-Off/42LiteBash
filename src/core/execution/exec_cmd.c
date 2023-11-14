@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/26 12:19:47 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/14 14:50:57 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_uint	exec_bin(t_pipeline	**ppl)
 	t_sh_context	*shx;
 
 	shx = (*ppl)->shx;
-	if (execve((*ppl)->cmd->cmd[0], (*ppl)->cmd->cmd, shx->env) == -1)
+	if (execve((*ppl)->cmd->cmd[0], (*ppl)->cmd->cmd, shx->envp) == -1)
 		exit (EXIT_FAILURE);
 	exit (EXIT_SUCCESS);
 }
@@ -38,6 +38,7 @@ t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 	(*ppl)->shx->proc_nb++;
 	if ((*ppl)->process.pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		status = handle_redir(ppl, in_fd, out_fd);
 		if (status != CONTINUE_PROC)
 			exit (status);
@@ -45,9 +46,7 @@ t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 			status = run_builtin(bi_id, ppl, true);
 		else
 			status = exec_bin(ppl);
-		if (status != CONTINUE_PROC)
-			exit (status);
-		exit (EXIT_SUCCESS);
+		exit (status);
 	}
 	return (CONTINUE_PROC);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/11/04 10:13:49 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/11/13 16:45:02 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,14 @@ DIR_LIBFT		=	src/utils/Libft/
 
 LIBFT_A = $(DIR_LIBFT)$(LIBFT)
 
-FILES =			src/parsing/list/dlst_add.c  \
-				src/parsing/list/dlst_del.c  \
-				src/parsing/list/lst_base_func.c \
-				src/parsing/list/lst_set_get.c \
-				src/parsing/list/dlst_base_func.c \
-				src/parsing/list/dlst_set_get.c  \
-				src/parsing/list/lst_add.c  \
-				src/parsing/list/lst_del.c  \
+FILES =	src/utils/list/dlst_add.c  \
+				src/utils/list/dlst_del.c  \
+				src/utils/list/lst_base_func.c \
+				src/utils/list/lst_set_get.c \
+				src/utils/list/dlst_base_func.c \
+				src/utils/list/dlst_set_get.c  \
+				src/utils/list/lst_add.c  \
+				src/utils/list/lst_del.c  \
 				src/parsing/syntax/syntax_check.c \
 				src/parsing/syntax/control_meta.c \
 				src/parsing/get_meta.c \
@@ -46,21 +46,19 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/utils/error_handler/exit_shell.c \
 				src/utils/error_handler/get_error_msg.c \
 				src/utils/error_handler/handle_error.c \
-				src/utils/error_handler/error_from_errno.c \
 				src/utils/logger/log.c \
 				src/utils/ft_strinsert.c \
 				src/core/init_ctx.c \
 				minishell.c \
 				prompt.c \
 				src/parsing/pars_line.c \
+				src/parsing/quotes_utils.c \
 				src/parsing/pars_paths.c \
 				src/parsing/pars_env.c \
 				src/parsing/split_parse.c \
 				src/parsing/free_split_line.c \
 				src/parsing/fill_struct/block.c \
 				src/parsing/fill_struct/cmd.c \
-				src/parsing/fill_struct/chunk_size.c \
-				src/parsing/fill_struct/chunk.c \
 				src/parsing/fill_struct/check_builtins.c \
 				src/parsing/fill_struct/status_env.c	\
 				src/parsing/fill_struct/check_cmd.c	\
@@ -77,14 +75,9 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/builtins/pwd.c \
 				src/builtins/cd.c \
 				src/builtins/exit.c \
-				src/parsing/make_env/make_envp.c \
-				src/parsing/make_env/make_envx.c \
-				src/parsing/make_env/make_env_utils.c \
 				src/builtins/export/export.c \
 				src/builtins/export/export_cmd.c \
 				src/builtins/export/export_utils.c \
-				src/builtins/export/export_value_types.c \
-				src/builtins/export/export_var_types.c \
 				src/builtins/unset.c \
 				src/core/execution/exec_cmd.c \
 				src/core/files.c \
@@ -95,7 +88,7 @@ FILES =			src/parsing/list/dlst_add.c  \
 				src/core/execution/here_doc_handler.c \
 				src/builtins/run_builtin.c \
 				src/builtins/export/export_utils.c \
-				src/parsing/list/lst_check.c \
+				src/utils/list/lst_check.c \
 
 HEAD = $(shell find . -name "*.h") #pas legal
 

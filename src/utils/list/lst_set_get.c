@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:43:36 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/17 09:35:29 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/06 11:33:26 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	lst_get_index(t_list **lst, t_str name)
 	t_list	*tmp;
 	t_uint	i;
 
-	if (!lst || !name)
+	if (!*lst || !name)
 		return (-1);
 	i = 0;
 	tmp = *lst;
-	while (tmp)
+	while (tmp && tmp->data)
 	{
 		if (ft_strnstr((t_str)tmp->data, name, ft_strlen(name)))
 			return (i);

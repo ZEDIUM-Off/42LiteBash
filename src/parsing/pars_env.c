@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/10/10 11:40:44 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/06 11:14:09 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ t_uint	add_env_to_lst(t_sh_context *shx, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		status = lst_add_back(shx, &shx->envp, envp[i]);
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
-		status = lst_add_back(shx, &shx->envx, envp[i]);
+		status = lst_add_back(shx, &shx->env, envp[i]);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 		i++;
@@ -41,28 +38,23 @@ void	swap_nodes(t_list *current_node, t_list *next_node)
 	next_node->data = data;
 }
 
-void	sort_env_export(t_sh_context *shx)
+t_list	*sort_str_list(t_list **lst)
 {
-	t_uint	to_sort;
+	t_list	*sorted;
 	t_list	*tmp;
-	t_list	*end;
 
-	to_sort = 1;
-	end = NULL;
-	while (to_sort)
+	sorted = *lst;
+	tmp = sorted;
+	while (sorted)
 	{
-		to_sort = 0;
-		tmp = shx->envx;
-		while (tmp->next != end)
+		if (sorted->next
+			&& ft_strcmp(sorted->data, sorted->next->data) > 0)
 		{
-			if (ft_strncmp(tmp->data, tmp->next->data,
-					ft_strlen(tmp->data)) > 0)
-			{
-				swap_nodes(tmp, tmp->next);
-				to_sort = 1;
-			}
-			tmp = tmp->next;
+			swap_nodes(sorted, sorted->next);
+			sorted = *lst;
 		}
-		end = tmp;
+		else
+			sorted = sorted->next;
 	}
+	return (tmp);
 }

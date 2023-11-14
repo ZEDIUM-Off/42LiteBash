@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_from_errno.c                                 :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 19:22:28 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 20:10:04 by  mchenava        ###   ########.fr       */
+/*   Created: 2023/11/06 10:50:04 by  mchenava         #+#    #+#             */
+/*   Updated: 2023/11/06 10:50:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minish.h>
+#include "../headers/libft.h"
 
-t_uint	open_error(int errnum, t_str filename)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	write(2, "minish: ", 8);
-	write(2, filename, ft_strlen(filename));
-	perror("");
-	if (errnum == ENOMEM)
-		return (EXIT_SHELL);
-	return (CONTINUE_PROC);
+	size_t	i;
+	int		a;
+	int		b;
+
+	i = 0;
+	while ((s1[i] != '\0' || s2[i] != '\0'))
+	{
+		if (s1[i] != s2[i])
+		{
+			a = (((unsigned char *)s1)[i] + '0');
+			b = (((unsigned char *)s2)[i] + '0');
+			return (a - b);
+		}
+		i++;
+	}
+	return (0);
 }

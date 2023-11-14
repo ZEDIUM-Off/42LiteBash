@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:04:01 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/07 17:02:47 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/13 15:29:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <minish.h>
 
-t_uint	handle_chunck(t_chunk **chunk);
 void	handle_sigchld(int sig);
 t_uint	here_doc(t_sh_context *shx, t_str *content, t_str delimiter);
 t_uint	exec_bin(t_pipeline	**ppl);

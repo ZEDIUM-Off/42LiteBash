@@ -3,24 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minish.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/01 14:25:45 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/09 10:39:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISH_H
 # define MINISH_H
-
-# define PROMPT "minishell$"
-# define PROMPT_COLOR "\033[1;32m"
-# define PROMPT_COLOR_RESET "\033[0m"
-# define PROMPT_COLOR_ERROR "\033[1;31m"
-# define PROMPT_COLOR_WARNING "\033[1;33m"
-# define MAX_PROC_NB 1000
-# define HERE_DOC_TMP_FILE "/tmp/minishell_here_doc.tmp"
-# define HIST_FILE "./.minishell_history"
 
 /**
 	===AUTHORIZED FUNCTIONS===
@@ -57,20 +48,23 @@
 # include <fcntl.h>      // O_RDONLY...
 
 # include "src/types/types.h"
-
-extern t_uint	g_exit_status;
-
 # include "src/utils/Libft/headers/libft.h"
 # include "src/utils/Libft/headers/get_next_line.h"
 # include "src/types/enums.h"
 # include "src/core/core.h"
-# include "src/parsing/list/list.h"
+# include "src/utils/list/list.h"
 # include "src/parsing/parsing.h"
 # include "src/parsing/pipeline/pipeline.h"
 # include "src/parsing/fill_struct/fill_struct.h"
 # include "src/parsing/syntax/syntax.h"
 # include "src/utils/utils.h"
 # include "src/builtins/builtins.h"
+
+# define MAX_PROC_NB 1000
+# define HERE_DOC_TMP_FILE "/tmp/minishell_here_doc.tmp"
+# define HIST_FILE "/.minishell_history"
+
+extern t_uint	g_exit_status;
 
 t_uint	prompt(t_sh_context *shx);
 

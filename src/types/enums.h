@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/27 10:06:04 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/09 17:28:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,24 @@ enum e_error_codes
 	MALLOC_FAIL,
 	PIPE_FAIL,
 	FORK_FAIL,
-	EXECVE_FAIL,
 	WAITPID_FAIL,
-	PROC_NOT_TERMINATED,
 	NULL_DATA,
+	DUP_FAIL,
+	UNCLOSED_QUOTES,
 	SYNTAX_ERROR,
 	NO_FILE_DIR,
+	NO_PERM,
 	CMD_NOT_FOUND,
 	IS_DIR,
-	PERM_DENIED,
+	OPEN_FAIL,
 	CLOSE_FAIL,
-	DUP_FAIL,
-	SKIP_FORK,
-	UNCLOSED_QUOTES,
-	INVALID_META,
+	KILL_FAIL,
+	CD_FAIL,
 	EXPORT_NOT_VALID_ID,
 	EXIT_ARG,
 	EXIT_TOO_ARG,
+	SKIP_FORK,
+	INVALID_META,
 };
 
 #endif

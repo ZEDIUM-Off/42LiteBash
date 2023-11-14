@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:34:44 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/26 12:33:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/13 14:28:10 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,13 @@ t_uint	skip_parts(t_str str, t_quote_test *quotes)
 
 	i = 0;
 	meta = get_meta_char(&str[i++]);
-	if (meta != NONE)
-	{
-		if (meta == SINGLE_QUOTE)
-			quotes->s_quote = !quotes->s_quote;
-		if (meta == DOUBLE_QUOTE)
-			quotes->d_quote = !quotes->d_quote;
-		if (meta == DOLLAR)
-			skip_to_space(str, &i);
-		if (meta >= APPEND_REDIRECT && meta <= PLUS_EQUAL)
-			i++;
-	}
-	else
-	{
-		if (quotes->s_quote || quotes->d_quote)
-			while (str[i] && get_meta_char(&str[i]) == NONE)
-				i++;
-		skip_to_space(str, &i);
-	}
+	if (meta == SINGLE_QUOTE || meta == DOUBLE_QUOTE)
+		control_quoting(meta, quotes);
+	if (meta >= APPEND_REDIRECT && meta <= PLUS_EQUAL)
+		i++;
+	if (meta == PIPE || (meta >= IN_REDIRECT && meta <= HERE_DOC))
+		return (i);
+	skip_to_space(str, &i, quotes);
 	return (i);
 }
 
@@ -59,8 +48,6 @@ t_uint	count_parts(t_str str)
 			n_parts++;
 		if (str[i])
 			i += skip_parts(&str[i], &quotes);
-		if (check_no_space(str, i, &quotes))
-			n_parts++;
 	}
 	return (n_parts);
 }
@@ -79,14 +66,6 @@ t_uint	new_part(t_sh_context *shx, t_str **dest,
 	while (++j < i)
 		(**dest)[j] = src[j];
 	(**dest)[j] = '\0';
-	if (check_no_space(src, i, quotes))
-	{
-		(*dest)++;
-		**dest = shx->gc->malloc(shx, sizeof(char), true);
-		if (!**dest)
-			return (-1);
-		(**dest)[0] = '\0';
-	}
 	return (i);
 }
 

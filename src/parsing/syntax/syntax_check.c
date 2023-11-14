@@ -6,21 +6,18 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:35:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/25 14:41:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/13 14:49:37 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	handle_meta(t_uint meta, t_str *splited,
-	t_quote_test *quotes, t_uint *i)
+t_uint	handle_meta(t_uint meta, t_str *splited, t_uint *i)
 {
 	t_uint	status;
 
 	status = CONTINUE_PROC;
-	if (meta == SINGLE_QUOTE || meta == DOUBLE_QUOTE)
-		control_quoting(meta, quotes);
-	else if (meta == PIPE)
+	if (meta == PIPE)
 		status = control_pipe(splited, i);
 	else if (meta >= IN_REDIRECT && meta <= HERE_DOC)
 		status = control_redirection(splited, i);
@@ -35,6 +32,7 @@ t_uint	check_syntax(t_str *splited)
 {
 	t_quote_test	quotes;
 	t_uint			i;
+	t_uint			j;
 	t_uint			status;
 	t_uint			meta;
 
@@ -43,12 +41,13 @@ t_uint	check_syntax(t_str *splited)
 	quotes.d_quote = 0;
 	while (splited[i])
 	{
-		if (splited[i][0] == '\0')
-			i++;
 		meta = get_meta_char(splited[i]);
-		status = handle_meta(meta, splited, &quotes, &i);
+		status = handle_meta(meta, splited, &i);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
+		j = 0;
+		while (splited[i][j])
+			control_quoting(get_meta_char(&splited[i][j++]), &quotes);
 		i++;
 	}
 	if (quotes.s_quote % 2 != 0 || quotes.d_quote % 2 != 0)

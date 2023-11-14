@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:44:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/25 15:38:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/06 14:13:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_uint	here_doc(t_sh_context *shx, t_str *content, t_str delimiter)
 	{
 		line = readline("> ");
 		if (!line)
-			return (handle_error(MALLOC_FAIL, NULL));
+			return (handle_error(STOP_PROC, NULL));
 		if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0)
 		{
 			free(line);
@@ -49,8 +49,7 @@ t_uint	handle_here_doc(t_pipeline **ppl)
 	(*ppl)->redir.infile.file_name = HERE_DOC_TMP_FILE;
 	fd = open(HERE_DOC_TMP_FILE, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
-		return (handle_error(
-				open_error(errno, (*ppl)->redir.infile.file_name), NULL));
+		return (handle_error(OPEN_FAIL, (*ppl)->redir.infile.file_name));
 	if (write(fd, (*ppl)->redir.here_doc_txt,
 			ft_strlen((*ppl)->redir.here_doc_txt)) == -1)
 		return (errno);

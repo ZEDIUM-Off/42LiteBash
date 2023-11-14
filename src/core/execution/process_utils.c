@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/26 12:39:19 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/10 12:03:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_uint	check_proc_status(t_block **block)
 	while (ppl)
 	{
 		if (ppl->process.status == -42)
-			return (PROC_NOT_TERMINATED + ppl->process.pid);
+			return (STOP_PROC);
 		g_exit_status = ppl->process.status;
 		ppl = ppl->next;
 	}
@@ -41,21 +41,27 @@ void	is_any_proc_ended(t_block **block)
 t_uint	wait_all_proc(t_block **block)
 {
 	t_sh_context	*shx;
+	t_pipeline		*ppl;
 	pid_t			pid;
 	int				status;
 
 	shx = (*block)->shx;
 	while (shx->proc_nb > 0)
 	{
-		pid = waitpid(-1, &status, 0);
-		if (pid == -1 && errno != ECHILD)
-			return (WAITPID_FAIL);
-		if (pid == -1 && errno == ECHILD)
-			return (CONTINUE_PROC);
-		while (pid > 0)
+		ppl = (*block)->ppl;
+		while (ppl)
 		{
-			update_proc(block, status, pid);
-			pid = waitpid(-1, &status, 0);
+			if (ppl->process.status == -42)
+			{
+				pid = waitpid(ppl->process.pid, &status, WNOHANG);
+				if (pid == -1 && errno != ECHILD)
+					return (WAITPID_FAIL);
+				if (pid > 0)
+					update_proc(block, status, pid);
+				else if (ppl->next && ppl->next->process.status != -42)
+					kill(ppl->process.pid, SIGKILL);
+			}
+			ppl = ppl->next;
 		}
 	}
 	return (check_proc_status(block));
@@ -77,8 +83,8 @@ void	update_proc(t_block **block, int status, pid_t pid)
 			proc_found = true;
 			if (WIFEXITED(status))
 				ppl->process.status = WEXITSTATUS(status);
-			// else if (WIFSIGNALED(status))
-			// 	ppl->process.status = WTERMSIG(status);
+			else if (WIFSIGNALED(status))
+				ppl->process.status = WTERMSIG(status);
 			close_files(&ppl);
 			shx->proc_nb--;
 		}

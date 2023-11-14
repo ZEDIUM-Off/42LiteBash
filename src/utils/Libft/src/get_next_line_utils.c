@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:39:25 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/13 18:02:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/13 15:01:39 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen_gnl(char *str)
 	return (i);
 }
 
-char	*ft_strnjoin(char *s1, char *s2, ssize_t n)
+char	*gnl_strnjoin(char *s1, char *s2, ssize_t n)
 {
 	char	*str;
 	int		i;

@@ -6,32 +6,48 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/20 10:26:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/13 16:49:04 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
+t_uint	update_pwd(t_sh_context *shx, t_str new, t_str old)
+{
+	t_uint	status;
+
+	status = lst_set(&shx->env, env_get_index(&shx->env, "PWD"),
+			ft_strjoin(shx, "PWD=", new));
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	status = lst_set(&shx->env, env_get_index(&shx->env, "OLDPWD"),
+			ft_strjoin(shx, "OLDPWD=", old));
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	return (CONTINUE_PROC);
+}
+
 t_uint	cd_builtins(t_sh_context *shx, t_str path)
 {
-	t_str	pwd;
-	int		error_code;
-	t_str	env_name;
+	t_uint	status;
+	t_str	tmp;
+	t_str	oldpwd;
 
-	error_code = chdir(path);
-	printf("cd_builtins error_code : %i\n", error_code);
-	if (error_code < 0)
-		perror("ERROR : cd");
-	pwd = get_pwd();
-	env_name = ft_strdup(shx, "PWD=");
-	if (!env_name)
+	tmp = NULL;
+	oldpwd = NULL;
+	if (!path)
+		tmp = ft_strdup(shx, shx->home);
+	else if (ft_strcmp(path, "-") == 0)
+		tmp = expand(shx, "OLDPWD", ft_strlen("OLDPWD"));
+	else
+		tmp = ft_strdup(shx, path);
+	if (!tmp)
 		return (handle_error(MALLOC_FAIL, NULL));
-	pwd = ft_strfjoin(shx, env_name, pwd);
-	if (!pwd)
-		return (handle_error(MALLOC_FAIL, NULL));
-	lst_remplace(shx,
-		&shx->envp, lst_get_index(&shx->envp, "PWD="), pwd);
-	if (pwd)
-		free(pwd);
-	return (CONTINUE_PROC);
+	oldpwd = expand(shx, "PWD", ft_strlen("PWD"));
+	if (chdir(tmp) == -1)
+		return (handle_error(CD_FAIL, tmp));
+	status = update_pwd(shx, get_pwd(shx), oldpwd);
+	shx->gc->free(shx, tmp);
+	shx->gc->free(shx, oldpwd);
+	return (status);
 }

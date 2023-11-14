@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/10/26 22:46:53 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/13 16:48:50 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_uint	init_shell(
 	status = add_env_to_lst(shx, envp);
 	if (status != CONTINUE_PROC)
 		return (handle_error(MALLOC_FAIL, NULL));
-	sort_env_export(shx);
+	shx->home = expand(shx, "HOME", ft_strlen("HOME"));
+	shx->histfile = ft_strjoin(shx, shx->home, HIST_FILE);
 	return (CONTINUE_PROC);
 }

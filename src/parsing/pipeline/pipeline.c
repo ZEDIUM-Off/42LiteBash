@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 20:05:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/14 15:49:00 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ t_uint	create_ppl(
 		return (handle_error(MALLOC_FAIL, NULL));
 	(*new)->cmd = NULL;
 	(*new)->shx = shx;
+	(*new)->size = size;
 	(*new)->process = (t_process){.pid = -42, .status = -42};
 	(*new)->redir = (t_redirect){.in_type = NONE, .out_type = NONE};
 	(*new)->next = NULL;
-	status = parse_pipe(shx, new, splited, size);
+	status = parse_pipe(shx, new, splited);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	return (CONTINUE_PROC);
