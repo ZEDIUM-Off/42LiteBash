@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/14 16:43:48 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 13:27:07 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ t_uint	check_expand(t_sh_context *shx, t_str *to_check)
 	{
 		if (get_meta_char(&(*to_check)[j]) == DOLLAR_Q && !quote.s_quote)
 		{
-			tmp = ft_strnjoin(shx, tmp, ft_itoa(g_exit_status),
-					ft_strlen(ft_itoa(g_exit_status)));
+			tmp = ft_strnjoin(shx, tmp, ft_itoa(shx, g_exit_status),
+					ft_strlen(ft_itoa(shx, g_exit_status)));
 			j += 2;
 		}
 		else if (need_to_exp(to_check, &j, &quote))
