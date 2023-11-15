@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/09 19:10:51 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 11:28:00 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@
 # define EXIT_TOO_ARG_MSG "too many arguments"
 # define IS_DIR_MSG "is a directory"
 # define NO_ERROR_MSG "\0"
-
-struct	s_error
-{
-	t_error	*next;
-	t_uint	error_code;
-	char	*msg;
-	t_str	func;
-	void	*var;
-};
 
 void	exit_shell(t_sh_context *shx);
 t_uint	handle_error(t_uint error_code, t_str err_var);

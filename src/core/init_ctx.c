@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:16:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/09 10:51:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 11:29:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,8 @@ void	init_sh_context(
 	t_str	*envp
 )
 {
-	ctx->status = 0;
-	ctx->mode = 0;
 	ctx->line = NULL;
 	ctx->blocks = NULL;
-	ctx->tk = NULL;
-	ctx->error = NULL;
 	ctx->argv = argv;
 	ctx->argc = argc;
 	ctx->prompt = NULL;

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:37:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 17:56:42 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 11:28:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	*gc_malloc(t_sh_context *shx, size_t size, bool count)
 	gc = shx->gc;
 	new_ptr->size = size;
 	new_ptr->counted = count;
-	if (shx->tk)
-		new_ptr->allocated_in = *(shx->tk);
 	new_ptr->next = NULL;
 	if (!gc->ptrs)
 		gc->ptrs = new_ptr;
@@ -91,5 +89,4 @@ void	gc_free_all(t_sh_context *shx)
 	}
 	gc->ptrs = top;
 	free(gc);
-	free(shx->tk);
 }

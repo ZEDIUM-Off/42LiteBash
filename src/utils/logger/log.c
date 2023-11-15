@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:34:40 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/13 15:22:20 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 11:29:09 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,6 @@ t_str	rep_char(int count, char c)
 	ft_memset(str, c, count);
 	str[count] = '\0';
 	return (str);
-}
-
-void	log_action(t_sh_context *shx)
-{
-	t_tracker			*tk;
-	t_garbage_collector	*gc;
-
-	tk = shx->tk;
-	gc = shx->gc;
-	printf("============== loging step %d: %s ==================\n", tk->step_nb, tk->step_name);
-	printf("step type: %d\n", tk->step_type);
-	printf("current function: [%s]\n", tk->current_func);
-	printf("nb of pointers: %d\n", gc->nb_ptrs);
-	printf("last pointer allocated : %p, size: %d, allocated in func: %s at step : %d\n", gc->ptrs->ptr, gc->ptrs->size, gc->ptrs->allocated_in.current_func, gc->ptrs->allocated_in.step_nb);
-	printf("====================================================\n\n");
 }
 
 void	log_cmd(t_cmd **cmd, t_uint lvl)

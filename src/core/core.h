@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/09 14:23:54 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 11:28:32 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@
 
 struct s_sh_context {
 	t_garbage_collector	*gc;
-	t_uint				status;
-	t_uint				mode;
 	t_str				line;
 	t_str				histfile;
 	t_str				home;
 	t_block				*blocks;
-	t_tracker			*tk;
-	t_error				*error;
 	t_list				*env;
 	t_str				*envp;
 	t_str				*argv;

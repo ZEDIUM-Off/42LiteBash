@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:32:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/09/13 18:59:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 11:26:52 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ struct s_ptr
 	t_uint			size;
 	void			*ptr;
 	t_ptr			*next;
-	t_tracker		allocated_in;
 	bool			counted;
 };
 

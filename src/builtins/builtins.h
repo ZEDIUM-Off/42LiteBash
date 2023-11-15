@@ -29,7 +29,7 @@ t_uint	cd_builtins(t_sh_context *shx, t_str path);
 t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl, bool fork);
 t_uint	export_cmd(t_cmd **_cmd);
 t_uint	export(t_sh_context *shx, t_export *to_export);
-void		init_export(t_sh_context *shx, t_export *to_export);
+void	init_export(t_sh_context *shx, t_export *to_export);
 t_uint	unset_cmd(t_cmd **_cmd);
 t_str	get_pwd(t_sh_context *shx);
 t_uint	check_no_fork_bi(t_uint bi_id, t_pipeline **ppl);

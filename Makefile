@@ -6,7 +6,7 @@
 #    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/11/13 16:45:02 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/11/15 11:26:43 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,7 @@ FILES =	src/utils/list/dlst_add.c  \
 				src/utils/list/lst_del.c  \
 				src/parsing/syntax/syntax_check.c \
 				src/parsing/syntax/control_meta.c \
-				src/parsing/get_meta.c \
-				src/utils/tracker/init_track.c \
-				src/utils/tracker/track.c \
-				src/utils/new_str.c \
+				src/parsing/utils/get_meta.c \
 				src/utils/init_shell.c \
 				src/utils/garbage_collector/gc_func.c \
 				src/utils/garbage_collector/gc_init.c \
@@ -52,11 +49,11 @@ FILES =	src/utils/list/dlst_add.c  \
 				minishell.c \
 				prompt.c \
 				src/parsing/pars_line.c \
-				src/parsing/quotes_utils.c \
+				src/parsing/utils/quotes_utils.c \
 				src/parsing/pars_paths.c \
 				src/parsing/pars_env.c \
 				src/parsing/split_parse.c \
-				src/parsing/free_split_line.c \
+				src/parsing/utils/free_split_line.c \
 				src/parsing/fill_struct/block.c \
 				src/parsing/fill_struct/cmd.c \
 				src/parsing/fill_struct/check_builtins.c \
@@ -66,7 +63,7 @@ FILES =	src/utils/list/dlst_add.c  \
 				src/parsing/pipeline/parse_redirect.c\
 				src/parsing/pipeline/pipeline.c \
 				src/parsing/new_file.c \
-				src/parsing/skip_to_space.c \
+				src/parsing/utils/skip_to_space.c \
 				src/parsing/expand.c \
 				src/utils/clean_blocks.c \
 				src/utils/hist_handler.c \

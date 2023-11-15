@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/13 16:48:50 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 11:27:08 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ t_uint	init_shell(
 
 	init_sh_context(shx, argv, argc, envp);
 	status = init_gc(shx);
-	if (status != CONTINUE_PROC)
-		return (handle_error(status, NULL));
-	status = init_track(shx);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	shx->lst_paths = get_path(shx, envp);
