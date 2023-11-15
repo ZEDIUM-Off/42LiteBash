@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:48:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/01/12 13:59:11 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/15 13:24:14 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t	ft_intlen(long nb)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(t_sh_context *shx, int n)
 {
 	char	*str;
 	size_t	len;
@@ -39,7 +39,7 @@ char	*ft_itoa(int n)
 	nb = n;
 	len = ft_intlen(nb);
 	i = len;
-	str = malloc(sizeof(char) * len + 1);
+	str = gc_malloc(shx, sizeof(char) * len + 1, false);
 	if (!str)
 		return (NULL);
 	if (nb == 0)

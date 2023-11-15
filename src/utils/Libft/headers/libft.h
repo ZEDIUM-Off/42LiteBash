@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 15:50:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/13 15:00:00 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 13:24:32 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strcmp(const char *s1, const char *s2);
 
-char		*ft_itoa(int n);
+char		*ft_itoa(t_sh_context *shx, int n);
 char		*ft_strdup(t_sh_context *shx, const char *str);
 char		*ft_strjoin(t_sh_context *shx, char *s1, char *s2);
 char		*ft_strfjoin(t_sh_context *shx, char *s1, char *s2);
