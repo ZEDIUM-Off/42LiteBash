@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure < bfaure@student.42lyon.fr>         +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/01 14:25:02 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/15 17:08:25 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv, char **envp)
 		return (exit_shell(&ctx), status);
 	while (status != EXIT_SHELL)
 		status = prompt(&ctx);
+	printf("main status: %d\n", status);
 	if (status == EXIT_SHELL)
 		return (exit_shell(&ctx), status);
 }

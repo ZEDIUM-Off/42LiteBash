@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:12:34 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/14 12:31:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 17:07:26 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	pars_line(t_sh_context *shx, t_block **out, t_str *splited)
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	status = parse_pipeline(shx, out, splited);
+	printf("pars_line status: %d\n", status);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	return (CONTINUE_PROC);

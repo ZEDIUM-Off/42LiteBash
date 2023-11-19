@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/14 17:51:37 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/15 17:19:38 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ t_uint	extract_cmd(t_sh_context *shx, t_str *cmd, t_str *splited, t_uint *i)
 	}
 	else
 	{
+		printf("extract_cmd tmp: %s\n", tmp);
 		status = get_valid_paths(shx, cmd, tmp);
+		printf("extract_cmd status: %d\n", status);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 	}
@@ -104,6 +106,7 @@ t_uint	new_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited, t_uint size)
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	status = get_cmd_path(shx, _cmd);
+	printf("new_cmd status: %d\n", status);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	return (CONTINUE_PROC);
