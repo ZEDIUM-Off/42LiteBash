@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/15 17:08:05 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/20 11:15:43 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,9 @@ t_uint	use_prompt(t_sh_context *shx)
 	t_uint	status;
 
 	status = pars_line(shx, &shx->blocks, shx->line_split);
-	printf("use_prompt status: %d\n", status);
 	if (status != CONTINUE_PROC)
 		return (clean_blocks(shx, &shx->blocks), handle_error(status, NULL));
-	log_struct(shx);
+	/* log_struct(shx); */
 	status = processing(&shx->blocks);
 	if (status != CONTINUE_PROC)
 		return (clean_blocks(shx, &shx->blocks), handle_error(status, NULL));
@@ -87,7 +86,6 @@ t_uint	prompt(t_sh_context *shx)
 			return (handle_error(status, NULL));
 		if (shx->line_split && shx->line_split[0])
 			status = use_prompt(shx);
-		printf("prompt status: %d\n", status);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 	}

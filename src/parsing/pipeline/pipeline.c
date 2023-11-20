@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/15 17:06:24 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/20 11:16:54 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_uint	create_ppl(
 	(*new)->redir = (t_redirect){.in_type = NONE, .out_type = NONE};
 	(*new)->next = NULL;
 	status = parse_pipe(shx, new, splited);
-	printf("create_ppl status: %d\n", status);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	return (CONTINUE_PROC);
@@ -41,7 +40,6 @@ t_uint	add_ppl(
 	t_uint		status;
 
 	status = create_ppl(shx, &new, size, splited);
-	printf("add_ppl status: %d\n", status);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	if (!*pipeline)
