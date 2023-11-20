@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/11/20 15:37:02 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/11/20 17:47:12 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,8 @@ FILES =	src/utils/list/dlst_add.c  \
 				src/builtins/export/export_utils.c \
 				src/builtins/export/print_export.c \
 				src/utils/list/lst_check.c \
+				src/parsing/make_env/make_env.c \
+				src/parsing/make_env/make_env_utils.c \
 
 HEAD = $(shell find . -name "*.h") #pas legal 
 
@@ -96,9 +98,9 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra #$(DEB_FLAGS) 
+CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
 
-DEB_FLAGS = -g3 -fsanitize=address
+DEB_FLAGS = -g3 #-fsanitize=address
 
 # ********* RULES ******** #
 

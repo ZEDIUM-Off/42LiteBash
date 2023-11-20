@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_sig.c                                       :+:      :+:    :+:   */
+/*   make_env_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 11:43:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/20 17:30:57 by bfaure           ###   ########lyon.fr   */
+/*   Created: 2023/09/06 21:19:35 by bfaure            #+#    #+#             */
+/*   Updated: 2023/11/20 17:24:23 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-void	handle_sigint(int sig)
+t_str	inc_shlvl(t_sh_context *shx, void *data)
 {
-	(void)sig;
-	g_exit_status = 130;
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
+	int		num_i;
+	t_str	num_c;
+	t_str	new_shlvl;
 
-void	handle_sigstp(int sig)
-{
-	printf("sigstp: %d\n", sig);
-}
-
-void	handle_sigchld(int sig)
-{
-	printf ("sigchld: %d\n", sig);
-}
-
-void	handle_sigquit(int sig)
-{
-	(void)sig;
-	g_exit_status = 131;
-	printf("\n");
+	new_shlvl = ft_strdup(shx, "SHLVL=");
+	if (!new_shlvl)
+		return (NULL);
+	data += 6;
+	num_i = ft_atoi(data);
+	num_i++;
+	num_c = ft_itoa(shx, num_i);
+	if (!num_c)
+		return (NULL);
+	new_shlvl = ft_strfjoin(shx, new_shlvl, num_c);
+	// free(num_c);
+	if (!new_shlvl)
+		return (NULL);
+	return (new_shlvl);
 }

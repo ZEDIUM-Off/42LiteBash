@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/14 16:39:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/20 17:34:20 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,6 @@ void		swap_nodes(t_list *current_node, t_list *next_node);
 
 t_uint		new_file(t_sh_context *shx, t_file *file, t_str name, t_uint type);
 bool		check_no_space(t_str str, t_uint i, t_quote_test	*quotes);
+t_uint		check_env(t_sh_context *shx);
+t_str		inc_shlvl(t_sh_context *shx, void *data);
 #endif
