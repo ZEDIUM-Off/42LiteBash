@@ -27,6 +27,7 @@ t_uint	build_var(t_sh_context *shx, t_export *to_export, t_str current)
 	t_str	tmp;
 	t_uint	i;
 
+	tmp = NULL;
 	if (current && current[ft_strlen(to_export->name)] == '=')
 	{
 		i = 0;

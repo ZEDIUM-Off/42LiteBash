@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/14 14:50:57 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/20 15:43:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ t_uint	exec_bin(t_pipeline	**ppl)
 	if (execve((*ppl)->cmd->cmd[0], (*ppl)->cmd->cmd, shx->envp) == -1)
 		exit (EXIT_FAILURE);
 	exit (EXIT_SUCCESS);
+}
+
+void	child_sig(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 }
 
 t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
@@ -38,7 +44,7 @@ t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 	(*ppl)->shx->proc_nb++;
 	if ((*ppl)->process.pid == 0)
 	{
-		signal(SIGINT, SIG_DFL);
+		child_sig();
 		status = handle_redir(ppl, in_fd, out_fd);
 		if (status != CONTINUE_PROC)
 			exit (status);

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/20 11:15:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/20 14:45:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_uint	prompt(t_sh_context *shx)
 	while (status != EXIT_SHELL)
 	{
 		signal(SIGINT, handle_sigint);
+		signal(SIGQUIT, SIG_IGN);
 		status = get_prompt(shx);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));

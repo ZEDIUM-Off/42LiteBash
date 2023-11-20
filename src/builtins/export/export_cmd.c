@@ -34,7 +34,7 @@ t_uint	get_to_export(t_sh_context *shx, t_str cmd, t_export *to_export)
 		to_export->type = PLUS_EQUAL;
 		i += 2;
 	}
-	status = extract_quotes(shx, &cmd[i], &to_export->value);
+	status = extract_quotes(shx, ft_strdup(shx, &cmd[i]), &to_export->value);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	return (CONTINUE_PROC);
@@ -47,6 +47,7 @@ t_uint	export_w_args(t_cmd **_cmd)
 	t_uint		status;
 
 	i = 1;
+	to_export = (t_export){NULL, NULL, NULL, 0};
 	while ((*_cmd)->cmd[i])
 	{
 		init_export((*_cmd)->shx, &to_export);

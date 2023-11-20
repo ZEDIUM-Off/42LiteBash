@@ -26,6 +26,7 @@
 		"readline.h": "c",
 		"stat.h": "c",
 		"stdint.h": "c",
-		"limits.h": "c"
+		"limits.h": "c",
+		"system_error": "c"
 	}
 }

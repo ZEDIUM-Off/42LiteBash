@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:02:22 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/20 11:16:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/20 13:27:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_uint	test_with_path(t_sh_context *shx, t_str *cmd, t_str *path, bool *found)
 		if (!*cmd)
 			return (handle_error(MALLOC_FAIL, NULL));
 	}
-	return (CONTINUE_PROC);
+	return (handle_error(NO_FILE_DIR, *path));
 }
 
 t_uint	test_no_path(t_sh_context *shx, t_str *cmd, t_str *path, bool *found)
@@ -48,7 +48,7 @@ t_uint	test_access(t_sh_context *shx, t_str *cmd, t_str *path, bool *found)
 	if (ft_strcspn(*path, "/") == ft_strlen(*path))
 	{
 		if (S_ISDIR(path_stat.st_mode))
-			return (handle_error(CMD_NOT_FOUND, *path));
+			return (handle_error(IS_DIR, *path));
 		return (test_no_path(shx, cmd, path, found));
 	}
 	else
@@ -58,6 +58,16 @@ t_uint	test_access(t_sh_context *shx, t_str *cmd, t_str *path, bool *found)
 		return (test_with_path(shx, cmd, path, found));
 	}
 	return (CONTINUE_PROC);
+}
+
+t_uint	loop_access(t_sh_context *shx, t_str *cmd, t_str *path, bool *found)
+{
+	struct stat	path_stat;
+
+	stat(*path, &path_stat);
+	if (S_ISDIR(path_stat.st_mode))
+		return (handle_error(IS_DIR, *path));
+	return (test_no_path(shx, cmd, path, found));
 }
 
 t_uint	get_valid_paths(t_sh_context *shx, t_str *cmd, t_str src)
@@ -78,7 +88,7 @@ t_uint	get_valid_paths(t_sh_context *shx, t_str *cmd, t_str src)
 		*cmd = ft_strjoin(shx, tmp->data, src);
 		if (!*cmd)
 			return (handle_error(MALLOC_FAIL, NULL));
-		status = test_access(shx, cmd, cmd, &found);
+		status = loop_access(shx, cmd, cmd, &found);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 		else if (found)
