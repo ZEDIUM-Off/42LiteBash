@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/11/15 11:26:43 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/11/20 15:37:02 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,9 +85,10 @@ FILES =	src/utils/list/dlst_add.c  \
 				src/core/execution/here_doc_handler.c \
 				src/builtins/run_builtin.c \
 				src/builtins/export/export_utils.c \
+				src/builtins/export/print_export.c \
 				src/utils/list/lst_check.c \
 
-HEAD = $(shell find . -name "*.h") #pas legal
+HEAD = $(shell find . -name "*.h") #pas legal 
 
 INC = -I. -I$(DIR_LIBFT)
 
@@ -95,7 +96,7 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
+CFLAGS = -Wall -Werror -Wextra #$(DEB_FLAGS) 
 
 DEB_FLAGS = -g3 -fsanitize=address
 

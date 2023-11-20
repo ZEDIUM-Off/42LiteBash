@@ -68,7 +68,8 @@ void	print_export(t_sh_context *shx)
 
 	tmp = lstcpy(shx, shx->env);
 	sort_str_list(&tmp);
-	lst_print(&tmp, "declare -x %s\n");
+	print_envs(shx, EXPORT_BI, &tmp);
+	// lst_print(&tmp, "declare -x %s\n");
 	lst_clear(shx, &tmp);
 }
 
