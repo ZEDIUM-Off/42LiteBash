@@ -47,6 +47,7 @@ t_uint	export_w_args(t_cmd **_cmd)
 	t_uint		status;
 
 	i = 1;
+	to_export = (t_export){NULL, NULL, NULL, 0};
 	while ((*_cmd)->cmd[i])
 	{
 		init_export((*_cmd)->shx, &to_export);
@@ -67,7 +68,8 @@ void	print_export(t_sh_context *shx)
 
 	tmp = lstcpy(shx, shx->env);
 	sort_str_list(&tmp);
-	lst_print(&tmp, "declare -x %s\n");
+	print_envs(shx, EXPORT_BI, &tmp);
+	// lst_print(&tmp, "declare -x %s\n");
 	lst_clear(shx, &tmp);
 }
 

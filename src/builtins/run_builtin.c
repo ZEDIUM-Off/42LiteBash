@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:43:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/14 14:12:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/20 15:07:10 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl, bool fork)
 	else if (bi_id == UNSET_BI && !fork)
 		status = unset_cmd(&(*ppl)->cmd);
 	else if (bi_id == ENV_BI)
-		status = lst_print(&(*ppl)->shx->env, "%s\n");
+		status = print_envs((*ppl)->shx, ENV_BI, &(*ppl)->shx->env);
 	else if (bi_id == EXIT_BI && !fork)
 		status = exit_bi((*ppl)->cmd);
 	return (handle_error(status, NULL));

@@ -37,5 +37,6 @@ t_uint	check_var(t_sh_context *shx, t_str var, t_export *to_export);
 t_uint	build_var(t_sh_context *shx, t_export *to_export, t_str current);
 int		env_get_index(t_list **env, t_str name);
 t_uint	exit_bi(t_cmd *cmd);
+t_uint	print_envs(t_sh_context *shx, t_uint mode, t_list **lst);
 
 #endif
