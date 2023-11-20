@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/10 12:03:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/20 16:20:58 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	wait_any_proc(t_block **block)
 	int				status;
 	pid_t			pid;
 
+	signal(SIGINT, SIG_IGN);
 	shx = (*block)->shx;
 	if (shx->proc_nb >= MAX_PROC_NB)
 	{

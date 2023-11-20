@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 14:05:06 by bfaure            #+#    #+#             */
-/*   Updated: 2023/09/16 11:10:48 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/20 15:46:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_uint	check_builtins(char *str)
 		return (CD_BI);
 	else if (!ft_strncmp(str, "pwd", 3) && (str[3] == ' ' || str[3] == '\0'))
 		return (PWD_BI);
-	else if (!ft_strncmp(str, "export", 6) && (str[6] == ' ' || str[6] == '\0'))
+	else if (!ft_strncmp(str, "export", 6)
+		&& (str[6] == ' ' || str[6] == '\0'))
 		return (EXPORT_BI);
 	else if (!ft_strncmp(str, "unset", 5) && (str[5] == ' ' || str[5] == '\0'))
 		return (UNSET_BI);
