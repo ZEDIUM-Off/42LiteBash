@@ -78,7 +78,7 @@ t_uint	check_env(t_sh_context *shx)
 	t_uint			status;
 
 	status = 0;
-	if (!shx->envp)
+	if (!shx->env)
 		status = make_env(shx, ALL);
 	else
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minish.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:28:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/09 10:39:18 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 13:01:41 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 # define MAX_PROC_NB 1000
 # define HERE_DOC_TMP_FILE "/tmp/minishell_here_doc.tmp"
 # define HIST_FILE "/.minishell_history"
+# define DEF_HIST "/tmp/.minishell_history"
 
 extern t_uint	g_exit_status;
 
