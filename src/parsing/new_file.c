@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:42:54 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/14 14:38:23 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 14:00:24 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ t_uint	new_file(t_sh_context *shx, t_file *file, t_str name, t_uint type)
 {
 	t_uint	status;
 
-	status = test_file(name, type);
-	if (status != CONTINUE_PROC)
-		return (handle_error(status, NULL));
+	if (type != HERE_DOC)
+	{
+		status = test_file(name, type);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
+	}
 	file->file_name = ft_strdup(shx, name);
 	if (!file->file_name)
 		return (handle_error(MALLOC_FAIL, NULL));

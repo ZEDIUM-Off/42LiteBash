@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_sig.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 11:43:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/20 17:30:57 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/21 14:53:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	handle_sigstp(int sig)
 	printf("sigstp: %d\n", sig);
 }
 
-void	handle_sigchld(int sig)
+void	child_sigint(int sig)
 {
-	printf ("sigchld: %d\n", sig);
+	(void)sig;
 }
 
 void	handle_sigquit(int sig)

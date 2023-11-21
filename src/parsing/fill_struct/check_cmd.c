@@ -6,95 +6,77 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:02:22 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/20 13:27:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 12:38:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	test_with_path(t_sh_context *shx, t_str *cmd, t_str *path, bool *found)
-{
-	if (*path && access(*path, F_OK) == 0)
-	{
-		if (access(*path, X_OK) != 0)
-			return (handle_error(NO_PERM, *path));
-		*found = true;
-		*cmd = ft_strdup(shx, *path);
-		if (!*cmd)
-			return (handle_error(MALLOC_FAIL, NULL));
-	}
-	return (handle_error(NO_FILE_DIR, *path));
-}
-
-t_uint	test_no_path(t_sh_context *shx, t_str *cmd, t_str *path, bool *found)
-{
-	if (*path && access(*path, F_OK) == 0)
-	{
-		if (access(*path, X_OK) != 0)
-			return (handle_error(CMD_NOT_FOUND, *path));
-		*found = true;
-		*cmd = ft_strdup(shx, *path);
-		if (!*cmd)
-			return (handle_error(MALLOC_FAIL, NULL));
-	}
-	return (CONTINUE_PROC);
-}
-
-t_uint	test_access(t_sh_context *shx, t_str *cmd, t_str *path, bool *found)
+bool	check_path(t_str *path)
 {
 	struct stat	path_stat;
 
 	stat(*path, &path_stat);
-	if (ft_strcspn(*path, "/") == ft_strlen(*path))
-	{
-		if (S_ISDIR(path_stat.st_mode))
-			return (handle_error(IS_DIR, *path));
-		return (test_no_path(shx, cmd, path, found));
-	}
-	else
-	{
-		if (S_ISDIR(path_stat.st_mode))
-			return (handle_error(NO_PERM, *path));
-		return (test_with_path(shx, cmd, path, found));
-	}
-	return (CONTINUE_PROC);
+	return (*path && access(*path, F_OK) == 0 && (path_stat.st_mode & S_IXUSR));
 }
 
-t_uint	loop_access(t_sh_context *shx, t_str *cmd, t_str *path, bool *found)
+t_uint	test_with_path(t_sh_context *shx, t_str *cmd, t_str *path)
+{
+	t_list		*tmp;
+	struct stat	path_stat;
+
+	tmp = shx->lst_paths;
+	stat(*path, &path_stat);
+	if (*path && access(*path, F_OK) == 0 && path_stat.st_mode & S_IXUSR)
+	{
+		if (S_ISDIR(path_stat.st_mode))
+			return (handle_error(CMD_NOT_FOUND, *path));
+		*cmd = ft_strdup(shx, *path);
+		if (!*cmd)
+			return (handle_error(MALLOC_FAIL, NULL));
+		return (CONTINUE_PROC);
+	}
+	while (tmp)
+	{
+		*cmd = ft_strjoin(shx, tmp->data, *path);
+		if (!*cmd)
+			return (handle_error(MALLOC_FAIL, NULL));
+		else if (check_path(cmd))
+			return (CONTINUE_PROC);
+		shx->gc->free(shx, *cmd);
+		tmp = tmp->next;
+	}
+	return (handle_error(CMD_NOT_FOUND, *path));
+}
+
+t_uint	test_for_file(t_sh_context *shx, t_str *cmd, t_str *path)
 {
 	struct stat	path_stat;
 
 	stat(*path, &path_stat);
 	if (S_ISDIR(path_stat.st_mode))
 		return (handle_error(IS_DIR, *path));
-	return (test_no_path(shx, cmd, path, found));
+	if (*path && access(*path, F_OK) == 0)
+	{
+		if (path_stat.st_mode | S_IXUSR)
+			return (handle_error(NO_PERM, *path));
+		*cmd = ft_strdup(shx, *path);
+		if (!*cmd)
+			return (handle_error(MALLOC_FAIL, NULL));
+	}
+	else
+		return (handle_error(CMD_NOT_FOUND, *path));
+	return (CONTINUE_PROC);
 }
 
 t_uint	get_valid_paths(t_sh_context *shx, t_str *cmd, t_str src)
 {
-	t_list		*tmp;
 	t_uint		status;
-	bool		found;
 
-	found = false;
-	status = test_access(shx, cmd, &src, &found);
-	if (status != CONTINUE_PROC)
-		return (handle_error(status, NULL));
-	if (found)
-		return (CONTINUE_PROC);
-	tmp = shx->lst_paths;
-	while (tmp)
-	{
-		*cmd = ft_strjoin(shx, tmp->data, src);
-		if (!*cmd)
-			return (handle_error(MALLOC_FAIL, NULL));
-		status = loop_access(shx, cmd, cmd, &found);
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
-		else if (found)
-			return (CONTINUE_PROC);
-		shx->gc->free(shx, *cmd);
-		tmp = tmp->next;
-	}
-	return (handle_error(CMD_NOT_FOUND, src));
+	status = CONTINUE_PROC;
+	if (ft_strcspn(src, "/") != ft_strlen(src))
+		status = test_for_file(shx, cmd, &src);
+	else
+		status = test_with_path(shx, cmd, &src);
+	return (status);
 }

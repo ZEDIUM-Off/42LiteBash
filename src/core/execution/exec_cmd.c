@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/20 16:20:58 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 16:03:44 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,17 @@ t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 	(*ppl)->shx->proc_nb++;
 	if ((*ppl)->process.pid == 0)
 	{
-		child_sig();
 		status = handle_redir(ppl, in_fd, out_fd);
 		if (status != CONTINUE_PROC)
 			exit (status);
+		child_sig();
+		if (in_fd > 2)
+		{
+			printf ("closing in_fd = %d\n", in_fd);
+			status = close_fd(in_fd);
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
+		}
 		if (bi_id != 0)
 			status = run_builtin(bi_id, ppl, true);
 		else

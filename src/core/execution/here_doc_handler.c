@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:44:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/06 14:13:01 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 14:26:35 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_uint	here_doc(t_sh_context *shx, t_str *content, t_str delimiter)
 	t_str	line;
 	t_uint	status;
 
+	printf("herdoc delim : %s\n", delimiter);
 	status = CONTINUE_PROC;
 	if (*content)
 		shx->gc->free(shx, *content);
@@ -25,6 +26,7 @@ t_uint	here_doc(t_sh_context *shx, t_str *content, t_str delimiter)
 		line = readline("> ");
 		if (!line)
 			return (handle_error(STOP_PROC, NULL));
+		printf("line : [%s]\n", line);
 		if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0)
 		{
 			free(line);
