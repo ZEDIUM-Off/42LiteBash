@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 23:33:05 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/14 12:25:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 14:39:30 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ t_uint	open_file(t_file *file, t_uint type)
 
 t_uint	close_files(t_pipeline **ppl)
 {
-	if ((*ppl)->redir.infile.is_open)
+	if ((*ppl)->redir.infile.fd > 2 && (*ppl)->redir.infile.is_open)
 	{
 		if (close((*ppl)->redir.infile.fd) == -1)
 			return (handle_error(CLOSE_FAIL, (*ppl)->redir.infile.file_name));
 		(*ppl)->redir.infile.is_open = false;
 	}
-	if ((*ppl)->redir.outfile.is_open)
+	if ((*ppl)->redir.outfile.fd > 2 && (*ppl)->redir.outfile.is_open)
 	{
 		if (close((*ppl)->redir.outfile.fd) == -1)
-			return (handle_error(CLOSE_FAIL, (*ppl)->redir.infile.file_name));
+			return (handle_error(CLOSE_FAIL, (*ppl)->redir.outfile.file_name));
 		(*ppl)->redir.outfile.is_open = false;
 	}
 	return (CONTINUE_PROC);

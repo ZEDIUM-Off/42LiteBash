@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:54:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/14 16:44:35 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 14:16:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,16 @@ t_uint	set_in_redir(t_pipeline **ppl, t_uint meta, t_str *splited, t_uint *i)
 
 	tmp = NULL;
 	(*ppl)->redir.in_type = meta;
-	status = extract_quotes((*ppl)->shx, splited[*i], &tmp);
-	if (status != CONTINUE_PROC)
-		return (handle_error(status, NULL));
+	if (meta != HERE_DOC)
+	{
+		status = extract_quotes((*ppl)->shx, splited[*i], &tmp);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
+	}
+	else
+		tmp = ft_strdup((*ppl)->shx, splited[*i]);
+	if (tmp == NULL)
+		return (handle_error(MALLOC_FAIL, NULL));
 	status = new_file((*ppl)->shx,
 			&(*ppl)->redir.infile, tmp, (*ppl)->redir.in_type);
 	if (status != CONTINUE_PROC)
