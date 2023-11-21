@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/20 16:17:09 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 15:02:14 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,18 @@
 t_uint	get_prompt(t_sh_context	*shx)
 {
 	t_str	str_prompt;
+	t_str	pwd;
 
 	ft_read_history(shx);
-	str_prompt = ft_strdup(shx, (t_str)lst_get(&shx->env,
-				lst_get_index(&shx->env, "PWD=")));
-	if (!str_prompt)
-		return (handle_error(MALLOC_FAIL, NULL));
-	str_prompt += 4;
-	str_prompt = ft_strjoin(shx, str_prompt, "$> ");
+	str_prompt = ft_strfjoin(shx, ft_itoa(shx, g_exit_status), " - ");
+	pwd = lst_get(&shx->env, lst_get_index(&shx->env, "PWD="));
+	if (pwd)
+		str_prompt = ft_strfjoin(shx, str_prompt, &pwd[4]);
+	str_prompt = ft_strfjoin(shx, str_prompt, "$> ");
 	if (!str_prompt)
 		return (handle_error(MALLOC_FAIL, NULL));
 	while (!shx->line || !shx->line[0])
 	{
-		printf("%d-", g_exit_status);
 		shx->line = readline(str_prompt);
 		if (!shx->line)
 			return (EXIT_SHELL);

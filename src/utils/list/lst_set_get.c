@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   lst_set_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:43:36 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/06 11:33:26 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 14:53:15 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 #include <string.h>
 
-void	*lst_get(t_list **lst, t_uint index)
+void	*lst_get(t_list **lst, int index)
 {
 	t_list	*tmp;
-	t_uint	i;
+	int		i;
 
 	if (!lst)
+		return (NULL);
+	if (index < 0)
 		return (NULL);
 	tmp = *lst;
 	i = 0;

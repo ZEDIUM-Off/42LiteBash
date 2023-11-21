@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/20 16:20:58 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 15:03:12 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_uint	wait_all_proc(t_block **block)
 					return (WAITPID_FAIL);
 				if (pid > 0)
 					update_proc(block, status, pid);
-				else if (ppl->next && ppl->next->process.status != -42)
-					kill(ppl->process.pid, SIGKILL);
+				// else if (ppl->next && ppl->next->process.status != -42)
+				// 	kill(ppl->process.pid, SIGKILL);
 			}
 			ppl = ppl->next;
 		}
