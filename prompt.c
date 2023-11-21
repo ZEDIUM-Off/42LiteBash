@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/20 16:17:09 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 12:58:56 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@ t_uint	get_prompt(t_sh_context	*shx)
 	t_str	str_prompt;
 
 	ft_read_history(shx);
-	str_prompt = ft_strdup(shx, (t_str)lst_get(&shx->env,
-				lst_get_index(&shx->env, "PWD=")));
+	str_prompt = ft_strfjoin(shx, ft_itoa(shx, g_exit_status), " - ");
+	str_prompt = ft_strfjoin(shx, str_prompt,
+			&((t_str)lst_get(&shx->env, lst_get_index(&shx->env, "PWD=")))[4]);
 	if (!str_prompt)
 		return (handle_error(MALLOC_FAIL, NULL));
-	str_prompt += 4;
-	str_prompt = ft_strjoin(shx, str_prompt, "$> ");
+	str_prompt = ft_strfjoin(shx, str_prompt, "$> ");
 	if (!str_prompt)
 		return (handle_error(MALLOC_FAIL, NULL));
 	while (!shx->line || !shx->line[0])
 	{
-		printf("%d-", g_exit_status);
 		shx->line = readline(str_prompt);
 		if (!shx->line)
 			return (EXIT_SHELL);
