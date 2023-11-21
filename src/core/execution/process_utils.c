@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 16:03:51 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 16:06:17 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,6 @@ void	update_proc(t_block **block, int status, pid_t pid)
 			else if (WIFSIGNALED(status))
 				ppl->process.status = WTERMSIG(status);
 			close_files(&ppl);
-			if (ppl->process.pipefd[0] > 2)
-				close(ppl->process.pipefd[0]);
-			if (ppl->process.pipefd[1] > 2)
-				close(ppl->process.pipefd[1]);
 			shx->proc_nb--;
 		}
 		ppl = ppl->next;
