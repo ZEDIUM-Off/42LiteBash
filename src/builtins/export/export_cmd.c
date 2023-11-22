@@ -53,7 +53,10 @@ t_uint	export_w_args(t_cmd **_cmd)
 		init_export((*_cmd)->shx, &to_export);
 		status = get_to_export((*_cmd)->shx, (*_cmd)->cmd[i], &to_export);
 		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
+		{
+			i++;
+			continue ;
+		}
 		status = export((*_cmd)->shx, &to_export);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));

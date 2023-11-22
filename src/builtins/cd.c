@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/21 16:04:19 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/21 16:10:41 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ t_uint	cd_builtins(t_sh_context *shx, t_str path)
 		tmp = ft_strdup(shx, path);
 	if (!tmp)
 		return (handle_error(MALLOC_FAIL, NULL));
-	oldpwd = expand(shx, "PWD", ft_strlen("PWD"));
+	// oldpwd = expand(shx, "PWD", ft_strlen("PWD"));
+	oldpwd = get_pwd(shx);
 	if (chdir(tmp) == -1)
 		return (handle_error(CD_FAIL, tmp));
 	status = update_pwd(shx, get_pwd(shx), oldpwd);
