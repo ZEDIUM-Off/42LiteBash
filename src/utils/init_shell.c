@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 13:02:55 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 16:19:44 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ t_uint	init_shell(
 	if (status != CONTINUE_PROC)
 		return (handle_error(MALLOC_FAIL, NULL));
 	status = check_env(shx);
+	if (status != CONTINUE_PROC)
+		return (handle_error(MALLOC_FAIL, NULL));
+	status = lst_to_tab(shx);
 	if (status != CONTINUE_PROC)
 		return (handle_error(MALLOC_FAIL, NULL));
 	shx->lst_paths = get_path(shx, shx->envp);

@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:19:35 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/20 17:24:23 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 11:16:48 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_str	inc_shlvl(t_sh_context *shx, void *data)
 	if (!num_c)
 		return (NULL);
 	new_shlvl = ft_strfjoin(shx, new_shlvl, num_c);
-	// free(num_c);
 	if (!new_shlvl)
 		return (NULL);
 	return (new_shlvl);

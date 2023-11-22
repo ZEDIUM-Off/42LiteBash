@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/22 10:55:16 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 16:25:53 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ t_uint	use_prompt(t_sh_context *shx)
 {
 	t_uint	status;
 
+	status = lst_to_tab(shx);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	shx->lst_paths = get_path(shx, shx->envp);
 	status = pars_line(shx, &shx->blocks, shx->line_split);
 	if (status != CONTINUE_PROC)
 		return (clean_blocks(shx, &shx->blocks), handle_error(status, NULL));
