@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 14:12:31 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 16:25:15 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ t_uint	open_file(t_file *file, t_uint type);
 void	handle_sigint(int sig);
 void	handle_sigstp(int sig);
 void	handle_sigquit(int sig);
-void	child_sigint(int sig);
+void	hd_sig(int sig);
 
 #endif

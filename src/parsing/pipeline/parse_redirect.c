@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:54:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 14:16:47 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 14:46:12 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ t_uint	set_in_redir(t_pipeline **ppl, t_uint meta, t_str *splited, t_uint *i)
 			&(*ppl)->redir.infile, tmp, (*ppl)->redir.in_type);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
-	if (get_meta_char(&(*ppl)->redir.infile.file_name[0]) != NONE)
+	if (meta != HERE_DOC
+		&& get_meta_char(&(*ppl)->redir.infile.file_name[0]) != NONE)
 		return (handle_error(NO_FILE_DIR, NULL));
 	*i += 1;
 	return (CONTINUE_PROC);

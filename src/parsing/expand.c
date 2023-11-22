@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:30:05 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/15 13:27:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 14:44:57 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,12 @@ t_uint	str_expand(t_sh_context *shx, t_str **cmd)
 	i = 0;
 	while ((*cmd)[i])
 	{
-		status = check_expand(shx, &((*cmd)[i]));
-		if (status != CONTINUE_PROC)
-			return (handle_error(status, NULL));
+		if (i > 0 && get_meta_char(&(*cmd)[i - 1][0]) != HERE_DOC)
+		{
+			status = check_expand(shx, &((*cmd)[i]));
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
+		}
 		i++;
 	}
 	return (CONTINUE_PROC);

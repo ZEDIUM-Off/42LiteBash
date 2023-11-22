@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/22 16:25:53 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 16:36:22 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_uint	use_prompt(t_sh_context *shx)
 	status = pars_line(shx, &shx->blocks, shx->line_split);
 	if (status != CONTINUE_PROC)
 		return (clean_blocks(shx, &shx->blocks), handle_error(status, NULL));
+	log_struct(shx);
 	status = processing(&shx->blocks);
 	if (status != CONTINUE_PROC)
 		return (clean_blocks(shx, &shx->blocks), handle_error(status, NULL));
