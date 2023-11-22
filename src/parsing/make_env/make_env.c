@@ -21,7 +21,7 @@ static t_uint	make_env(t_sh_context *shx, t_uint env_var_name)
 	if (env_var_name == PWD)
 	{
 		env_name = ft_strdup(shx, "PWD=");
-		env_name = ft_strfjoin(shx, env_name, get_pwd(shx));
+		env_name = ft_strfjoin(shx, env_name, getcwd(NULL, 0));
 		status = lst_add_back(shx, &shx->env, env_name);
 	}
 	if (env_var_name == SHLVL)
@@ -31,7 +31,7 @@ static t_uint	make_env(t_sh_context *shx, t_uint env_var_name)
 	if (env_var_name == ALL)
 	{
 		env_name = ft_strdup(shx, "PWD=");
-		env_name = ft_strfjoin(shx, env_name, get_pwd(shx));
+		env_name = ft_strfjoin(shx, env_name, getcwd(NULL, 0));
 		status = lst_add_back(shx, &shx->env, env_name);
 		status = lst_add_back(shx, &shx->env, "SHLVL=2");
 		status = lst_add_back(shx, &shx->env, "OLDPWD=");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/22 11:07:43 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 23:52:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ t_uint	cd_builtins(t_sh_context *shx, t_str path)
 		tmp = ft_strdup(shx, path);
 	if (!tmp)
 		return (handle_error(MALLOC_FAIL, NULL));
-	oldpwd = get_pwd(shx);
+	oldpwd = getcwd(NULL, 0);
 	if (chdir(tmp) == -1)
 		return (handle_error(CD_FAIL, tmp));
-	status = update_pwd(shx, get_pwd(shx), oldpwd);
+	status = update_pwd(shx, getcwd(NULL, 0), oldpwd);
 	shx->gc->free(shx, tmp);
 	shx->gc->free(shx, oldpwd);
 	return (status);

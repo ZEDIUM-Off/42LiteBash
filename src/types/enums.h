@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/09 17:28:17 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 23:23:40 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ enum e_error_codes
 	CMD_NOT_FOUND,
 	IS_DIR,
 	OPEN_FAIL,
+	PWD_FAIL,
 	CLOSE_FAIL,
 	KILL_FAIL,
 	CD_FAIL,
