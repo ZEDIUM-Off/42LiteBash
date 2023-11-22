@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/22 23:52:53 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 23:55:38 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_uint	cd_builtins(t_sh_context *shx, t_str path)
 
 	tmp = NULL;
 	oldpwd = NULL;
-	if (!path)
+	if (!path || ft_strcmp(path, "~") == 0)
 		tmp = ft_strdup(shx, shx->home);
 	else if (ft_strcmp(path, "-") == 0)
 		tmp = expand(shx, "OLDPWD", ft_strlen("OLDPWD"));
