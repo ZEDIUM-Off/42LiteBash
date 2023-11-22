@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/21 14:49:32 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 16:59:25 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 t_uint	get_prompt(t_sh_context	*shx)
 {
 	t_str	str_prompt;
+	t_str	pwd;
 
-	ft_read_history(shx);
+	// ft_read_history(shx);
 	str_prompt = ft_strfjoin(shx, ft_itoa(shx, g_exit_status), " - ");
-	str_prompt = ft_strfjoin(shx, str_prompt,
-			&((t_str)lst_get(&shx->env, lst_get_index(&shx->env, "PWD=")))[4]);
+	pwd = lst_get(&shx->env, lst_get_index(&shx->env, "PWD="));
+	if (pwd)
+		str_prompt = ft_strfjoin(shx, str_prompt, &pwd[4]);
 	str_prompt = ft_strfjoin(shx, str_prompt, "$> ");
 	if (!str_prompt)
 		return (handle_error(MALLOC_FAIL, NULL));
@@ -30,8 +32,8 @@ t_uint	get_prompt(t_sh_context	*shx)
 			return (EXIT_SHELL);
 	}
 	shx->gc->free(shx, str_prompt);
-	if (shx->line[0])
-		ft_write_history(shx, shx->line);
+	// if (shx->line[0])
+	// 	ft_write_history(shx, shx->line);
 	return (CONTINUE_PROC);
 }
 

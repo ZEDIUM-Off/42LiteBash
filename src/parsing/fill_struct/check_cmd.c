@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:02:22 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 12:38:49 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 16:40:01 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,15 @@ t_uint	test_for_file(t_sh_context *shx, t_str *cmd, t_str *path)
 		return (handle_error(IS_DIR, *path));
 	if (*path && access(*path, F_OK) == 0)
 	{
-		if (path_stat.st_mode | S_IXUSR)
+		if (path_stat.st_mode & S_IXUSR)
+		{
+			*cmd = ft_strdup(shx, *path);
+			if (!*cmd)
+				return (handle_error(MALLOC_FAIL, NULL));
+			return (CONTINUE_PROC);
+		}
+		else
 			return (handle_error(NO_PERM, *path));
-		*cmd = ft_strdup(shx, *path);
-		if (!*cmd)
-			return (handle_error(MALLOC_FAIL, NULL));
 	}
 	else
 		return (handle_error(CMD_NOT_FOUND, *path));

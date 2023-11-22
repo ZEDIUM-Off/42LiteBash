@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:50:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/14 16:57:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 17:04:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,18 @@ t_uint	run_pipeline(t_block **block, t_pipeline **ppl, int in_fd)
 		status = exec_cmd(block, ppl, in_fd, (*ppl)->process.pipefd[1]);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
+		printf("(parent)closing pipefd[1] = %d\n", (*ppl)->process.pipefd[1]);
 		status = close_fd((*ppl)->process.pipefd[1]);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
 		is_any_proc_ended(block);
+		if (in_fd > 2)
+		{
+			printf("(parent)closing in_fd = %d\n", in_fd);
+			status = close_fd(in_fd);
+			if (status != CONTINUE_PROC)
+				return (handle_error(status, NULL));
+		}
 		return (run_pipeline(block, &(*ppl)->next, (*ppl)->process.pipefd[0]));
 	}
 	else if ((*ppl)->cmd->cmd[0])

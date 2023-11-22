@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 23:33:05 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 14:39:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 16:55:42 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_uint	open_file(t_file *file, t_uint type)
 
 t_uint	close_files(t_pipeline **ppl)
 {
+	printf ("close files : infd = %d, out = %d\n", (*ppl)->redir.infile.fd, (*ppl)->redir.outfile.fd);
 	if ((*ppl)->redir.infile.fd > 2 && (*ppl)->redir.infile.is_open)
 	{
 		if (close((*ppl)->redir.infile.fd) == -1)

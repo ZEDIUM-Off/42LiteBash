@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:38:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 16:05:13 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/21 17:04:31 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_uint	newfd(int oldfd, int newfd)
 	{
 		if (dup2(oldfd, newfd) == -1)
 			return (handle_error(DUP_FAIL, NULL));
+		printf ("(child)close old %d\n", oldfd);
 		status = close_fd(oldfd);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
