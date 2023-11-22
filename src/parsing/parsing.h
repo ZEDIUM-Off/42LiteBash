@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:27:07 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/20 17:34:20 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 14:00:57 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void		skip_to_meta(t_str str, t_uint *i);
 t_uint		get_meta_char(char *c);
 t_uint		str_expand(t_sh_context *shx, t_str **cmd);
 t_str		expand(t_sh_context *shx, t_str to_exp, t_uint	end);
+void		extract_and_expand(t_sh_context *shx, t_str *to_check,
+				t_str *tmp, t_uint *j);
 t_uint		extract_quotes(t_sh_context *shx, t_str src, t_str *to_build);
 t_uint		no_quotes_cmd(t_sh_context *shx, t_cmd **cmd);
 

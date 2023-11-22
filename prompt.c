@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/22 10:55:16 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 14:41:37 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_uint	use_prompt(t_sh_context *shx)
 	status = pars_line(shx, &shx->blocks, shx->line_split);
 	if (status != CONTINUE_PROC)
 		return (clean_blocks(shx, &shx->blocks), handle_error(status, NULL));
+	log_struct(shx);
 	status = processing(&shx->blocks);
 	if (status != CONTINUE_PROC)
 		return (clean_blocks(shx, &shx->blocks), handle_error(status, NULL));

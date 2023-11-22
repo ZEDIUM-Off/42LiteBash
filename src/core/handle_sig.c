@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 11:43:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 14:53:47 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 16:25:48 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@ void	handle_sigstp(int sig)
 	printf("sigstp: %d\n", sig);
 }
 
-void	child_sigint(int sig)
+void	hd_sig(int sig)
 {
 	(void)sig;
+	printf("\n");
+	g_exit_status = 130;
+	exit (g_exit_status);
 }
 
 void	handle_sigquit(int sig)
