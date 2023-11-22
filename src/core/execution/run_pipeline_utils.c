@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:38:04 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/20 15:33:55 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 11:03:41 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_uint	newfd(int oldfd, int newfd)
 
 t_uint	close_fd(int fd)
 {
-	if (fd >= 0)
+	if (fd > 2)
 	{
 		if (close(fd) == -1)
 			return (handle_error(CLOSE_FAIL, NULL));

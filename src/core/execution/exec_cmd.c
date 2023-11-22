@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/22 10:35:54 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 11:08:08 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,36 @@ void	child_sig(void)
 	signal(SIGQUIT, SIG_DFL);
 }
 
+t_uint	child_process(t_pipeline **ppl, int in_fd, int out_fd, t_uint bi_id)
+{
+	t_uint	status;
+
+	close_fd((*ppl)->process.pipefd[0]);
+	status = handle_redir(ppl, in_fd, out_fd);
+	if (status != CONTINUE_PROC)
+		exit (status);
+	child_sig();
+	if (bi_id != 0)
+		status = run_builtin(bi_id, ppl, true);
+	else
+		status = exec_bin(ppl);
+	exit (status);
+	return (status);
+}
+
+t_uint	parent_process(t_pipeline **ppl, int in_fd)
+{
+	t_uint	status;
+
+	status = close_fd((*ppl)->process.pipefd[1]);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	status = close_fd(in_fd);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
+	return (CONTINUE_PROC);
+}
+
 t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 {
 	t_uint			status;
@@ -43,23 +73,8 @@ t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 		return (FORK_FAIL);
 	(*ppl)->shx->proc_nb++;
 	if ((*ppl)->process.pid == 0)
-	{
-		status = handle_redir(ppl, in_fd, out_fd);
-		if (status != CONTINUE_PROC)
-			exit (status);
-		child_sig();
-		// if (in_fd > 2)
-		// {
-		// 	printf ("closing in_fd = %d\n", in_fd);
-		// 	status = close_fd(in_fd);
-		// 	if (status != CONTINUE_PROC)
-		// 		return (handle_error(status, NULL));
-		// }
-		if (bi_id != 0)
-			status = run_builtin(bi_id, ppl, true);
-		else
-			status = exec_bin(ppl);
-		exit (status);
-	}
-	return (CONTINUE_PROC);
+		status = child_process(ppl, in_fd, out_fd, bi_id);
+	else
+		status = parent_process(ppl, in_fd);
+	return (status);
 }

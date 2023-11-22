@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/22 10:36:12 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 11:08:27 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,6 @@ t_uint	wait_all_proc(t_block **block)
 					return (WAITPID_FAIL);
 				if (pid > 0)
 					update_proc(block, status, pid);
-				// if (ppl->next && ppl->next->process.status != -42)
-				// {
-				// 	close_files(&ppl);
-				// 	// printf("clossing pipesfd for : %s\n", ppl->cmd->cmd[0]);
-				// 	if (ppl->process.pipefd[0] > 2)
-				// 		close(ppl->process.pipefd[0]);
-				// 	if (ppl->process.pipefd[1] > 2)
-				// 		close(ppl->process.pipefd[1]);
-				// }
 			}
 			ppl = ppl->next;
 		}
@@ -87,17 +78,12 @@ void	update_proc(t_block **block, int status, pid_t pid)
 	{
 		if (ppl->process.pid == pid)
 		{
-			printf ("updating process :%s\n", ppl->cmd->cmd[0]);
 			proc_found = true;
 			if (WIFEXITED(status))
 				ppl->process.status = WEXITSTATUS(status);
 			else if (WIFSIGNALED(status))
 				ppl->process.status = WTERMSIG(status);
 			close_files(&ppl);
-			// if (ppl->process.pipefd[0] > 2)
-			// 	close(ppl->process.pipefd[0]);
-			// if (ppl->process.pipefd[1] > 2)
-			// 	close(ppl->process.pipefd[1]);
 			shx->proc_nb--;
 		}
 		ppl = ppl->next;
