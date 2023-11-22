@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:58:19 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 16:18:55 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 22:48:58 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ t_uint	handle_error(t_uint error_code, t_str err_var)
 	if (error_code == MALLOC_FAIL || error_code == EXIT_SHELL
 		|| error_code == EXIT_ARG)
 		return (EXIT_SHELL);
-	else if (error_code != CONTINUE_PROC)
+	else if (error_code != CONTINUE_PROC && error_code != CMD_NOT_FOUND
+		&& error_code != NO_PERM && error_code != IS_DIR)
 		return (STOP_PROC);
 	else
 		return (CONTINUE_PROC);

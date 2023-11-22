@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:04:01 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/13 15:29:30 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 23:05:28 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <minish.h>
 
-void	handle_sigchld(int sig);
 t_uint	here_doc(t_sh_context *shx, t_str *content, t_str delimiter);
 t_uint	exec_bin(t_pipeline	**ppl);
 t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd);

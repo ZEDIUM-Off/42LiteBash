@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:25:47 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/14 16:45:48 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 22:50:20 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ struct s_cmd
 	t_sh_context	*shx;
 	t_uint			size;
 	t_str			*cmd;
+	bool			execute;
 };
 
 t_uint		parse_pipeline(t_sh_context *shx, t_block **blocks, t_str *splited);

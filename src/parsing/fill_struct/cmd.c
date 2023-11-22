@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:38:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/20 11:16:40 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/22 22:49:57 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_uint	create_cmd(t_sh_context *shx, t_cmd **new, t_uint size)
 	if (!(*new)->cmd)
 		return (handle_error(MALLOC_FAIL, NULL));
 	(*new)->shx = shx;
+	(*new)->execute = true;
 	return (CONTINUE_PROC);
 }
 
@@ -105,6 +106,9 @@ t_uint	new_cmd(t_sh_context *shx, t_cmd **_cmd, t_str *splited, t_uint size)
 		return (handle_error(status, NULL));
 	status = get_cmd_path(shx, _cmd);
 	if (status != CONTINUE_PROC)
+	{
+		(*_cmd)->execute = false;
 		return (handle_error(status, NULL));
+	}
 	return (CONTINUE_PROC);
 }

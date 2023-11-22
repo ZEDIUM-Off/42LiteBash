@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:02:22 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/22 16:20:13 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 22:58:21 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ bool	check_path(t_str *path)
 t_uint	test_with_path(t_sh_context *shx, t_str *cmd, t_str *path)
 {
 	t_list		*tmp;
-	struct stat	path_stat;
+	t_str		tmp_path;
+	struct stat	pst;
 
 	tmp = shx->lst_paths;
-	stat(*path, &path_stat);
-	if (*path && access(*path, F_OK) == 0 && path_stat.st_mode & S_IXUSR)
+	if (stat(*path, &pst) && access(*path, F_OK) == 0 && pst.st_mode & S_IXUSR)
 	{
-		if (S_ISDIR(path_stat.st_mode))
+		if (S_ISDIR(pst.st_mode))
 			return (handle_error(CMD_NOT_FOUND, *path));
 		*cmd = ft_strdup(shx, *path);
 		if (!*cmd)
@@ -38,12 +38,12 @@ t_uint	test_with_path(t_sh_context *shx, t_str *cmd, t_str *path)
 	}
 	while (tmp)
 	{
-		*cmd = ft_strjoin(shx, tmp->data, *path);
-		if (!*cmd)
+		tmp_path = ft_strjoin(shx, tmp->data, *path);
+		if (!tmp_path)
 			return (handle_error(MALLOC_FAIL, NULL));
-		else if (check_path(cmd))
-			return (CONTINUE_PROC);
-		shx->gc->free(shx, *cmd);
+		else if (check_path(&tmp_path))
+			return (*cmd = ft_strdup(shx, tmp_path), CONTINUE_PROC);
+		shx->gc->free(shx, tmp_path);
 		tmp = tmp->next;
 	}
 	return (handle_error(CMD_NOT_FOUND, *path));

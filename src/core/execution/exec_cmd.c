@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/22 16:26:29 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 22:54:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ t_uint	exec_cmd(t_block **block, t_pipeline **ppl, int in_fd, int out_fd)
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	wait_any_proc(block);
+	if ((*ppl)->cmd->execute == false)
+		return (CONTINUE_PROC);
 	(*ppl)->process.pid = fork();
 	if ((*ppl)->process.pid == -1)
 		return (FORK_FAIL);
