@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/22 17:14:48 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/23 19:05:03 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ t_uint	format_prompt(t_sh_context *shx)
 		status = split_line(shx, &shx->line_split, shx->line);
 		if (status != CONTINUE_PROC)
 			return (handle_error(status, NULL));
-		if (shx->line_split && shx->line_split[0])
+		// printf("line_split: %s\n", shx->line_split[0]);
+		// printf("shx->line: %s\n", shx->line);
+		if ((shx->line_split && shx->line_split[0]) || shx->line)
 		{
 			free(shx->line);
 			shx->line = NULL;

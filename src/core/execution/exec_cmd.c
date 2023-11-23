@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/22 22:54:47 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/23 19:49:52 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_uint	child_process(t_pipeline **ppl, int in_fd, int out_fd, t_uint bi_id)
 		status = run_builtin(bi_id, ppl, true);
 	else
 		status = exec_bin(ppl);
+	gc_free_all((*ppl)->shx);
 	exit (status);
 	return (status);
 }
