@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
+#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/11/24 14:32:47 by  mchenava        ###   ########.fr        #
+#    Updated: 2023/11/24 15:37:37 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,9 +114,9 @@ OBJS	= ${addprefix ${DIR_OBJS},${FILES:.c=.o}}
 
 # ---- Compilation ---- #
 
-CFLAGS = -Wall -Werror -Wextra $(DEB_FLAGS) 
+CFLAGS = -Wall -Werror -Wextra #$(DEB_FLAGS) 
 
-DEB_FLAGS = -g3 #-fsanitize=address
+DEB_FLAGS = -g3 -fsanitize=address
 
 # ********* RULES ******** #
 
@@ -128,8 +128,6 @@ MKDIR	=	mkdir -p
 # ********* RULES ******** #
 
 all		:	$(NAME)
-
-debug	:
 
 run		:	all
 			./${NAME}
@@ -156,21 +154,18 @@ leaks:    all
 $(LIBFT_A):	force
 	@ ${MAKE} ${LIBFT} -C ${DIR_LIBFT} -j4
 
-.PHONY:	all clean fclean re fclean_lib fclean_all force
+.PHONY:	all clean fclean re fclean_lib force
 
 # ---- Variables Rules ---- #
 
 ${NAME}	:	${OBJS} $(LIBFT_A)
-			${CC} ${CFLAGS} $(INC) $^ -L/usr/local/opt/readline/lib -lreadline -o $@
+			${CC} ${CFLAGS} $(INC) $^ -lreadline -o $@
 
 # ---- Compiled Rules ---- #
 
-${DIR_OBJS}%.o:%.c
+${DIR_OBJS}%.o:%.c $(HEAD)
 	@				$(MKDIR) $(shell dirname $@)
-					${CC} ${CFLAGS} $(INC) -I/usr/local/opt/readline/include -c $<  -o $@
-
-watch : $(DIR_SRC)
-	fswatch -o $^ | make && ./$(NAME)
+					${CC} ${CFLAGS} $(INC) -c $<  -o $@
 
 # ---- Usual Commands ---- #
 
@@ -178,13 +173,10 @@ fclean_lib		:
 					make fclean -C ${DIR_LIBFT} -j4
 
 clean			:
-					${RM} traces.log
 					${RM} ${DIR_OBJS}
 
-fclean			:	clean
+fclean			:	clean fclean_lib
 					${RM} ${NAME}
 
-fclean_all		:	fclean fclean_lib
-
-re				:	fclean_all
+re				:	fclean
 	$(MAKE) all
