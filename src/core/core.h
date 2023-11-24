@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 10:28:06 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 10:41:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ struct s_sh_context {
 void	init_sh_context(
 			t_sh_context *ctx,
 			t_str	*argv,
-			int argc,
-			t_str	*envp
-			);
+			int argc);
 
 t_uint	exec_echo(t_cmd **_cmd);
 t_uint	close_files(t_pipeline **ppl);

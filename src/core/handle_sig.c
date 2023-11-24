@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 11:43:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 10:28:08 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 10:47:03 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	handle_sigint_child(int sig)
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
-	// rl_redisplay();
 }
 
 void	handle_sigstp(int sig)

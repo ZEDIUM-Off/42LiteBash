@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:12:12 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/23 17:47:10 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 10:41:45 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_uint	init_shell(
 {
 	t_uint	status;
 
-	init_sh_context(shx, argv, argc, envp);
+	init_sh_context(shx, argv, argc);
 	status = init_gc(shx);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
