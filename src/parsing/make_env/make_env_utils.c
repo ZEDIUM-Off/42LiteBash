@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:19:35 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/24 14:19:29 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 14:32:16 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_uint	make_var_pwd(t_sh_context *shx)
 	if (cwd == NULL || cwd[0] == '\0')
 		return (handle_error(PWD_FAIL, "getcwd"));
 	env_name = ft_strfjoin(shx, env_name, cwd);
-	free(cwd)
+	free(cwd);
 	if (!env_name)
 		return (handle_error(MALLOC_FAIL, NULL));
 	status = lst_add_back(shx, &shx->env, env_name);
