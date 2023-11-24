@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/11/23 19:04:17 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/11/24 10:49:42 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,23 @@ FILES =	src/utils/list/dlst_add.c  \
 				src/parsing/make_env/make_env.c \
 				src/parsing/make_env/make_env_utils.c \
 
-HEAD = $(shell find . -name "*.h") #pas legal 
+HEAD = 	./src/parsing/pipeline/pipeline.h \
+		./src/parsing/syntax/syntax.h \
+		./src/parsing/fill_struct/fill_struct.h \
+		./src/parsing/parsing.h \
+		./src/builtins/builtins.h \
+		./src/utils/utils.h \
+		./src/utils/error_handler/error_handler.h \
+		./src/utils/list/list.h \
+		./src/utils/Libft/headers/get_next_line.h \
+		./src/utils/Libft/headers/libft.h \
+		./src/utils/Libft/headers/ft_printf.h \
+		./src/utils/garbage_collector/garbage.h \
+		./src/core/core.h \
+		./src/core/execution/execution.h \
+		./src/types/types.h \
+		./src/types/enums.h \
+		./minish.h \
 
 INC = -I. -I$(DIR_LIBFT)
 

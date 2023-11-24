@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/23 19:56:06 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 10:45:31 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,45 @@ t_uint	update_pwd(t_sh_context *shx, t_str new, t_str old)
 	return (CONTINUE_PROC);
 }
 
+t_uint	cd_get_path(t_sh_context *shx, t_str path, t_str *tmp)
+{
+	*tmp = NULL;
+	if (!path || ft_strcmp(path, "~") == 0)
+		*tmp = ft_strdup(shx, shx->home);
+	else if (ft_strcmp(path, "-") == 0)
+		*tmp = expand(shx, "OLDPWD", ft_strlen("OLDPWD"));
+	else
+		*tmp = ft_strdup(shx, path);
+	if (!*tmp)
+		return (handle_error(MALLOC_FAIL, NULL));
+	return (CONTINUE_PROC);
+}
+
 t_uint	cd_builtins(t_sh_context *shx, t_str path)
 {
 	t_uint	status;
 	t_str	tmp;
 	t_str	oldpwd;
+	t_str	pwd;
 
-	tmp = NULL;
 	oldpwd = NULL;
-	if (!path || ft_strcmp(path, "~") == 0)
-		tmp = ft_strdup(shx, shx->home);
-	else if (ft_strcmp(path, "-") == 0)
-		tmp = expand(shx, "OLDPWD", ft_strlen("OLDPWD"));
-	else
-		tmp = ft_strdup(shx, path);
-	if (!tmp)
-		return (handle_error(MALLOC_FAIL, NULL));
+	pwd = NULL;
+	status = cd_get_path(shx, path, &tmp);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
 	oldpwd = getcwd(NULL, 0);
+	if (!oldpwd)
+		return (handle_error(MALLOC_FAIL, NULL));
 	if (chdir(tmp) == -1)
-		return (handle_error(CD_FAIL, tmp));
-	status = update_pwd(shx, getcwd(NULL, 0), oldpwd);
+		return (free(oldpwd), handle_error(CD_FAIL, tmp));
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		return (free(oldpwd), handle_error(MALLOC_FAIL, NULL));
+	status = update_pwd(shx, pwd, oldpwd);
+	if (status != CONTINUE_PROC)
+		return (free(pwd), free(oldpwd), handle_error(status, NULL));
 	shx->gc->free(shx, tmp);
-	shx->gc->free(shx, oldpwd);
+	free(oldpwd);
+	free(pwd);
 	return (status);
 }
