@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:09:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/14 11:02:19 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 10:34:34 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ t_uint	check_exit_arg(t_str number)
 	if (number)
 	{
 		i = 0;
-		while (number[i])
+		while (number[i] && (number[i] == ' '
+				|| number[i] == '\t' || number[i] == '\n'))
+			i++;
+		while (number[i] && number[i] != ' ' && number[i] != '\t'
+			&& number[i] != '\n')
 		{
 			if (!ft_isdigit(number[i]) && number[i] != '-' && number[i] != '+')
 				return (handle_error(EXIT_ARG, number));

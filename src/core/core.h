@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:21:06 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/22 16:25:15 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 10:28:06 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	handle_sigint(int sig);
 void	handle_sigstp(int sig);
 void	handle_sigquit(int sig);
 void	hd_sig(int sig);
+void	handle_sigint_child(int sig);
 
 #endif
