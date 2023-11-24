@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 15:43:58 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/06 16:54:07 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 12:55:07 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_str	get_error_msg_part2(t_uint error_code)
 		return (IS_DIR_MSG);
 	else if (error_code == NO_PERM)
 		return (NO_PERM_MSG);
+	else if (error_code == CD_TOO_ARG)
+		return (CD_TOO_ARG_MSG);
 	return (NO_ERROR_MSG);
 }
 

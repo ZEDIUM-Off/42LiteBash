@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:58:19 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 10:32:27 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 12:55:56 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	bi_error(t_uint error_code, t_str err_var)
 			write(2, ": ", 2);
 		}
 	}
+	else if (error_code == CD_TOO_ARG)
+		write(2, "cd: ", 4);
 }
 
 void	print_error(t_uint error_code, t_str err_var)

@@ -25,7 +25,7 @@ struct s_export
 
 t_uint	exec_echo(t_cmd **_cmd);
 t_uint	pwd_builtins(t_sh_context *shx);
-t_uint	cd_builtins(t_sh_context *shx, t_str path);
+t_uint	cd_builtins(t_sh_context *shx, t_cmd *path);
 t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl, bool fork);
 t_uint	export_cmd(t_cmd **_cmd);
 t_uint	export(t_sh_context *shx, t_export *to_export);
