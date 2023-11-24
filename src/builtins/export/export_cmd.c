@@ -21,7 +21,7 @@ t_uint	get_to_export(t_sh_context *shx, t_str cmd, t_export *to_export)
 	while (cmd[i] && get_meta_char(&cmd[i]) != EQUAL
 		&& get_meta_char(&cmd[i]) != PLUS_EQUAL)
 		to_export->name = ft_strnjoin(shx, to_export->name, &cmd[i++], 1);
-	status = check_var(shx, to_export->name, to_export);
+	status = check_var(shx, to_export->name, to_export, EXPORT_BI);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	if (cmd[i] && get_meta_char(&cmd[i]) == EQUAL)

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 12:53:34 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 14:11:49 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define INVALID_META_MSG "syntax error near invalid token"
 # define UNCLOSED_QUOTES_MSG "unclosed quotes"
 # define EXPORT_NOT_VALID_ID_MSG "not a valid identifier"
+# define UNSET_NOT_VALID_ID_MSG "not a valid identifier"
 # define EXIT_ARG_MSG "numeric argument required"
 # define EXIT_TOO_ARG_MSG "too many arguments"
 # define CD_TOO_ARG_MSG "too many arguments"

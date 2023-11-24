@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_env_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:19:35 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/23 17:32:58 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 14:06:34 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_uint	make_var_oldpwd(t_sh_context *shx)
 	t_uint	status;
 
 	status = 0;
-	status = lst_add_back(shx, &shx->env, "OLD_PWD=");
+	status = lst_add_back(shx, &shx->env, "OLDPWD=");
 	if (status != CONTINUE_PROC)
 		return (handle_error(MALLOC_FAIL, NULL));
 	return (CONTINUE_PROC);
