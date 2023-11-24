@@ -6,7 +6,7 @@
 #    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/11/24 10:49:42 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/11/24 10:51:59 by bfaure           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ FILES =	src/utils/list/dlst_add.c  \
 				src/utils/error_handler/exit_shell.c \
 				src/utils/error_handler/get_error_msg.c \
 				src/utils/error_handler/handle_error.c \
-				src/utils/logger/log.c \
 				src/utils/ft_strinsert.c \
 				src/core/init_ctx.c \
 				minishell.c \

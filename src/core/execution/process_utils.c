@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/22 11:08:27 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 10:29:11 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_uint	check_proc_status(t_block **block)
 	{
 		if (ppl->process.status == -42)
 			return (STOP_PROC);
-		g_exit_status = ppl->process.status;
+		if (g_exit_status == 0)
+			g_exit_status = ppl->process.status;
 		ppl = ppl->next;
 	}
 	(*block)->shx->proc_nb = 0;
@@ -96,8 +97,8 @@ void	wait_any_proc(t_block **block)
 	int				status;
 	pid_t			pid;
 
-	signal(SIGINT, SIG_IGN);
 	shx = (*block)->shx;
+	signal(SIGINT, handle_sigint_child);
 	if (shx->proc_nb >= MAX_PROC_NB)
 	{
 		pid = waitpid(-1, &status, 0);

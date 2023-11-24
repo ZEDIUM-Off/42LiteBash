@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:15:00 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/15 11:25:47 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 10:50:07 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "garbage_collector/garbage.h"
 # include "error_handler/error_handler.h"
-# include "logger/logger.h"
 # include <minish.h>
 
 t_uint	init_shell(

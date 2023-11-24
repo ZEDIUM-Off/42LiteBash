@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:28:15 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/22 16:20:00 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 10:46:47 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,12 @@ t_uint	lst_to_tab(t_sh_context *shx)
 	tmp = shx->env;
 	while (tmp)
 	{
-		shx->envp[i] = ft_strdup(shx, tmp->data);
-		if (!shx->envp[i])
+		shx->envp[i++] = ft_strdup(shx, tmp->data);
+		if (!shx->envp[i - 1])
 			return (handle_error(MALLOC_FAIL, NULL));
-		i++;
 		tmp = tmp->next;
 	}
-	shx->envp[i] = NULL;
-	return (CONTINUE_PROC);
+	return (shx->envp[i] = NULL, CONTINUE_PROC);
 }
 
 void	swap_nodes(t_list *current_node, t_list *next_node)
