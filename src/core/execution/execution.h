@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:04:01 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 14:59:55 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 15:16:02 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	is_any_proc_ended(t_block **block);
 t_uint	handle_here_doc(t_pipeline **ppl);
 t_uint	clean_before_exec(t_sh_context *shx, t_pipeline **ppl, t_str	**cmd);
 t_str	*ft_dup_tab(t_str *tabl);
+void	free_tab_str(char **tabl);
 
 #endif

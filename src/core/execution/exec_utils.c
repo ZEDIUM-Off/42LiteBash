@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:26:34 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 15:01:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 15:16:23 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,18 @@ t_uint	clean_before_exec(t_sh_context *shx, t_pipeline **ppl, t_str	**cmd)
 		return (MALLOC_FAIL);
 	gc_free_all(shx);
 	return (CONTINUE_PROC);
+}
+
+void	free_tab_str(char **tabl)
+{
+	int	i;
+
+	i = 0;
+	while (tabl[i])
+	{
+		free(tabl[i]);
+		i++;
+	}
+	free(tabl);
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 15:04:37 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 15:16:35 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 t_uint	exec_bin(t_str *cmd, t_str *envp)
 {
 	if (execve(cmd[0], cmd, envp) == -1)
+	{
+		free_tab_str(cmd);
+		free_tab_str(envp);
 		exit (EXIT_FAILURE);
+	}
+	free_tab_str(cmd);
+	free_tab_str(envp);
 	exit (EXIT_SUCCESS);
 	return (CONTINUE_PROC);
 }
