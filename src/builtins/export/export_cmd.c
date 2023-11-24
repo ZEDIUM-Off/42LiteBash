@@ -81,5 +81,5 @@ t_uint	export_cmd(t_cmd **_cmd)
 		print_export((*_cmd)->shx);
 	else
 		return (export_w_args(_cmd));
-	return (CONTINUE_PROC);
+	return (g_exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 10:29:11 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 12:31:22 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ void	update_proc(t_block **block, int status, pid_t pid)
 			proc_found = true;
 			if (WIFEXITED(status))
 				ppl->process.status = WEXITSTATUS(status);
-			else if (WIFSIGNALED(status))
-				ppl->process.status = WTERMSIG(status);
+			else if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
+				ppl->process.status = 130;
+			else if (WIFSIGNALED(status) && WTERMSIG(status) == SIGQUIT)
+				ppl->process.status = 131;
 			close_files(&ppl);
 			shx->proc_nb--;
 		}
