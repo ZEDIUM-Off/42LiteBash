@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_builtins.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 14:05:06 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/20 15:46:05 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 11:53:42 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_uint	check_builtins(char *str)
 {
-	if (!ft_strncmp(str, "echo", 4) && (str[4] == ' ' || str[4] == '\0'))
+	if ((!ft_strncmp(str, "echo", 4)) && (str[4] == ' ' || str[4] == '\0'))
 		return (ECHO_BI);
 	else if (!ft_strncmp(str, "cd", 2) && (str[2] == ' ' || str[2] == '\0'))
 		return (CD_BI);
