@@ -83,19 +83,25 @@ void	init_export(t_sh_context *shx, t_export *to_export)
 	to_export->type = NONE;
 }
 
-t_uint	check_var(t_sh_context *shx, t_str var, t_export *to_export)
+t_uint	check_var(t_sh_context *shx, t_str var,
+		t_export *to_export, t_uint bi_id)
 {
 	t_uint	i;
+	t_uint	err;
 
+	if (bi_id == EXPORT_BI)
+		err = EXPORT_NOT_VALID_ID;
+	else
+		err = UNSET_NOT_VALID_ID;
 	if (!var)
-		return (handle_error(EXPORT_NOT_VALID_ID, var));
+		return (handle_error(err, var));
 	if (!ft_isalpha(var[0]) && var[0] != '_')
-		return (handle_error(EXPORT_NOT_VALID_ID, var));
+		return (handle_error(err, var));
 	i = 1;
 	while (var[i])
 	{
 		if (!ft_isalnum(var[i]) && var[i] != '_')
-			return (handle_error(EXPORT_NOT_VALID_ID, var));
+			return (handle_error(err, var));
 		i++;
 	}
 	to_export->name = ft_strdup(shx, var);

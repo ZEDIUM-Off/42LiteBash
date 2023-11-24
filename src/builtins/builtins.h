@@ -33,7 +33,7 @@ void	init_export(t_sh_context *shx, t_export *to_export);
 t_uint	unset_cmd(t_cmd **_cmd);
 t_str	get_pwd(t_sh_context *shx);
 t_uint	check_no_fork_bi(t_uint bi_id, t_pipeline **ppl);
-t_uint	check_var(t_sh_context *shx, t_str var, t_export *to_export);
+t_uint	check_var(t_sh_context *shx, t_str var, t_export *to_export, t_uint bi_id);
 t_uint	build_var(t_sh_context *shx, t_export *to_export, t_str current);
 int		env_get_index(t_list **env, t_str name);
 t_uint	exit_bi(t_cmd *cmd);

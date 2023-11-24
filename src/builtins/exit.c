@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:09:25 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 10:34:34 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 13:39:18 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ t_uint	exit_bi(t_cmd *cmd)
 	number = NULL;
 	if (!cmd->cmd[1])
 		return (EXIT_SHELL);
-	if (cmd->cmd[2])
-		return (handle_error(EXIT_TOO_ARG, NULL));
 	status = extract_quotes(cmd->shx, cmd->cmd[1], &number);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
 	status = check_exit_arg(number);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
+	if (cmd->cmd[2])
+		return (handle_error(EXIT_TOO_ARG, NULL));
 	return (EXIT_SHELL);
 }

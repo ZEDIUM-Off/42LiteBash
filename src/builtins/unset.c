@@ -18,6 +18,9 @@ static t_uint	unset_remove(t_sh_context *shx, t_cmd **_cmd,
 	int			index;
 	t_uint		status;
 
+	status = check_var (shx, (*_cmd)->cmd[i], NULL, UNSET_BI);
+	if (status != CONTINUE_PROC)
+		return (handle_error(status, NULL));
 	index = env_get_index(&shx->env, (*_cmd)->cmd[i]);
 	if (index != -1)
 	{

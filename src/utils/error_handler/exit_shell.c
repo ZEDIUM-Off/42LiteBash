@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:21:29 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/20 14:36:43 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 14:12:36 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	set_exit_status(t_uint	error_code)
 void	exit_shell(t_sh_context *shx)
 {
 	gc_free_all(shx);
+	rl_clear_history();
 	exit(g_exit_status);
 }

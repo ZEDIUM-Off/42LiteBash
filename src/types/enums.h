@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:02:20 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 12:54:35 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 14:10:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ enum e_error_codes
 	KILL_FAIL,
 	CD_FAIL,
 	EXPORT_NOT_VALID_ID,
+	UNSET_NOT_VALID_ID,
 	CD_TOO_ARG,
 	EXIT_ARG,
 	EXIT_TOO_ARG,

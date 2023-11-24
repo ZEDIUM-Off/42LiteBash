@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 12:30:33 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 13:56:53 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_uint	child_process(t_pipeline **ppl, int in_fd, int out_fd, t_uint bi_id)
 	child_sig();
 	if (bi_id != 0)
 		status = run_builtin(bi_id, ppl, true);
-	else
+	else if ((*ppl)->cmd->cmd[0])
 		status = exec_bin(ppl);
 	gc_free_all((*ppl)->shx);
 	exit (status);

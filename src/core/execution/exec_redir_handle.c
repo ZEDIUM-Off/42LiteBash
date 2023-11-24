@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:39:22 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/21 16:29:28 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 13:43:27 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ t_uint	handle_redir(t_pipeline **ppl, int in_fd, int out_fd)
 	status = outfile_redir(ppl);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));
-	return (no_quotes_cmd((*ppl)->shx, &(*ppl)->cmd));
+	status = no_quotes_cmd((*ppl)->shx, &(*ppl)->cmd);
+	return (status);
 }

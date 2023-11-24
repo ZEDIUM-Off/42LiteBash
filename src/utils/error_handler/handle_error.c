@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:58:19 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 12:55:56 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 14:11:05 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ void	bi_error(t_uint error_code, t_str err_var)
 	if (error_code == EXPORT_NOT_VALID_ID)
 	{
 		write(2, "export: `", 9);
+		write(2, err_var, ft_strlen(err_var));
+		write(2, "': ", 3);
+	}
+	else if (error_code == UNSET_NOT_VALID_ID)
+	{
+		write(2, "unset: `", 8);
 		write(2, err_var, ft_strlen(err_var));
 		write(2, "': ", 3);
 	}
