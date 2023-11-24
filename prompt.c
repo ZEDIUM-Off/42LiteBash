@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:40:16 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/24 11:44:25 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 13:02:45 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_uint	get_prompt(t_sh_context	*shx)
 		if (!shx->line)
 			return (EXIT_SHELL);
 	}
-	g_exit_status = 0;
 	shx->gc->free(shx, str_prompt);
 	if (shx->line[0])
 		ft_write_history(shx, shx->line);

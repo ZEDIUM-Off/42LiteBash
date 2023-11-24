@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:11:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 12:31:22 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 13:05:13 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ t_uint	check_proc_status(t_block **block)
 	{
 		if (ppl->process.status == -42)
 			return (STOP_PROC);
-		if (g_exit_status == 0)
-			g_exit_status = ppl->process.status;
+		g_exit_status = ppl->process.status;
 		ppl = ppl->next;
 	}
 	(*block)->shx->proc_nb = 0;
