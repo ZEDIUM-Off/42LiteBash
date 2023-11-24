@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:43:42 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 11:42:24 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 12:51:23 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_uint	run_builtin(t_uint	bi_id, t_pipeline **ppl, bool fork)
 	else if (bi_id == PWD_BI)
 		status = pwd_builtins((*ppl)->shx);
 	else if (bi_id == CD_BI && !fork)
-		status = cd_builtins((*ppl)->shx, (*ppl)->cmd->cmd[1]);
+		status = cd_builtins((*ppl)->shx, (*ppl)->cmd);
 	else if (bi_id == EXPORT_BI && !fork)
 		status = export_cmd(&(*ppl)->cmd);
 	else if (bi_id == UNSET_BI && !fork)

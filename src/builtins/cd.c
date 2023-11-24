@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 15:58:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/24 12:42:40 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 12:54:35 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,19 @@ t_uint	cd_get_path(t_sh_context *shx, t_str path, t_str *tmp)
 	return (CONTINUE_PROC);
 }
 
-t_uint	cd_builtins(t_sh_context *shx, t_str path)
+t_uint	cd_builtins(t_sh_context *shx, t_cmd *cmd)
 {
 	t_uint	status;
 	t_str	tmp;
 	t_str	oldpwd;
 	t_str	pwd;
+	t_str	path;
 
 	oldpwd = NULL;
 	pwd = NULL;
+	if (cmd->cmd[1] && cmd->cmd[2])
+		return (handle_error(CD_TOO_ARG, NULL));
+	path = cmd->cmd[1];
 	status = cd_get_path(shx, path, &tmp);
 	if (status != CONTINUE_PROC)
 		return (handle_error(status, NULL));

@@ -6,7 +6,7 @@
 /*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 13:22:15 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/15 11:28:00 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 12:53:34 by  mchenava        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define EXPORT_NOT_VALID_ID_MSG "not a valid identifier"
 # define EXIT_ARG_MSG "numeric argument required"
 # define EXIT_TOO_ARG_MSG "too many arguments"
+# define CD_TOO_ARG_MSG "too many arguments"
 # define IS_DIR_MSG "is a directory"
 # define NO_ERROR_MSG "\0"
 
