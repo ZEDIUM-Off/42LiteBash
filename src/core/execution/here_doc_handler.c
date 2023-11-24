@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+        */
+/*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:44:32 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/22 23:12:39 by  mchenava        ###   ########.fr       */
+/*   Updated: 2023/11/24 12:45:06 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ t_uint	hd_test_exp(t_sh_context *shx, bool *expend, t_str *delimiter)
 	t_str	tmp;
 	t_uint	status;
 
-	if (ft_strcspn(*delimiter, "'") != ft_strlen(*delimiter))
+	*expend = true;
+	if (ft_strcspn(*delimiter, "\'") != ft_strlen(*delimiter))
 		*expend = false;
 	if (ft_strcspn(*delimiter, "\"") != ft_strlen(*delimiter))
 		*expend = false;
-	*expend = true;
 	tmp = NULL;
 	status = extract_quotes(shx, *delimiter, &tmp);
 	if (status != CONTINUE_PROC)
