@@ -6,20 +6,18 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:39:51 by  mchenava         #+#    #+#             */
-/*   Updated: 2023/11/24 14:52:31 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 15:04:37 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minish.h>
 
-t_uint	exec_bin(t_pipeline	**ppl)
+t_uint	exec_bin(t_str *cmd, t_str *envp)
 {
-	t_sh_context	*shx;
-
-	shx = (*ppl)->shx;
-	if (execve((*ppl)->cmd->cmd[0], (*ppl)->cmd->cmd, shx->envp) == -1)
+	if (execve(cmd[0], cmd, envp) == -1)
 		exit (EXIT_FAILURE);
 	exit (EXIT_SUCCESS);
+	return (CONTINUE_PROC);
 }
 
 void	child_sig(void)
@@ -30,17 +28,26 @@ void	child_sig(void)
 
 t_uint	child_process(t_pipeline **ppl, int in_fd, int out_fd, t_uint bi_id)
 {
-	t_uint	status;
+	t_uint			status;
+	t_str			*envp;
+	t_str			*cmd;
 
 	close_fd((*ppl)->process.pipefd[0]);
 	status = handle_redir(ppl, in_fd, out_fd);
 	if (status != CONTINUE_PROC)
 		exit (status);
 	child_sig();
+	if (bi_id == 0)
+	{
+		envp = ft_dup_tab((*ppl)->shx->envp);
+		status = clean_before_exec((*ppl)->shx, ppl, &cmd);
+		if (status != CONTINUE_PROC)
+			return (handle_error(status, NULL));
+	}
 	if (bi_id != 0)
 		status = run_builtin(bi_id, ppl, true);
-	else if ((*ppl)->cmd->cmd[0])
-		status = exec_bin(ppl);
+	else if (cmd[0])
+		status = exec_bin(cmd, envp);
 	gc_free_all((*ppl)->shx);
 	exit (status);
 	return (status);

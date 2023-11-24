@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By:  mchenava < mchenava@student.42lyon.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/09 10:10:14 by bfaure            #+#    #+#              #
-#    Updated: 2023/11/24 10:51:59 by bfaure           ###   ########lyon.fr    #
+#    Updated: 2023/11/24 14:32:47 by  mchenava        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ FILES =	src/utils/list/dlst_add.c  \
 				src/core/execution/exec_cmd.c \
 				src/core/files.c \
 				src/core/execution/run_pipeline.c \
+				src/core/execution/exec_utils.c \
 				src/core/execution/run_pipeline_utils.c \
 				src/core/execution/process_utils.c \
 				src/core/execution/exec_redir_handle.c \
