@@ -6,7 +6,7 @@
 /*   By: bfaure <bfaure@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:29:44 by bfaure            #+#    #+#             */
-/*   Updated: 2023/11/20 15:18:03 by bfaure           ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 14:31:40 by bfaure           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static t_uint	p_export(t_sh_context *shx, t_list **lst)
 		if (ft_strcspn(tmp->data, "=") == ft_strlen(tmp->data))
 			i--;
 		str_tmp = ft_strdup(shx, &((char *)tmp->data)[i]);
-		if (str_tmp && str_tmp[0] != '\0')
+		if ((str_tmp && str_tmp[0] != '\0')
+			|| ft_strcspn(tmp->data, "=") != ft_strlen(tmp->data))
 			printf("\"%s\"", str_tmp);
 		printf("\n");
 		tmp = tmp->next;
