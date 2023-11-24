@@ -62,7 +62,7 @@ t_uint	export_w_args(t_cmd **_cmd)
 			return (handle_error(status, NULL));
 		i++;
 	}
-	return (CONTINUE_PROC);
+	return (g_exit_status);
 }
 
 void	print_export(t_sh_context *shx)
